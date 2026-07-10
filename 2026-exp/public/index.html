@@ -145,6 +145,24 @@
   #panel, #hint, #title, #status {
     display: none !important;
   }
+  .stats-overlay {
+    position: fixed; left: 24px; top: 24px;
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #cfd8dc;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1.2s;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+  }
+  .stats-val {
+    color: #d8b56a;
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
@@ -169,6 +187,12 @@
 <div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; display: none; z-index: 3;"></div>
 <button id="load-file-btn" class="floating-btn">📁 Load Audio</button>
 <input id="file-input" type="file" accept="audio/*" multiple style="display: none;" />
+
+<div id="stats-overlay" class="stats-overlay">
+  speed: <span id="stat-speed" class="stats-val">0</span><br/>
+  # of tracks: <span id="stat-tracks" class="stats-val">0</span><br/>
+  topology complexity: <span id="stat-complexity" class="stats-val">0</span>
+</div>
 
 <div id="hud-active-songs"></div>
 <script type="module" src="app.js"></script>

@@ -1,7 +1,7 @@
 // Spatial crossfade engine: the nexus position mixes the nearest tracks with
 // inverse-distance gains. A small pool of media elements is recycled so the
 // full 746-track archive stays streamable without preloading anything.
-const MAX_POOL = 6
+const MAX_POOL = 32
 
 export class SoundField {
   constructor(tracks) {

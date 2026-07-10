@@ -43,7 +43,7 @@ function enterExperience() {
     }, 800)
   }
 
-  const toFade = ["#hud-active-songs", "#load-file-btn"]
+  const toFade = ["#hud-active-songs", "#load-file-btn", "#stats-overlay"]
   for (const id of toFade) {
     const el = $(id)
     if (el) {
@@ -223,14 +223,14 @@ setAuto(urlMode === "auto")
 
 /* track spawning chevrons */
 function changeTrackLimit(delta) {
-  trackLimitCount = Math.min(data.tracks.length, Math.max(1, trackLimitCount + delta))
+  trackLimitCount = Math.min(data.tracks.length, Math.max(0, trackLimitCount + delta))
   
   // Re-apply geometric coordinates based on the new limit count N
   applyGeometricLayout(trackLimitCount)
   
   world.setTrackLimit(trackLimitCount)
   drift.trackLimitCount = trackLimitCount
-  field.maxVoices = Math.min(6, trackLimitCount)
+  field.maxVoices = Math.min(24, trackLimitCount)
   
   if (drift.target >= trackLimitCount) {
     drift.userSelected(trackLimitCount - 1)
@@ -321,8 +321,8 @@ addEventListener("pointermove", (e) => {
   
   if (introActive) return
   
-  // Map X to Change Rate (flight speed)
-  const fs = Math.min(1.0, Math.max(0.0, e.clientX / window.innerWidth))
+  // Map X to Change Rate (flight speed) - INVERTED (left is 1.0/100, right is 0.0)
+  const fs = Math.min(1.0, Math.max(0.0, 1.0 - e.clientX / window.innerWidth))
   if (fs < 0.03) {
     setAuto(false)
     applyFlightSpeed(0.0)
@@ -331,16 +331,19 @@ addEventListener("pointermove", (e) => {
     applyFlightSpeed(fs)
   }
   
-  // Map Y to Number of Songs (trackLimitCount)
+  // Map Y to Number of Songs (trackLimitCount) - ranges from 0 to total count
   const pctY = Math.min(1.0, Math.max(0.0, e.clientY / window.innerHeight))
-  const limit = Math.round(1 + pctY * (data.tracks.length - 1))
+  const limit = Math.round(pctY * data.tracks.length)
+  
+  // Dynamically map listening region falloff based on complexity Y (ranges up to 21.0)
+  field.falloff = 3.0 + pctY * 18.0
   
   // Directly update parameters
   trackLimitCount = limit
   applyGeometricLayout(trackLimitCount)
   world.setTrackLimit(trackLimitCount)
   drift.trackLimitCount = trackLimitCount
-  field.maxVoices = Math.min(6, trackLimitCount)
+  field.maxVoices = Math.min(24, trackLimitCount)
 })
 
 /* keyboard interaction: space to pause, arrows to navigate */
@@ -396,6 +399,14 @@ function frame(now) {
 
   // Update dynamic song listings inside consolidated HUD
   updateActiveSongsList()
+
+  // Update stats overlay values
+  const elSpeed = document.getElementById("stat-speed")
+  const elTracks = document.getElementById("stat-tracks")
+  const elComplexity = document.getElementById("stat-complexity")
+  if (elSpeed) elSpeed.textContent = Math.round(drift.flightSpeed * 100)
+  if (elTracks) elTracks.textContent = field.voices.size
+  if (elComplexity) elComplexity.textContent = trackLimitCount
 
   world.setPlayhead(dom, dom >= 0 ? field.progress(dom) : null)
 
