@@ -54,18 +54,33 @@ export class SoundField {
     const t = this.tracks[trackIdx]
     v.trackIdx = trackIdx
     v.el.src = t.url
+    
+    // Restore progress if it was previously playing
+    const saved = t.savedTime || 0
+    if (saved > 0 && saved < t.dur) {
+      v.el.currentTime = saved
+    }
+
     v.el.onended = () => {
       if (this.onended) this.onended(trackIdx)
-      this._release(trackIdx)
+      this._release(trackIdx, true)
     }
     v.el.play().catch(() => {})
     this.voices.set(trackIdx, v)
     return v
   }
 
-  _release(trackIdx) {
+  _release(trackIdx, naturallyEnded = false) {
     const v = this.voices.get(trackIdx)
     if (!v) return
+
+    // Save playback position so it can resume from the same spot
+    if (naturallyEnded) {
+      this.tracks[trackIdx].savedTime = 0
+    } else if (v.el.currentTime > 0.1 && v.el.duration) {
+      this.tracks[trackIdx].savedTime = v.el.currentTime
+    }
+
     v.el.onended = null
     v.el.pause()
     v.el.removeAttribute("src")
