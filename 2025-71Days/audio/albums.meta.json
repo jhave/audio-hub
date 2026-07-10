@@ -1,0 +1,2987 @@
+{
+  "albums": [
+    {
+      "id": "The World Within [Oct 7, 2025]",
+      "title": "The World Within",
+      "subtitle": "Gentle evocative entrails from a never-alive algo-simulation.",
+      "coverSrc": "/audio/The World Within [Oct 7, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "The World Within [Oct 7, 2025]-0",
+          "src": "/audio/The World Within [Oct 7, 2025]/A Sombre Consolation [74WS].mp3",
+          "durationSec": 279.072,
+          "data": {
+            "title": "A Sombre Consolation [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-1",
+          "src": "/audio/The World Within [Oct 7, 2025]/Even the Walls are Ok [74WS].mp3",
+          "durationSec": 218.952,
+          "data": {
+            "title": "Even The Walls Are Ok [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-2",
+          "src": "/audio/The World Within [Oct 7, 2025]/Eventually Everything is Osmosis [74WS].mp3",
+          "durationSec": 314.112,
+          "data": {
+            "title": "Eventually Everything Is Osmosis [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-3",
+          "src": "/audio/The World Within [Oct 7, 2025]/Grace Calibration [74WS].mp3",
+          "durationSec": 289.992,
+          "data": {
+            "title": "Grace Calibration [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-4",
+          "src": "/audio/The World Within [Oct 7, 2025]/Litmus Sifting [74WS].mp3",
+          "durationSec": 207.984,
+          "data": {
+            "title": "Litmus Sifting [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-5",
+          "src": "/audio/The World Within [Oct 7, 2025]/Play without Seeking [74WS].mp3",
+          "durationSec": 173.424,
+          "data": {
+            "title": "Play Without Seeking [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-6",
+          "src": "/audio/The World Within [Oct 7, 2025]/Serenity Isolation [74WS].mp3",
+          "durationSec": 269.304,
+          "data": {
+            "title": "Serenity Isolation [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-7",
+          "src": "/audio/The World Within [Oct 7, 2025]/There is Nothing to Seek [74WS].mp3",
+          "durationSec": 256.92,
+          "data": {
+            "title": "There Is Nothing To Seek [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-8",
+          "src": "/audio/The World Within [Oct 7, 2025]/What is, is Just Enough, and No More [74WS].mp3",
+          "durationSec": 244.992,
+          "data": {
+            "title": "What Is, Is Just Enough, And No More [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        },
+        {
+          "id": "The World Within [Oct 7, 2025]-9",
+          "src": "/audio/The World Within [Oct 7, 2025]/When the Whispers Cease [74WS].mp3",
+          "durationSec": 267.96,
+          "data": {
+            "title": "When The Whispers Cease [74WS]",
+            "albumId": "The World Within [Oct 7, 2025]",
+            "albumTitle": "The World Within"
+          }
+        }
+      ],
+      "totalDurationSec": 2522.712,
+      "dateLabel": "October 7, 2025",
+      "dateISO": "2025-10-07",
+      "dateMs": 1759795200000
+    },
+    {
+      "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+      "title": "As If You Did Not Know (Gentle Dissipations)",
+      "subtitle": "An afternoon's derelict predilection for an algorithmically-generated eternity.",
+      "coverSrc": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-0",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/A Drowsy Complex Apocalypse where everything Survives [76WS].mp3",
+          "durationSec": 229.104,
+          "data": {
+            "title": "A Drowsy Complex Apocalypse Where Everything Survives [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-1",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/Calm Dissipations [76WS].mp3",
+          "durationSec": 163.92,
+          "data": {
+            "title": "Calm Dissipations [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-2",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/Consequence FIlters [76WS].mp3",
+          "durationSec": 197.352,
+          "data": {
+            "title": "Consequence FIlters [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-3",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/Covert Addition [76WS].mp3",
+          "durationSec": 202.824,
+          "data": {
+            "title": "Covert Addition [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-4",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/Entropy gets it Together [76WS].mp3",
+          "durationSec": 232.512,
+          "data": {
+            "title": "Entropy Gets It Together [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-5",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/Everything is ok even if it doesn't seem so [76WS].mp3",
+          "durationSec": 197.904,
+          "data": {
+            "title": "Everything Is Ok Even If It Doesn'T Seem So [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-6",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/Just Enuff Reconfiguration [76WS].mp3",
+          "durationSec": 172.992,
+          "data": {
+            "title": "Just Enuff Reconfiguration [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-7",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/Rupture without Meaning [76WS].mp3",
+          "durationSec": 316.944,
+          "data": {
+            "title": "Rupture Without Meaning [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-8",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/The Moist Aperture [76WS].mp3",
+          "durationSec": 153.432,
+          "data": {
+            "title": "The Moist Aperture [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        },
+        {
+          "id": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]-9",
+          "src": "/audio/As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]/When the Hush Becomes a Heart [76WS].mp3",
+          "durationSec": 209.544,
+          "data": {
+            "title": "When The Hush Becomes A Heart [76WS]",
+            "albumId": "As if You Did Not Know (Gentle Dissipations) [Oct 6, 2025]",
+            "albumTitle": "As If You Did Not Know (Gentle Dissipations)"
+          }
+        }
+      ],
+      "totalDurationSec": 2076.528,
+      "dateLabel": "October 6, 2025",
+      "dateISO": "2025-10-06",
+      "dateMs": 1759708800000
+    },
+    {
+      "id": "genx emo blues for A. [Oct 6, 2025]",
+      "title": "Genx Emo Blues For A.",
+      "subtitle": "replicating energetic integrative math-pop anthems",
+      "coverSrc": "/audio/genx emo blues for A. [Oct 6, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "genx emo blues for A. [Oct 6, 2025]-0",
+          "src": "/audio/genx emo blues for A. [Oct 6, 2025]/genx blues for Andreas.mp3",
+          "durationSec": 145.584,
+          "data": {
+            "title": "Genx Blues For Andreas",
+            "albumId": "genx emo blues for A. [Oct 6, 2025]",
+            "albumTitle": "Genx Emo Blues For A."
+          }
+        },
+        {
+          "id": "genx emo blues for A. [Oct 6, 2025]-1",
+          "src": "/audio/genx emo blues for A. [Oct 6, 2025]/It Makes (Non)Sense.mp3",
+          "durationSec": 220.224,
+          "data": {
+            "title": "It Makes (Non)Sense",
+            "albumId": "genx emo blues for A. [Oct 6, 2025]",
+            "albumTitle": "Genx Emo Blues For A."
+          }
+        },
+        {
+          "id": "genx emo blues for A. [Oct 6, 2025]-2",
+          "src": "/audio/genx emo blues for A. [Oct 6, 2025]/Last Good Day.mp3",
+          "durationSec": 202.632,
+          "data": {
+            "title": "Last Good Day",
+            "albumId": "genx emo blues for A. [Oct 6, 2025]",
+            "albumTitle": "Genx Emo Blues For A."
+          }
+        },
+        {
+          "id": "genx emo blues for A. [Oct 6, 2025]-3",
+          "src": "/audio/genx emo blues for A. [Oct 6, 2025]/Orange Sky Macrame v.3 (supple).mp3",
+          "durationSec": 201.264,
+          "data": {
+            "title": "Orange Sky Macrame V.3 (Supple)",
+            "albumId": "genx emo blues for A. [Oct 6, 2025]",
+            "albumTitle": "Genx Emo Blues For A."
+          }
+        },
+        {
+          "id": "genx emo blues for A. [Oct 6, 2025]-4",
+          "src": "/audio/genx emo blues for A. [Oct 6, 2025]/Orange Sky Macrame v.4 (heavier).mp3",
+          "durationSec": 279.024,
+          "data": {
+            "title": "Orange Sky Macrame V.4 (Heavier)",
+            "albumId": "genx emo blues for A. [Oct 6, 2025]",
+            "albumTitle": "Genx Emo Blues For A."
+          }
+        },
+        {
+          "id": "genx emo blues for A. [Oct 6, 2025]-5",
+          "src": "/audio/genx emo blues for A. [Oct 6, 2025]/Orange Sky Macrame_.mp3",
+          "durationSec": 199.992,
+          "data": {
+            "title": "Orange Sky Macrame",
+            "albumId": "genx emo blues for A. [Oct 6, 2025]",
+            "albumTitle": "Genx Emo Blues For A."
+          }
+        },
+        {
+          "id": "genx emo blues for A. [Oct 6, 2025]-6",
+          "src": "/audio/genx emo blues for A. [Oct 6, 2025]/Orange Sky Macrame.mp3",
+          "durationSec": 202.44,
+          "data": {
+            "title": "Orange Sky Macrame",
+            "albumId": "genx emo blues for A. [Oct 6, 2025]",
+            "albumTitle": "Genx Emo Blues For A."
+          }
+        }
+      ],
+      "totalDurationSec": 1451.16,
+      "dateLabel": "October 6, 2025",
+      "dateISO": "2025-10-06",
+      "dateMs": 1759708800000
+    },
+    {
+      "id": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+      "title": "A Glitch In The Playful Expansion",
+      "subtitle": "Ambient eternities that decompose into spectral percolations.",
+      "coverSrc": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-0",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Compact Eternity [74W-100S].mp3",
+          "durationSec": 144.96,
+          "data": {
+            "title": "A Compact Eternity [74W 100S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-1",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Contraction Refused [76W-100S].mp3",
+          "durationSec": 243.24,
+          "data": {
+            "title": "A Contraction Refused [76W 100S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-2",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Covert Attempt to Initiate Joy [78W-100S].mp3",
+          "durationSec": 276.864,
+          "data": {
+            "title": "A Covert Attempt To Initiate Joy [78W 100S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-3",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Day Without A Beginning [80W-100S].mp3",
+          "durationSec": 149.472,
+          "data": {
+            "title": "A Day Without A Beginning [80W 100S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-4",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Drift toward Disintegration [74W-100S].mp3",
+          "durationSec": 245.04,
+          "data": {
+            "title": "A Drift Toward Disintegration [74W 100S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-5",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Playful Ethereal Expansion [70W-80S].mp3",
+          "durationSec": 242.112,
+          "data": {
+            "title": "A Playful Ethereal Expansion [70W 80S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-6",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Reason for Existence [78W-100S].mp3",
+          "durationSec": 161.472,
+          "data": {
+            "title": "A Reason For Existence [78W 100S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-7",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/A Serene Integrity Re-stabilizes Repeatedly [80W-100S].mp3",
+          "durationSec": 211.752,
+          "data": {
+            "title": "A Serene Integrity Re Stabilizes Repeatedly [80W 100S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        },
+        {
+          "id": "A Glitch in the Playful Expansion [Sept 28, 2025]-8",
+          "src": "/audio/A Glitch in the Playful Expansion [Sept 28, 2025]/An Un-intimidating Absence [70W-80S].mp3",
+          "durationSec": 233.184,
+          "data": {
+            "title": "An Un Intimidating Absence [70W 80S]",
+            "albumId": "A Glitch in the Playful Expansion [Sept 28, 2025]",
+            "albumTitle": "A Glitch In The Playful Expansion"
+          }
+        }
+      ],
+      "totalDurationSec": 1908.096,
+      "dateLabel": "September 28, 2025",
+      "dateISO": "2025-09-28",
+      "dateMs": 1759017600000
+    },
+    {
+      "id": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+      "title": "A Profound Rupture Of Disquiet",
+      "subtitle": "Ambient etching for soulless numeric lustred memes.",
+      "coverSrc": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-0",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Code for Opening Everything [74W-100S].mp3",
+          "durationSec": 269.952,
+          "data": {
+            "title": "A Code For Opening Everything [74W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-1",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Cove of Appearances [80W-100S].mp3",
+          "durationSec": 189.84,
+          "data": {
+            "title": "A Cove Of Appearances [80W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-2",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A De-Saturated Intensity [80W-100S].mp3",
+          "durationSec": 194.784,
+          "data": {
+            "title": "A De Saturated Intensity [80W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-3",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Generous Viscosity [74W-100S].mp3",
+          "durationSec": 264.552,
+          "data": {
+            "title": "A Generous Viscosity [74W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-4",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Glitching Tensegrity [80W-100S].mp3",
+          "durationSec": 253.56,
+          "data": {
+            "title": "A Glitching Tensegrity [80W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-5",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Harbour for Calm Seeds [80W-100S].mp3",
+          "durationSec": 244.92,
+          "data": {
+            "title": "A Harbour For Calm Seeds [80W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-6",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Profound Rupture of Disquiet [80W-100S].mp3",
+          "durationSec": 153.36,
+          "data": {
+            "title": "A Profound Rupture Of Disquiet [80W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-7",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A River of Exaltation [70W-80S].mp3",
+          "durationSec": 302.784,
+          "data": {
+            "title": "A River Of Exaltation [70W 80S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-8",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Subtle Effortless Joy [74W-100S].mp3",
+          "durationSec": 239.064,
+          "data": {
+            "title": "A Subtle Effortless Joy [74W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-9",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Supple Torsion Collapse [70W-80S].mp3",
+          "durationSec": 294.24,
+          "data": {
+            "title": "A Supple Torsion Collapse [70W 80S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-10",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Walk into Nothingness [70W-80S].mp3",
+          "durationSec": 363.792,
+          "data": {
+            "title": "A Walk Into Nothingness [70W 80S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-11",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/A Way of Carrying Time Effortlessly [74W-100S].mp3",
+          "durationSec": 169.272,
+          "data": {
+            "title": "A Way Of Carrying Time Effortlessly [74W 100S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-12",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/An Un-intimidating Absence [70W-80S].mp3",
+          "durationSec": 233.184,
+          "data": {
+            "title": "An Un Intimidating Absence [70W 80S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        },
+        {
+          "id": "A Profound Rupture of Disquiet [Sept 28, 2025]-13",
+          "src": "/audio/A Profound Rupture of Disquiet [Sept 28, 2025]/An Unknown Sound [70W-90S].mp3",
+          "durationSec": 268.32,
+          "data": {
+            "title": "An Unknown Sound [70W 90S]",
+            "albumId": "A Profound Rupture of Disquiet [Sept 28, 2025]",
+            "albumTitle": "A Profound Rupture Of Disquiet"
+          }
+        }
+      ],
+      "totalDurationSec": 3441.6240000000007,
+      "dateLabel": "September 28, 2025",
+      "dateISO": "2025-09-28",
+      "dateMs": 1759017600000
+    },
+    {
+      "id": "Beyond the Void - ambient experiments [Sept 28, 2025]",
+      "title": "Beyond The Void Ambient Experiments",
+      "subtitle": "Effortlessly traversing the nameless serene.",
+      "coverSrc": "/audio/Beyond the Void - ambient experiments [Sept 28, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Beyond the Void - ambient experiments [Sept 28, 2025]-0",
+          "src": "/audio/Beyond the Void - ambient experiments [Sept 28, 2025]/A Profound Rupture of Disquiet [80W-100S].mp3",
+          "durationSec": 153.36,
+          "data": {
+            "title": "A Profound Rupture Of Disquiet [80W 100S]",
+            "albumId": "Beyond the Void - ambient experiments [Sept 28, 2025]",
+            "albumTitle": "Beyond The Void Ambient Experiments"
+          }
+        },
+        {
+          "id": "Beyond the Void - ambient experiments [Sept 28, 2025]-1",
+          "src": "/audio/Beyond the Void - ambient experiments [Sept 28, 2025]/gentle soft experimental ambient, tibetan bowls(80W-100S].mp3",
+          "durationSec": 135.48,
+          "data": {
+            "title": "Gentle Soft Experimental Ambient, Tibetan Bowls(80W 100S]",
+            "albumId": "Beyond the Void - ambient experiments [Sept 28, 2025]",
+            "albumTitle": "Beyond The Void Ambient Experiments"
+          }
+        },
+        {
+          "id": "Beyond the Void - ambient experiments [Sept 28, 2025]-2",
+          "src": "/audio/Beyond the Void - ambient experiments [Sept 28, 2025]/gentle soft experimental ambient, tibetan bowls(80W-100S](1).mp3",
+          "durationSec": 257.4,
+          "data": {
+            "title": "Gentle Soft Experimental Ambient, Tibetan Bowls(80W 100S](1)",
+            "albumId": "Beyond the Void - ambient experiments [Sept 28, 2025]",
+            "albumTitle": "Beyond The Void Ambient Experiments"
+          }
+        },
+        {
+          "id": "Beyond the Void - ambient experiments [Sept 28, 2025]-3",
+          "src": "/audio/Beyond the Void - ambient experiments [Sept 28, 2025]/gentle soft experimental ambient, tibetan bowls(82W-100S].mp3",
+          "durationSec": 267.504,
+          "data": {
+            "title": "Gentle Soft Experimental Ambient, Tibetan Bowls(82W 100S]",
+            "albumId": "Beyond the Void - ambient experiments [Sept 28, 2025]",
+            "albumTitle": "Beyond The Void Ambient Experiments"
+          }
+        },
+        {
+          "id": "Beyond the Void - ambient experiments [Sept 28, 2025]-4",
+          "src": "/audio/Beyond the Void - ambient experiments [Sept 28, 2025]/gentle soft experimental ambient, tibetan bowls(82W-100S](1).mp3",
+          "durationSec": 221.28,
+          "data": {
+            "title": "Gentle Soft Experimental Ambient, Tibetan Bowls(82W 100S](1)",
+            "albumId": "Beyond the Void - ambient experiments [Sept 28, 2025]",
+            "albumTitle": "Beyond The Void Ambient Experiments"
+          }
+        }
+      ],
+      "totalDurationSec": 1035.0240000000001,
+      "dateLabel": "September 28, 2025",
+      "dateISO": "2025-09-28",
+      "dateMs": 1759017600000
+    },
+    {
+      "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+      "title": "Symphony No. 1, Mvt. I \"Lament & Glimmer\"",
+      "subtitle": "The apex of every civilization evokes an appetite in the next.",
+      "coverSrc": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-0",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/2 - Symphony No. 1, Mvt. I - _Lament & Glimmer_.mp3",
+          "durationSec": 194.904,
+          "data": {
+            "title": "2 Symphony No. 1, Mvt. I Lament & Glimmer",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        },
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-1",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/2.1 Vibragile - Symphony No. 1, Mvt. I - _Lament & Glimmer_.mp3",
+          "durationSec": 237.384,
+          "data": {
+            "title": "2.1 Vibragile Symphony No. 1, Mvt. I Lament & Glimmer",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        },
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-2",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/Symphony No. 1, Cello, 5.1 - _Lament & Glimmer_ -(82W-100S].mp3",
+          "durationSec": 184.992,
+          "data": {
+            "title": "Symphony No. 1, Cello, 5.1 Lament & Glimmer (82W 100S]",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        },
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-3",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/Symphony No. 1, Duduk-Cello, 5 - _Lament & Glimmer_ -(82W-100S].mp3",
+          "durationSec": 244.872,
+          "data": {
+            "title": "Symphony No. 1, Duduk Cello, 5 Lament & Glimmer (82W 100S]",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        },
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-4",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/Symphony No. 1, Mvt. 3 - _Lament & Glimmer_ -j-inflection (80W-84S].mp3",
+          "durationSec": 88.8,
+          "data": {
+            "title": "Symphony No. 1, Mvt. 3 Lament & Glimmer J Inflection (80W 84S]",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        },
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-5",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/Symphony No. 1, Mvt. Vocalese 3.1 - _Lament & Glimmer_ -j-inflection (85W-84S].mp3",
+          "durationSec": 79.8,
+          "data": {
+            "title": "Symphony No. 1, Mvt. Vocalese 3.1 Lament & Glimmer J Inflection (85W 84S]",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        },
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-6",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/Symphony No. 1, Sarangi, Dilruba, 4 - _Lament & Glimmer_ -(82W-100S].mp3",
+          "durationSec": 216.504,
+          "data": {
+            "title": "Symphony No. 1, Sarangi, Dilruba, 4 Lament & Glimmer (82W 100S]",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        },
+        {
+          "id": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]-7",
+          "src": "/audio/Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]/Symphony No. 1, slow world microtonal 3.3 - _Lament & Glimmer_ -(85W-100S].mp3",
+          "durationSec": 114.792,
+          "data": {
+            "title": "Symphony No. 1, Slow World Microtonal 3.3 Lament & Glimmer (85W 100S]",
+            "albumId": "Symphony No. 1, Mvt. I - \"Lament & Glimmer\" [Sept 26, 2025]",
+            "albumTitle": "Symphony No. 1, Mvt. I \"Lament & Glimmer\""
+          }
+        }
+      ],
+      "totalDurationSec": 1362.0479999999998,
+      "dateLabel": "September 26, 2025",
+      "dateISO": "2025-09-26",
+      "dateMs": 1758844800000
+    },
+    {
+      "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+      "title": "\"Experimental ... (5 Instrument) ... Medley\"",
+      "subtitle": "Prompt \"Experimental .... insert 5 instruments ... medley\". No edits. No cherry-picking. GPT-5 selected instruments. Suno v.5 built the music. Weirdness: 80%. Style: 85%. Prompt adherence varies.",
+      "coverSrc": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-0",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Accordion, viola da gamba, tar, djembe, piccolo [80W 85S].mp3",
+          "durationSec": 222.6,
+          "data": {
+            "title": "Accordion, Viola Da Gamba, Tar, Djembe, Piccolo [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-1",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Accordion, viola da gamba, tar, djembe, piccolo [80W 85S](1).mp3",
+          "durationSec": 139.944,
+          "data": {
+            "title": "Accordion, Viola Da Gamba, Tar, Djembe, Piccolo [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-2",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Banjo, mridangam, tapan, shofar, clavichord [80W 85S].mp3",
+          "durationSec": 254.544,
+          "data": {
+            "title": "Banjo, Mridangam, Tapan, Shofar, Clavichord [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-3",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Banjo, mridangam, tapan, shofar, clavichord [80W 85S](1).mp3",
+          "durationSec": 199.32,
+          "data": {
+            "title": "Banjo, Mridangam, Tapan, Shofar, Clavichord [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-4",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Bassoon, pan flute, hardanger fiddle, synthesizer, laúd [80W 85S].mp3",
+          "durationSec": 198.072,
+          "data": {
+            "title": "Bassoon, Pan Flute, Hardanger Fiddle, Synthesizer, LaúD [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-5",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Bassoon, pan flute, hardanger fiddle, synthesizer, laúd [80W 85S](1).mp3",
+          "durationSec": 230.76,
+          "data": {
+            "title": "Bassoon, Pan Flute, Hardanger Fiddle, Synthesizer, LaúD [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-6",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Celesta, balafon, bandoneon, jaw harp, guqin [80W 85S].mp3",
+          "durationSec": 249.912,
+          "data": {
+            "title": "Celesta, Balafon, Bandoneon, Jaw Harp, Guqin [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-7",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Celesta, balafon, bandoneon, jaw harp, guqin [80W 85S](1).mp3",
+          "durationSec": 203.832,
+          "data": {
+            "title": "Celesta, Balafon, Bandoneon, Jaw Harp, Guqin [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-8",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Celtic harp, santoor, uilleann pipes, harpsichord, tambura [80W 85S].mp3",
+          "durationSec": 129.984,
+          "data": {
+            "title": "Celtic Harp, Santoor, Uilleann Pipes, Harpsichord, Tambura [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-9",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Celtic harp, santoor, uilleann pipes, harpsichord, tambura [80W 85S](1).mp3",
+          "durationSec": 139.992,
+          "data": {
+            "title": "Celtic Harp, Santoor, Uilleann Pipes, Harpsichord, Tambura [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-10",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Cimbalom, taiko, harmonium, cor anglais, santur [80W 85S].mp3",
+          "durationSec": 257.304,
+          "data": {
+            "title": "Cimbalom, Taiko, Harmonium, Cor Anglais, Santur [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-11",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Cimbalom, taiko, harmonium, cor anglais, santur [80W 85S](1).mp3",
+          "durationSec": 138.192,
+          "data": {
+            "title": "Cimbalom, Taiko, Harmonium, Cor Anglais, Santur [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-12",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Conga, zither, bass drum, violin, rebab [80W 85S].mp3",
+          "durationSec": 236.424,
+          "data": {
+            "title": "Conga, Zither, Bass Drum, Violin, Rebab [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-13",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Conga, zither, bass drum, violin, rebab [80W 85S](1).mp3",
+          "durationSec": 259.992,
+          "data": {
+            "title": "Conga, Zither, Bass Drum, Violin, Rebab [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-14",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Didgeridoo, zurna, theremin, shamisen, bass clarinet [80W 85S].mp3",
+          "durationSec": 170.52,
+          "data": {
+            "title": "Didgeridoo, Zurna, Theremin, Shamisen, Bass Clarinet [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-15",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Didgeridoo, zurna, theremin, shamisen, bass clarinet [80W 85S](1).mp3",
+          "durationSec": 231.264,
+          "data": {
+            "title": "Didgeridoo, Zurna, Theremin, Shamisen, Bass Clarinet [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-16",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Double bass, veena, berimbau, French horn, penny whistle [80W 85S].mp3",
+          "durationSec": 219.864,
+          "data": {
+            "title": "Double Bass, Veena, Berimbau, French Horn, Penny Whistle [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-17",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Double bass, veena, berimbau, French horn, penny whistle [80W 85S](1).mp3",
+          "durationSec": 124.872,
+          "data": {
+            "title": "Double Bass, Veena, Berimbau, French Horn, Penny Whistle [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-18",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Glass harmonica, sitar, conch shell, cajón, tuba [80W 85S].mp3",
+          "durationSec": 169.992,
+          "data": {
+            "title": "Glass Harmonica, Sitar, Conch Shell, CajóN, Tuba [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-19",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Glass harmonica, sitar, conch shell, cajón, tuba [80W 85S](1).mp3",
+          "durationSec": 149.352,
+          "data": {
+            "title": "Glass Harmonica, Sitar, Conch Shell, CajóN, Tuba [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-20",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Hang drum, erhu, hurdy-gurdy, vibraphone, tabla [80W 85S].mp3",
+          "durationSec": 259.992,
+          "data": {
+            "title": "Hang Drum, Erhu, Hurdy Gurdy, Vibraphone, Tabla [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-21",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Hang drum, erhu, hurdy-gurdy, vibraphone, tabla v.2 [80W 85S].mp3",
+          "durationSec": 207.432,
+          "data": {
+            "title": "Hang Drum, Erhu, Hurdy Gurdy, Vibraphone, Tabla V.2 [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-22",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Harp, kalimba, serpent, gong, mandolin [80W 85S].mp3",
+          "durationSec": 206.712,
+          "data": {
+            "title": "Harp, Kalimba, Serpent, Gong, Mandolin [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-23",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Harp, kalimba, serpent, gong, mandolin [80W 85S](1).mp3",
+          "durationSec": 146.592,
+          "data": {
+            "title": "Harp, Kalimba, Serpent, Gong, Mandolin [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-24",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/marimba, saz, waterphone, bansuri [80W 85S].mp3",
+          "durationSec": 246.96,
+          "data": {
+            "title": "Marimba, Saz, Waterphone, Bansuri [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-25",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/marimba, saz, waterphone, bansuri [80W 85S](1).mp3",
+          "durationSec": 213.744,
+          "data": {
+            "title": "Marimba, Saz, Waterphone, Bansuri [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-26",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Mbira, bugle, surdo, electric bass, banshee whistle [80W 85S].mp3",
+          "durationSec": 157.032,
+          "data": {
+            "title": "Mbira, Bugle, Surdo, Electric Bass, Banshee Whistle [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-27",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Mbira, bugle, surdo, electric bass, banshee whistle [80W 85S](1).mp3",
+          "durationSec": 131.712,
+          "data": {
+            "title": "Mbira, Bugle, Surdo, Electric Bass, Banshee Whistle [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-28",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Nyckelharpa, kora, contrabassoon, oud, steelpan [80W 85S].mp3",
+          "durationSec": 202.392,
+          "data": {
+            "title": "Nyckelharpa, Kora, Contrabassoon, Oud, Steelpan [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-29",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Nyckelharpa, kora, contrabassoon, oud, steelpan v.2 [80W 85S].mp3",
+          "durationSec": 198.12,
+          "data": {
+            "title": "Nyckelharpa, Kora, Contrabassoon, Oud, Steelpan V.2 [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-30",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Oboe, duduk, huruk, claves, alphorn [80W 85S].mp3",
+          "durationSec": 245.592,
+          "data": {
+            "title": "Oboe, Duduk, Huruk, Claves, Alphorn [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-31",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Oboe, duduk, huruk, claves, alphorn [80W 85S](1).mp3",
+          "durationSec": 190.272,
+          "data": {
+            "title": "Oboe, Duduk, Huruk, Claves, Alphorn [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-32",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Pipa, trombone, fujara, xylophone, diddley bow [80W 85S].mp3",
+          "durationSec": 159.96,
+          "data": {
+            "title": "Pipa, Trombone, Fujara, Xylophone, Diddley Bow [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-33",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Pipa, trombone, fujara, xylophone, diddley bow [80W 85S](1).mp3",
+          "durationSec": 124.824,
+          "data": {
+            "title": "Pipa, Trombone, Fujara, Xylophone, Diddley Bow [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-34",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Sarangi, shakuhachi, bouzouki, ngoni, electric guitar [80W 85S].mp3",
+          "durationSec": 270,
+          "data": {
+            "title": "Sarangi, Shakuhachi, Bouzouki, Ngoni, Electric Guitar [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-35",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Sarangi, shakuhachi, bouzouki, ngoni, electric guitar [80W 85S](1).mp3",
+          "durationSec": 279.984,
+          "data": {
+            "title": "Sarangi, Shakuhachi, Bouzouki, Ngoni, Electric Guitar [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-36",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Timpani, shakhrud, harmonica, sarrusophone, lute [80W 85S].mp3",
+          "durationSec": 213.672,
+          "data": {
+            "title": "Timpani, Shakhrud, Harmonica, Sarrusophone, Lute [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-37",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Timpani, shakhrud, harmonica, sarrusophone, lute [80W 85S](1).mp3",
+          "durationSec": 245.592,
+          "data": {
+            "title": "Timpani, Shakhrud, Harmonica, Sarrusophone, Lute [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-38",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Trumpet, kaval, đàn bầu, cittern, snare drum [80W 85S].mp3",
+          "durationSec": 134.952,
+          "data": {
+            "title": "Trumpet, Kaval, đÀN BầU, Cittern, Snare Drum [80W 85S]",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        },
+        {
+          "id": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]-39",
+          "src": "/audio/\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]/Trumpet, kaval, đàn bầu, cittern, snare drum [80W 85S](1).mp3",
+          "durationSec": 179.232,
+          "data": {
+            "title": "Trumpet, Kaval, đÀN BầU, Cittern, Snare Drum [80W 85S](1)",
+            "albumId": "\"Experimental ... (5 instrument) ... Medley\" [Sept 25, 2025]",
+            "albumTitle": "\"Experimental ... (5 Instrument) ... Medley\""
+          }
+        }
+      ],
+      "totalDurationSec": 7941.503999999997,
+      "dateLabel": "September 25, 2025",
+      "dateISO": "2025-09-25",
+      "dateMs": 1758758400000
+    },
+    {
+      "id": "Another Shimmer Motif Playground [Sept 25, 2025]",
+      "title": "Another Shimmer Motif Playground",
+      "subtitle": "Shoegaze hybrid samba alt-math warmth with neo-soul inflection vocals.",
+      "coverSrc": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Another Shimmer Motif Playground [Sept 25, 2025]-0",
+          "src": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/broken resilience meme [80W, 84S].mp3",
+          "durationSec": 149.784,
+          "data": {
+            "title": "Broken Resilience Meme [80W, 84S]",
+            "albumId": "Another Shimmer Motif Playground [Sept 25, 2025]",
+            "albumTitle": "Another Shimmer Motif Playground"
+          }
+        },
+        {
+          "id": "Another Shimmer Motif Playground [Sept 25, 2025]-1",
+          "src": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/broken resilience meme v.2 [80W, 84S].mp3",
+          "durationSec": 168.744,
+          "data": {
+            "title": "Broken Resilience Meme V.2 [80W, 84S]",
+            "albumId": "Another Shimmer Motif Playground [Sept 25, 2025]",
+            "albumTitle": "Another Shimmer Motif Playground"
+          }
+        },
+        {
+          "id": "Another Shimmer Motif Playground [Sept 25, 2025]-2",
+          "src": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/dawn-bird-choir, branch-wide[80W, 84S].mp3",
+          "durationSec": 139.632,
+          "data": {
+            "title": "Dawn Bird Choir, Branch Wide[80W, 84S]",
+            "albumId": "Another Shimmer Motif Playground [Sept 25, 2025]",
+            "albumTitle": "Another Shimmer Motif Playground"
+          }
+        },
+        {
+          "id": "Another Shimmer Motif Playground [Sept 25, 2025]-3",
+          "src": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/dawn-glow, surf-wide [80W, 84S].mp3",
+          "durationSec": 114.984,
+          "data": {
+            "title": "Dawn Glow, Surf Wide [80W, 84S]",
+            "albumId": "Another Shimmer Motif Playground [Sept 25, 2025]",
+            "albumTitle": "Another Shimmer Motif Playground"
+          }
+        },
+        {
+          "id": "Another Shimmer Motif Playground [Sept 25, 2025]-4",
+          "src": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/ember-haze [80W, 84S].mp3",
+          "durationSec": 183.144,
+          "data": {
+            "title": "Ember Haze [80W, 84S]",
+            "albumId": "Another Shimmer Motif Playground [Sept 25, 2025]",
+            "albumTitle": "Another Shimmer Motif Playground"
+          }
+        },
+        {
+          "id": "Another Shimmer Motif Playground [Sept 25, 2025]-5",
+          "src": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/sero-crackle, arms wide [80W, 84S].mp3",
+          "durationSec": 133.224,
+          "data": {
+            "title": "Sero Crackle, Arms Wide [80W, 84S]",
+            "albumId": "Another Shimmer Motif Playground [Sept 25, 2025]",
+            "albumTitle": "Another Shimmer Motif Playground"
+          }
+        },
+        {
+          "id": "Another Shimmer Motif Playground [Sept 25, 2025]-6",
+          "src": "/audio/Another Shimmer Motif Playground [Sept 25, 2025]/we scroll, we stream, we remain.[80W, 84S].mp3",
+          "durationSec": 157.704,
+          "data": {
+            "title": "We Scroll, We Stream, We Remain.[80W, 84S]",
+            "albumId": "Another Shimmer Motif Playground [Sept 25, 2025]",
+            "albumTitle": "Another Shimmer Motif Playground"
+          }
+        }
+      ],
+      "totalDurationSec": 1047.216,
+      "dateLabel": "September 25, 2025",
+      "dateISO": "2025-09-25",
+      "dateMs": 1758758400000
+    },
+    {
+      "id": "Click Clack Cloudburst [Sept 24, 2025]",
+      "title": "Click Clack Cloudburst",
+      "subtitle": "Testing v.5 on the day it was released. Prognosis: another micron closer toward the merge.",
+      "coverSrc": "/audio/Click Clack Cloudburst [Sept 24, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-0",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/churn seeds [80W 84S].mp3",
+          "durationSec": 163.584,
+          "data": {
+            "title": "Churn Seeds [80W 84S]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-1",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/click-clack cloudburst [80WS].mp3",
+          "durationSec": 66.432,
+          "data": {
+            "title": "Click Clack Cloudburst [80WS]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-2",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/clickbait cosmos [80WS] (Edit) (Edit).mp3",
+          "durationSec": 147.84,
+          "data": {
+            "title": "Clickbait Cosmos [80WS] (Edit) (Edit)",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-3",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/hedged affection [80S 84S].mp3",
+          "durationSec": 201.84,
+          "data": {
+            "title": "Hedged Affection [80S 84S]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-4",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/instrumental inter-lude palette [80S 84S].mp3",
+          "durationSec": 104.304,
+          "data": {
+            "title": "Instrumental Inter Lude Palette [80S 84S]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-5",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/loss ledgee [80W 84S].mp3",
+          "durationSec": 90,
+          "data": {
+            "title": "Loss Ledgee [80W 84S]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-6",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/moss gradients fade [80S 84S].mp3",
+          "durationSec": 134.304,
+          "data": {
+            "title": "Moss Gradients Fade [80S 84S]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-7",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/overflow cro [80WS] .mp3",
+          "durationSec": 89.88,
+          "data": {
+            "title": "Overflow Cro [80WS]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-8",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/proxy flesh fire [80S 84S].mp3",
+          "durationSec": 192.072,
+          "data": {
+            "title": "Proxy Flesh Fire [80S 84S]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        },
+        {
+          "id": "Click Clack Cloudburst [Sept 24, 2025]-9",
+          "src": "/audio/Click Clack Cloudburst [Sept 24, 2025]/the forum's dead [80W 84S].mp3",
+          "durationSec": 89.88,
+          "data": {
+            "title": "The Forum'S Dead [80W 84S]",
+            "albumId": "Click Clack Cloudburst [Sept 24, 2025]",
+            "albumTitle": "Click Clack Cloudburst"
+          }
+        }
+      ],
+      "totalDurationSec": 1280.136,
+      "dateLabel": "September 24, 2025",
+      "dateISO": "2025-09-24",
+      "dateMs": 1758672000000
+    },
+    {
+      "id": "Shout Inside the Singularity Void [Sept 24, 2025]",
+      "title": "Shout Inside The Singularity Void",
+      "subtitle": "Testing v5 at just less than 85% weirdness.",
+      "coverSrc": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-0",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/artisinal soft slow chill house minimal ambient techno-alt-folk [84WS].mp3",
+          "durationSec": 480,
+          "data": {
+            "title": "Artisinal Soft Slow Chill House Minimal Ambient Techno Alt Folk [84WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-1",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/artisinal soft slow minimal ambient techno-alt-folk [76S 86S].mp3",
+          "durationSec": 171.96,
+          "data": {
+            "title": "Artisinal Soft Slow Minimal Ambient Techno Alt Folk [76S 86S]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-2",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/gentle minimal melodic , house, classical, lo-fi shimmer-pop math [80WS].mp3",
+          "durationSec": 229.944,
+          "data": {
+            "title": "Gentle Minimal Melodic , House, Classical, Lo Fi Shimmer Pop Math [80WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-3",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/lo-fi shimmer-pop math-alt-gentle shoegaze [80WS].mp3",
+          "durationSec": 127.32,
+          "data": {
+            "title": "Lo Fi Shimmer Pop Math Alt Gentle Shoegaze [80WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-4",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/phygrian neo-choral experimental [82WS].mp3",
+          "durationSec": 139.32,
+          "data": {
+            "title": "Phygrian Neo Choral Experimental [82WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-5",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/river-song instrumental [84WS].mp3",
+          "durationSec": 169.32,
+          "data": {
+            "title": "River Song Instrumental [84WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-6",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/river-song instrumental [85WS].mp3",
+          "durationSec": 124.992,
+          "data": {
+            "title": "River Song Instrumental [85WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-7",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/Shout outside the void [80WS].mp3",
+          "durationSec": 49.824,
+          "data": {
+            "title": "Shout Outside The Void [80WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-8",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/Shout outside the void [80WS](1).mp3",
+          "durationSec": 43.104,
+          "data": {
+            "title": "Shout Outside The Void [80WS](1)",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-9",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/slow melodic gentle minimal techno [82WS].mp3",
+          "durationSec": 159.984,
+          "data": {
+            "title": "Slow Melodic Gentle Minimal Techno [82WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-10",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/v2 artisinal soft slow minimal ambient techno-alt-folk [76S 86S].mp3",
+          "durationSec": 184.2,
+          "data": {
+            "title": "V2 Artisinal Soft Slow Minimal Ambient Techno Alt Folk [76S 86S]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-11",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/v2 gentle minimal melodic , house, classical, lo-fi shimmer-pop math [80WS].mp3",
+          "durationSec": 155.352,
+          "data": {
+            "title": "V2 Gentle Minimal Melodic , House, Classical, Lo Fi Shimmer Pop Math [80WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-12",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/v2 moogish phygrian neo-choral experimental [82WS].mp3",
+          "durationSec": 218.16,
+          "data": {
+            "title": "V2 Moogish Phygrian Neo Choral Experimental [82WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-13",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/v2 phygrian slow melodic gentle minimal ambient techno cello neo-choral [82WS].mp3",
+          "durationSec": 157.512,
+          "data": {
+            "title": "V2 Phygrian Slow Melodic Gentle Minimal Ambient Techno Cello Neo Choral [82WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-14",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/Whisper in the data [80WS].mp3",
+          "durationSec": 108,
+          "data": {
+            "title": "Whisper In The Data [80WS]",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        },
+        {
+          "id": "Shout Inside the Singularity Void [Sept 24, 2025]-15",
+          "src": "/audio/Shout Inside the Singularity Void [Sept 24, 2025]/Whisper in the data.mp3",
+          "durationSec": 94.944,
+          "data": {
+            "title": "Whisper In The Data",
+            "albumId": "Shout Inside the Singularity Void [Sept 24, 2025]",
+            "albumTitle": "Shout Inside The Singularity Void"
+          }
+        }
+      ],
+      "totalDurationSec": 2613.936,
+      "dateLabel": "September 24, 2025",
+      "dateISO": "2025-09-24",
+      "dateMs": 1758672000000
+    },
+    {
+      "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+      "title": "Emblematic Chaos Gentle Math Edm Funk Dubstep",
+      "subtitle": "85% weird setting is the new max before fever begins.",
+      "coverSrc": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-0",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/A Litany for the Cached Ghost [84WS].mp3",
+          "durationSec": 178.92,
+          "data": {
+            "title": "A Litany For The Cached Ghost [84WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-1",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Abyssal Rig Blues (Hrafn's Chant) [85WS].mp3",
+          "durationSec": 212.112,
+          "data": {
+            "title": "Abyssal Rig Blues (Hrafn'S Chant) [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-2",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Abyssal Rig Blues (Hrafn's Chant) v.2 [85WS].mp3",
+          "durationSec": 193.344,
+          "data": {
+            "title": "Abyssal Rig Blues (Hrafn'S Chant) V.2 [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-3",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Echo-Form (The Kintsugi Self) [85WS].mp3",
+          "durationSec": 186.072,
+          "data": {
+            "title": "Echo Form (The Kintsugi Self) [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-4",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Echo-Form (The Kintsugi Self) [85WS](1).mp3",
+          "durationSec": 233.544,
+          "data": {
+            "title": "Echo Form (The Kintsugi Self) [85WS](1)",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-5",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Ending (Fugue for a Ghost Limb) [85WS].mp3",
+          "durationSec": 230.544,
+          "data": {
+            "title": "Ending (Fugue For A Ghost Limb) [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-6",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Etiolated Heart (A Feed in Flower) [85WS].mp3",
+          "durationSec": 249.192,
+          "data": {
+            "title": "Etiolated Heart (A Feed In Flower) [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-7",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/First Flush (Mycelial Atlas) [85WS].mp3",
+          "durationSec": 182.544,
+          "data": {
+            "title": "First Flush (Mycelial Atlas) [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-8",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Slow Theorem [85WS].mp3",
+          "durationSec": 214.92,
+          "data": {
+            "title": "Slow Theorem [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-9",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Tectonic Gospel [85WS].mp3",
+          "durationSec": 192.6,
+          "data": {
+            "title": "Tectonic Gospel [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-10",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Transcription of a Fading Star [85WS].mp3",
+          "durationSec": 227.064,
+          "data": {
+            "title": "Transcription Of A Fading Star [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        },
+        {
+          "id": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]-11",
+          "src": "/audio/Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]/Transcription of a Fading Star v.2 [85WS].mp3",
+          "durationSec": 280.704,
+          "data": {
+            "title": "Transcription Of A Fading Star V.2 [85WS]",
+            "albumId": "Emblematic Chaos - gentle math edm funk dubstep [Sept 19, 2025]",
+            "albumTitle": "Emblematic Chaos Gentle Math Edm Funk Dubstep"
+          }
+        }
+      ],
+      "totalDurationSec": 2581.5600000000004,
+      "dateLabel": "September 19, 2025",
+      "dateISO": "2025-09-19",
+      "dateMs": 1758240000000
+    },
+    {
+      "id": "Every genre suggested by Suno [Sept 17, 2025]",
+      "title": "Every Genre Suggested By Suno",
+      "subtitle": "I clicked every recommendation Suno suggested until I hit the maximum prompt size of 1000 characters. Deleted, repeat. A rapid vast traverse of topological latent space of musical genres. 20m project.",
+      "coverSrc": "/audio/Every genre suggested by Suno [Sept 17, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-0",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/2- Every genre suggested by Suno [80w 100S].mp3",
+          "durationSec": 123.984,
+          "data": {
+            "title": "2 Every Genre Suggested By Suno [80w 100S]",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        },
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-1",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/2- Every genre suggested by Suno [80w 100S](1).mp3",
+          "durationSec": 173.952,
+          "data": {
+            "title": "2 Every Genre Suggested By Suno [80w 100S](1)",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        },
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-2",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/3 - Every genre suggested by Suno [80w 100S].mp3",
+          "durationSec": 204.672,
+          "data": {
+            "title": "3 Every Genre Suggested By Suno [80w 100S]",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        },
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-3",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/3 - Every genre suggested by Suno [80w 100S](1).mp3",
+          "durationSec": 204.72,
+          "data": {
+            "title": "3 Every Genre Suggested By Suno [80w 100S](1)",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        },
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-4",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/4 - Every genre suggested by Suno [80w 100S].mp3",
+          "durationSec": 188.88,
+          "data": {
+            "title": "4 Every Genre Suggested By Suno [80w 100S]",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        },
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-5",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/6 - Every genre suggested by Suno [80w 100S].mp3",
+          "durationSec": 189.96,
+          "data": {
+            "title": "6 Every Genre Suggested By Suno [80w 100S]",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        },
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-6",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/7 - Every genre suggested by Suno [80w 100S].mp3",
+          "durationSec": 199.92,
+          "data": {
+            "title": "7 Every Genre Suggested By Suno [80w 100S]",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        },
+        {
+          "id": "Every genre suggested by Suno [Sept 17, 2025]-7",
+          "src": "/audio/Every genre suggested by Suno [Sept 17, 2025]/Every genre suggested by Suno [80w 100S].mp3",
+          "durationSec": 216.96,
+          "data": {
+            "title": "Every Genre Suggested By Suno [80w 100S]",
+            "albumId": "Every genre suggested by Suno [Sept 17, 2025]",
+            "albumTitle": "Every Genre Suggested By Suno"
+          }
+        }
+      ],
+      "totalDurationSec": 1503.048,
+      "dateLabel": "September 17, 2025",
+      "dateISO": "2025-09-17",
+      "dateMs": 1758067200000
+    },
+    {
+      "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+      "title": "Coda Soft Gentle Experimental Syncopated Math Lo Fi",
+      "subtitle": "An excursion into labyrinthine cozy soft math lo-fi vinyl.",
+      "coverSrc": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-0",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/Cruft Agile Torque [80WS].mp3",
+          "durationSec": 139.464,
+          "data": {
+            "title": "Cruft Agile Torque [80WS]",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        },
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-1",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/More Oozy Neo-Soul Lingo [80WS].mp3",
+          "durationSec": 173.472,
+          "data": {
+            "title": "More Oozy Neo Soul Lingo [80WS]",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        },
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-2",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/Nodal Wisdom Glitzer.mp3",
+          "durationSec": 236.952,
+          "data": {
+            "title": "Nodal Wisdom Glitzer",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        },
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-3",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/Oozy Neo-soul Math[80WS].mp3",
+          "durationSec": 212.832,
+          "data": {
+            "title": "Oozy Neo Soul Math[80WS]",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        },
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-4",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/Singular Eclipse Referentiality [80WS].mp3",
+          "durationSec": 278.16,
+          "data": {
+            "title": "Singular Eclipse Referentiality [80WS]",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        },
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-5",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/Soft Elektron Wurli [80WS].mp3",
+          "durationSec": 234.984,
+          "data": {
+            "title": "Soft Elektron Wurli [80WS]",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        },
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-6",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/Succulent Torsion Relapse [80WS].mp3",
+          "durationSec": 185.544,
+          "data": {
+            "title": "Succulent Torsion Relapse [80WS]",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        },
+        {
+          "id": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]-7",
+          "src": "/audio/Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]/Supple Whim [80WS].mp3",
+          "durationSec": 214.992,
+          "data": {
+            "title": "Supple Whim [80WS]",
+            "albumId": "Coda - soft gentle experimental syncopated math-lo-fi [Sept 12, 2025]",
+            "albumTitle": "Coda Soft Gentle Experimental Syncopated Math Lo Fi"
+          }
+        }
+      ],
+      "totalDurationSec": 1676.4,
+      "dateLabel": "September 12, 2025",
+      "dateISO": "2025-09-12",
+      "dateMs": 1757635200000
+    },
+    {
+      "id": "Edgeless Edges [Sept 3, 2025]",
+      "title": "Edgeless Edges",
+      "subtitle": "Ambient attempts at intrinsic nothingness.",
+      "coverSrc": "/audio/Edgeless Edges [Sept 3, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Edgeless Edges [Sept 3, 2025]-0",
+          "src": "/audio/Edgeless Edges [Sept 3, 2025]/Amplified Shreds of an Edgy Notion.mp3",
+          "durationSec": 480,
+          "data": {
+            "title": "Amplified Shreds Of An Edgy Notion",
+            "albumId": "Edgeless Edges [Sept 3, 2025]",
+            "albumTitle": "Edgeless Edges"
+          }
+        },
+        {
+          "id": "Edgeless Edges [Sept 3, 2025]-1",
+          "src": "/audio/Edgeless Edges [Sept 3, 2025]/An Edgeless Something.mp3",
+          "durationSec": 480,
+          "data": {
+            "title": "An Edgeless Something",
+            "albumId": "Edgeless Edges [Sept 3, 2025]",
+            "albumTitle": "Edgeless Edges"
+          }
+        },
+        {
+          "id": "Edgeless Edges [Sept 3, 2025]-2",
+          "src": "/audio/Edgeless Edges [Sept 3, 2025]/Dense Idle Drops of Silence.mp3",
+          "durationSec": 480,
+          "data": {
+            "title": "Dense Idle Drops Of Silence",
+            "albumId": "Edgeless Edges [Sept 3, 2025]",
+            "albumTitle": "Edgeless Edges"
+          }
+        },
+        {
+          "id": "Edgeless Edges [Sept 3, 2025]-3",
+          "src": "/audio/Edgeless Edges [Sept 3, 2025]/The Edge of Nothing.mp3",
+          "durationSec": 480,
+          "data": {
+            "title": "The Edge Of Nothing",
+            "albumId": "Edgeless Edges [Sept 3, 2025]",
+            "albumTitle": "Edgeless Edges"
+          }
+        }
+      ],
+      "totalDurationSec": 1920,
+      "dateLabel": "September 3, 2025",
+      "dateISO": "2025-09-03",
+      "dateMs": 1756857600000
+    },
+    {
+      "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+      "title": "MINIMAL OR SINGLE WORD PROMPT",
+      "subtitle": "100% MAX WEIRD SETTINGS + MINIMAL / SINGLE WORD PROMPTS",
+      "coverSrc": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-0",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/lo-fi [100WS].mp3",
+          "durationSec": 57.6,
+          "data": {
+            "title": "Lo Fi [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        },
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-1",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/math [100WS].mp3",
+          "durationSec": 466.56,
+          "data": {
+            "title": "Math [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        },
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-2",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/math rock with vocals [100WS].mp3",
+          "durationSec": 152.64,
+          "data": {
+            "title": "Math Rock With Vocals [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        },
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-3",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/neo-soul with female vocals [100WS].mp3",
+          "durationSec": 417.792,
+          "data": {
+            "title": "Neo Soul With Female Vocals [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        },
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-4",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/pop [100WS].mp3",
+          "durationSec": 281.952,
+          "data": {
+            "title": "Pop [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        },
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-5",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/pop with vocals [100WS].mp3",
+          "durationSec": 470.712,
+          "data": {
+            "title": "Pop With Vocals [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        },
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-6",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/trap [100WS].mp3",
+          "durationSec": 159.192,
+          "data": {
+            "title": "Trap [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        },
+        {
+          "id": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]-7",
+          "src": "/audio/MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]/tuba [100WS].mp3",
+          "durationSec": 115.824,
+          "data": {
+            "title": "Tuba [100WS]",
+            "albumId": "MINIMAL OR SINGLE WORD PROMPT [Sept 1, 2025]",
+            "albumTitle": "MINIMAL OR SINGLE WORD PROMPT"
+          }
+        }
+      ],
+      "totalDurationSec": 2122.272,
+      "dateLabel": "September 1, 2025",
+      "dateISO": "2025-09-01",
+      "dateMs": 1756684800000
+    },
+    {
+      "id": "Toward the Elements(!!!) [Sept 1, 2025]",
+      "title": "Toward The Elements(!!!)",
+      "subtitle": "Gentle evocative entrails from a never-alive algo-simulation.",
+      "coverSrc": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-0",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/(A)IIIIIIIIIIIIIIIIIIIIIIIIIIIIIR! [80WS].mp3",
+          "durationSec": 278.352,
+          "data": {
+            "title": "(A)IIIIIIIIIIIIIIIIIIIIIIIIIIIIIR! [80WS]",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        },
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-1",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/(G)ROUUUNNND!!! v.2 [80WS].mp3",
+          "durationSec": 274.68,
+          "data": {
+            "title": "(G)ROUUUNNND!!! V.2 [80WS]",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        },
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-2",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/(Sk)YyYyYYYYYYY!!! [80WS].mp3",
+          "durationSec": 245.04,
+          "data": {
+            "title": "(Sk)YyYyYYYYYYY!!! [80WS]",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        },
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-3",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/gentle cozy math-rock lo-fi dub neo-soul [80WS].mp3",
+          "durationSec": 230.664,
+          "data": {
+            "title": "Gentle Cozy Math Rock Lo Fi Dub Neo Soul [80WS]",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        },
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-4",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/gentle cozy math-rock lo-fi dub neo-soul dream-pop glitch alt-folk close mic'd [80WS].mp3",
+          "durationSec": 170.76,
+          "data": {
+            "title": "Gentle Cozy Math Rock Lo Fi Dub Neo Soul Dream Pop Glitch Alt Folk Close Mic'D [80WS]",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        },
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-5",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/gentle cozy math-rock lo-fi dub neo-soul dream-pop glitch alt-folk close mic'd [80WS](1).mp3",
+          "durationSec": 254.112,
+          "data": {
+            "title": "Gentle Cozy Math Rock Lo Fi Dub Neo Soul Dream Pop Glitch Alt Folk Close Mic'D [80WS](1)",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        },
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-6",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/OM(niiiiiii!!) [80WS].mp3",
+          "durationSec": 268.152,
+          "data": {
+            "title": "OM(Niiiiiii!!) [80WS]",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        },
+        {
+          "id": "Toward the Elements(!!!) [Sept 1, 2025]-7",
+          "src": "/audio/Toward the Elements(!!!) [Sept 1, 2025]/This bright spin v.2 [80WS].mp3",
+          "durationSec": 204.744,
+          "data": {
+            "title": "This Bright Spin V.2 [80WS]",
+            "albumId": "Toward the Elements(!!!) [Sept 1, 2025]",
+            "albumTitle": "Toward The Elements(!!!)"
+          }
+        }
+      ],
+      "totalDurationSec": 1926.504,
+      "dateLabel": "September 1, 2025",
+      "dateISO": "2025-09-01",
+      "dateMs": 1756684800000
+    },
+    {
+      "id": "Wet Street Grid, Last Train Home [Aug 31, 2025]",
+      "title": "Wet Street Grid, Last Train Home",
+      "subtitle": "Made in an empty hour before breakfast.",
+      "coverSrc": "/audio/Wet Street Grid, Last Train Home [Aug 31, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Wet Street Grid, Last Train Home [Aug 31, 2025]-0",
+          "src": "/audio/Wet Street Grid, Last Train Home [Aug 31, 2025]/A ghost of teen years [80WS].mp3",
+          "durationSec": 134.16,
+          "data": {
+            "title": "A Ghost Of Teen Years [80WS]",
+            "albumId": "Wet Street Grid, Last Train Home [Aug 31, 2025]",
+            "albumTitle": "Wet Street Grid, Last Train Home"
+          }
+        },
+        {
+          "id": "Wet Street Grid, Last Train Home [Aug 31, 2025]-1",
+          "src": "/audio/Wet Street Grid, Last Train Home [Aug 31, 2025]/Asphalt tumbles into tide [80WS].mp3",
+          "durationSec": 194.88,
+          "data": {
+            "title": "Asphalt Tumbles Into Tide [80WS]",
+            "albumId": "Wet Street Grid, Last Train Home [Aug 31, 2025]",
+            "albumTitle": "Wet Street Grid, Last Train Home"
+          }
+        },
+        {
+          "id": "Wet Street Grid, Last Train Home [Aug 31, 2025]-2",
+          "src": "/audio/Wet Street Grid, Last Train Home [Aug 31, 2025]/Breath wind [80WS].mp3",
+          "durationSec": 138.48,
+          "data": {
+            "title": "Breath Wind [80WS]",
+            "albumId": "Wet Street Grid, Last Train Home [Aug 31, 2025]",
+            "albumTitle": "Wet Street Grid, Last Train Home"
+          }
+        },
+        {
+          "id": "Wet Street Grid, Last Train Home [Aug 31, 2025]-3",
+          "src": "/audio/Wet Street Grid, Last Train Home [Aug 31, 2025]/Red candy wrapper [80WS].mp3",
+          "durationSec": 217.632,
+          "data": {
+            "title": "Red Candy Wrapper [80WS]",
+            "albumId": "Wet Street Grid, Last Train Home [Aug 31, 2025]",
+            "albumTitle": "Wet Street Grid, Last Train Home"
+          }
+        }
+      ],
+      "totalDurationSec": 685.152,
+      "dateLabel": "August 31, 2025",
+      "dateISO": "2025-08-31",
+      "dateMs": 1756598400000
+    },
+    {
+      "id": "Almost Found [Aug 30, 2025]",
+      "title": "Almost Found",
+      "subtitle": "Made in an empty hour before sleep.",
+      "coverSrc": "/audio/Almost Found [Aug 30, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Almost Found [Aug 30, 2025]-0",
+          "src": "/audio/Almost Found [Aug 30, 2025]/Love Stain Growth.mp3",
+          "durationSec": 159.672,
+          "data": {
+            "title": "Love Stain Growth",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        },
+        {
+          "id": "Almost Found [Aug 30, 2025]-1",
+          "src": "/audio/Almost Found [Aug 30, 2025]/One lung aches full.mp3",
+          "durationSec": 176.88,
+          "data": {
+            "title": "One Lung Aches Full",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        },
+        {
+          "id": "Almost Found [Aug 30, 2025]-2",
+          "src": "/audio/Almost Found [Aug 30, 2025]/Prod Mash (fi-math0) [80WS] (Remix).mp3",
+          "durationSec": 153.024,
+          "data": {
+            "title": "Prod Mash (Fi Math0) [80WS] (Remix)",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        },
+        {
+          "id": "Almost Found [Aug 30, 2025]-3",
+          "src": "/audio/Almost Found [Aug 30, 2025]/Prod Mash (fi-math0) [80WS] (Remix)(1).mp3",
+          "durationSec": 133.752,
+          "data": {
+            "title": "Prod Mash (Fi Math0) [80WS] (Remix)(1)",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        },
+        {
+          "id": "Almost Found [Aug 30, 2025]-4",
+          "src": "/audio/Almost Found [Aug 30, 2025]/Prod Mash (fi-math0) [80WS].mp3",
+          "durationSec": 155.952,
+          "data": {
+            "title": "Prod Mash (Fi Math0) [80WS]",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        },
+        {
+          "id": "Almost Found [Aug 30, 2025]-5",
+          "src": "/audio/Almost Found [Aug 30, 2025]/Prod Mash (fi-math01) [80WS].mp3",
+          "durationSec": 143.16,
+          "data": {
+            "title": "Prod Mash (Fi Math01) [80WS]",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        },
+        {
+          "id": "Almost Found [Aug 30, 2025]-6",
+          "src": "/audio/Almost Found [Aug 30, 2025]/Prod Mash [Ablation Front] (fi-math0) [80WS] (Rough_).mp3",
+          "durationSec": 150.192,
+          "data": {
+            "title": "Prod Mash [Ablation Front] (Fi Math0) [80WS] (Rough )",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        },
+        {
+          "id": "Almost Found [Aug 30, 2025]-7",
+          "src": "/audio/Almost Found [Aug 30, 2025]/so soft it falls upwards [80WS].mp3",
+          "durationSec": 191.712,
+          "data": {
+            "title": "So Soft It Falls Upwards [80WS]",
+            "albumId": "Almost Found [Aug 30, 2025]",
+            "albumTitle": "Almost Found"
+          }
+        }
+      ],
+      "totalDurationSec": 1264.344,
+      "dateLabel": "August 30, 2025",
+      "dateISO": "2025-08-30",
+      "dateMs": 1756512000000
+    },
+    {
+      "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+      "title": "Osmooss (PROMPT ABLATION Instrumentals)",
+      "coverSrc": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-0",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss [81W, 91S].mp3",
+          "durationSec": 135,
+          "data": {
+            "title": "Osmoss [81W, 91S]",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-1",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss [81W, 91S](1).mp3",
+          "durationSec": 179.664,
+          "data": {
+            "title": "Osmoss [81W, 91S](1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-2",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 2 [80W, 90S] (Remix).mp3",
+          "durationSec": 206.76,
+          "data": {
+            "title": "Osmoss 2 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-3",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 2 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 270.84,
+          "data": {
+            "title": "Osmoss 2 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-4",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 3 [80W, 90S] (Remix).mp3",
+          "durationSec": 230.784,
+          "data": {
+            "title": "Osmoss 3 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-5",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 3 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 232.2,
+          "data": {
+            "title": "Osmoss 3 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-6",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 4 [80W, 90S] (Remix).mp3",
+          "durationSec": 209.472,
+          "data": {
+            "title": "Osmoss 4 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-7",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 4 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 184.224,
+          "data": {
+            "title": "Osmoss 4 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-8",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 5 [80W, 90S] (Remix).mp3",
+          "durationSec": 169.104,
+          "data": {
+            "title": "Osmoss 5 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-9",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 5 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 195.36,
+          "data": {
+            "title": "Osmoss 5 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-10",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 6 [80W, 90S] (Remix).mp3",
+          "durationSec": 203.424,
+          "data": {
+            "title": "Osmoss 6 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-11",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 6 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 226.632,
+          "data": {
+            "title": "Osmoss 6 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-12",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 7 [80W, 90S] (Remix).mp3",
+          "durationSec": 224.4,
+          "data": {
+            "title": "Osmoss 7 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-13",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 7 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 278.064,
+          "data": {
+            "title": "Osmoss 7 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-14",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 8 [80W, 90S] (Remix).mp3",
+          "durationSec": 90.192,
+          "data": {
+            "title": "Osmoss 8 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-15",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 8 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 190.152,
+          "data": {
+            "title": "Osmoss 8 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-16",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 9 [80W, 90S] (Remix).mp3",
+          "durationSec": 244.464,
+          "data": {
+            "title": "Osmoss 9 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-17",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 9 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 179.64,
+          "data": {
+            "title": "Osmoss 9 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-18",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 10 [80W, 90S] (Remix).mp3",
+          "durationSec": 189.264,
+          "data": {
+            "title": "Osmoss 10 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-19",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 10 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 295.944,
+          "data": {
+            "title": "Osmoss 10 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-20",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 11 [80W, 90S] (Remix).mp3",
+          "durationSec": 258.624,
+          "data": {
+            "title": "Osmoss 11 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-21",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 11 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 222.48,
+          "data": {
+            "title": "Osmoss 11 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-22",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 12 [80W, 90S] (Remix).mp3",
+          "durationSec": 259.704,
+          "data": {
+            "title": "Osmoss 12 [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-23",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 12 [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 264.48,
+          "data": {
+            "title": "Osmoss 12 [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-24",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 13 (empty space prompt) [80W, 90S] (Remix).mp3",
+          "durationSec": 304.92,
+          "data": {
+            "title": "Osmoss 13 (Empty Space Prompt) [80W, 90S] (Remix)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        },
+        {
+          "id": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]-25",
+          "src": "/audio/Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]/osmoss 13 (empty space prompt) [80W, 90S] (Remix)(1).mp3",
+          "durationSec": 176.904,
+          "data": {
+            "title": "Osmoss 13 (Empty Space Prompt) [80W, 90S] (Remix)(1)",
+            "albumId": "Osmooss (PROMPT ABLATION instrumentals) [Aug 21, 2025]",
+            "albumTitle": "Osmooss (PROMPT ABLATION Instrumentals)"
+          }
+        }
+      ],
+      "totalDurationSec": 5622.696,
+      "dateLabel": "August 21, 2025",
+      "dateISO": "2025-08-21",
+      "dateMs": 1755734400000
+    },
+    {
+      "id": "AI is Nothing but a Thief [Aug 19, 2025]",
+      "title": "AI Is Nothing But A Thief",
+      "subtitle": "Emulating the rock anthem in a kinda boring way.",
+      "coverSrc": "/audio/AI is Nothing but a Thief [Aug 19, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "AI is Nothing but a Thief [Aug 19, 2025]-0",
+          "src": "/audio/AI is Nothing but a Thief [Aug 19, 2025]/After Ember Digitalis [80W 84S] .mp3",
+          "durationSec": 155.088,
+          "data": {
+            "title": "After Ember Digitalis [80W 84S]",
+            "albumId": "AI is Nothing but a Thief [Aug 19, 2025]",
+            "albumTitle": "AI Is Nothing But A Thief"
+          }
+        },
+        {
+          "id": "AI is Nothing but a Thief [Aug 19, 2025]-1",
+          "src": "/audio/AI is Nothing but a Thief [Aug 19, 2025]/My Beigeposting Paramour [80W 84S] (Edit).mp3",
+          "durationSec": 165.744,
+          "data": {
+            "title": "My Beigeposting Paramour [80W 84S] (Edit)",
+            "albumId": "AI is Nothing but a Thief [Aug 19, 2025]",
+            "albumTitle": "AI Is Nothing But A Thief"
+          }
+        },
+        {
+          "id": "AI is Nothing but a Thief [Aug 19, 2025]-2",
+          "src": "/audio/AI is Nothing but a Thief [Aug 19, 2025]/Prism Kin [80W 84S] (Edit) (Remix).mp3",
+          "durationSec": 267.264,
+          "data": {
+            "title": "Prism Kin [80W 84S] (Edit) (Remix)",
+            "albumId": "AI is Nothing but a Thief [Aug 19, 2025]",
+            "albumTitle": "AI Is Nothing But A Thief"
+          }
+        },
+        {
+          "id": "AI is Nothing but a Thief [Aug 19, 2025]-3",
+          "src": "/audio/AI is Nothing but a Thief [Aug 19, 2025]/Unperson Listener Again [80W 90S 3A] (Edit).mp3",
+          "durationSec": 112.512,
+          "data": {
+            "title": "Unperson Listener Again [80W 90S 3A] (Edit)",
+            "albumId": "AI is Nothing but a Thief [Aug 19, 2025]",
+            "albumTitle": "AI Is Nothing But A Thief"
+          }
+        }
+      ],
+      "totalDurationSec": 700.608,
+      "dateLabel": "August 19, 2025",
+      "dateISO": "2025-08-19",
+      "dateMs": 1755561600000
+    },
+    {
+      "id": "Kintsugi Genres (Displacement Paths) [Aug 19, 2025]",
+      "title": "Kintsugi Genres (Displacement Paths)",
+      "subtitle": "Discovering rejuvenating nectar in pseudo-Jarrett floodlines of neo-soul green tea ceramics.",
+      "coverSrc": "/audio/Kintsugi Genres (Displacement Paths) [Aug 19, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Kintsugi Genres (Displacement Paths) [Aug 19, 2025]-0",
+          "src": "/audio/Kintsugi Genres (Displacement Paths) [Aug 19, 2025]/Cache Catch (Kintsugi Mix) [80W 90S] (Remix) .mp3",
+          "durationSec": 216.264,
+          "data": {
+            "title": "Cache Catch (Kintsugi Mix) [80W 90S] (Remix)",
+            "albumId": "Kintsugi Genres (Displacement Paths) [Aug 19, 2025]",
+            "albumTitle": "Kintsugi Genres (Displacement Paths)"
+          }
+        },
+        {
+          "id": "Kintsugi Genres (Displacement Paths) [Aug 19, 2025]-1",
+          "src": "/audio/Kintsugi Genres (Displacement Paths) [Aug 19, 2025]/Haptic Ghost (Kintsugi Mix) [80W 90S].mp3",
+          "durationSec": 360,
+          "data": {
+            "title": "Haptic Ghost (Kintsugi Mix) [80W 90S]",
+            "albumId": "Kintsugi Genres (Displacement Paths) [Aug 19, 2025]",
+            "albumTitle": "Kintsugi Genres (Displacement Paths)"
+          }
+        },
+        {
+          "id": "Kintsugi Genres (Displacement Paths) [Aug 19, 2025]-2",
+          "src": "/audio/Kintsugi Genres (Displacement Paths) [Aug 19, 2025]/Numb-post recalls a faint color-bleed (Kintsugi Mix) [80W 90S] (Remix).mp3",
+          "durationSec": 198.744,
+          "data": {
+            "title": "Numb Post Recalls A Faint Color Bleed (Kintsugi Mix) [80W 90S] (Remix)",
+            "albumId": "Kintsugi Genres (Displacement Paths) [Aug 19, 2025]",
+            "albumTitle": "Kintsugi Genres (Displacement Paths)"
+          }
+        }
+      ],
+      "totalDurationSec": 775.008,
+      "dateLabel": "August 19, 2025",
+      "dateISO": "2025-08-19",
+      "dateMs": 1755561600000
+    },
+    {
+      "id": "Eon-O [Aug 15, 2025]",
+      "title": "Eon O",
+      "subtitle": "Cathartic math-altpop requiem fusion bioluminescent glitch-funk, cyber-mycelial-soul solastalgic Raï-fi, ASMR: soulful, quirky, androgynous female vocalist. Gemini lyrics.",
+      "coverSrc": "/audio/Eon-O [Aug 15, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Eon-O [Aug 15, 2025]-0",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Antherene [80WS] (Edit).mp3",
+          "durationSec": 93.984,
+          "data": {
+            "title": "Antherene [80WS] (Edit)",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        },
+        {
+          "id": "Eon-O [Aug 15, 2025]-1",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Archive-Rot _ Noctiluca [80WS] (Edit).mp3",
+          "durationSec": 67.2,
+          "data": {
+            "title": "Archive Rot Noctiluca [80WS] (Edit)",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        },
+        {
+          "id": "Eon-O [Aug 15, 2025]-2",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Diastole __ Systole [80WS].mp3",
+          "durationSec": 248.952,
+          "data": {
+            "title": "Diastole Systole [80WS]",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        },
+        {
+          "id": "Eon-O [Aug 15, 2025]-3",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Glitch-Love _ Rhizome-Heart [80WS] v.2.mp3",
+          "durationSec": 89.376,
+          "data": {
+            "title": "Glitch Love Rhizome Heart [80WS] V.2",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        },
+        {
+          "id": "Eon-O [Aug 15, 2025]-4",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Meaning's End [80WS] (Edit).mp3",
+          "durationSec": 51.672,
+          "data": {
+            "title": "Meaning'S End [80WS] (Edit)",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        },
+        {
+          "id": "Eon-O [Aug 15, 2025]-5",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Rhizome-Heart _ Glitch-Love [80WS] .mp3",
+          "durationSec": 79.392,
+          "data": {
+            "title": "Rhizome Heart Glitch Love [80WS]",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        },
+        {
+          "id": "Eon-O [Aug 15, 2025]-6",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Sourceless Nectar [80WS] (Edit).mp3",
+          "durationSec": 98.592,
+          "data": {
+            "title": "Sourceless Nectar [80WS] (Edit)",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        },
+        {
+          "id": "Eon-O [Aug 15, 2025]-7",
+          "src": "/audio/Eon-O [Aug 15, 2025]/Velvet Static [80W, 90S] (Edit).mp3",
+          "durationSec": 143.232,
+          "data": {
+            "title": "Velvet Static [80W, 90S] (Edit)",
+            "albumId": "Eon-O [Aug 15, 2025]",
+            "albumTitle": "Eon O"
+          }
+        }
+      ],
+      "totalDurationSec": 872.4,
+      "dateLabel": "August 15, 2025",
+      "dateISO": "2025-08-15",
+      "dateMs": 1755216000000
+    },
+    {
+      "id": "All the Aching Never Born [Aug 4, 2025]",
+      "title": "All The Aching Never Born",
+      "subtitle": "Gentle soft subtle alt-folk-lo-fi math-syncopated ambient love songs.",
+      "coverSrc": "/audio/All the Aching Never Born [Aug 4, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "All the Aching Never Born [Aug 4, 2025]-0",
+          "src": "/audio/All the Aching Never Born [Aug 4, 2025]/Endorphin Salt [80WS] (Edit).mp3",
+          "durationSec": 209.448,
+          "data": {
+            "title": "Endorphin Salt [80WS] (Edit)",
+            "albumId": "All the Aching Never Born [Aug 4, 2025]",
+            "albumTitle": "All The Aching Never Born"
+          }
+        },
+        {
+          "id": "All the Aching Never Born [Aug 4, 2025]-1",
+          "src": "/audio/All the Aching Never Born [Aug 4, 2025]/Hologram Numb [80WS].mp3",
+          "durationSec": 284.28,
+          "data": {
+            "title": "Hologram Numb [80WS]",
+            "albumId": "All the Aching Never Born [Aug 4, 2025]",
+            "albumTitle": "All The Aching Never Born"
+          }
+        },
+        {
+          "id": "All the Aching Never Born [Aug 4, 2025]-2",
+          "src": "/audio/All the Aching Never Born [Aug 4, 2025]/Mycelium Hum [80WS].mp3",
+          "durationSec": 290.76,
+          "data": {
+            "title": "Mycelium Hum [80WS]",
+            "albumId": "All the Aching Never Born [Aug 4, 2025]",
+            "albumTitle": "All The Aching Never Born"
+          }
+        },
+        {
+          "id": "All the Aching Never Born [Aug 4, 2025]-3",
+          "src": "/audio/All the Aching Never Born [Aug 4, 2025]/Open Sway [80WS].mp3",
+          "durationSec": 307.56,
+          "data": {
+            "title": "Open Sway [80WS]",
+            "albumId": "All the Aching Never Born [Aug 4, 2025]",
+            "albumTitle": "All The Aching Never Born"
+          }
+        },
+        {
+          "id": "All the Aching Never Born [Aug 4, 2025]-4",
+          "src": "/audio/All the Aching Never Born [Aug 4, 2025]/Phosphor Bloom [80WS].mp3",
+          "durationSec": 209.664,
+          "data": {
+            "title": "Phosphor Bloom [80WS]",
+            "albumId": "All the Aching Never Born [Aug 4, 2025]",
+            "albumTitle": "All The Aching Never Born"
+          }
+        },
+        {
+          "id": "All the Aching Never Born [Aug 4, 2025]-5",
+          "src": "/audio/All the Aching Never Born [Aug 4, 2025]/To Unlearn the Shape of Your Hand in Mine (River Unmake Me).mp3",
+          "durationSec": 241.872,
+          "data": {
+            "title": "To Unlearn The Shape Of Your Hand In Mine (River Unmake Me)",
+            "albumId": "All the Aching Never Born [Aug 4, 2025]",
+            "albumTitle": "All The Aching Never Born"
+          }
+        },
+        {
+          "id": "All the Aching Never Born [Aug 4, 2025]-6",
+          "src": "/audio/All the Aching Never Born [Aug 4, 2025]/Unremembering [80WS] (Remix) (Edit).mp3",
+          "durationSec": 189.312,
+          "data": {
+            "title": "Unremembering [80WS] (Remix) (Edit)",
+            "albumId": "All the Aching Never Born [Aug 4, 2025]",
+            "albumTitle": "All The Aching Never Born"
+          }
+        }
+      ],
+      "totalDurationSec": 1732.8960000000002,
+      "dateLabel": "August 4, 2025",
+      "dateISO": "2025-08-04",
+      "dateMs": 1754265600000
+    },
+    {
+      "id": "Intensities for T Pyke [Aug 1, 2025]",
+      "title": "Intensities For T Pyke",
+      "subtitle": "Putting the Horizon back into a pre-human perspective. Beyond any gates.",
+      "coverSrc": "/audio/Intensities for T Pyke [Aug 1, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Intensities for T Pyke [Aug 1, 2025]-0",
+          "src": "/audio/Intensities for T Pyke [Aug 1, 2025]/bokeh ricochet tuple ripple play [80WS] (Edit).mp3",
+          "durationSec": 103.2,
+          "data": {
+            "title": "Bokeh Ricochet Tuple Ripple Play [80WS] (Edit)",
+            "albumId": "Intensities for T Pyke [Aug 1, 2025]",
+            "albumTitle": "Intensities For T Pyke"
+          }
+        },
+        {
+          "id": "Intensities for T Pyke [Aug 1, 2025]-1",
+          "src": "/audio/Intensities for T Pyke [Aug 1, 2025]/Mall Relapser Reprise [80_Weird, 84_Style] (Remix).mp3",
+          "durationSec": 190.032,
+          "data": {
+            "title": "Mall Relapser Reprise [80 Weird, 84 Style] (Remix)",
+            "albumId": "Intensities for T Pyke [Aug 1, 2025]",
+            "albumTitle": "Intensities For T Pyke"
+          }
+        },
+        {
+          "id": "Intensities for T Pyke [Aug 1, 2025]-2",
+          "src": "/audio/Intensities for T Pyke [Aug 1, 2025]/Rivulet Organism [78WS] (Edit).mp3",
+          "durationSec": 126.744,
+          "data": {
+            "title": "Rivulet Organism [78WS] (Edit)",
+            "albumId": "Intensities for T Pyke [Aug 1, 2025]",
+            "albumTitle": "Intensities For T Pyke"
+          }
+        },
+        {
+          "id": "Intensities for T Pyke [Aug 1, 2025]-3",
+          "src": "/audio/Intensities for T Pyke [Aug 1, 2025]/Scroll Collapser [80_Weird, 80_Style].mp3",
+          "durationSec": 328.944,
+          "data": {
+            "title": "Scroll Collapser [80 Weird, 80 Style]",
+            "albumId": "Intensities for T Pyke [Aug 1, 2025]",
+            "albumTitle": "Intensities For T Pyke"
+          }
+        },
+        {
+          "id": "Intensities for T Pyke [Aug 1, 2025]-4",
+          "src": "/audio/Intensities for T Pyke [Aug 1, 2025]/Tensile Essential [80WS] -- v.1 -- the host.mp3",
+          "durationSec": 372.624,
+          "data": {
+            "title": "Tensile Essential [80WS] V.1 The Host",
+            "albumId": "Intensities for T Pyke [Aug 1, 2025]",
+            "albumTitle": "Intensities For T Pyke"
+          }
+        },
+        {
+          "id": "Intensities for T Pyke [Aug 1, 2025]-5",
+          "src": "/audio/Intensities for T Pyke [Aug 1, 2025]/Tensile Essential [80WS] --v2 _Try Try Try_.mp3",
+          "durationSec": 293.04,
+          "data": {
+            "title": "Tensile Essential [80WS] V2 Try Try Try",
+            "albumId": "Intensities for T Pyke [Aug 1, 2025]",
+            "albumTitle": "Intensities For T Pyke"
+          }
+        },
+        {
+          "id": "Intensities for T Pyke [Aug 1, 2025]-6",
+          "src": "/audio/Intensities for T Pyke [Aug 1, 2025]/THIS GLASS CEILING'S MADE OF SHATTERED BONES [80WS] (Edit).mp3",
+          "durationSec": 86.64,
+          "data": {
+            "title": "THIS GLASS CEILING'S MADE OF SHATTERED BONES [80WS] (Edit)",
+            "albumId": "Intensities for T Pyke [Aug 1, 2025]",
+            "albumTitle": "Intensities For T Pyke"
+          }
+        }
+      ],
+      "totalDurationSec": 1501.2240000000002,
+      "dateLabel": "August 1, 2025",
+      "dateISO": "2025-08-01",
+      "dateMs": 1754006400000
+    },
+    {
+      "id": "Softlogic Drift [Aug 1, 2025]",
+      "title": "Softlogic Drift",
+      "subtitle": "Lush Chamber-Folk-Minimalist Dream-bedroom-Pop-Lofi.",
+      "coverSrc": "/audio/Softlogic Drift [Aug 1, 2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Softlogic Drift [Aug 1, 2025]-0",
+          "src": "/audio/Softlogic Drift [Aug 1, 2025]/Glassroot Flicker - v2 [80W,90S].mp3",
+          "durationSec": 188.424,
+          "data": {
+            "title": "Glassroot Flicker V2 [80W,90S]",
+            "albumId": "Softlogic Drift [Aug 1, 2025]",
+            "albumTitle": "Softlogic Drift"
+          }
+        },
+        {
+          "id": "Softlogic Drift [Aug 1, 2025]-1",
+          "src": "/audio/Softlogic Drift [Aug 1, 2025]/Glassroot Flicker [80W,90S].mp3",
+          "durationSec": 118.584,
+          "data": {
+            "title": "Glassroot Flicker [80W,90S]",
+            "albumId": "Softlogic Drift [Aug 1, 2025]",
+            "albumTitle": "Softlogic Drift"
+          }
+        },
+        {
+          "id": "Softlogic Drift [Aug 1, 2025]-2",
+          "src": "/audio/Softlogic Drift [Aug 1, 2025]/mouth ash [80W,90W] (Bluegrass choral version).mp3",
+          "durationSec": 194.28,
+          "data": {
+            "title": "Mouth Ash [80W,90W] (Bluegrass Choral Version)",
+            "albumId": "Softlogic Drift [Aug 1, 2025]",
+            "albumTitle": "Softlogic Drift"
+          }
+        },
+        {
+          "id": "Softlogic Drift [Aug 1, 2025]-3",
+          "src": "/audio/Softlogic Drift [Aug 1, 2025]/mouth ash [80W,90W].mp3",
+          "durationSec": 218.4,
+          "data": {
+            "title": "Mouth Ash [80W,90W]",
+            "albumId": "Softlogic Drift [Aug 1, 2025]",
+            "albumTitle": "Softlogic Drift"
+          }
+        },
+        {
+          "id": "Softlogic Drift [Aug 1, 2025]-4",
+          "src": "/audio/Softlogic Drift [Aug 1, 2025]/Softlogic Drift [80W,90S].mp3",
+          "durationSec": 175.224,
+          "data": {
+            "title": "Softlogic Drift [80W,90S]",
+            "albumId": "Softlogic Drift [Aug 1, 2025]",
+            "albumTitle": "Softlogic Drift"
+          }
+        },
+        {
+          "id": "Softlogic Drift [Aug 1, 2025]-5",
+          "src": "/audio/Softlogic Drift [Aug 1, 2025]/The Archive of Water [80W,90S] --v2.mp3",
+          "durationSec": 95.424,
+          "data": {
+            "title": "The Archive Of Water [80W,90S] V2",
+            "albumId": "Softlogic Drift [Aug 1, 2025]",
+            "albumTitle": "Softlogic Drift"
+          }
+        },
+        {
+          "id": "Softlogic Drift [Aug 1, 2025]-6",
+          "src": "/audio/Softlogic Drift [Aug 1, 2025]/The Archive of Water [80W,90S].mp3",
+          "durationSec": 101.784,
+          "data": {
+            "title": "The Archive Of Water [80W,90S]",
+            "albumId": "Softlogic Drift [Aug 1, 2025]",
+            "albumTitle": "Softlogic Drift"
+          }
+        }
+      ],
+      "totalDurationSec": 1092.1200000000001,
+      "dateLabel": "August 1, 2025",
+      "dateISO": "2025-08-01",
+      "dateMs": 1754006400000
+    },
+    {
+      "id": "Silicon Sensuality [July 29,2025]",
+      "title": "Silicon Sensuality",
+      "subtitle": "A gentle, deep intelligent sonic landscape that feels both vast and cozy.",
+      "coverSrc": "/audio/Silicon Sensuality [July 29,2025]/album.jpeg",
+      "tracks": [
+        {
+          "id": "Silicon Sensuality [July 29,2025]-0",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Mindtrace spill [80WS].mp3",
+          "durationSec": 198.144,
+          "data": {
+            "title": "Mindtrace Spill [80WS]",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        },
+        {
+          "id": "Silicon Sensuality [July 29,2025]-1",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Rootcode Bloom [80WS] -- v2.mp3",
+          "durationSec": 256.632,
+          "data": {
+            "title": "Rootcode Bloom [80WS] V2",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        },
+        {
+          "id": "Silicon Sensuality [July 29,2025]-2",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Rootlight fade [80WS] -v2 [Chunky & soft].mp3",
+          "durationSec": 264.864,
+          "data": {
+            "title": "Rootlight Fade [80WS] V2 [Chunky & Soft]",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        },
+        {
+          "id": "Silicon Sensuality [July 29,2025]-3",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Rootlight fade [80WS].mp3",
+          "durationSec": 309.384,
+          "data": {
+            "title": "Rootlight Fade [80WS]",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        },
+        {
+          "id": "Silicon Sensuality [July 29,2025]-4",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Silicon Sensuality [80WS].mp3",
+          "durationSec": 330.744,
+          "data": {
+            "title": "Silicon Sensuality [80WS]",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        },
+        {
+          "id": "Silicon Sensuality [July 29,2025]-5",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Silicon Sighs and Velvet Skies [80WS].mp3",
+          "durationSec": 354.984,
+          "data": {
+            "title": "Silicon Sighs And Velvet Skies [80WS]",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        },
+        {
+          "id": "Silicon Sensuality [July 29,2025]-6",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Thru the Last Call [80WS] (Excerpt).mp3",
+          "durationSec": 73.584,
+          "data": {
+            "title": "Thru The Last Call [80WS] (Excerpt)",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        },
+        {
+          "id": "Silicon Sensuality [July 29,2025]-7",
+          "src": "/audio/Silicon Sensuality [July 29,2025]/Veinlight Fold [80WS].mp3",
+          "durationSec": 234.624,
+          "data": {
+            "title": "Veinlight Fold [80WS]",
+            "albumId": "Silicon Sensuality [July 29,2025]",
+            "albumTitle": "Silicon Sensuality"
+          }
+        }
+      ],
+      "totalDurationSec": 2022.96,
+      "dateLabel": "July 29, 2025",
+      "dateISO": "2025-07-29",
+      "dateMs": 1753747200000
+    }
+  ]
+}
