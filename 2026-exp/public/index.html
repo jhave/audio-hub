@@ -48,15 +48,23 @@
     letter-spacing: .1em;
   }
   #loading.done { opacity: 0; pointer-events: none; }
-  #hint { position: fixed; right: 18px; bottom: 16px; width: 220px; font-size: 11px; color: #62757d; text-align: right; pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,.8); }
+  #hint { position: fixed; right: 18px; bottom: 16px; width: 240px; font-size: 11px; color: #62757d; text-align: right; pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,.8); }
   @media (max-width: 760px) { #hint { display: none; } }
+  #status {
+    position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+    font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+    color: #7e8f97; pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,.8);
+    transition: color .4s;
+  }
+  #status.manual { color: #e6d3a3; }
 </style>
 </head>
 <body>
 <canvas id="scene"></canvas>
 <div id="loading">tuning the topology&hellip;</div>
 <div id="title"><b>171exp</b> &nbsp;·&nbsp; a navigable soundscape · music created in suno · glia.ca</div>
-<div id="hint">drag orbit · scroll/pinch zoom · click a sphere to travel<br/>in wander, the nexus follows your mouse · idle = auto-flight</div>
+<div id="hint">drag orbit · scroll/pinch zoom · click a sphere to travel<br/>space pauses · any click borrows the tiller from auto-flight</div>
+<div id="status">auto-flight</div>
 <div id="hud">
   <div class="album"></div>
   <div class="track"></div>
@@ -65,8 +73,12 @@
 <div id="panel">
   <label>topology (t-sne &rarr; umap)</label>
   <input id="morph" type="range" min="0" max="5" step="0.001" value="1" />
+  <label>spread (diffuse the flocks)</label>
+  <input id="spread" type="range" min="0" max="1" step="0.01" value="0.55" />
+  <label>listening region</label>
+  <input id="region" type="range" min="0" max="1" step="0.01" value="0.35" />
   <label>chaos</label>
-  <input id="chaos" type="range" min="0" max="1" step="0.01" value="0.25" />
+  <input id="chaos" type="range" min="0" max="1" step="0.01" value="0.15" />
   <div class="mode">
     <button id="mode-wander">wander</button>
     <button id="mode-auto" class="active">auto-flight</button>

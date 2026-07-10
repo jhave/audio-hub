@@ -13,7 +13,7 @@ export class Drift {
     this.auto = true
     this.chaos = 0.25
     this.positions = null // Float32Array, shared with SoundField
-    this.lastUserInput = 0
+    this.lastUserInput = -1e9
     this.idleAfter = 30_000
     this.arrived = false
     this.hoverPoint = null // [x, z] under the mouse (wander-mode magnetism)
@@ -34,7 +34,16 @@ export class Drift {
   }
 
   get autoActive() {
-    return this.auto || performance.now() - this.lastUserInput > this.idleAfter
+    // any click/travel overrides auto-flight for a moment; it resumes on its own
+    const idle = performance.now() - this.lastUserInput
+    return this.auto ? idle > 15_000 : idle > this.idleAfter
+  }
+
+  /** ms until auto-flight resumes (for the status rollover); 0 if active. */
+  autoResumeIn() {
+    const idle = performance.now() - this.lastUserInput
+    const threshold = this.auto ? 15_000 : this.idleAfter
+    return Math.max(0, threshold - idle)
   }
 
   /** Choose where to fly next: near-ish, favorite-weighted, chaos-tempered. */

@@ -172,14 +172,19 @@ export class World {
     this.rebuildTerrain()
   }
 
-  /** Blend two layouts (for hyperparameter morphs); k in [0,1]. */
-  blendLayout(a, b, k) {
+  /** Blend two layouts (raw + cluster-relaxed variants) for hyperparameter
+      morphs; k in [0,1], spread in [0,1] mixes toward the diffused variant. */
+  blendLayout(aRaw, bRaw, aRel, bRel, k, spread) {
     const e = k * k * (3 - 2 * k) // smoothstep
     for (let i = 0; i < this.n; i++) {
       // slight per-index stagger so the flock doesn't move as one rigid sheet
       const kk = Math.min(1, Math.max(0, e * 1.25 - (i % 97) / 97 * 0.25))
-      this.positions[i * 2] = (a[i][0] + (b[i][0] - a[i][0]) * kk) * WORLD * 0.92
-      this.positions[i * 2 + 1] = (a[i][1] + (b[i][1] - a[i][1]) * kk) * WORLD * 0.92
+      const rx = aRaw[i][0] + (bRaw[i][0] - aRaw[i][0]) * kk
+      const ry = aRaw[i][1] + (bRaw[i][1] - aRaw[i][1]) * kk
+      const sx = aRel[i][0] + (bRel[i][0] - aRel[i][0]) * kk
+      const sy = aRel[i][1] + (bRel[i][1] - aRel[i][1]) * kk
+      this.positions[i * 2] = (rx + (sx - rx) * spread) * WORLD * 0.92
+      this.positions[i * 2 + 1] = (ry + (sy - ry) * spread) * WORLD * 0.92
     }
   }
 
