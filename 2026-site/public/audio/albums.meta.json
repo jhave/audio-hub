@@ -1,6 +1,86 @@
 {
-  "generatedAt": "2026-07-10T01:30:29.848Z",
+  "generatedAt": "2026-07-10T12:35:34.769Z",
   "albums": [
+    {
+      "id": "Revisiting the World Within [July 9 2026]",
+      "title": "Revisiting the World Within",
+      "subtitle": "Remaking the same prompts with Suno v5.5 from a late 2025 fourth-world playlist called \"The World Within\" https://suno.com/playlist/83586d12-f874-41bc-8d12-25941441d288",
+      "sunoUrl": "https://suno.com/playlist/b6ffe5ef-d1f7-48ad-b0e1-f3ad05fad879",
+      "prompt": "calm gentle elektron cello viola harp fiddle tampura syncopated acoustic finger harmonic guitar hybrid experimental ambient soaring subtle vocalese, lo-fi drop neo-tango soul-dub alt-folk math post-rock-jazz elegy,, back chorus, delicate, accoustic. --\nA mystical Oud melody enters, Armenian Duduk lament, shimmering Sitar drone, cinematic desert ambient, haunting male vocalese in Farsi, nomadic, ancient.\n[Transition: rhythm fades out, a single sparse Koto arpeggio emerges from the silence.]\n[Part 3: Zen Fusion Outro]\nMeditative Shakuhachi flute, gentle Andean Quena melody, delicate Charango strumming, minimalist, contemplative, tranquil, instrument",
+      "coverSrc": "/audio/Revisiting%20the%20World%20Within%20%5BJuly%209%202026%5D/album.jpeg",
+      "dateLabel": "July 9, 2026",
+      "dateISO": "2026-07-09",
+      "dateMs": 1783569600000,
+      "tracks": [
+        {
+          "id": "Revisiting the World Within [July 9 2026]::A Sombre Just Enough [64W 72S].mp3",
+          "src": "/audio/Revisiting%20the%20World%20Within%20%5BJuly%209%202026%5D/A%20Sombre%20Just%20Enough%20%5B64W%2072S%5D.mp3",
+          "filename": "A Sombre Just Enough [64W 72S].mp3",
+          "durationSec": 257.4,
+          "data": {
+            "title": "A Sombre Just Enough [64W 72S]",
+            "albumId": "Revisiting the World Within [July 9 2026]",
+            "albumTitle": "Revisiting the World Within"
+          }
+        },
+        {
+          "id": "Revisiting the World Within [July 9 2026]::Eventually Everything is Osmosis v5.5.mp3",
+          "src": "/audio/Revisiting%20the%20World%20Within%20%5BJuly%209%202026%5D/Eventually%20Everything%20is%20Osmosis%20v5.5.mp3",
+          "filename": "Eventually Everything is Osmosis v5.5.mp3",
+          "durationSec": 114.552,
+          "data": {
+            "title": "Eventually Everything is Osmosis v5.5",
+            "albumId": "Revisiting the World Within [July 9 2026]",
+            "albumTitle": "Revisiting the World Within"
+          }
+        },
+        {
+          "id": "Revisiting the World Within [July 9 2026]::Grace Calibration OK Walls [74WS].mp3",
+          "src": "/audio/Revisiting%20the%20World%20Within%20%5BJuly%209%202026%5D/Grace%20Calibration%20OK%20Walls%20%5B74WS%5D.mp3",
+          "filename": "Grace Calibration OK Walls [74WS].mp3",
+          "durationSec": 202.92,
+          "data": {
+            "title": "Grace Calibration OK Walls [74WS]",
+            "albumId": "Revisiting the World Within [July 9 2026]",
+            "albumTitle": "Revisiting the World Within"
+          }
+        },
+        {
+          "id": "Revisiting the World Within [July 9 2026]::Play without Anything to Seek [74WS 25i].mp3",
+          "src": "/audio/Revisiting%20the%20World%20Within%20%5BJuly%209%202026%5D/Play%20without%20Anything%20to%20Seek%20%5B74WS%2025i%5D.mp3",
+          "filename": "Play without Anything to Seek [74WS 25i].mp3",
+          "durationSec": 188.904,
+          "data": {
+            "title": "Play without Anything to Seek [74WS 25i]",
+            "albumId": "Revisiting the World Within [July 9 2026]",
+            "albumTitle": "Revisiting the World Within"
+          }
+        },
+        {
+          "id": "Revisiting the World Within [July 9 2026]::Sifting Serenity Isolation Litmus [74WS 25i].mp3",
+          "src": "/audio/Revisiting%20the%20World%20Within%20%5BJuly%209%202026%5D/Sifting%20Serenity%20Isolation%20Litmus%20%5B74WS%2025i%5D.mp3",
+          "filename": "Sifting Serenity Isolation Litmus [74WS 25i].mp3",
+          "durationSec": 479.424,
+          "data": {
+            "title": "Sifting Serenity Isolation Litmus [74WS 25i]",
+            "albumId": "Revisiting the World Within [July 9 2026]",
+            "albumTitle": "Revisiting the World Within"
+          }
+        },
+        {
+          "id": "Revisiting the World Within [July 9 2026]::Sifting Serenity Isolation Litmus [74WS 25i](1).mp3",
+          "src": "/audio/Revisiting%20the%20World%20Within%20%5BJuly%209%202026%5D/Sifting%20Serenity%20Isolation%20Litmus%20%5B74WS%2025i%5D(1).mp3",
+          "filename": "Sifting Serenity Isolation Litmus [74WS 25i](1).mp3",
+          "durationSec": 174.144,
+          "data": {
+            "title": "Sifting Serenity Isolation Litmus [74WS 25i](1)",
+            "albumId": "Revisiting the World Within [July 9 2026]",
+            "albumTitle": "Revisiting the World Within"
+          }
+        }
+      ],
+      "totalDurationSec": 1417.3439999999998
+    },
     {
       "id": "Doubt Manifesto [July 7, 2026]",
       "title": "Doubt Manifesto",

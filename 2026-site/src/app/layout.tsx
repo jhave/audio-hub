@@ -14,10 +14,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "171 days (of Music Created in Suno) — Glia",
+    default: "173 days (of Music Created in Suno) — Glia",
     template: "%s — Glia",
   },
-  description: "Audio library for the 2026 Suno set on glia.ca. January 18, 2026 — July 7, 2026. 171 days • 740 tracks • 4.33 tracks/day • 11.0 min/day. Total duration: 31h 23m 51s. The price of music/muzak is falling to zero.",
+  description: "Audio library for the 2026 Suno set on glia.ca. January 18, 2026 — July 9, 2026. 173 days • 746 tracks • 4.31 tracks/day • 11.0 min/day. Total duration: 31h 47m 28s. The price of music/muzak is falling to zero.",
   icons: {
     icon: "/img/glia-bw.png" 
   },
