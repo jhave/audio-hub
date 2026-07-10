@@ -77,25 +77,41 @@ function EmptyHint() {
 
 /* -------------------- Linkify plain text -------------------- */
 
-function Linkify({ text }: { text: string }) {
+const LINK_CLASS =
+  "underline decoration-neutral-300 underline-offset-2 hover:decoration-neutral-500"
+
+function AutoLinkUrls({ text }: { text: string }) {
   const parts = text.split(/(https?:\/\/[^\s<>()]+[^\s<>().,;:!?'"])/g)
   return (
     <>
       {parts.map((part, i) =>
         /^https?:\/\//.test(part) ? (
-          <a
-            key={i}
-            href={part}
-            target="_blank"
-            rel="noreferrer"
-            className="underline decoration-neutral-300 underline-offset-2 hover:decoration-neutral-500"
-          >
+          <a key={i} href={part} target="_blank" rel="noreferrer" className={LINK_CLASS}>
             {part}
           </a>
         ) : (
           part
         )
       )}
+    </>
+  )
+}
+
+// Markdown-style [label](url) links first; bare URLs auto-link in the rest.
+function Linkify({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g)
+  return (
+    <>
+      {parts.map((part, i) => {
+        const md = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/)
+        return md ? (
+          <a key={i} href={md[2]} target="_blank" rel="noreferrer" className={LINK_CLASS}>
+            {md[1]}
+          </a>
+        ) : (
+          <AutoLinkUrls key={i} text={part} />
+        )
+      })}
     </>
   )
 }
