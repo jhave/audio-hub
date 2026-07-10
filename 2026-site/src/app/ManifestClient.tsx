@@ -25,13 +25,20 @@ function withPrefix(prefix: string, p?: string): string | undefined {
   return prefix ? `${prefix}/${p}` : p
 }
 
+// Optional external host for the mp3s (e.g. raw.githubusercontent.com on
+// GitHub Pages, where the published site can't hold 2.5 GB of audio).
+// Baked in at build time; empty in dev and for the glia.ca export.
+const AUDIO_BASE = (process.env.NEXT_PUBLIC_AUDIO_BASE || "").replace(/\/+$/, "")
+
 function normalizeAlbumPaths(albums: Album[], prefix: string): Album[] {
   return albums.map((a) => ({
     ...a,
     coverSrc: withPrefix(prefix, a.coverSrc),
     tracks: a.tracks.map((t) => ({
       ...t,
-      src: withPrefix(prefix, t.src)!,
+      src: AUDIO_BASE
+        ? `${AUDIO_BASE}${t.src.replace(/^\/audio/, "")}`
+        : withPrefix(prefix, t.src)!,
     })),
   }))
 }

@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-07-10T01:03:38.868Z",
+  "generatedAt": "2026-07-10T01:30:29.848Z",
   "albums": [
     {
       "id": "Doubt Manifesto [July 7, 2026]",
       "title": "Doubt Manifesto",
       "subtitle": "Soundtrack study notes for https://glia.ca/2026/utopi/",
       "sunoUrl": "https://suno.com/playlist/796f7eb5-49af-4125-b0e0-6f34933d5e3a",
+      "prompt": "slow-math philly-rap subs, post-rock big build, breaks into gentle-thrash-shimmer, austere intimate minimalist 437hz dorian ensemble minor folktronica shoegaze microtones, experimental bedroom syncopated raw intimate shoegaze,, powerful bassline, emotional climax",
       "coverSrc": "/audio/Doubt%20Manifesto%20%5BJuly%207%2C%202026%5D/album.jpeg",
       "dateLabel": "July 7, 2026",
       "dateISO": "2026-07-07",
@@ -51,6 +52,7 @@
       "id": "meh hehe [July 5, 2026]",
       "title": "meh hehe",
       "sunoUrl": "https://suno.com/playlist/5d47929d-e93f-42b3-a370-e7be2b288a1e",
+      "prompt": "indie dance, moroccan, bajo, hard hitting drums, funeral doom metal, political punk, bouncy beats, snare rolls, graceful, experimental r&b, surf rock, introspectif, muffled, orchestrale, brass accents, vibrant, celestial pads, atmospheric strings, mbalax, smooth saxophone, experimental jazz, hardcore rap, warm harmonies, dulcimer, hard drill, stadium rock, country, pitch bend (guitar), film score, techno pop, japanese shoegaze, swedish metal, ambient acoustic, dangdut beat, minimal drums, post-britpop, rap hiphop, timbal, hardcore, classic hip-hop, disturbing, jazz bass, female voices, groove-focused hi-hats",
       "coverSrc": "/audio/meh%20hehe%20%5BJuly%205%2C%202026%5D/album.jpeg",
       "dateLabel": "July 5, 2026",
       "dateISO": "2026-07-05",
@@ -85,6 +87,7 @@
       "id": "more intimate than intimate [July 4, 2026]",
       "title": "more intimate than intimate",
       "sunoUrl": "https://suno.com/playlist/f87a15cc-3d8c-4347-b58d-0752dd7d020b",
+      "prompt": "math-ambient-to-post-hybrid-lo-folktronica-trap raga-tango-algerian-dub-mesa-jazz-cozy-hybrid-flow-experimental austerity more intimate than intimate",
       "coverSrc": "/audio/more%20intimate%20than%20intimate%20%5BJuly%204%2C%202026%5D/album.jpeg",
       "dateLabel": "July 4, 2026",
       "dateISO": "2026-07-04",
@@ -263,6 +266,7 @@
       "title": "soft austere post hybrid deep sleep ambiences",
       "subtitle": "salvaging the source of a soft very very slow, empty, austere deep ambience by migrating across a nescent latent space",
       "sunoUrl": "https://suno.com/playlist/e9471ebf-1a6c-4cca-85e1-ca7ffeda9bc7",
+      "prompt": "soft slow austere ambient-to-post-hybrid-lo-folktronica-rwandan-dub-mesa-jazz-cozy-hybrid-flow-experimental chamber orchestra minimalist, austerity, more intimate than intimate",
       "coverSrc": "/audio/soft%20austere%20post%20hybrid%20deep%20sleep%20ambiences%20%5BJuly%204%2C%202026%5D/album.jpeg",
       "dateLabel": "July 4, 2026",
       "dateISO": "2026-07-04",
@@ -374,6 +378,7 @@
       "id": "whatevuh severe joyish mania arrives [July 3, 2026]",
       "title": "whatevuh severe joyish mania arrives",
       "sunoUrl": "https://suno.com/playlist/503c87f2-dfa4-4583-8fb5-a7fb857cb0a9",
+      "prompt": "electro, bounce drop, math rock shoegaze cozy lo-fi techno fourth world neo soul hybrid experimental syncopated, vocaloid slice, orchestral",
       "coverSrc": "/audio/whatevuh%20severe%20joyish%20mania%20arrives%20%5BJuly%203%2C%202026%5D/album.jpeg",
       "dateLabel": "July 3, 2026",
       "dateISO": "2026-07-03",
@@ -596,6 +601,7 @@
       "title": "Planetary Homeostasis",
       "subtitle": "Soundtrack for Doubt Manifesto https://glia.ca/2026/utopi/",
       "sunoUrl": "https://suno.com/playlist/c3f7eb15-80dc-4242-8e5c-2cb33502da96",
+      "prompt": "slow-math austere intimate minimalist 437hz dorian ensemble minor folktronica shoegaze microtones, experimental bedroom shimmer",
       "coverSrc": "/audio/Planetary%20Homeostasis%20%5BJuly%202%2C%202026%5D/album.jpeg",
       "dateLabel": "July 2, 2026",
       "dateISO": "2026-07-02",
@@ -905,6 +911,7 @@
       "id": "alzsdifiro [July 1, 2026]",
       "title": "alzsdifiro",
       "sunoUrl": "https://suno.com/playlist/c6a2d432-b667-423a-8935-d48bd8cbf362",
+      "prompt": "alzsdifiro polyrhythms, instrumental solos, trap pesado, timbales, groovy beat, lo-fi-math-bedroom-philly",
       "coverSrc": "/audio/alzsdifiro%20%5BJuly%201%2C%202026%5D/album.jpeg",
       "dateLabel": "July 1, 2026",
       "dateISO": "2026-07-01",
@@ -1039,6 +1046,7 @@
       "title": "colloidal silver ferment trio, maloya, post-grunge, symphony",
       "subtitle": "listening to random places in the latent topology of all of the rhythmic urges of humanity by choosing a single engimatic phrase, adding random suno suggestions, then ablating until interest vanishes",
       "sunoUrl": "https://suno.com/playlist/a956e706-0f40-42a9-a2d3-5292533a8c97",
+      "prompt": "colloidal silver ferment trio, maloya, post-grunge, symphony, noise music, no vocal, tranquila, 90-100 bpm, riddim, chœurs, children pop",
       "coverSrc": "/audio/colloidal%20silver%20ferment%20trio%2C%20maloya%2C%20post-grunge%2C%20symphony%20%5BJune%2030%2C%202026%5D/album.jpeg",
       "dateLabel": "June 30, 2026",
       "dateISO": "2026-06-30",
@@ -1249,6 +1257,7 @@
       "id": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]",
       "title": "IOEUSAI - 437hz phygrian ensemble",
       "sunoUrl": "https://suno.com/playlist/59814cb5-f0ea-4490-b0d0-f87b51daaa50",
+      "prompt": "slow austere intimate minimalist 437hz phygrian ensemble microtones, thick, lush, contrapuntal, experimental",
       "coverSrc": "/audio/IOEUSAI%20-%20437hz%20phygrian%20ensemble%20%5BJune%2020%2C%202026%5D/album.jpeg",
       "dateLabel": "June 20, 2026",
       "dateISO": "2026-06-20",
@@ -1548,6 +1557,7 @@
       "title": "Cine-automatic",
       "subtitle": "returning to a prompt last tried in 3.5 or 4 or some nostalgic era before time became an algorithm cinema",
       "sunoUrl": "https://suno.com/playlist/3c22433e-0596-4b84-8b5a-9d41313db21f",
+      "prompt": "thick, lush, contrapuntal, complex experimental cinematic",
       "coverSrc": "/audio/Cine-automatic%20%5BJune%2019%2C%202026%5D/album.jpeg",
       "dateLabel": "June 19, 2026",
       "dateISO": "2026-06-19",
@@ -1748,6 +1758,7 @@
       "title": "I love Smorky! I love Smorky!",
       "subtitle": "Soundtracks for a sitcom written with Narracode: https://jhave.github.io/narracode/Stories%20written%20with%20Narracode/29-05-2026_Smorky/",
       "sunoUrl": "https://suno.com/playlist/bfddbefa-a043-4daa-9e68-868b21dcaf86",
+      "prompt": "Bessie Smith sampled over a zany math-lo-fi merger",
       "coverSrc": "/audio/I%20love%20Smorky!%20I%20love%20Smorky!%20%5BJune%209%2C%202026%5D/album.jpeg",
       "dateLabel": "June 9, 2026",
       "dateISO": "2026-06-09",
@@ -1915,6 +1926,7 @@
       "title": "Narracodes",
       "subtitle": "Lyrics ripped from Narracode https://jhave.github.io/narracode/ by Gemini",
       "sunoUrl": "https://suno.com/playlist/8d3bac33-4d9f-47d9-9bae-4735f98d1e18",
+      "prompt": "Bessie Smith sampled over a zany math-lo-fi downtempo math-neo-funky jap-math-shimmer cozy bedroom-trap female duo philly-rap rapid flow deep-sub-bass merger",
       "coverSrc": "/audio/Narracodes%20%5BJune%209%2C%202026%5D/album.jpeg",
       "dateLabel": "June 9, 2026",
       "dateISO": "2026-06-09",
@@ -2023,199 +2035,200 @@
       "totalDurationSec": 1278.528
     },
     {
-      "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-      "title": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)",
+      "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+      "title": "Sea Moves Line by Line - Jarrett Evora",
       "sunoUrl": "https://suno.com/playlist/a396ae16-f112-4369-a6fc-d078d4e06300",
-      "coverSrc": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/album.jpeg",
+      "prompt": "Cape-Verdean-morna modern-jazz-improvisation chamber-folk math-rock post-rock jazz-piano ecm fourth-world ensemble",
+      "coverSrc": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/album.jpeg",
       "dateLabel": "June 8, 2026",
       "dateISO": "2026-06-08",
       "dateMs": 1780891200000,
       "tracks": [
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::barefoot on the black keys - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/barefoot%20on%20the%20black%20keys%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::barefoot on the black keys - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/barefoot%20on%20the%20black%20keys%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "barefoot on the black keys - keith evora [74W 84S].mp3",
           "durationSec": 94.56,
           "data": {
             "title": "barefoot on the black keys - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::Dust on the pavement, heat on the glass. - keith evora [64W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/Dust%20on%20the%20pavement%2C%20heat%20on%20the%20glass.%20-%20keith%20evora%20%5B64W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Dust on the pavement, heat on the glass. - keith evora [64W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/Dust%20on%20the%20pavement%2C%20heat%20on%20the%20glass.%20-%20keith%20evora%20%5B64W%2084S%5D.mp3",
           "filename": "Dust on the pavement, heat on the glass. - keith evora [64W 84S].mp3",
           "durationSec": 195.624,
           "data": {
             "title": "Dust on the pavement, heat on the glass. - keith evora [64W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::flowing wild math-solos over syncopated ensemble - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/flowing%20wild%20math-solos%20over%20syncopated%20ensemble%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::flowing wild math-solos over syncopated ensemble - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/flowing%20wild%20math-solos%20over%20syncopated%20ensemble%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "flowing wild math-solos over syncopated ensemble - keith evora [74W 84S].mp3",
           "durationSec": 189.72,
           "data": {
             "title": "flowing wild math-solos over syncopated ensemble - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::flowing wild math-solos over syncopated ensemble (alternate take) - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/flowing%20wild%20math-solos%20over%20syncopated%20ensemble%20(alternate%20take)%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::flowing wild math-solos over syncopated ensemble (alternate take) - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/flowing%20wild%20math-solos%20over%20syncopated%20ensemble%20(alternate%20take)%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "flowing wild math-solos over syncopated ensemble (alternate take) - keith evora [74W 84S].mp3",
           "durationSec": 99.192,
           "data": {
             "title": "flowing wild math-solos over syncopated ensemble (alternate take) - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::fourth-world folktronica experimental phygrian syncopated v.2.mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/fourth-world%20folktronica%20experimental%20phygrian%20syncopated%20v.2.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::fourth-world folktronica experimental phygrian syncopated v.2.mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/fourth-world%20folktronica%20experimental%20phygrian%20syncopated%20v.2.mp3",
           "filename": "fourth-world folktronica experimental phygrian syncopated v.2.mp3",
           "durationSec": 157.104,
           "data": {
             "title": "fourth-world folktronica experimental phygrian syncopated v.2",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::fourth-world folktronica experimental phygrian syncopated.mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/fourth-world%20folktronica%20experimental%20phygrian%20syncopated.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::fourth-world folktronica experimental phygrian syncopated.mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/fourth-world%20folktronica%20experimental%20phygrian%20syncopated.mp3",
           "filename": "fourth-world folktronica experimental phygrian syncopated.mp3",
           "durationSec": 70.92,
           "data": {
             "title": "fourth-world folktronica experimental phygrian syncopated",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::Island-grid empties - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/Island-grid%20empties%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Island-grid empties - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/Island-grid%20empties%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "Island-grid empties - keith evora [74W 84S].mp3",
           "durationSec": 207.984,
           "data": {
             "title": "Island-grid empties - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::keith evora ecm (w. lyrics) [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/keith%20evora%20ecm%20(w.%20lyrics)%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::keith evora ecm (w. lyrics) [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/keith%20evora%20ecm%20(w.%20lyrics)%20%5B74W%2084S%5D.mp3",
           "filename": "keith evora ecm (w. lyrics) [74W 84S].mp3",
           "durationSec": 106.224,
           "data": {
             "title": "keith evora ecm (w. lyrics) [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::Lush Lush Rinse [85WS].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/Lush%20Lush%20Rinse%20%5B85WS%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Lush Lush Rinse [85WS].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/Lush%20Lush%20Rinse%20%5B85WS%5D.mp3",
           "filename": "Lush Lush Rinse [85WS].mp3",
           "durationSec": 156.6,
           "data": {
             "title": "Lush Lush Rinse [85WS]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::mindelo after midnight - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/mindelo%20after%20midnight%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::mindelo after midnight - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/mindelo%20after%20midnight%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "mindelo after midnight - keith evora [74W 84S].mp3",
           "durationSec": 111.72,
           "data": {
             "title": "mindelo after midnight - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::post-math-rockfourth-world weird slow psyambient - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/post-math-rockfourth-world%20weird%20slow%20psyambient%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::post-math-rockfourth-world weird slow psyambient - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/post-math-rockfourth-world%20weird%20slow%20psyambient%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "post-math-rockfourth-world weird slow psyambient - keith evora [74W 84S].mp3",
           "durationSec": 189.96,
           "data": {
             "title": "post-math-rockfourth-world weird slow psyambient - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::post-math-rockfourth-world weird slow psyambient (alternate take) - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/post-math-rockfourth-world%20weird%20slow%20psyambient%20(alternate%20take)%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::post-math-rockfourth-world weird slow psyambient (alternate take) - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/post-math-rockfourth-world%20weird%20slow%20psyambient%20(alternate%20take)%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "post-math-rockfourth-world weird slow psyambient (alternate take) - keith evora [74W 84S].mp3",
           "durationSec": 144.912,
           "data": {
             "title": "post-math-rockfourth-world weird slow psyambient (alternate take) - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::seed knowing sun - keith evora [54W 100S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/seed%20knowing%20sun%20-%20keith%20evora%20%5B54W%20100S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::seed knowing sun - keith evora [54W 100S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/seed%20knowing%20sun%20-%20keith%20evora%20%5B54W%20100S%5D.mp3",
           "filename": "seed knowing sun - keith evora [54W 100S].mp3",
           "durationSec": 162,
           "data": {
             "title": "seed knowing sun - keith evora [54W 100S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::Seeds crushed under automated wheels - keith evora [64W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/Seeds%20crushed%20under%20automated%20wheels%20-%20keith%20evora%20%5B64W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Seeds crushed under automated wheels - keith evora [64W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/Seeds%20crushed%20under%20automated%20wheels%20-%20keith%20evora%20%5B64W%2084S%5D.mp3",
           "filename": "Seeds crushed under automated wheels - keith evora [64W 84S].mp3",
           "durationSec": 199.944,
           "data": {
             "title": "Seeds crushed under automated wheels - keith evora [64W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::sodade in the standards - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/sodade%20in%20the%20standards%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::sodade in the standards - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/sodade%20in%20the%20standards%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "sodade in the standards - keith evora [74W 84S].mp3",
           "durationSec": 192.72,
           "data": {
             "title": "sodade in the standards - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::soft ecm morna improvisation chamber-folktronica - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/soft%20ecm%20morna%20improvisation%20chamber-folktronica%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::soft ecm morna improvisation chamber-folktronica - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/soft%20ecm%20morna%20improvisation%20chamber-folktronica%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "soft ecm morna improvisation chamber-folktronica - keith evora [74W 84S].mp3",
           "durationSec": 72.312,
           "data": {
             "title": "soft ecm morna improvisation chamber-folktronica - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         },
         {
-          "id": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]::the köln ferry concert - keith evora [74W 84S].mp3",
-          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20(Unicode%20Encoding%20Conflict)%20%5BJune%208%2C%202026%5D/the%20k%C3%B6ln%20ferry%20concert%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
+          "id": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::the köln ferry concert - keith evora [74W 84S].mp3",
+          "src": "/audio/Sea%20Moves%20Line%20by%20Line%20-%20Jarrett%20Evora%20%5BJune%208%2C%202026%5D/the%20k%C3%B6ln%20ferry%20concert%20-%20keith%20evora%20%5B74W%2084S%5D.mp3",
           "filename": "the köln ferry concert - keith evora [74W 84S].mp3",
           "durationSec": 127.68,
           "data": {
             "title": "the köln ferry concert - keith evora [74W 84S]",
-            "albumId": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict) [June 8, 2026]",
-            "albumTitle": "Sea Moves Line by Line - Jarrett Evora (Unicode Encoding Conflict)"
+            "albumId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]",
+            "albumTitle": "Sea Moves Line by Line - Jarrett Evora"
           }
         }
       ],
@@ -2225,6 +2238,7 @@
       "id": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]",
       "title": "Soft Shoegaze Techno Folktronica HopRhym",
       "sunoUrl": "https://suno.com/playlist/d7c0994e-bb25-421b-9d83-66197cc9c02d",
+      "prompt": "soft math techno rave folktronica shoegaze",
       "coverSrc": "/audio/Soft%20Shoegaze%20Techno%20Folktronica%20HopRhym%20%5BJune%203%2C%202026%5D/album.jpeg",
       "dateLabel": "June 3, 2026",
       "dateISO": "2026-06-03",
@@ -2336,6 +2350,7 @@
       "id": "v5.5 remakes of old prompts [May 25, 2026]",
       "title": "v5.5 remakes of old prompts",
       "sunoUrl": "https://suno.com/playlist/bcadf760-e00d-45bb-902c-2f977e05d262",
+      "prompt": "math-grunge contrapuntal lo-fi nu folk j-pop emo-dub mutations",
       "coverSrc": "/audio/v5.5%20remakes%20of%20old%20prompts%20%5BMay%2025%2C%202026%5D/album.jpeg",
       "dateLabel": "May 25, 2026",
       "dateISO": "2026-05-25",
@@ -2524,6 +2539,7 @@
       "id": "a simple departure from the prompt [May 23, 2026]",
       "title": "a simple departure from the prompt",
       "sunoUrl": "https://suno.com/playlist/3ac2dbb8-980b-4a08-9c69-935063696219",
+      "prompt": "432 hz, minimal drones, ambient experimental",
       "coverSrc": "/audio/a%20simple%20departure%20from%20the%20prompt%20%5BMay%2023%2C%202026%5D/album.jpeg",
       "dateLabel": "May 23, 2026",
       "dateISO": "2026-05-23",
@@ -2547,6 +2563,7 @@
       "id": "yesterday's greatest band [May 21, 2026]",
       "title": "yesterday's greatest band",
       "sunoUrl": "https://suno.com/playlist/95c00d2e-ab0d-450e-9662-b3e0a7b9724d",
+      "prompt": "bouncy soft raw shoegaze-neo-soul fourth-world-psychedelic post-math bedroom-shimmer glitch-thrash",
       "coverSrc": "/audio/yesterday's%20greatest%20band%20%5BMay%2021%2C%202026%5D/album.jpeg",
       "dateLabel": "May 21, 2026",
       "dateISO": "2026-05-21",
@@ -2669,6 +2686,7 @@
       "id": "is is is [May 20, 2026]",
       "title": "is is is",
       "sunoUrl": "https://suno.com/playlist/76fc901f-a7e5-4c5e-9f31-29086880675f",
+      "prompt": "math jazz rap over rally house, chopped, scratched, chops, vocoder, voice box adlibs, dj vocals, distorted midsfunk bass free jazz cozy shred chop splice shoegaze lo-fi techno-trap-tango acoustic minimal wave quirky glitch corecore cloud rap bouncy",
       "coverSrc": "/audio/is%20is%20is%20%5BMay%2020%2C%202026%5D/album.jpeg",
       "dateLabel": "May 20, 2026",
       "dateISO": "2026-05-20",
@@ -2737,6 +2755,7 @@
       "title": "Deep Nowhere",
       "subtitle": "highly harnessed gemini wrote thematic avalanche lyrics without (or with rare) prepositions",
       "sunoUrl": "https://suno.com/playlist/cad42dd7-23c1-42a8-b726-d53d922755d0",
+      "prompt": "Niche alt post-math Edm soft-shoegaze-neo-soul, folktronica, Witch House, Uplifting, Rave psy, Chillwave, melodic Techno, SUB Dub, Dreamy, dungeon synth, The Track Opens With Distorted, Heavy Guitar Riffs Layered Over Atmospheric Synth Pads, Setting A Dense Emo Rock Mood. Drums Are Punchy Yet Laid-Back, Guiding The Tempo While Bass Lines Pulse Beneath. Dreamy, Ethereal Vocals With A Sleepy Delivery Cut Through The Psychodelic Haze, Especially In Chorus Sections Enhanced By Swirling Effects And Subtle Delay, Giving The Mix A Surreal, Immersive Texture.",
       "coverSrc": "/audio/Deep%20Nowhere%20%5BMay%2019.%202026%5D/album.jpeg",
       "dateLabel": "May 19, 2026",
       "dateISO": "2026-05-19",
@@ -2838,6 +2857,7 @@
       "title": "chipcore's diligent rebirth again always all-bum",
       "subtitle": "chipcore punk wah wah for a friend and future-past dormant vocalist",
       "sunoUrl": "https://suno.com/playlist/67be4320-254d-4618-a87a-da90536511a5",
+      "prompt": "8-bit crunchcore punk with verse and chorus and an orchestral cinematic ambient-orchestral middle 8 break, WILD WILD WILD SOLO SEGUE into epic classic psychedelia joy-bounce OUTRO",
       "coverSrc": "/audio/chipcore's%20diligent%20rebirth%20again%20always%20all-bum%20%5BMay%2015%2C%202026%5D/album.jpeg",
       "dateLabel": "May 15, 2026",
       "dateISO": "2026-05-15",
@@ -2949,6 +2969,7 @@
       "id": "Sincerity [May 14, 2026]",
       "title": "Sincerity",
       "sunoUrl": "https://suno.com/playlist/6f696240-2b72-4a88-9f0e-5999d65ea7ad",
+      "prompt": "soft-shoegaze-neo-soul latent space ambient bedroom-shimmer lo-fi.",
       "coverSrc": "/audio/Sincerity%20%5BMay%2014%2C%202026%5D/album.jpeg",
       "dateLabel": "May 14, 2026",
       "dateISO": "2026-05-14",
@@ -3093,6 +3114,7 @@
       "id": "Mashups reprise 5.5 [May 12, 2026]",
       "title": "Mashups reprise 5.5",
       "sunoUrl": "https://suno.com/playlist/184af221-94b7-44f0-9a20-a734d497b7ea",
+      "prompt": "soft deep strings, lush exotic instrumentation, syncopated post-math beats lo-fi-bedroom-shimmer flow-niche hybrid experimental, cozy intimate clos-mic'd duet vocals with some rapid flow microtonal weave, gentle math edm, funk, synthwave, dubstep-crunchcore-corecore-tap willow-bled reverie-seed neo-soul-serendipity flow-reservoir water-drum interlude polyphony gospel free-jazz, psychedelic edge, studio production, futuriste, reflective tone, mongolian throat singing, dreamy acoustic rock, swag, liquid breakcore, hindustani classical, hoarse weird extended asmr glitch soaring gospel neo-soul vocal duet splices samples harmonies",
       "coverSrc": "/audio/Mashups%20reprise%205.5%20%5BMay%2012%2C%202026%5D/album.jpeg",
       "dateLabel": "May 12, 2026",
       "dateISO": "2026-05-12",
@@ -3248,6 +3270,7 @@
       "id": "*the song - no lyrics [May 11, 2026]",
       "title": "*the song - no lyrics",
       "sunoUrl": "https://suno.com/playlist/c68ffde0-cf1d-48d1-8ac9-5eb18a112da0",
+      "prompt": "neo-cozy-math Psychedelic, analog instruments, Glitch, Folktronica, Microhouse, IDM, Textural Electronica, Granular Synthesis, Trippy, Experimental, Lo-fi, Neopsych, Organic Percussion, Vintage Sample Splices of husky quirky alt voice soaring asmr emo thrash playful joy, orchestral crescendos",
       "coverSrc": "/audio/*the%20song%20-%20no%20lyrics%20%5BMay%2011%2C%202026%5D/album.jpeg",
       "dateLabel": "May 11, 2026",
       "dateISO": "2026-05-11",
@@ -3513,6 +3536,7 @@
       "id": "ulymer blood techno mergin [May 11 2026]",
       "title": "ulymer blood techno mergin",
       "sunoUrl": "https://suno.com/playlist/61eab02b-b4fc-47b2-aa66-1b19f1814b6c",
+      "prompt": "folktronica deep-subs heavy math-thrash",
       "coverSrc": "/audio/ulymer%20blood%20techno%20mergin%20%5BMay%2011%202026%5D/album.jpeg",
       "dateLabel": "May 11, 2026",
       "dateISO": "2026-05-11",
@@ -3613,6 +3637,7 @@
       "id": "passing time [May 6, 2026]",
       "title": "passing time",
       "sunoUrl": "https://suno.com/playlist/9c7d6900-6556-4126-8b9d-4416ca0b083a",
+      "prompt": "passing time, experimental hybrid smear splice merge lush shimmer bedroom folktronica, female and male vocalese flow",
       "coverSrc": "/audio/passing%20time%20%5BMay%206%2C%202026%5D/album.jpeg",
       "dateLabel": "May 6, 2026",
       "dateISO": "2026-05-06",
@@ -3692,6 +3717,7 @@
       "title": "SCC - joy joy joy",
       "subtitle": "incandescent joy for an era of infinite grief",
       "sunoUrl": "https://suno.com/playlist/ab925aac-25dc-4d3e-b177-a5900b2a054f",
+      "prompt": "lo-fi folktronica, fourth-world folktronica, experimental/leftfield (drone-based) post-alt ambient-math-techno, joy bounce played on archival instruments with jazz-chords ensemble, rave drop 8-bit psytrance experimental drum circle ancient tribal splice chanting analog synths syncopated lush",
       "coverSrc": "/audio/SCC%20-%20joy%20joy%20joy%20%5BApril%2027%2C%202026%5D/album.jpeg",
       "dateLabel": "April 27, 2026",
       "dateISO": "2026-04-27",
@@ -3759,6 +3785,7 @@
       "id": "Better Subtle Opus Prompts [April 20 2026]",
       "title": "Better Subtle Opus Prompts",
       "sunoUrl": "https://suno.com/playlist/06d53733-737e-4efd-9850-57b5d25958c6",
+      "prompt": "Liturgical-domestic lo-fi, orthodox drone at whisper-level, kitchen-ceramic percussion lattice, kettle-whistle as distant harmonic, prepared piano through cassette, 68bpm math-syncopation barely perceptible, candlelit bedroom scale, dry close-mic'd, half-awake restraint, no crescendos, sacred-small",
       "coverSrc": "/audio/Better%20Subtle%20Opus%20Prompts%20%5BApril%2020%202026%5D/album.jpeg",
       "dateLabel": "April 20, 2026",
       "dateISO": "2026-04-20",
@@ -3881,6 +3908,7 @@
       "id": "Cloud-hop Vapor-Thrash [April 20, 2026]",
       "title": "Cloud-hop Vapor-Thrash",
       "sunoUrl": "https://suno.com/playlist/6206e885-8a18-4376-89fc-7f82e2603a45",
+      "prompt": "shimmer-hypnagogic-techno tap-harmonics open-tuning experimental free-jazz post-math\nsyncopated folktronica ensemble, ambient-trance psychedelia- microtones 5/4 deep-subs and slow build, soaring contrapuntal soul extended close mic'd Cloud-hop-core-vapor",
       "coverSrc": "/audio/Cloud-hop%20Vapor-Thrash%20%5BApril%2020%2C%202026%5D/album.jpeg",
       "dateLabel": "April 20, 2026",
       "dateISO": "2026-04-20",
@@ -3970,6 +3998,7 @@
       "id": "Opuds 4.7 writes some prompts [April 20 2026]",
       "title": "Opuds 4.7 writes some prompts",
       "sunoUrl": "https://suno.com/playlist/a22e966c-a1c6-4912-bf9b-8ea349a2351c",
+      "prompt": "Horticultural Brutalism\nThe sonic equivalent of moss growing on concrete. Gamelan-adjacent tuned percussion through analog filters, field recordings of greenhouses and HVAC, gabber kick patterns slowed to 50bpm so they read as geological rather than violent.\nPrompt seed: \"Slow-gabber geology, greenhouse field recording, bronze-bowl gamelan through cassette warble, 50bpm decelerated kick, condensation-drip syncopation, botanical-concrete, humid minimalism, wet-room reverb, patient menace",
       "coverSrc": "/audio/Opuds%204.7%20writes%20some%20prompts%20%5BApril%2020%202026%5D/album.jpeg",
       "dateLabel": "April 20, 2026",
       "dateISO": "2026-04-20",
@@ -4070,6 +4099,7 @@
       "id": "LLMs Romantics [April 19 2026]",
       "title": "LLMs Romantics",
       "sunoUrl": "https://suno.com/playlist/e5dbe19b-1097-4ddc-8e30-1430fa875720",
+      "prompt": "55 BPM drag-tempo core-trap-cloud-hop ballad, \ngothic-Americana meets hauntology dub, \nbaritone croon verses, incantatory speak-sing, \ngravel-whisper spoken bridge, quivering falsetto \non final refrains. 808 sub-pulse slow as breath, \nwet unquantized triplet hats, cathedral reverb tail, \nvinyl crackle carpet, tape warble, shortwave hiss. \nRhodes piano bowed with cello bow, prepared piano \nwith paper clips on hammers, pedal steel tuned \nquartertone flat, harmonium drone rooted A-flat, \ndetuned FM bells 7 cents sharp, granular pad from \nfermentation field recording, distant cicadas and \nkettle. Close-mic vocal, lips audible, breath left in, \nconsonants wet. Structure: loose verse, ragged chorus, \nverse, ragged chorus, spoken bridge with tape stop, \nfinal chorus fraying into hiss and harmonium drone. \nNo drop, no build, no four-on-floor, no autotune \nsheen, no festival swell, no anthemic lift, \nno cinematic crescendo, no sidechain pump.",
       "coverSrc": "/audio/LLMs%20Romantics%20%5BApril%2019%202026%5D/album.jpeg",
       "dateLabel": "April 19, 2026",
       "dateISO": "2026-04-19",
@@ -4116,6 +4146,7 @@
       "title": "love waited for me - March ReRites",
       "subtitle": "Lyrics excerpted from March 2017 human+AI ReRites: https://glia.ca/rerites/rerites_read_txt.html",
       "sunoUrl": "https://suno.com/playlist/d70c1d3e-293e-4107-bceb-96013afeebb8",
+      "prompt": "Structure: Evolving microtonal Shimmer-hypnagogic-math-techno Glitch-folk, starts minimalist underwater lofi, builds into intricate acoustic collage, Instruments: international wild collage of acoustic and electronica, Transitions: Temporary bridge of reversed slow-grunge-thrash-alt-folktronica quirky glitch-trap syncopation, Aesthetic: AMBIENT EXPERIMENTAL. Dry production, 60-160bpm, whimsical minimalism, organic textures, found-poetry, complex polyphonic sampling, shimmer-hypnagogic, alt-post slow-math bedroom-pop minimal-techno bounce joyous BALLAD INTIMATE SOFT ASMR CLOSE-MIC'D",
       "coverSrc": "/audio/love%20waited%20for%20me%20-%20March%20ReRites%20%5BApril%2019%202026%5D/album.jpeg",
       "dateLabel": "April 19, 2026",
       "dateISO": "2026-04-19",
@@ -4371,6 +4402,7 @@
       "title": "Respect the dawn - ReRites April",
       "subtitle": "Lyrics written in April2017 by a custom AI with human editing in ReRites: https://glia.ca/rerites/rerites_read_txt.html",
       "sunoUrl": "https://suno.com/playlist/b6c389ba-6cc4-4d03-90bc-be8ee54bd3f3",
+      "prompt": "tap-harmonics open-tuning experimental free-jazz post-math\nsyncopated folktronica ensemble, ambient-trance psychedelia microtones 5/4 deep-subs and slow build, soaring contrapuntal soul extended close mic'd",
       "coverSrc": "/audio/Respect%20the%20dawn%20-%20ReRites%20April%20%5BApril%2018%202026%5D/album.jpeg",
       "dateLabel": "April 18, 2026",
       "dateISO": "2026-04-18",
@@ -4615,6 +4647,7 @@
       "title": "as i wrap your wet hair - ReRites Feb",
       "subtitle": "Lyrics excerpted from human+AI 2017 ReRites project, February: https://glia.ca/rerites/rerites_read_txt.html",
       "sunoUrl": "https://suno.com/playlist/11fbde13-1685-4e23-8375-1f0d9dd9e1c5",
+      "prompt": "Structure: Evolving microtonal Shimmer-hypnagogic-techno Glitch-folk, starts minimalist underwater lofi, builds into intricate acoustic collage, Instruments: international wild collage of acoustic and electronica, Transitions: Temporary bridge of reversed slow-grunge-thrash-alt-folktronica quirky glitch-trap syncopation, Aesthetic: AMBIENT EXPERIMENTAL. Dry production, 60-160bpm, whimsical minimalism, organic textures, found-poetry, complex polyphonic sampling, shimmer-hypnagogic, alt-post slow-math bedroom-pop minimal-techno bounce joyous play BALLAD INTIMATE SOFT ASMR CLOSE-MIC'D",
       "coverSrc": "/audio/as%20i%20wrap%20your%20wet%20hair%20-%20ReRites%20Feb%20%5BApril%2016%202026%5D/album.jpeg",
       "dateLabel": "April 16, 2026",
       "dateISO": "2026-04-16",
@@ -4859,6 +4892,7 @@
       "title": "bookish -ReRites Jan",
       "subtitle": "Excerpts from Jan 2018 \"The RERITES operate as a machine-human hybrid durational writing project.",
       "sunoUrl": "https://suno.com/playlist/1e154c6b-15e6-4970-ae7b-9a508ea6962d",
+      "prompt": "Structure: Evolving Glitch-folk, starts minimalist underwater lofi, builds into intricate acoustic collage, Instruments: Plucked cello-viola, sousaphone, staccato banjo-mandolin, analog tape hiss, Transitions: Temporary bridge of reversed slow-grunge grit, sudden subtle staccato glitch-trap syncopation, Aesthetic: Dry production, 80bpm, post-thrash-techno whimsical minimalism soft-math, organic textures lo-fi, found-poetry, complex polyphonic sampling",
       "coverSrc": "/audio/bookish%20-ReRites%20Jan%20%5BApril%2014%202026%5D/album.jpeg",
       "dateLabel": "April 14, 2026",
       "dateISO": "2026-04-14",
@@ -5102,6 +5136,7 @@
       "id": "5:4 ambient spasm experimental folktronica [April 13 2026]",
       "title": "5:4 ambient spasm experimental folktronica",
       "sunoUrl": "https://suno.com/playlist/463035e0-7870-4b53-8e5a-374dccdb8875",
+      "prompt": "experimental ambient folktronica-syncopated-psychedelia with fourth slow-build world wispy melodic contrapuntal microtone-shred Morna creole lament, real grinding gentle anguish transcendence scorch love hybrid-splice international-genre-mix-merger post-math chorale minimal-melodic-techno soft-hardcore vocalese ensemble",
       "coverSrc": "/audio/5%3A4%20ambient%20spasm%20experimental%20folktronica%20%5BApril%2013%202026%5D/album.jpeg",
       "dateLabel": "April 13, 2026",
       "dateISO": "2026-04-13",
@@ -5236,6 +5271,7 @@
       "title": "Videos if they were 'The Books'",
       "subtitle": "I fed Gemini the links to a few videos i watched today and asked it to splice it into song lyrics with instructions to define many voice types. Then added a 'The Books' style music prompt.",
       "sunoUrl": "https://suno.com/playlist/7d68c245-7a6d-4879-8892-06e3dd6bf80b",
+      "prompt": "Structure: Evolving Glitch-folk, starts minimalist underwater lofi, builds into intricate acoustic collage, Instruments: Plucked cello-viola, sousaphone, staccato banjo-mandolin, analog tape hiss, Transitions: Temporary bridge of reversed slow-grunge grit, sudden subtle staccato glitch-trap syncopation, Aesthetic: Dry production, 80bpm, whimsical minimalism, organic textures, found-poetry, complex polyphonic sampling",
       "coverSrc": "/audio/Videos%20if%20they%20were%20'The%20Books'%20%5BApril%2013-14%202026%5D/album.jpeg",
       "dateLabel": "April 13, 2026",
       "dateISO": "2026-04-13",
@@ -5304,6 +5340,7 @@
       "title": "chant  love each day -ReRites Nov",
       "subtitle": "Lyrics excerpted from November 2017's human+AI writing project ReRites https://glia.ca/rerites/rerites_read_txt.html",
       "sunoUrl": "https://suno.com/playlist/a5c2dac6-7ee4-424d-a587-c366fd91bfa4",
+      "prompt": "psyambient folktronica free-spasm-jazz raw intimate soaring wild hybrid deep-sub-syncopated-backbeat, neo alt-psychedelia-roots-slowcore, acoustic-electro-ensemble, epic rising ricochet woven flow-rap-spasm-soul-gospel-cozy-thrash soaring post-hardcore funk-flow-grime-glisten-algerian-magreb, with minimalist wistful melodic cozy fourth-world syncopated free-jazz-phrasings microtonal techno-jungle-trip-grace reservoir and a bit of math-glitchy-lo-fi splices bedroom-pop archival shimmer hypnagogic, trippy, experimental sentimental-psytrance, unique bouncy beats, mastered ,  neo-classical water froth fugue tabla-phlange-wah-wah quaint austere ordinal iridescence uprising",
       "coverSrc": "/audio/chant%20%20love%20each%20day%20-ReRites%20Nov%20%5BApril%2012%202026%5D/album.jpeg",
       "dateLabel": "April 12, 2026",
       "dateISO": "2026-04-12",
@@ -5548,6 +5585,7 @@
       "title": "A rainbow's heart loosed everywhere - ReRites Oct",
       "subtitle": "Excerpts from October 2017's human+AI ReRites https://glia.ca/rerites/rerites_read_txt.html",
       "sunoUrl": "https://suno.com/playlist/42f80f44-120b-4dec-9ada-fe639e0685d8",
+      "prompt": "gently raw intimate soaring wild neo alt-psychedelia-roots-slowcore acoustic-electro-ensemble epic flow-rap-spasm-soul-gospel-cozy-thrash soaring post-hardcore funk-flow-grime-glisten-algerian-atlanta-chillhouse, with minimalist wistful melodic cozy fourth-world syncopated free-jazz-phrasings microtonal techno-jungle-trip-grace and a bit of math-glitchy-lo-fi splices bedroom-pop archival shimmer hypnagogic, trippy, experimental, unique bouncy beats, mastered , harmonizing",
       "coverSrc": "/audio/A%20rainbow's%20heart%20loosed%20everywhere%20-%20ReRites%20Oct%20%5BApril%2010%202026%5D/album.jpeg",
       "dateLabel": "April 10, 2026",
       "dateISO": "2026-04-10",
@@ -5781,6 +5819,7 @@
       "title": "The days are not blind  - ReRites Sept",
       "subtitle": "Lyrics written in Sept 2017 with a custom AI as part of ReRites: https://glia.ca/rerites/rerites_read_txt.html",
       "sunoUrl": "https://suno.com/playlist/8c8b03f8-1d65-4032-a2d8-ad08d945eb1e",
+      "prompt": "raw neo alt-psychedelia-roots-slowcore epic soaring post-hardcore with minimalist wistful melodic cozy fourth-world syncopated free-jazz-phrasings microtonal techno-jungle-triphouse and a bit of math-glitchy-lo-fi splices bedroom-pop archival shimmer hypnagogic, trippy, experimental, unique bouncy beats, mastered",
       "coverSrc": "/audio/The%20days%20are%20not%20blind%20%20-%20ReRites%20Sept%20%5BApril%209%202026%5D/album.jpeg",
       "dateLabel": "April 9, 2026",
       "dateISO": "2026-04-09",
@@ -6025,6 +6064,7 @@
       "title": "Tense cutting sunflower!  - ReRites August",
       "subtitle": "Lyrics from August 2017 AI+human ReRites project: https://glia.ca/rerites/rerites_read_txt.html",
       "sunoUrl": "https://suno.com/playlist/8b4783ce-87c7-4d8a-9a45-f21ff306eeb0",
+      "prompt": "raw neo alt-psychedelia-roots post-hardcore with minimalist wistful melodic cozy fourth-world syncopated free-jazz-phrasings microtonal techno-slow-jungle and a bit of math-glitchy-lo-fi splices bedroom archival shimmer hypnagogic, trippy, experimental, unique bouncy beats, mastered folktronica experimental ensemble",
       "coverSrc": "/audio/Tense%20cutting%20sunflower!%20%20-%20ReRites%20August%20%5BApril%208%202026%5D/album.jpeg",
       "dateLabel": "April 8, 2026",
       "dateISO": "2026-04-08",
@@ -6258,6 +6298,7 @@
       "title": "The laws that live to destroy things smile - ReRites July",
       "subtitle": "Lyrics from ReRites July 2017 written with custom trained AI model: https://glia.ca/rerites/rerites_read_txt.html (same music prompt for each)",
       "sunoUrl": "https://suno.com/playlist/ba44f049-35b1-4792-9cd9-de3b62d69a54",
+      "prompt": "raw neo alt-psychedelia-roots post-hardcore shoegaze with minimalist wistful melodic cozy fourth-world syncopated free-jazz-phrasings microtonal techno-slow-jungle and a bit of math-glitchy-lo-fi splices bedroom archival shimmer hypnagogic, trippy, experimental, epic, catchy, Future bounce, expressive instimate gritty quirky asmr femal and male duet harmony vocals, unique beats, mastered",
       "coverSrc": "/audio/The%20laws%20that%20live%20to%20destroy%20things%20smile%20-%20ReRites%20July%20%20%5BApril%207%202026%5D/album.jpeg",
       "dateLabel": "April 7, 2026",
       "dateISO": "2026-04-07",
@@ -6535,6 +6576,7 @@
       "title": "Shade smiles- ReRites June 2017",
       "subtitle": "Lyrics from ReRites June https://glia.ca/rerites/rerites_read_txt.html (same music prompt for each)",
       "sunoUrl": "https://suno.com/playlist/504b74cc-a0f3-436b-a8ba-bc944119e9cf",
+      "prompt": "raw neo alt-psychedelia-roots post-hardcore with minimalist wistful melodic cozy fourth-world syncopated free-jazz-phrasings microtonal techno-slow-jungle and a bit of math-glitchy-lo-fi splices bedroom shimmer hypnagogic",
       "coverSrc": "/audio/Shade%20smiles-%20ReRites%20June%202017%20%5BApril%206%202026%5D/album.png",
       "dateLabel": "April 6, 2026",
       "dateISO": "2026-04-06",
@@ -6779,6 +6821,7 @@
       "title": "Hugging Simple Light - ReRites May 2017 lyrics",
       "subtitle": "Using lyrics from May 2017 my AI+poetry ReRites project https://glia.ca/rerites/rerites_read_txt.html produces a nuanced strange spoken word quirky vocalist.",
       "sunoUrl": "https://suno.com/playlist/77f1bd1a-8bee-4cee-b04b-008d6fdf4707",
+      "prompt": "raw neo alt-psychedelia-roots post-hardcore with minimalist wistful melodic cozy fourth-world syncopated microtonal techno and a bit of math-glitchy-lo-fi splices bedroom shimmer",
       "coverSrc": "/audio/Hugging%20Simple%20Light%20-%20ReRites%20May%202017%20lyrics%20%5BApril%205%2C%202026%5D/album.jpeg",
       "dateLabel": "April 5, 2026",
       "dateISO": "2026-04-05",
@@ -7034,6 +7077,7 @@
       "title": "rerere",
       "subtitle": "lyrics by gemini. me: re-re-cycling some combined music prompts",
       "sunoUrl": "https://suno.com/playlist/b3bf78aa-303f-483a-b334-9d75f2ed7ee4",
+      "prompt": "anti-folk-yet-masterful wonderful enjoyable drifting flexible Drone gentle Maximalist-intimacy syncopated superior enjoyable subtly excellent painful beauty, ( Raw) intimate Contact-Mic-Texture+Broken-Tube-Amp#Tape-Hiss-Warmth@Dry-Room&Close-Breath-Resonance, soft deep strings, lush exotic instrumentation, syncopated post-math beats lo-fi-bedroom-shimmer flow-niche hybrid experimental, cozy intimate clos-mic'd duet vocals with some rapid flow microtonal weave, gentle math edm, funk, synthwave, dubstep-crunchcore-corecore-tap willow-bled reverie-seed neo-soul-serendipity flow-reservoir water-drum interlude polyphony gospel free-jazz, psychedelic edge, --bpm 0 --unquantized --texture-heavy --dry-vocals --high-noise-floor --granular-synthesis --micro-sound, ECM, Build towards a lush neurological swell where the electronics mimic organic breathing, dissolving into a shimmering, non-dual ambient wash that feels like a lucid dream, floating Minimalist-Techno outro, Soft-Fourth-Wall oneness",
       "coverSrc": "/audio/rerere%20%5BFeb%2017%2C%202026%5D/album.jpeg",
       "dateLabel": "February 17, 2026",
       "dateISO": "2026-02-17",
@@ -7124,6 +7168,7 @@
       "title": "RESERVOID GRACE - romance-math-muzak",
       "subtitle": "lyrics by gemini 3. recycled prompts.",
       "sunoUrl": "https://suno.com/playlist/8e72a539-70a2-41f7-b3ce-89bf55ee8103",
+      "prompt": "anti-folk-yet-masterful wonderful enjoyable drifting flexible Drone gentle Maximalist-intimacy syncopated superior enjoyable subtly excellent painful beauty, ( Raw) intimate post-math beats lo-fi-bedroom-shimmer flow-niche hybrid experimental, cozy intimate clos-mic'd neo-soul vocalese duet hybrid male-female rapid flow morpheme microtonal weave, gentle math edm, funk, synthwave, dubstep-crunchcore-corecore-tap  neo-soul-serendipity polyphony gospel neo-classical horn ensemble free-jazz ECM Soft-Fourth-Wall oneness",
       "coverSrc": "/audio/RESERVOID%20GRACE%20-%20romance-math-muzak%20%5BFeb%2017%2C%202026%5D/album.jpeg",
       "dateLabel": "February 17, 2026",
       "dateISO": "2026-02-17",
@@ -7202,6 +7247,7 @@
       "id": "Recycling more Books [Feb 16, 2026]",
       "title": "Recycling more Books",
       "sunoUrl": "https://suno.com/playlist/42f65fdf-b8eb-483e-bb18-5164df6aa5b8",
+      "prompt": "8-bit chip-tunes, heavy rhythmic breathing, 70bpm, intricate rhythmic splices, whimsical minimalism, dry production, found-poetry aesthetic, deep-fry ambient, organic, subtle, syncopated, experimental, multiple sampled voices. Glitch-folk, acoustic collage, Rhodes piano, plucked cello-viola, harp, delicate suitcase-thumps, cutlery percussion, 80bpm, intricate rhythmic splices, whimsical minimalism, dry production, found-poetry aesthetic, organic, subtle, syncopated, experimental. Vocal Focus: ALL VOCALS ARE interwoven subtle, hyper-fragmented multi-lingual collage, overlapping airport announcements, polyphonic found-sounds. Glitch-folk, acoustic collage, Rhodes piano, plucked cello-viola, harp, delicate suitcase-thumps, cutlery percussion, 80bpm, intricate rhythmic splices, whimsical minimalism, dry production, found-poetry aesthetic, Glitch-folk, Vapor-folk, al-acoustic collage, micro-sampled field recordings, deep-fry vocals folktronica, quirky alt gentle syncopated cozy-ambient-math",
       "coverSrc": "/audio/Recycling%20more%20Books%20%5BFeb%2016%2C%202026%5D/album.jpeg",
       "dateLabel": "February 16, 2026",
       "dateISO": "2026-02-16",
@@ -7390,6 +7436,7 @@
       "id": "Options [Feb 10, 2026]",
       "title": "Options",
       "sunoUrl": "https://suno.com/playlist/8a360b18-5b90-494c-ab83-3a3944862da6",
+      "prompt": "gentle post-math-lo-fi syncopated love ensemble",
       "coverSrc": "/audio/Options%20%5BFeb%2010%2C%202026%5D/album.jpeg",
       "dateLabel": "February 10, 2026",
       "dateISO": "2026-02-10",
@@ -7468,6 +7515,7 @@
       "id": "Shy Dongle - psy goa psy bient [Feb 8, 2026]",
       "title": "Shy Dongle - psy goa psy bient",
       "sunoUrl": "https://suno.com/playlist/221af61d-e455-46c6-9cf3-7bdfe104c03b",
+      "prompt": "experimental psychedelic joyously multi-genre syncopated psytrance with slow build treated didjereedoo harp ring modulated, minimal melodic ambient-techno breaks, fourth world psychedelic love candles and cinematic, downtempo soundscapes featuring a solo, breathy woodwind melody ensemble microtune modulated that weaves through a dense forest of liquid synthesizer chirps and rhythmic glitch textures. The atmosphere is ethereal and multilayered, blending traditional tribal percussion with gliding reverie sliding overtones echoing, pitched-shifted vocal pop-culture fragments and deep, pulsating sub-bass that ebbs and flows like a tidal psybient stutter Goa ECM minimal  honey lo-fi psychedelic cozy modulating tempo pulsing psy trance tidal psybient stutter Goa ECM ensemble of mysteries [71W 83S]",
       "coverSrc": "/audio/Shy%20Dongle%20-%20psy%20goa%20psy%20bient%20%5BFeb%208%2C%202026%5D/album.jpeg",
       "dateLabel": "February 8, 2026",
       "dateISO": "2026-02-08",
@@ -7657,6 +7705,7 @@
       "title": "\"The AIs\" = a \"The Books\" Tribute Band",
       "subtitle": "The Books: an exemplary duo https://en.wikipedia.org/wiki/The_Books",
       "sunoUrl": "https://suno.com/playlist/f31a5a3a-ce84-4e79-a9f2-d93d5facc71c",
+      "prompt": "Glitch-folk, acoustic collage, micro-sampled field recordings, plucked cello, staccato banjo, analog tape hiss, quirky found-sounds, 80bpm, intricate rhythmic splices, whimsical minimalism, dry production, found-poetry aesthetic, folktronica, organic, subtle, syncopated, intelligent, experimental",
       "coverSrc": "/audio/%22The%20AIs%22%20%3D%20a%20%22The%20Books%22%20Tribute%20Band%20%5BFeb%205%2C%202026%5D/album.jpeg",
       "dateLabel": "February 5, 2026",
       "dateISO": "2026-02-05",
@@ -7846,6 +7895,7 @@
       "title": "Ensembles of Universal Love",
       "subtitle": "beginning every prompt with the words \"universal love\"",
       "sunoUrl": "https://suno.com/playlist/0507a1c6-e645-4115-8009-677e6429a47c",
+      "prompt": "universal love, minimalist, austere, neo-classical-ambient fifth world experimental folktronica-organic ensemble",
       "coverSrc": "/audio/Ensembles%20of%20Universal%20Love%20%5BFeb%202%2C%202026%5D/album.jpeg",
       "dateLabel": "February 2, 2026",
       "dateISO": "2026-02-02",
@@ -7969,6 +8019,7 @@
       "title": "Iconic Autonomy",
       "subtitle": "cozy gentle slow hybrid experimental post-alt-math-jazz-fourth-world-techno-emograss - Icon: \"a mysterious surreal escher-knot mandela made out of smoke and mist crystals over a water spout at sunset\"",
       "sunoUrl": "https://suno.com/playlist/4f499f7c-7bf9-484a-bf95-8cfd96f168af",
+      "prompt": "cozy gentle slow hybrid experimental post-alt-math-jazz-fourth-world lo-fi-techno-bluegrass-algerian-emo long build radiance",
       "coverSrc": "/audio/Iconic%20Autonomy%20%5BJan%2030%2C%202026%5D/album.png",
       "dateLabel": "January 30, 2026",
       "dateISO": "2026-01-30",
@@ -8256,6 +8307,7 @@
       "id": "Nug Ions [Jan 30, 2026]",
       "title": "Nug Ions",
       "sunoUrl": "https://suno.com/playlist/3d5765a1-df5c-4fac-b76a-cf3bdb357eab",
+      "prompt": "experimental husky-vocalese duduk-oud-vibraphone-dub-alt-folktronica tender cozy gentle-minimal slow-build hybrid-acoustic-harp-elektron-techno-fugue post-alt-math-jazz-fourth-world-techno-lo-fi-bluegrass-algerian-reservoir-emo-chill long build radiance minimal-melodic-elegy-neo-classical-string-quintet-soul-folktronica-shimmer lush contrapuntal subs, thoughtful bounce iridescence",
       "coverSrc": "/audio/Nug%20Ions%20%5BJan%2030%2C%202026%5D/album.jpeg",
       "dateLabel": "January 30, 2026",
       "dateISO": "2026-01-30",
@@ -8378,6 +8430,7 @@
       "id": "Gentler than Flunk [Jan 25, 2026]",
       "title": "Gentler than Flunk",
       "sunoUrl": "https://suno.com/playlist/352f9248-8226-4b04-a8c7-b81631b10f65",
+      "prompt": "soarin, raw emotional alternative thrash soft gentlecore bedroom shimmer pop, intimate integrative international hybrid with avant-garde ambient soundscapes,, lo-fi  minimal melodic techno, psychedelic breaks and chorale gospel samples overlay, bounce into fifth world syncopated joy light lush post-math",
       "coverSrc": "/audio/Gentler%20than%20Flunk%20%5BJan%2025%2C%202026%5D/album.png",
       "dateLabel": "January 25, 2026",
       "dateISO": "2026-01-25",
@@ -8632,6 +8685,7 @@
       "id": "rehabilitation of retro genres [Jan 25, 2026]",
       "title": "rehabilitation of retro genres",
       "sunoUrl": "https://suno.com/playlist/8ff2e76c-a4cc-4b80-b45b-8e98aac46be4",
+      "prompt": "soarin, raw emotional alternative thrash hardcore bedroom pop rock, intimate integrative rushing Multi instrument solos,  funk-jazz-thrash bass, avant-garde ambient soundscapes, imaginary ethnic percussion, flutter, lo-fi  minimal melodic techno, psychedelic death breaks and chorale gospel samples overlay",
       "coverSrc": "/audio/rehabilitation%20of%20retro%20genres%20%5BJan%2025%2C%202026%5D/album.jpeg",
       "dateLabel": "January 25, 2026",
       "dateISO": "2026-01-25",

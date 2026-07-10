@@ -53,6 +53,16 @@ function extractBracketDate(folderName) {
   }
 }
 
+async function readWholeTxt(absPath) {
+  try {
+    const raw = await fs.readFile(absPath, "utf8")
+    const trimmed = raw.trim()
+    return trimmed || undefined
+  } catch {
+    return undefined
+  }
+}
+
 async function readFirstLineTxt(absPath) {
   try {
     const raw = await fs.readFile(absPath, "utf8")
@@ -107,6 +117,7 @@ export async function genManifest() {
 
     const subtitle = await readFirstLineTxt(path.join(AUDIO_ROOT, folder, "subtitle.txt"))
     const sunoUrl = await readFirstLineTxt(path.join(AUDIO_ROOT, folder, "suno.txt"))
+    const prompt = await readWholeTxt(path.join(AUDIO_ROOT, folder, "prompt.txt"))
     let coverSrc = await detectCover(folder)
     let embeddedCover = null // captured from track metadata if no cover file exists
 
@@ -172,6 +183,7 @@ export async function genManifest() {
       title: albumTitle,
       subtitle,
       sunoUrl,
+      prompt,
       coverSrc,
       dateLabel,
       dateISO,

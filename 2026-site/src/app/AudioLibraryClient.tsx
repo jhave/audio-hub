@@ -75,6 +75,31 @@ function EmptyHint() {
   )
 }
 
+/* -------------------- Linkify plain text -------------------- */
+
+function Linkify({ text }: { text: string }) {
+  const parts = text.split(/(https?:\/\/[^\s<>()]+[^\s<>().,;:!?'"])/g)
+  return (
+    <>
+      {parts.map((part, i) =>
+        /^https?:\/\//.test(part) ? (
+          <a
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noreferrer"
+            className="underline decoration-neutral-300 underline-offset-2 hover:decoration-neutral-500"
+          >
+            {part}
+          </a>
+        ) : (
+          part
+        )
+      )}
+    </>
+  )
+}
+
 /* -------------------- Album card -------------------- */
 
 function AlbumCard({ album }: { album: Album }) {
@@ -119,9 +144,15 @@ function AlbumCard({ album }: { album: Album }) {
             )}
           </h2>
 
+          {album.prompt && (
+            <p className="mt-2 whitespace-pre-line text-[12px] italic leading-snug text-neutral-500">
+              <Linkify text={album.prompt} />
+            </p>
+          )}
+
           {album.subtitle && (
             <p className="mt-2 text-[13px] leading-snug text-neutral-700">
-              {album.subtitle}
+              <Linkify text={album.subtitle} />
             </p>
           )}
         </div>
