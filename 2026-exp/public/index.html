@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>171exp — a navigable soundscape (Music Created in Suno) — Glia</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #05070a; }
+  body { font: 13px/1.45 -apple-system, "Helvetica Neue", sans-serif; color: #cfd8dc; }
+  #scene { position: fixed; inset: 0; }
+  #hud {
+    position: fixed; left: 16px; bottom: 16px; max-width: min(520px, 72vw);
+    pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,.85);
+  }
+  #hud .album { font-size: 19px; font-weight: 650; color: #fff; letter-spacing: .01em; }
+  #hud .track { font-size: 13px; color: #b3c2c9; margin-top: 2px; }
+  #hud .prompt {
+    font-size: 11.5px; font-style: italic; color: #8fa3ab; margin-top: 6px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  #panel {
+    position: fixed; right: 16px; bottom: 16px; width: 208px;
+    background: rgba(8,12,16,.72); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px; padding: 12px 14px; backdrop-filter: blur(10px);
+  }
+  #panel label { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7e8f97; margin: 8px 0 2px; }
+  #panel input[type=range] { width: 100%; accent-color: #d8b56a; }
+  #panel .mode { display: flex; gap: 6px; margin-top: 10px; }
+  #panel button {
+    flex: 1; background: rgba(255,255,255,.06); color: #cfd8dc; border: 1px solid rgba(255,255,255,.1);
+    border-radius: 7px; padding: 5px 0; font-size: 11px; cursor: pointer;
+  }
+  #panel button.active { background: #d8b56a; color: #14100a; border-color: #d8b56a; font-weight: 600; }
+  #title {
+    position: fixed; left: 16px; top: 14px; pointer-events: none;
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #90a4ae;
+    text-shadow: 0 1px 6px rgba(0,0,0,.8);
+  }
+  #title b { color: #e6d3a3; font-weight: 650; }
+  #loading {
+    position: fixed; inset: 0; display: grid; place-items: center;
+    background: #05070a; z-index: 10; transition: opacity .8s; font-size: 13px; color: #90a4ae;
+    letter-spacing: .1em;
+  }
+  #loading.done { opacity: 0; pointer-events: none; }
+  #hint { position: fixed; right: 18px; bottom: 96px; width: 208px; font-size: 11px; color: #62757d; text-align: right; pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,.8); }
+  @media (max-width: 760px) { #hint { display: none; } }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="loading">tuning the topology&hellip;</div>
+<div id="title"><b>171exp</b> &nbsp;·&nbsp; a navigable soundscape · music created in suno · glia.ca</div>
+<div id="hint">drag orbit · wheel zoom · click a sphere to travel<br/>idle = the nexus drifts on its own</div>
+<div id="hud">
+  <div class="album"></div>
+  <div class="track"></div>
+  <div class="prompt"></div>
+</div>
+<div id="panel">
+  <label>topology (t-sne &rarr; umap)</label>
+  <input id="morph" type="range" min="0" max="5" step="0.001" value="1" />
+  <label>chaos</label>
+  <input id="chaos" type="range" min="0" max="1" step="0.01" value="0.25" />
+  <div class="mode">
+    <button id="mode-wander">wander</button>
+    <button id="mode-auto" class="active">auto-flight</button>
+  </div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
