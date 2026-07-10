@@ -90,6 +90,16 @@ export class World {
     this.nexusRing = ring
     this.scene.add(this.nexus)
 
+    /* region ring: contours the hills */
+    const ringPoints = new Float32Array(64 * 3)
+    const ringGeo = new THREE.BufferGeometry()
+    ringGeo.setAttribute("position", new THREE.BufferAttribute(ringPoints, 3))
+    const ringMat = new THREE.LineBasicMaterial({
+      color: 0xe8c877, transparent: true, opacity: 0.35
+    })
+    this.regionRing = new THREE.LineLoop(ringGeo, ringMat)
+    this.scene.add(this.regionRing)
+
     /* orbital playhead: a ring around the focal sphere, a dot as the needle */
     this.progressRing = new THREE.Mesh(
       new THREE.TorusGeometry(1, 0.03, 8, 64),
@@ -129,7 +139,10 @@ export class World {
     off.setFromSpherical(sph)
     this.camera.position.copy(this.controls.target).add(off)
     this.camera.lookAt(this.controls.target)
-    const zTarget = arrived ? 2.4 : 1.15
+    // Zoom oscillation when arrived (sweeps 1.5 to 5.5 for a close single-track orbit camera)
+    const zTarget = arrived
+      ? Math.max(1.5, 3.5 + Math.sin(time * 0.08) * 2.0)
+      : 1.15
     this.camera.zoom += (zTarget - this.camera.zoom) * (1 - Math.exp(-dt * 0.35))
     this.camera.updateProjectionMatrix()
   }
@@ -250,23 +263,62 @@ export class World {
     return Math.pow(hRaw, 0.62) * HMAX
   }
 
-  /** Per-frame: place spheres on the terrain, pulse the audible ones. */
-  updateSpheres(levelFn, time) {
+  /** Per-frame: place spheres on the terrain, pulse the audible ones, scale down distant ones to dots */
+  updateSpheres(levelFn, time, falloff) {
     const d = this._dummy
+    const nx = this.nexus.position.x
+    const nz = this.nexus.position.z
     for (let i = 0; i < this.n; i++) {
       const x = this.positions[i * 2], z = this.positions[i * 2 + 1]
       const level = levelFn(i)
       const fav = this.data.tracks[i].fav
       const base = fav ? 0.95 : 0.7
       const bob = level > 0.01 ? Math.sin(time * 7 + i) * level * 0.6 : 0
-      const s = base * (1 + level * 1.6)
+
+      // Calculate distance to nexus to scale down non-audible tracks to tiny dots
+      const dx = x - nx
+      const dz = z - nz
+      const dist = Math.sqrt(dx * dx + dz * dz)
+
+      let scaleFactor = 1.0
+      if (dist > falloff) {
+        const k = Math.min(1.0, (dist - falloff) / (falloff * 2.0))
+        scaleFactor = 1.0 - k * 0.92 // decays smoothly to 0.08
+      }
+
+      const s = base * (1 + level * 1.6) * Math.max(0.08, scaleFactor)
       this._sphereScale[i] = s
-      d.position.set(x, this.heightAt(x, z) + 0.5 + base + bob + level * 2.2, z)
+      
+      // Ground the tiny dot/sphere proportionally to its scaled radius
+      const vOffset = s * 0.75
+      d.position.set(x, this.heightAt(x, z) + vOffset + bob + level * 2.2, z)
       d.scale.setScalar(s)
       d.updateMatrix()
       this.spheres.setMatrixAt(i, d.matrix)
     }
     this.spheres.instanceMatrix.needsUpdate = true
+  }
+
+  /** Update the region ring geometry dynamically to match the landscape height contour */
+  updateRegionRing(nx, nz, R, isBlinking, time) {
+    const posAttr = this.regionRing.geometry.attributes.position
+    const array = posAttr.array
+    for (let i = 0; i < 64; i++) {
+      const theta = (i / 64) * Math.PI * 2
+      const px = nx + Math.cos(theta) * R
+      const pz = nz + Math.sin(theta) * R
+      const py = this.heightAt(px, pz) + 0.15
+      array[i * 3] = px
+      array[i * 3 + 1] = py
+      array[i * 3 + 2] = pz
+    }
+    posAttr.needsUpdate = true
+
+    if (isBlinking) {
+      this.regionRing.material.opacity = 0.2 + Math.abs(Math.sin(time * 4)) * 0.5
+    } else {
+      this.regionRing.material.opacity = 0.35
+    }
   }
 
   setNexusPos(x, z) {
