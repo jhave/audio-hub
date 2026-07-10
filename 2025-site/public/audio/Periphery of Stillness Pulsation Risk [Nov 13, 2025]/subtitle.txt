@@ -1,0 +1,1 @@
+variations on one prompt: "gentle, internally incandescent, slow electro-acoustic ensemble, hybrid experimental ambient " with negative prompt excluding "piano guitar" and eventually "drums"
