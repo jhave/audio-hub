@@ -116,6 +116,29 @@
     padding: 0;
     pointer-events: none;
   }
+
+  .track-counter-container {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    margin-bottom: 14px; font-size: 11px; color: #8fa3ab; pointer-events: auto;
+    background: rgba(8,12,16,.5); border: 1px solid rgba(255,255,255,.05);
+    padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .chevron-btn {
+    background: none; border: none; color: #d8b56a; font-size: 15px; cursor: pointer;
+    padding: 0 4px; line-height: 1; transition: transform 0.2s, color 0.2s;
+  }
+  .chevron-btn:hover { color: #fff; transform: scale(1.2); }
+  #track-count-val { font-weight: 700; color: #fff; font-size: 14px; min-width: 32px; display: inline-block; text-align: center; }
+
+  .track-label {
+    position: absolute; color: #cfd8dc; font-size: 11px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.95); pointer-events: none;
+    white-space: nowrap; transform: translate(-50%, -100%);
+    transition: color 0.3s, font-size 0.3s, opacity 0.3s;
+    z-index: 3;
+  }
 </style>
 </head>
 <body>
@@ -137,10 +160,16 @@
     </div>
   </div>
 </div>
+<div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3;"></div>
 <div id="title"><b>171exp</b> &nbsp;·&nbsp; a navigable soundscape · music created in suno · glia.ca</div>
 <div id="hint">drag orbit · scroll/pinch zoom · click a sphere to travel<br/>space pauses · any click borrows the tiller from auto-flight</div>
 <div id="status">auto-flight</div>
 <div id="hud">
+  <div class="track-counter-container">
+    <button id="dec-tracks" class="chevron-btn">▼</button>
+    <span id="track-count-val">1</span>
+    <button id="inc-tracks" class="chevron-btn">▲</button>
+  </div>
   <div class="album"></div>
   <div class="track"></div>
   <div class="prompt"></div>
@@ -152,12 +181,12 @@
   <input id="spread" type="range" min="0" max="1" step="0.01" value="0.55" />
   <label>listening region</label>
   <input id="region" type="range" min="0" max="1" step="0.01" value="0.20" />
-  <div id="flight-speed-container">
+  <div id="flight-speed-container" class="hidden">
     <label>speed of flight</label>
-    <input id="flight-speed" type="range" min="0" max="1" step="0.01" value="0.20" />
+    <input id="flight-speed" type="range" min="0" max="1" step="0.01" value="0.0" />
   </div>
   <div class="mode">
-    <button id="toggle-autoflight" class="active">Auto-Flight: ON</button>
+    <button id="toggle-autoflight">Auto-Flight: OFF</button>
   </div>
 </div>
 <script type="module" src="app.js"></script>
