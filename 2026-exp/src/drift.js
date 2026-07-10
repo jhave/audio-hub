@@ -36,9 +36,9 @@ export class Drift {
 
   get autoActive() {
     if (!this.auto) return false
-    // any click/travel overrides auto-flight for 15s; it resumes on its own
+    // any click/travel overrides auto-flight for 15s; it resumes on its own or immediately if flightSpeed is active
     const idle = performance.now() - this.lastUserInput
-    return idle > 15_000
+    return idle > 15_000 || this.flightSpeed > 0.05
   }
 
   /** ms until auto-flight resumes (for the status rollover); 0 if active. */

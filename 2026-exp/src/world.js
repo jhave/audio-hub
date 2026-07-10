@@ -156,26 +156,8 @@ export class World {
     this.camera.updateProjectionMatrix()
   }
 
-  /** Wrap the play-line around the focal sphere; frac in [0,1]. */
-  /** Wrap the play-line around the active track's floating text; frac in [0,1]. */
   setPlayhead(trackIdx, frac) {
-    if (trackIdx < 0 || frac == null) {
-      this.progressRing.visible = this.progressDot.visible = false
-      return
-    }
-    const x = this.positions[trackIdx * 2]
-    const z = this.positions[trackIdx * 2 + 1]
-    const s = (this._sphereScale[trackIdx] || 0.7)
-    
-    // Orbiting radius centered around where the text sits
-    const r = 2.2
-    const y = this.heightAt(x, z) + s * 1.6 + 0.3
-    
-    this.progressRing.position.set(x, y, z)
-    this.progressRing.scale.setScalar(r)
-    const ang = -frac * Math.PI * 2 + Math.PI / 2
-    this.progressDot.position.set(x + Math.cos(ang) * r, y, z + Math.sin(ang) * r)
-    this.progressRing.visible = this.progressDot.visible = true
+    this.progressRing.visible = this.progressDot.visible = false
   }
 
   setTrackLimit(N) {

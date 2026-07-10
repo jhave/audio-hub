@@ -10,6 +10,7 @@
   body { font: 13px/1.45 -apple-system, "Helvetica Neue", sans-serif; color: #cfd8dc; }
   #scene { position: fixed; inset: 0; }
   #hud {
+    display: none;
     position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
     max-width: min(640px, 85vw); text-align: center;
     pointer-events: none; text-shadow: 0 2px 10px rgba(0,0,0,.95);
@@ -160,7 +161,7 @@
     </div>
   </div>
 </div>
-<div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3;"></div>
+<div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; display: none; z-index: 3;"></div>
 <div id="track-counter" class="track-counter-container">
   <button id="dec-tracks" class="chevron-btn">▼</button>
   <span id="track-count-val">1</span>

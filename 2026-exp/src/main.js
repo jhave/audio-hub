@@ -158,6 +158,10 @@ function changeTrackLimit(delta) {
   
   if (drift.target >= trackLimitCount) {
     drift.userSelected(trackLimitCount - 1)
+  } else if (drift.auto && drift.arrived && trackLimitCount > 1) {
+    // Take off immediately to explore the newly added track(s)
+    drift.target = drift.chooseNext()
+    drift.arrived = false
   }
 }
 
