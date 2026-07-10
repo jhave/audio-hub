@@ -145,7 +145,7 @@ function autoMorph(now) {
 function applyFlightSpeed(fs) {
   drift.flightSpeed = fs
 }
-applyFlightSpeed(0.3)
+applyFlightSpeed(0.20)
 $("#flight-speed").addEventListener("input", (e) => applyFlightSpeed(parseFloat(e.target.value)))
 
 /* spread: diffuse the clusters so each track is distinct */
@@ -159,7 +159,7 @@ $("#spread").addEventListener("input", (e) => {
 function applyRegion(r) {
   field.falloff = 3 + r * 14
 }
-applyRegion(0.35)
+applyRegion(0.20)
 $("#region").addEventListener("input", (e) => applyRegion(parseFloat(e.target.value)))
 
 /* modes */
