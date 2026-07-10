@@ -42,7 +42,7 @@ function enterExperience() {
     }, 800)
   }
 
-  const toFade = ["#title", "#hud", "#panel", "#status", "#hint"]
+  const toFade = ["#title", "#hud", "#panel", "#status", "#hint", "#track-counter"]
   for (const id of toFade) {
     const el = $(id)
     if (el) {
