@@ -106,6 +106,7 @@ export async function genManifest() {
     const { dateLabel, dateISO, dateMs } = extractBracketDate(folder)
 
     const subtitle = await readFirstLineTxt(path.join(AUDIO_ROOT, folder, "subtitle.txt"))
+    const sunoUrl = await readFirstLineTxt(path.join(AUDIO_ROOT, folder, "suno.txt"))
     let coverSrc = await detectCover(folder)
     let embeddedCover = null // captured from track metadata if no cover file exists
 
@@ -170,6 +171,7 @@ export async function genManifest() {
       id: folder,
       title: albumTitle,
       subtitle,
+      sunoUrl,
       coverSrc,
       dateLabel,
       dateISO,

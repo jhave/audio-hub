@@ -19,6 +19,7 @@ export type Album = {
   id: string
   title: string
   subtitle?: string
+  sunoUrl?: string
   dateLabel?: string
   dateISO?: string
   dateMs?: number

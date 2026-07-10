@@ -101,7 +101,22 @@ function AlbumCard({ album }: { album: Album }) {
           )}
 
           <h2 className="text-xl font-semibold leading-snug tracking-tight">
-            {album.title}
+            {album.sunoUrl ? (
+              <a
+                href={album.sunoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:underline"
+                title="Open playlist on Suno"
+              >
+                {album.title}
+                <span className="ml-1.5 align-middle text-[11px] font-normal text-muted-foreground">
+                  suno ↗
+                </span>
+              </a>
+            ) : (
+              album.title
+            )}
           </h2>
 
           {album.subtitle && (
