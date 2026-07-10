@@ -35,6 +35,15 @@ function enterExperience() {
   field.resume()
   drift.userSelected(0) // target the first track on launch
 
+  // Go full screen on load (after user gesture click)
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch((err) => {
+      console.log("Fullscreen request failed:", err)
+    })
+  } else if (document.documentElement.webkitRequestFullscreen) {
+    document.documentElement.webkitRequestFullscreen()
+  }
+
   const intro = $("#intro")
   if (intro) {
     intro.classList.add("fade-out")
