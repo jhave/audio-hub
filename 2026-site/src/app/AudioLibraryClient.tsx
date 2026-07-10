@@ -144,15 +144,15 @@ function AlbumCard({ album }: { album: Album }) {
             )}
           </h2>
 
-          {album.prompt && (
-            <p className="mt-2 whitespace-pre-line text-[12px] italic leading-snug text-neutral-500">
-              <Linkify text={album.prompt} />
+          {album.subtitle && (
+            <p className="mt-2 text-[12px] leading-snug text-neutral-700">
+              <Linkify text={album.subtitle} />
             </p>
           )}
 
-          {album.subtitle && (
-            <p className="mt-2 text-[13px] leading-snug text-neutral-700">
-              <Linkify text={album.subtitle} />
+          {album.prompt && (
+            <p className="mt-2 whitespace-pre-line text-[12px] italic leading-snug text-neutral-500">
+              <Linkify text={album.prompt} />
             </p>
           )}
         </div>

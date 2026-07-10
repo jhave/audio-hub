@@ -172,6 +172,16 @@ export default function ManifestClient() {
           </a>
         </div>
 
+        <div className="mb-3">
+          <a href="https://suno.com/@jhave" target="_blank" rel="noreferrer">
+            <img
+              src={sunoSrc}
+              alt="jhave on Suno"
+              className="h-12 w-12 rounded-full object-cover"
+            />
+          </a>
+        </div>
+
         <h1 className="text-2xl font-semibold text-black">
           {daysSpan.toLocaleString()} days (of Music Created in Suno)
         </h1>
@@ -185,16 +195,6 @@ export default function ManifestClient() {
         </p>
 
         <p className="mt-1">Total duration: {totalDurationLabel}</p>
-
-        <div className="mt-2">
-          <a href="https://suno.com/@jhave" target="_blank" rel="noreferrer">
-            <img
-              src={sunoSrc}
-              alt="Suno"
-              style={{ width: 40, height: 40 }}
-            />
-          </a>
-        </div>
       </header>
 
       <AudioLibraryClient albums={albums} />
