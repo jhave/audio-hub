@@ -23,6 +23,32 @@ const world = new World($("#scene"), data)
 const field = new SoundField(data.tracks)
 const drift = new Drift(data.tracks)
 
+let introActive = true
+function enterExperience() {
+  if (!introActive) return
+  introActive = false
+  field.resume()
+
+  const intro = $("#intro")
+  if (intro) {
+    intro.classList.add("fade-out")
+    setTimeout(() => {
+      intro.style.display = "none"
+    }, 800)
+  }
+
+  const toFade = ["#title", "#hud", "#panel", "#status", "#hint"]
+  for (const id of toFade) {
+    const el = $(id)
+    if (el) {
+      el.style.opacity = 1
+      el.style.pointerEvents = "auto"
+    }
+  }
+}
+const enterBtn = $("#enter-btn")
+if (enterBtn) enterBtn.onclick = enterExperience
+
 /* Diffused variants of every layout: iterative pair-repulsion until no two
    tracks sit closer than minD, so each song can be visually distinct. The
    spread slider mixes raw <-> relaxed. */
@@ -115,14 +141,15 @@ function autoMorph(now) {
   }
 }
 
-/* chaos: voices, seeks, drift temperature — decoupled from listening radius */
-function applyChaos(c) {
-  field.chaos = c
-  drift.chaos = c
-  field.maxVoices = 1 + Math.round(c * 3) // 1..4 simultaneous songs
+/* flight speed / chaos mapping */
+function applyFlightSpeed(fs) {
+  // temporarily map flightSpeed to drift/field chaos properties
+  field.chaos = fs
+  drift.chaos = fs
+  field.maxVoices = 1 + Math.round(fs * 3) // 1..4 voices
 }
-applyChaos(0.15)
-$("#chaos").addEventListener("input", (e) => applyChaos(parseFloat(e.target.value)))
+applyFlightSpeed(0.3)
+$("#flight-speed").addEventListener("input", (e) => applyFlightSpeed(parseFloat(e.target.value)))
 
 /* spread: diffuse the clusters so each track is distinct */
 $("#spread").addEventListener("input", (e) => {
@@ -139,21 +166,39 @@ applyRegion(0.35)
 $("#region").addEventListener("input", (e) => applyRegion(parseFloat(e.target.value)))
 
 /* modes */
-const btnWander = $("#mode-wander"), btnAuto = $("#mode-auto")
 function setAuto(on) {
   drift.auto = on
-  btnAuto.classList.toggle("active", on)
-  btnWander.classList.toggle("active", !on)
+  const btn = $("#toggle-autoflight")
+  if (btn) {
+    btn.classList.toggle("active", on)
+    btn.textContent = on ? "Auto-Flight: ON" : "Auto-Flight: OFF"
+  }
+  const speedContainer = $("#flight-speed-container")
+  if (speedContainer) {
+    if (on) speedContainer.classList.remove("hidden")
+    else speedContainer.classList.add("hidden")
+  }
 }
-btnWander.onclick = () => setAuto(false)
-btnAuto.onclick = () => setAuto(true)
+const btnToggle = $("#toggle-autoflight")
+if (btnToggle) {
+  btnToggle.onclick = () => setAuto(!drift.auto)
+}
 const urlMode = new URLSearchParams(location.search).get("mode")
 if (urlMode === "wander") setAuto(false)
 
 /* interaction */
 let downAt = null
-addEventListener("pointerdown", (e) => (downAt = [e.clientX, e.clientY, performance.now()]))
+addEventListener("pointerdown", (e) => {
+  if (introActive) {
+    if (!e.target.closest(".intro-content")) {
+      enterExperience()
+    }
+    return
+  }
+  downAt = [e.clientX, e.clientY, performance.now()]
+})
 addEventListener("pointerup", (e) => {
+  if (introActive) return
   if (!downAt) return
   const [x0, y0, t0] = downAt
   downAt = null
@@ -167,7 +212,9 @@ addEventListener("pointerup", (e) => {
   else if (hit.ground) drift.userMovedTo(hit.ground[0], hit.ground[1])
 })
 // any gesture unlocks audio (browser autoplay policy)
-addEventListener("pointerdown", () => field.resume(), { once: true })
+addEventListener("pointerdown", () => {
+  if (!introActive) field.resume()
+}, { once: true })
 
 // hover: cursor feedback everywhere; nexus magnetism in manual control
 let hoverClock = 0
