@@ -271,7 +271,17 @@ function FloatingDock({ albums }: { albums: Album[] }) {
 
   return (
     <div className="sticky bottom-3 z-20 mx-auto mt-6 max-w-2xl">
-      <div className="rounded-full border bg-white/90 px-4 py-3 shadow-md backdrop-blur">
+      <div className="rounded-3xl border bg-white/90 px-4 py-3 shadow-md backdrop-blur">
+        {/* full-width scrub line: click anywhere to jump within the track */}
+        <div className="mb-2.5 flex items-center gap-3">
+          <AudioPlayerProgress className="w-full" />
+          <div className="flex flex-none items-center gap-1 text-[11px] text-muted-foreground">
+            <AudioPlayerTime />
+            <span>/</span>
+            <AudioPlayerDuration />
+          </div>
+        </div>
+
         <div className="flex items-center gap-3">
           <button
             onClick={playPrev}
@@ -327,24 +337,6 @@ function FloatingDock({ albums }: { albums: Album[] }) {
             )}
           </div>
 
-          <div className="hidden min-w-[210px] items-center gap-2 sm:flex">
-            <AudioPlayerProgress className="w-[120px]" />
-            <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-              <AudioPlayerTime />
-              <span>/</span>
-              <AudioPlayerDuration />
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile: progress below */}
-        <div className="mt-2 flex items-center gap-2 sm:hidden">
-          <AudioPlayerProgress className="w-full" />
-          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-            <AudioPlayerTime />
-            <span>/</span>
-            <AudioPlayerDuration />
-          </div>
         </div>
       </div>
     </div>
