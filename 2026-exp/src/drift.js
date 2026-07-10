@@ -10,8 +10,9 @@ export class Drift {
     this.vy = 0
     this.target = null // track index
     this.visited = new Set()
-    this.auto = true
-    this.flightSpeed = 0.3
+    this.auto = false // auto-flight OFF on launch
+    this.flightSpeed = 0.0 // speed 0 on launch
+    this.trackLimitCount = 1 // set to 1 track on launch
     this.positions = null // Float32Array, shared with SoundField
     this.lastUserInput = -1e9
     this.idleAfter = 30_000
@@ -49,7 +50,7 @@ export class Drift {
 
   /** Choose where to fly next: near-ish, favorite-weighted, chaos-tempered. */
   chooseNext() {
-    const n = this.tracks.length
+    const n = this.trackLimitCount || 1
     if (!this.positions || n === 0) return null
     const weights = new Float64Array(n)
     let sum = 0
