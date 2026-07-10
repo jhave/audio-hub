@@ -138,7 +138,8 @@ export class World {
       this.controls.update()
       return
     }
-    this.controls.target.lerp(focus, 1 - Math.exp(-dt * 0.7))
+    const center = new THREE.Vector3(0, 0, 0)
+    this.controls.target.lerp(center, 1 - Math.exp(-dt * 0.7))
     const off = this.camera.position.clone().sub(this.controls.target)
     const sph = new THREE.Spherical().setFromVector3(off)
     sph.theta += dt * 0.035 // perpetual slow migration
@@ -294,16 +295,10 @@ export class World {
   }
 
   heightAt(x, z) {
-    if (!this._field) return 0
-    const g = GRID + 1
-    const cell = (WORLD * 2) / GRID
-    const ix = Math.min(g - 1, Math.max(0, Math.round((x + WORLD) / cell)))
-    const iz = Math.min(g - 1, Math.max(0, Math.round((z + WORLD) / cell)))
-    const hRaw = this._fieldMax > 0 ? this._field[iz * g + ix] / this._fieldMax : 0
-    return Math.pow(hRaw, 0.62) * HMAX
+    return 0
   }
 
-  /** Per-frame: place spheres on the terrain, pulse the audible ones, scale down distant ones to dots, project labels */
+  /** Per-frame: place spheres on the flat baseline, pulse the audible ones, scale down distant ones to dots, project labels */
   updateSpheres(levelFn, time, falloff) {
     const d = this._dummy
     const nx = this.nexus.position.x
@@ -314,7 +309,6 @@ export class World {
       const level = levelFn(i)
       const fav = this.data.tracks[i].fav
       const base = fav ? 0.95 : 0.7
-      const bob = level > 0.01 ? Math.sin(time * 7 + i) * level * 0.6 : 0
 
       // Calculate distance to nexus to scale down non-audible tracks to tiny dots
       const dx = x - nx
@@ -330,9 +324,7 @@ export class World {
       const s = base * (1 + level * 1.6) * Math.max(0.08, scaleFactor)
       this._sphereScale[i] = s
       
-      // Ground the tiny dot/sphere proportionally to its scaled radius
-      const vOffset = s * 0.75
-      d.position.set(x, this.heightAt(x, z) + vOffset + bob + level * 2.2, z)
+      d.position.set(x, 0, z) // Flat baseline!
       d.scale.setScalar(s)
       d.updateMatrix()
       this.spheres.setMatrixAt(i, d.matrix)
@@ -350,7 +342,7 @@ export class World {
         const s = this._sphereScale[i] || 0.7
 
         // Position slightly above the sphere
-        tempV.set(x, this.heightAt(x, z) + s * 1.6 + 0.3, z)
+        tempV.set(x, s * 1.6 + 0.3, z)
         tempV.project(this.camera)
 
         const screenX = (tempV.x * 0.5 + 0.5) * window.innerWidth
@@ -368,7 +360,7 @@ export class World {
     }
   }
 
-  /** Update the region ring geometry dynamically to match the landscape height contour */
+  /** Update the region ring geometry dynamically to match the flat baseline */
   updateRegionRing(nx, nz, R, isBlinking, time) {
     const posAttr = this.regionRing.geometry.attributes.position
     const array = posAttr.array
@@ -376,7 +368,7 @@ export class World {
       const theta = (i / 64) * Math.PI * 2
       const px = nx + Math.cos(theta) * R
       const pz = nz + Math.sin(theta) * R
-      const py = this.heightAt(px, pz) + 0.15
+      const py = 0.05 // Flat baseline!
       array[i * 3] = px
       array[i * 3 + 1] = py
       array[i * 3 + 2] = pz
