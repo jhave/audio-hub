@@ -5,7 +5,20 @@ import { Drift } from "./drift.js"
 
 const $ = (s) => document.querySelector(s)
 
-const data = await loadData()
+// never strand the listener on the loading screen: retry, then say why
+async function loadDataResilient() {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await loadData()
+    } catch (e) {
+      if (attempt >= 4) {
+        $("#loading").textContent = `could not load the topology (${e.message}) — retrying…`
+      }
+      await new Promise((r) => setTimeout(r, Math.min(8000, 500 * attempt * attempt)))
+    }
+  }
+}
+const data = await loadDataResilient()
 const world = new World($("#scene"), data)
 const field = new SoundField(data.tracks)
 const drift = new Drift(data.tracks)
