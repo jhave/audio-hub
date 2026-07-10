@@ -26,6 +26,7 @@ const drift = new Drift(data.tracks)
 let trackLimitCount = 1
 world.setTrackLimit(trackLimitCount)
 drift.trackLimitCount = trackLimitCount
+field.maxVoices = Math.min(6, trackLimitCount) // Sync initial voices count (prevents 2 tracks playing)
 
 let introActive = true
 function enterExperience() {
@@ -42,7 +43,7 @@ function enterExperience() {
     }, 800)
   }
 
-  const toFade = ["#hud"]
+  const toFade = ["#hud-active-songs", "#load-file-btn"]
   for (const id of toFade) {
     const el = $(id)
     if (el) {
@@ -206,15 +207,6 @@ function applyFlightSpeed(fs) {
   drift.flightSpeed = fs
 }
 applyFlightSpeed(0.0)
-$("#flight-speed").addEventListener("input", (e) => {
-  const val = parseFloat(e.target.value)
-  applyFlightSpeed(val)
-  if (val === 0) {
-    setAuto(false)
-  }
-})
-
-// Spread/diffusion sliders are disabled under geometric layout
 
 /* region: radius of the listening area (volume falls off smoothly, no edge) */
 function applyRegion(r) {
@@ -225,27 +217,6 @@ applyRegion(0.20)
 /* modes */
 function setAuto(on) {
   drift.auto = on
-  const btn = $("#toggle-autoflight")
-  if (btn) {
-    btn.classList.toggle("active", on)
-    btn.textContent = on ? "Auto-Flight: ON" : "Auto-Flight: OFF"
-  }
-  const speedContainer = $("#flight-speed-container")
-  if (speedContainer) {
-    if (on) {
-      speedContainer.classList.remove("hidden")
-      if (drift.flightSpeed === 0) {
-        applyFlightSpeed(0.20)
-        $("#flight-speed").value = 0.20
-      }
-    } else {
-      speedContainer.classList.add("hidden")
-    }
-  }
-}
-const btnToggle = $("#toggle-autoflight")
-if (btnToggle) {
-  btnToggle.onclick = () => setAuto(!drift.auto)
 }
 const urlMode = new URLSearchParams(location.search).get("mode")
 setAuto(urlMode === "auto")
@@ -253,13 +224,13 @@ setAuto(urlMode === "auto")
 /* track spawning chevrons */
 function changeTrackLimit(delta) {
   trackLimitCount = Math.min(data.tracks.length, Math.max(1, trackLimitCount + delta))
-  $("#track-count-val").textContent = trackLimitCount
   
   // Re-apply geometric coordinates based on the new limit count N
   applyGeometricLayout(trackLimitCount)
   
   world.setTrackLimit(trackLimitCount)
   drift.trackLimitCount = trackLimitCount
+  field.maxVoices = Math.min(6, trackLimitCount)
   
   if (drift.target >= trackLimitCount) {
     drift.userSelected(trackLimitCount - 1)
@@ -270,18 +241,34 @@ function changeTrackLimit(delta) {
   }
 }
 
-const btnDec = $("#dec-tracks")
-const btnInc = $("#inc-tracks")
-if (btnDec && btnInc) {
-  btnDec.onclick = (e) => {
+/* Local file loader setup */
+const loadFileBtn = $("#load-file-btn")
+const fileInput = $("#file-input")
+if (loadFileBtn && fileInput) {
+  loadFileBtn.onclick = (e) => {
     e.stopPropagation()
-    const delta = e.shiftKey ? -10 : (e.altKey ? -50 : -1)
-    changeTrackLimit(delta)
+    fileInput.click()
   }
-  btnInc.onclick = (e) => {
-    e.stopPropagation()
-    const delta = e.shiftKey ? 10 : (e.altKey ? 50 : 1)
-    changeTrackLimit(delta)
+  fileInput.onchange = (e) => {
+    const files = Array.from(e.target.files)
+    if (files.length === 0) return
+    
+    const oldLength = data.tracks.length
+    for (const file of files) {
+      const url = URL.createObjectURL(file)
+      const newTrack = {
+        title: file.name.replace(/\.[^/.]+$/, ""),
+        url: url,
+        album: 0,
+        dur: 180,
+        fav: true
+      }
+      data.tracks.push(newTrack)
+    }
+    
+    // Refresh geometric layout and automatically jump target to play the first loaded track!
+    changeTrackLimit(files.length)
+    drift.userSelected(oldLength)
   }
 }
 
@@ -303,28 +290,57 @@ addEventListener("pointerup", (e) => {
   downAt = null
   const moved = Math.hypot(e.clientX - x0, e.clientY - y0)
   if (moved > 6 || performance.now() - t0 > 400) return // it was a drag
-  if (e.target.closest("#panel")) return
+  if (e.target.closest("#hud-active-songs") || e.target.closest("#load-file-btn")) return
   field.resume()
   const hit = world.pick(e)
   if (!hit) return
-  if (hit.trackIdx != null) drift.userSelected(hit.trackIdx)
-  else if (hit.ground) drift.userMovedTo(hit.ground[0], hit.ground[1])
+  if (hit.trackIdx != null) {
+    drift.userSelected(hit.trackIdx)
+    // Every click launches a song and increases topology total complexity number
+    changeTrackLimit(1)
+  } else if (hit.ground) {
+    drift.userMovedTo(hit.ground[0], hit.ground[1])
+  }
 })
 // any gesture unlocks audio (browser autoplay policy)
 addEventListener("pointerdown", () => {
   if (!introActive) field.resume()
 }, { once: true })
 
-// hover: cursor feedback everywhere; nexus magnetism in manual control
+// hover: cursor feedback; mapping coordinates to flightSpeed and trackLimitCount
 let hoverClock = 0
 addEventListener("pointermove", (e) => {
   const now = performance.now()
-  if (now - hoverClock < 90) return
+  if (now - hoverClock < 50) return
   hoverClock = now
-  if (e.target.closest("#panel")) return
+  
+  if (e.target.closest("#hud-active-songs") || e.target.closest("#load-file-btn")) return
+  
   const hit = world.pick(e)
   document.body.style.cursor = hit?.trackIdx != null ? "pointer" : ""
-  if (!drift.autoActive && hit?.ground) drift.hoverPoint = hit.ground
+  
+  if (introActive) return
+  
+  // Map X to Change Rate (flight speed)
+  const fs = Math.min(1.0, Math.max(0.0, e.clientX / window.innerWidth))
+  if (fs < 0.03) {
+    setAuto(false)
+    applyFlightSpeed(0.0)
+  } else {
+    setAuto(true)
+    applyFlightSpeed(fs)
+  }
+  
+  // Map Y to Number of Songs (trackLimitCount)
+  const pctY = Math.min(1.0, Math.max(0.0, e.clientY / window.innerHeight))
+  const limit = Math.round(1 + pctY * (data.tracks.length - 1))
+  
+  // Directly update parameters
+  trackLimitCount = limit
+  applyGeometricLayout(trackLimitCount)
+  world.setTrackLimit(trackLimitCount)
+  drift.trackLimitCount = trackLimitCount
+  field.maxVoices = Math.min(6, trackLimitCount)
 })
 
 /* keyboard interaction: space to pause, arrows to navigate */

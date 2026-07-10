@@ -232,8 +232,11 @@ export class World {
     const inv2s2 = 1 / (2 * sigma * sigma)
     const cell = (WORLD * 2) / GRID
     const rad = Math.ceil((sigma * 3) / cell)
-    for (let i = 0; i < this.n; i++) {
+    const N = this.trackLimit || this.n
+    for (let i = 0; i < N; i++) {
       const x = this.positions[i * 2], z = this.positions[i * 2 + 1]
+      if (x > 9000) continue // Skip inactive or deleted tracks
+      
       const cx = Math.round((x + WORLD) / cell), cz = Math.round((z + WORLD) / cell)
       for (let dz = -rad; dz <= rad; dz++) {
         const iz = cz + dz

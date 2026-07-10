@@ -9,7 +9,7 @@
   html, body { margin: 0; height: 100%; overflow: hidden; background: #05070a; }
   body { font: 13px/1.45 -apple-system, "Helvetica Neue", sans-serif; color: #cfd8dc; }
   #scene { position: fixed; inset: 0; }
-  #hud {
+  #hud-active-songs {
     position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
     background: rgba(8, 12, 16, 0.85); border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 14px 24px; border-radius: 16px; backdrop-filter: blur(15px);
@@ -17,78 +17,19 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     z-index: 10;
     pointer-events: auto;
-    width: min(540px, 92vw);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    width: min(640px, 92vw);
+    max-height: 180px;
+    overflow-y: auto;
     opacity: 0;
     transition: opacity 1.2s;
-  }
-  .hud-controls-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    padding-bottom: 10px;
-  }
-  .hud-label {
-    font-size: 10px;
-    color: #8fa3ab;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-right: 4px;
-  }
-  .track-counter-container {
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .chevron-btn {
-    background: none; border: none; color: #d8b56a; font-size: 14px; cursor: pointer;
-    padding: 0 4px; line-height: 1; transition: transform 0.2s, color 0.2s;
-  }
-  .chevron-btn:hover { color: #fff; transform: scale(1.2); }
-  #track-count-val { font-weight: 700; color: #fff; font-size: 14px; min-width: 24px; display: inline-block; text-align: center; }
-
-  #flight-speed-container {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: opacity 0.4s;
-  }
-  #flight-speed-container.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-  #flight-speed-container input[type=range] {
-    width: 80px;
-    accent-color: #d8b56a;
-    height: 4px;
-    cursor: pointer;
-    margin: 0;
-  }
-  #toggle-autoflight {
-    background: rgba(244, 67, 54, 0.06); color: #ff8a80; border: 1px solid rgba(244, 67, 54, 0.25);
-    border-radius: 6px; padding: 4px 10px; font-size: 10px; cursor: pointer;
-    font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
-    transition: all 0.3s;
-  }
-  #toggle-autoflight.active {
-    background: #d8b56a; color: #14100a; border-color: #d8b56a; font-weight: 600;
-  }
-
-  .active-songs-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 100%;
-    max-height: 140px;
-    overflow-y: auto;
   }
   .active-song-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-size: 12px;
     color: #cfd8dc;
     background: rgba(255,255,255,0.02);
@@ -110,7 +51,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 160px;
+    max-width: 340px;
   }
   .hud-btn {
     background: rgba(255,255,255,0.05);
@@ -136,11 +77,28 @@
     color: #ff8a80;
   }
   .hud-vol-slider {
-    width: 60px;
-    margin: 0;
+    width: 80px;
+    margin: 0 4px;
     accent-color: #d8b56a;
     height: 3px;
     cursor: pointer;
+  }
+  .floating-btn {
+    position: fixed; right: 24px; top: 24px;
+    background: rgba(8, 12, 16, 0.82); border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 16px; border-radius: 12px; backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    color: #d8b56a; font-weight: 600; font-size: 11.5px; cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1.2s, transform 0.2s, background 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .floating-btn:hover {
+    background: rgba(216, 181, 106, 0.15);
+    transform: scale(1.02);
   }
 
   #loading {
@@ -209,25 +167,10 @@
   </div>
 </div>
 <div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; display: none; z-index: 3;"></div>
-<div id="hud">
-  <div class="hud-controls-row">
-    <div class="track-counter-container">
-      <span class="hud-label">Tracks:</span>
-      <button id="dec-tracks" class="chevron-btn">▼</button>
-      <span id="track-count-val">1</span>
-      <button id="inc-tracks" class="chevron-btn">▲</button>
-    </div>
-    
-    <div id="flight-speed-container" class="hidden">
-      <span class="hud-label">Change Rate:</span>
-      <input id="flight-speed" type="range" min="0" max="1" step="0.01" value="0.0" />
-    </div>
-    
-    <button id="toggle-autoflight">Auto-Flight: OFF</button>
-  </div>
-  
-  <div id="hud-active-songs" class="active-songs-list"></div>
-</div>
+<button id="load-file-btn" class="floating-btn">📁 Load Audio</button>
+<input id="file-input" type="file" accept="audio/*" multiple style="display: none;" />
+
+<div id="hud-active-songs"></div>
 <script type="module" src="app.js"></script>
 </body>
 </html>
