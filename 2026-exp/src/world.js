@@ -90,7 +90,13 @@ export class World {
     this.nexus = new THREE.Group()
     this.nexus.add(ring, pillar)
     this.nexusRing = ring
+    this.nexus.visible = false // Hide pointer group and light beam
     this.scene.add(this.nexus)
+
+    this.labelsContainer = document.getElementById("labels-container")
+    this.labelElements = []
+    this.trackLimit = 1
+    this.currentDominantIdx = -1
 
     /* region ring: contours the hills */
     const ringPoints = new Float32Array(64 * 3)
@@ -150,6 +156,7 @@ export class World {
   }
 
   /** Wrap the play-line around the focal sphere; frac in [0,1]. */
+  /** Wrap the play-line around the active track's floating text; frac in [0,1]. */
   setPlayhead(trackIdx, frac) {
     if (trackIdx < 0 || frac == null) {
       this.progressRing.visible = this.progressDot.visible = false
@@ -157,14 +164,45 @@ export class World {
     }
     const x = this.positions[trackIdx * 2]
     const z = this.positions[trackIdx * 2 + 1]
-    const s = (this._sphereScale[trackIdx] || 0.7) * 0.8
-    const r = s * 2.1
-    const y = this.heightAt(x, z) + 0.5 + s + 0.1
+    const s = (this._sphereScale[trackIdx] || 0.7)
+    
+    // Orbiting radius centered around where the text sits
+    const r = 2.2
+    const y = this.heightAt(x, z) + s * 1.6 + 0.3
+    
     this.progressRing.position.set(x, y, z)
     this.progressRing.scale.setScalar(r)
     const ang = -frac * Math.PI * 2 + Math.PI / 2
     this.progressDot.position.set(x + Math.cos(ang) * r, y, z + Math.sin(ang) * r)
     this.progressRing.visible = this.progressDot.visible = true
+  }
+
+  setTrackLimit(N) {
+    this.trackLimit = N
+    if (N === 1) {
+      this.spheres.count = 0 // Hide spheres on launch (N = 1)
+    } else {
+      this.spheres.count = N
+    }
+
+    if (this.labelsContainer) {
+      while (this.labelElements.length < N) {
+        const idx = this.labelElements.length
+        const t = this.data.tracks[idx]
+        const div = document.createElement("div")
+        div.className = "track-label"
+        div.textContent = t.title
+        this.labelsContainer.appendChild(div)
+        this.labelElements.push(div)
+      }
+      for (let i = 0; i < this.labelElements.length; i++) {
+        if (i < N) {
+          this.labelElements[i].style.display = "block"
+        } else {
+          this.labelElements[i].style.display = "none"
+        }
+      }
+    }
   }
 
   _resize() {
@@ -265,12 +303,13 @@ export class World {
     return Math.pow(hRaw, 0.62) * HMAX
   }
 
-  /** Per-frame: place spheres on the terrain, pulse the audible ones, scale down distant ones to dots */
+  /** Per-frame: place spheres on the terrain, pulse the audible ones, scale down distant ones to dots, project labels */
   updateSpheres(levelFn, time, falloff) {
     const d = this._dummy
     const nx = this.nexus.position.x
     const nz = this.nexus.position.z
-    for (let i = 0; i < this.n; i++) {
+    const N = this.trackLimit || 1
+    for (let i = 0; i < N; i++) {
       const x = this.positions[i * 2], z = this.positions[i * 2 + 1]
       const level = levelFn(i)
       const fav = this.data.tracks[i].fav
@@ -299,6 +338,34 @@ export class World {
       this.spheres.setMatrixAt(i, d.matrix)
     }
     this.spheres.instanceMatrix.needsUpdate = true
+
+    // Update floating HTML text labels
+    if (this.labelsContainer) {
+      const tempV = new THREE.Vector3()
+      for (let i = 0; i < N; i++) {
+        const div = this.labelElements[i]
+        if (!div) continue
+        const x = this.positions[i * 2]
+        const z = this.positions[i * 2 + 1]
+        const s = this._sphereScale[i] || 0.7
+
+        // Position slightly above the sphere
+        tempV.set(x, this.heightAt(x, z) + s * 1.6 + 0.3, z)
+        tempV.project(this.camera)
+
+        const screenX = (tempV.x * 0.5 + 0.5) * window.innerWidth
+        const screenY = (-(tempV.y * 0.5) + 0.5) * window.innerHeight
+
+        div.style.left = `${screenX}px`
+        div.style.top = `${screenY}px`
+
+        const isDominant = (i === this.currentDominantIdx)
+        div.style.color = isDominant ? "#d8b56a" : "#cfd8dc"
+        div.style.fontWeight = isDominant ? "650" : "400"
+        div.style.fontSize = isDominant ? "12.5px" : "10px"
+        div.style.opacity = isDominant ? "1.0" : "0.55"
+      }
+    }
   }
 
   /** Update the region ring geometry dynamically to match the landscape height contour */
