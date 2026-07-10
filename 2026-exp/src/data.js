@@ -1,7 +1,12 @@
 // Load layout.json and resolve audio URLs against the adjacent 171days folder.
 // ?audio=<base> overrides (e.g. an absolute host for a GitHub Pages mirror).
 const params = new URLSearchParams(location.search)
-export const AUDIO_BASE = (params.get("audio") || "../171days/audio").replace(/\/+$/, "")
+// on the GitHub Pages mirror there is no adjacent 171days folder — stream
+// straight from the repository instead
+const DEFAULT_AUDIO = location.hostname.endsWith("github.io")
+  ? "https://raw.githubusercontent.com/jhave/audio-hub/main/2026-site/public/audio"
+  : "../171days/audio"
+export const AUDIO_BASE = (params.get("audio") || DEFAULT_AUDIO).replace(/\/+$/, "")
 
 export async function loadData() {
   const res = await fetch("data/layout.json")

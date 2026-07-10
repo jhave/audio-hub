@@ -15,6 +15,8 @@ export class Drift {
     this.positions = null // Float32Array, shared with SoundField
     this.lastUserInput = 0
     this.idleAfter = 30_000
+    this.arrived = false
+    this.hoverPoint = null // [x, z] under the mouse (wander-mode magnetism)
   }
 
   userMovedTo(x, y) {
@@ -89,11 +91,14 @@ export class Drift {
       const dist = Math.sqrt(dx * dx + dy * dy)
       if (dist < 0.4) {
         // arrived: linger; a new target is chosen when the song ends
+        this.arrived = true
         this.vx *= 0.9
         this.vy *= 0.9
         if (!this.autoActive) this.target = null
       } else {
-        const speed = 2.2 + this.chaos * 6 + dist * 0.06
+        this.arrived = false
+        // unhurried: the journey between songs is part of the listening
+        const speed = 0.8 + this.chaos * 2.6 + dist * 0.015
         const k = Math.min(1, (speed * dt) / dist)
         // gentle curvature: drift has a hand on the tiller, not rails
         const swirl = Math.sin(performance.now() * 0.0004 + this.target) * 0.35 * this.chaos
@@ -102,6 +107,17 @@ export class Drift {
         this.nx += this.vx
         this.ny += this.vy
       }
+    } else if (!this.autoActive && this.hoverPoint) {
+      // wander mode: the nexus is quietly magnetized to the mouse
+      const dx = this.hoverPoint[0] - this.nx
+      const dy = this.hoverPoint[1] - this.ny
+      const dist = Math.sqrt(dx * dx + dy * dy)
+      if (dist > 0.3) {
+        const k = Math.min(1, (1.4 * dt) / dist)
+        this.nx += dx * k
+        this.ny += dy * k
+      }
+      this.arrived = false
     }
     return [this.nx, this.ny]
   }

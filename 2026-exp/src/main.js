@@ -26,15 +26,37 @@ drift.positions = world.positions
 
 let terrainDirty = false
 let terrainTimer = null
-$("#morph").addEventListener("input", (e) => {
-  morphPos = parseFloat(e.target.value)
-  applyMorph()
+let userMorphAt = -1e9
+function scheduleTerrain(delay = 250) {
   terrainDirty = true
   clearTimeout(terrainTimer)
   terrainTimer = setTimeout(() => {
     if (terrainDirty) { world.rebuildTerrain(); terrainDirty = false }
-  }, 250)
+  }, delay)
+}
+$("#morph").addEventListener("input", (e) => {
+  morphPos = parseFloat(e.target.value)
+  userMorphAt = performance.now()
+  applyMorph()
+  scheduleTerrain()
 })
+
+/* in auto mode the topology itself migrates: two slow incommensurate sines
+   wander the hyperparameter space, and the flocks keep resettling */
+let lastAutoTerrain = 0
+function autoMorph(now) {
+  if (!drift.autoActive) return
+  if (now - userMorphAt < 45_000) return // respect a recent human choice
+  const t = now / 1000
+  const drifted = 2.5 + 2.45 * Math.sin(t * 0.011) * Math.sin(t * 0.0053 + 1.7)
+  morphPos = Math.min(5, Math.max(0, drifted))
+  $("#morph").value = morphPos
+  applyMorph()
+  if (now - lastAutoTerrain > 2500) {
+    lastAutoTerrain = now
+    world.rebuildTerrain()
+  }
+}
 
 /* chaos: voices, seeks, drift temperature */
 function applyChaos(c) {
@@ -77,6 +99,18 @@ addEventListener("pointerup", (e) => {
 // any gesture unlocks audio (browser autoplay policy)
 addEventListener("pointerdown", () => field.resume(), { once: true })
 
+// wander-mode magnetism: the nexus leans toward the mouse
+let hoverClock = 0
+addEventListener("pointermove", (e) => {
+  const now = performance.now()
+  if (now - hoverClock < 90) return
+  hoverClock = now
+  if (drift.autoActive) return
+  if (e.target.closest("#panel")) return
+  const hit = world.pick(e)
+  drift.hoverPoint = hit?.ground ?? drift.hoverPoint
+})
+
 field.onended = () => drift.onSongEnded()
 
 /* caption */
@@ -95,11 +129,14 @@ function updateCaption() {
 }
 
 /* main loop */
+import * as THREE from "three"
+const focusVec = new THREE.Vector3()
 let last = performance.now()
 let mixClock = 0
 function frame(now) {
   const dt = Math.min(0.1, (now - last) / 1000)
   last = now
+  autoMorph(now)
   const [nx, ny] = drift.step(dt)
   world.setNexusPos(nx, ny)
   mixClock += dt
@@ -109,6 +146,14 @@ function frame(now) {
     updateCaption()
   }
   world.updateSpheres((i) => field.level(i), now / 1000)
+
+  const dom = field.dominant()
+  world.setPlayhead(dom, dom >= 0 ? field.progress(dom) : null)
+
+  focusVec.set(nx, world.heightAt(nx, ny) + 2, ny)
+  if (drift.autoActive) world.cinematicUpdate(dt, focusVec, drift.arrived, now / 1000)
+  else world.controls.update()
+
   world.render(now / 1000)
   requestAnimationFrame(frame)
 }

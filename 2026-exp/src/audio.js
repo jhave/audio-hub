@@ -144,6 +144,13 @@ export class SoundField {
     return (s / v.buf.length / 255) * v.gain.gain.value * 3
   }
 
+  /** Playback fraction [0,1] of a playing track, or null. */
+  progress(trackIdx) {
+    const v = this.voices.get(trackIdx)
+    if (!v || !v.el.duration) return null
+    return v.el.currentTime / v.el.duration
+  }
+
   /** The dominant (loudest-target) playing track index, or -1. */
   dominant() {
     let best = -1, bg = 0

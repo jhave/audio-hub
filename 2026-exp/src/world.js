@@ -52,9 +52,12 @@ export class World {
       new Float32Array(this.terrainGeo.attributes.position.count * 3), 3)
     this.terrainGeo.setAttribute("color", colorAttr)
 
-    /* track spheres */
-    const sphereGeo = new THREE.SphereGeometry(0.55, 14, 12)
-    const sphereMat = new THREE.MeshStandardMaterial({ roughness: 0.35, metalness: 0.15 })
+    /* track spheres: larger + translucent so the 700-track abundance glows
+       through itself where flocks overlap */
+    const sphereGeo = new THREE.SphereGeometry(0.8, 16, 14)
+    const sphereMat = new THREE.MeshStandardMaterial({
+      roughness: 0.3, metalness: 0.1, transparent: true, opacity: 0.72, depthWrite: false,
+    })
     this.spheres = new THREE.InstancedMesh(sphereGeo, sphereMat, this.n)
     this.spheres.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
     this.scene.add(this.spheres)
@@ -87,10 +90,66 @@ export class World {
     this.nexusRing = ring
     this.scene.add(this.nexus)
 
+    /* orbital playhead: a ring around the focal sphere, a dot as the needle */
+    this.progressRing = new THREE.Mesh(
+      new THREE.TorusGeometry(1, 0.03, 8, 64),
+      new THREE.MeshBasicMaterial({ color: 0xe8c877, transparent: true, opacity: 0.55, depthWrite: false })
+    )
+    this.progressRing.rotation.x = Math.PI / 2
+    this.progressDot = new THREE.Mesh(
+      new THREE.SphereGeometry(0.14, 10, 8),
+      new THREE.MeshBasicMaterial({ color: 0xffe9b0 })
+    )
+    this.progressRing.visible = this.progressDot.visible = false
+    this.scene.add(this.progressRing, this.progressDot)
+
     this.raycaster = new THREE.Raycaster()
     this._dummy = new THREE.Object3D()
+    this._sphereScale = new Float32Array(this.n)
+    this.lastCamInput = -1e9
+    this.controls.addEventListener("start", () => (this.lastCamInput = performance.now()))
     this._resize()
     addEventListener("resize", () => this._resize())
+  }
+
+  /** Cinematic auto-camera: slow orbit, tilt-wobble, dives toward the focal
+      song while it plays and recedes for the flight to the next. Hands the
+      camera back to the user for 25s after any manual gesture. */
+  cinematicUpdate(dt, focus, arrived, time) {
+    if (performance.now() - this.lastCamInput < 25_000) {
+      this.controls.update()
+      return
+    }
+    this.controls.target.lerp(focus, 1 - Math.exp(-dt * 0.7))
+    const off = this.camera.position.clone().sub(this.controls.target)
+    const sph = new THREE.Spherical().setFromVector3(off)
+    sph.theta += dt * 0.035 // perpetual slow migration
+    sph.phi = Math.min(1.35, Math.max(0.55, 0.95 + Math.sin(time * 0.06) * 0.09)) // landscape wobble
+    sph.radius = WORLD * 1.6
+    off.setFromSpherical(sph)
+    this.camera.position.copy(this.controls.target).add(off)
+    this.camera.lookAt(this.controls.target)
+    const zTarget = arrived ? 2.4 : 1.15
+    this.camera.zoom += (zTarget - this.camera.zoom) * (1 - Math.exp(-dt * 0.35))
+    this.camera.updateProjectionMatrix()
+  }
+
+  /** Wrap the play-line around the focal sphere; frac in [0,1]. */
+  setPlayhead(trackIdx, frac) {
+    if (trackIdx < 0 || frac == null) {
+      this.progressRing.visible = this.progressDot.visible = false
+      return
+    }
+    const x = this.positions[trackIdx * 2]
+    const z = this.positions[trackIdx * 2 + 1]
+    const s = (this._sphereScale[trackIdx] || 0.7) * 0.8
+    const r = s * 2.1
+    const y = this.heightAt(x, z) + 0.5 + s + 0.1
+    this.progressRing.position.set(x, y, z)
+    this.progressRing.scale.setScalar(r)
+    const ang = -frac * Math.PI * 2 + Math.PI / 2
+    this.progressDot.position.set(x + Math.cos(ang) * r, y, z + Math.sin(ang) * r)
+    this.progressRing.visible = this.progressDot.visible = true
   }
 
   _resize() {
@@ -193,9 +252,10 @@ export class World {
       const x = this.positions[i * 2], z = this.positions[i * 2 + 1]
       const level = levelFn(i)
       const fav = this.data.tracks[i].fav
-      const base = fav ? 0.8 : 0.55
+      const base = fav ? 0.95 : 0.7
       const bob = level > 0.01 ? Math.sin(time * 7 + i) * level * 0.6 : 0
       const s = base * (1 + level * 1.6)
+      this._sphereScale[i] = s
       d.position.set(x, this.heightAt(x, z) + 0.5 + base + bob + level * 2.2, z)
       d.scale.setScalar(s)
       d.updateMatrix()
@@ -225,7 +285,6 @@ export class World {
   render(time) {
     const breathe = 1 + Math.sin(time * 1.8) * 0.12
     this.nexusRing.scale.setScalar(breathe)
-    this.controls.update()
     this.renderer.render(this.scene, this.camera)
   }
 }
