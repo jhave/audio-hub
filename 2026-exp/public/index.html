@@ -10,7 +10,7 @@
   body { font: 13px/1.45 -apple-system, "Helvetica Neue", sans-serif; color: #cfd8dc; }
   #scene { position: fixed; inset: 0; }
   #hud {
-    position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
     max-width: min(640px, 85vw); text-align: center;
     pointer-events: none; text-shadow: 0 2px 10px rgba(0,0,0,.95);
     z-index: 4;
@@ -67,7 +67,7 @@
   #status.manual { color: #e6d3a3; }
 
   /* Hidden initially until start */
-  #hud, #panel, #title, #status, #hint {
+  #hud, #panel, #title, #status, #hint, #track-counter {
     opacity: 0; pointer-events: none; transition: opacity 1.2s;
   }
 
@@ -161,28 +161,24 @@
   </div>
 </div>
 <div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3;"></div>
+<div id="track-counter" class="track-counter-container">
+  <button id="dec-tracks" class="chevron-btn">▼</button>
+  <span id="track-count-val">1</span>
+  <button id="inc-tracks" class="chevron-btn">▲</button>
+</div>
 <div id="title"><b>171exp</b> &nbsp;·&nbsp; a navigable soundscape · music created in suno · glia.ca</div>
 <div id="hint">drag orbit · scroll/pinch zoom · click a sphere to travel<br/>space pauses · any click borrows the tiller from auto-flight</div>
 <div id="status">auto-flight</div>
 <div id="hud">
-  <div class="track-counter-container">
-    <button id="dec-tracks" class="chevron-btn">▼</button>
-    <span id="track-count-val">1</span>
-    <button id="inc-tracks" class="chevron-btn">▲</button>
-  </div>
   <div class="album"></div>
   <div class="track"></div>
   <div class="prompt"></div>
 </div>
 <div id="panel">
-  <label>topology (t-sne &rarr; umap)</label>
-  <input id="morph" type="range" min="0" max="5" step="0.001" value="1" />
-  <label>spread (diffuse the flocks)</label>
-  <input id="spread" type="range" min="0" max="1" step="0.01" value="0.55" />
   <label>listening region</label>
   <input id="region" type="range" min="0" max="1" step="0.01" value="0.20" />
   <div id="flight-speed-container" class="hidden">
-    <label>speed of flight</label>
+    <label>change rate</label>
     <input id="flight-speed" type="range" min="0" max="1" step="0.01" value="0.0" />
   </div>
   <div class="mode">
