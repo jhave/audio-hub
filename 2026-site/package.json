@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:portable": "PORTABLE=1 next build && node tools/portable-fix.mjs",
     "start": "next start",
     "gen:manifest": "node tools/gen-manifest.mjs",
     "lint": "eslint"
