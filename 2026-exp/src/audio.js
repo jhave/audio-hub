@@ -12,7 +12,6 @@ export class SoundField {
     this.pool = []
     this.maxVoices = 2
     this.falloff = 7 // world units at which a voice is ~half gain
-    this.chaos = 0.25
     this.onended = null // (trackIdx) => void
     this.positions = null // Float32Array [x,y]*n, set by main each morph
   }
@@ -55,11 +54,6 @@ export class SoundField {
     const t = this.tracks[trackIdx]
     v.trackIdx = trackIdx
     v.el.src = t.url
-    // chaos seeks into the middle of tracks: mashup of moments, not intros
-    const seek = this.chaos > 0.15 && t.dur > 40 ? Math.random() * t.dur * 0.7 * this.chaos : 0
-    if (seek > 1) {
-      v.el.currentTime = seek
-    }
     v.el.onended = () => {
       if (this.onended) this.onended(trackIdx)
       this._release(trackIdx)
