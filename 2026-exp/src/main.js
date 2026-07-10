@@ -23,11 +23,16 @@ const world = new World($("#scene"), data)
 const field = new SoundField(data.tracks)
 const drift = new Drift(data.tracks)
 
+let trackLimitCount = 1
+world.setTrackLimit(trackLimitCount)
+drift.trackLimitCount = trackLimitCount
+
 let introActive = true
 function enterExperience() {
   if (!introActive) return
   introActive = false
   field.resume()
+  drift.userSelected(0) // target the first track on launch
 
   const intro = $("#intro")
   if (intro) {
@@ -49,111 +54,61 @@ function enterExperience() {
 const enterBtn = $("#enter-btn")
 if (enterBtn) enterBtn.onclick = enterExperience
 
-/* Diffused variants of every layout: iterative pair-repulsion until no two
-   tracks sit closer than minD, so each song can be visually distinct. The
-   spread slider mixes raw <-> relaxed. */
-function relaxLayout(pts, minD = 0.05, iters = 16) {
-  const p = pts.map(([x, y]) => [x, y])
-  const cell = minD
-  for (let it = 0; it < iters; it++) {
-    const buckets = new Map()
-    for (let i = 0; i < p.length; i++) {
-      const key = `${Math.floor(p[i][0] / cell)},${Math.floor(p[i][1] / cell)}`
-      let b = buckets.get(key)
-      if (!b) buckets.set(key, (b = []))
-      b.push(i)
+/* Geometric quadrant coordinates layout: overrides all layout keys */
+function applyGeometricLayout(N) {
+  const R = 8.0 // baseline spacing radius
+  const pts = []
+  if (N === 1) {
+    pts.push([0, 0])
+  } else if (N === 2) {
+    pts.push([-R * 0.7, 0])
+    pts.push([R * 0.7, 0])
+  } else if (N === 3) {
+    for (let i = 0; i < 3; i++) {
+      const theta = -Math.PI / 2 + (i * Math.PI * 2) / 3
+      pts.push([R * Math.cos(theta), R * Math.sin(theta)])
     }
-    for (let i = 0; i < p.length; i++) {
-      const ix = Math.floor(p[i][0] / cell), iy = Math.floor(p[i][1] / cell)
-      for (let dy = -1; dy <= 1; dy++) {
-        for (let dx = -1; dx <= 1; dx++) {
-          const b = buckets.get(`${ix + dx},${iy + dy}`)
-          if (!b) continue
-          for (const j of b) {
-            if (j <= i) continue
-            let vx = p[j][0] - p[i][0]
-            let vy = p[j][1] - p[i][1]
-            let d = Math.hypot(vx, vy)
-            if (d >= minD) continue
-            if (d < 1e-6) { vx = Math.cos(i); vy = Math.sin(i); d = 1e-6 }
-            const push = (minD - d) / d * 0.5
-            p[i][0] -= vx * push; p[i][1] -= vy * push
-            p[j][0] += vx * push; p[j][1] += vy * push
-          }
-        }
-      }
+  } else if (N === 4) {
+    // Quadrants: top-left, top-right, bottom-left, bottom-right
+    pts.push([-R * 0.8, -R * 0.8]) // Q1
+    pts.push([R * 0.8, -R * 0.8])  // Q2
+    pts.push([-R * 0.8, R * 0.8])  // Q3
+    pts.push([R * 0.8, R * 0.8])   // Q4
+  } else {
+    // Spiral layout for N > 4
+    for (let i = 0; i < N; i++) {
+      const theta = i * 0.35
+      const r = R + i * 0.15
+      pts.push([r * Math.cos(theta), r * Math.sin(theta)])
     }
   }
-  return p
-}
-const relaxed = {}
-for (const k of data.layoutKeys) relaxed[k] = relaxLayout(data.layouts[k])
 
-/* layouts + morphing: the slider sweeps across all hyperparameter variants */
-const keys = data.layoutKeys
-let morphPos = 1 // continuous position along [0, keys.length-1]
-let spread = 0.55
-function applyMorph() {
-  const i = Math.min(keys.length - 2, Math.floor(morphPos))
-  const k = morphPos - i
-  world.blendLayout(
-    data.layouts[keys[i]], data.layouts[keys[i + 1]],
-    relaxed[keys[i]], relaxed[keys[i + 1]],
-    k, spread
-  )
+  const total = data.tracks.length
+  for (let i = 0; i < total; i++) {
+    const pt = pts[i] || [0, 0]
+    world.positions[i * 2] = pt[0]
+    world.positions[i * 2 + 1] = pt[1]
+  }
+
   field.positions = world.positions
   drift.positions = world.positions
 }
-applyMorph()
-world.rebuildTerrain()
-
-let terrainDirty = false
-let terrainTimer = null
-let userMorphAt = -1e9
-function scheduleTerrain(delay = 250) {
-  terrainDirty = true
-  clearTimeout(terrainTimer)
-  terrainTimer = setTimeout(() => {
-    if (terrainDirty) { world.rebuildTerrain(); terrainDirty = false }
-  }, delay)
-}
-$("#morph").addEventListener("input", (e) => {
-  morphPos = parseFloat(e.target.value)
-  userMorphAt = performance.now()
-  applyMorph()
-  scheduleTerrain()
-})
-
-/* in auto mode the topology itself migrates: two slow incommensurate sines
-   wander the hyperparameter space, and the flocks keep resettling */
-let lastAutoTerrain = 0
-function autoMorph(now) {
-  if (!drift.autoActive) return
-  if (now - userMorphAt < 45_000) return // respect a recent human choice
-  const t = now / 1000
-  const drifted = 2.5 + 2.45 * Math.sin(t * 0.011) * Math.sin(t * 0.0053 + 1.7)
-  morphPos = Math.min(5, Math.max(0, drifted))
-  $("#morph").value = morphPos
-  applyMorph()
-  if (now - lastAutoTerrain > 2500 && !document.hidden) {
-    lastAutoTerrain = now
-    world.rebuildTerrain()
-  }
-}
+applyGeometricLayout(trackLimitCount)
 
 /* flight speed */
 function applyFlightSpeed(fs) {
   drift.flightSpeed = fs
 }
-applyFlightSpeed(0.20)
-$("#flight-speed").addEventListener("input", (e) => applyFlightSpeed(parseFloat(e.target.value)))
-
-/* spread: diffuse the clusters so each track is distinct */
-$("#spread").addEventListener("input", (e) => {
-  spread = parseFloat(e.target.value)
-  applyMorph()
-  scheduleTerrain()
+applyFlightSpeed(0.0)
+$("#flight-speed").addEventListener("input", (e) => {
+  const val = parseFloat(e.target.value)
+  applyFlightSpeed(val)
+  if (val === 0) {
+    setAuto(false)
+  }
 })
+
+// Spread/diffusion sliders are disabled under geometric layout
 
 /* region: radius of the listening area (volume falls off smoothly, no edge) */
 function applyRegion(r) {
@@ -172,8 +127,15 @@ function setAuto(on) {
   }
   const speedContainer = $("#flight-speed-container")
   if (speedContainer) {
-    if (on) speedContainer.classList.remove("hidden")
-    else speedContainer.classList.add("hidden")
+    if (on) {
+      speedContainer.classList.remove("hidden")
+      if (drift.flightSpeed === 0) {
+        applyFlightSpeed(0.20)
+        $("#flight-speed").value = 0.20
+      }
+    } else {
+      speedContainer.classList.add("hidden")
+    }
   }
 }
 const btnToggle = $("#toggle-autoflight")
@@ -181,7 +143,38 @@ if (btnToggle) {
   btnToggle.onclick = () => setAuto(!drift.auto)
 }
 const urlMode = new URLSearchParams(location.search).get("mode")
-if (urlMode === "wander") setAuto(false)
+setAuto(urlMode === "auto")
+
+/* track spawning chevrons */
+function changeTrackLimit(delta) {
+  trackLimitCount = Math.min(data.tracks.length, Math.max(1, trackLimitCount + delta))
+  $("#track-count-val").textContent = trackLimitCount
+  
+  // Re-apply geometric coordinates based on the new limit count N
+  applyGeometricLayout(trackLimitCount)
+  
+  world.setTrackLimit(trackLimitCount)
+  drift.trackLimitCount = trackLimitCount
+  
+  if (drift.target >= trackLimitCount) {
+    drift.userSelected(trackLimitCount - 1)
+  }
+}
+
+const btnDec = $("#dec-tracks")
+const btnInc = $("#inc-tracks")
+if (btnDec && btnInc) {
+  btnDec.onclick = (e) => {
+    e.stopPropagation()
+    const delta = e.shiftKey ? -10 : (e.altKey ? -50 : -1)
+    changeTrackLimit(delta)
+  }
+  btnInc.onclick = (e) => {
+    e.stopPropagation()
+    const delta = e.shiftKey ? 10 : (e.altKey ? 50 : 1)
+    changeTrackLimit(delta)
+  }
+}
 
 /* interaction */
 let downAt = null
@@ -225,13 +218,25 @@ addEventListener("pointermove", (e) => {
   if (!drift.autoActive && hit?.ground) drift.hoverPoint = hit.ground
 })
 
-/* spacebar: hold the whole world's breath */
+/* keyboard interaction: space to pause, arrows to navigate */
 let paused = false
 addEventListener("keydown", (e) => {
-  if (e.code !== "Space" || e.target.tagName === "INPUT") return
-  e.preventDefault()
-  paused = !paused
-  if (field.ctx) (paused ? field.ctx.suspend() : field.ctx.resume())
+  if (e.target.tagName === "INPUT") return
+  if (e.code === "Space") {
+    e.preventDefault()
+    paused = !paused
+    if (field.ctx) (paused ? field.ctx.suspend() : field.ctx.resume())
+  } else if (e.key === "ArrowRight") {
+    e.preventDefault()
+    let nextIdx = (drift.target != null ? drift.target + 1 : 0)
+    if (nextIdx >= trackLimitCount) nextIdx = 0
+    drift.userSelected(nextIdx)
+  } else if (e.key === "ArrowLeft") {
+    e.preventDefault()
+    let prevIdx = (drift.target != null ? drift.target - 1 : 0)
+    if (prevIdx < 0 || prevIdx >= trackLimitCount) prevIdx = trackLimitCount - 1
+    drift.userSelected(prevIdx)
+  }
 })
 
 field.onended = () => drift.onSongEnded()
@@ -273,7 +278,6 @@ setInterval(() => {
   const dt = Math.min(1, (now - lastTick) / 1000)
   lastTick = now
   if (paused) { updateStatus(); return }
-  autoMorph(now)
   const [nx, ny] = drift.step(dt)
   field.setNexus(nx, ny)
   updateCaption()
@@ -289,10 +293,11 @@ function frame(now) {
   last = now
   const nx = drift.nx, ny = drift.ny
   world.setNexusPos(nx, ny)
+  const dom = field.dominant()
+  world.currentDominantIdx = dom
   world.updateRegionRing(nx, ny, field.falloff, introActive, now / 1000)
   world.updateSpheres((i) => field.level(i), now / 1000, field.falloff)
 
-  const dom = field.dominant()
   world.setPlayhead(dom, dom >= 0 ? field.progress(dom) : null)
 
   if (!paused) {
