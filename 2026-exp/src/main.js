@@ -42,7 +42,7 @@ function enterExperience() {
     }, 800)
   }
 
-  const toFade = ["#title", "#hud", "#panel", "#status", "#hint", "#track-counter"]
+  const toFade = ["#hud"]
   for (const id of toFade) {
     const el = $(id)
     if (el) {
@@ -54,46 +54,152 @@ function enterExperience() {
 const enterBtn = $("#enter-btn")
 if (enterBtn) enterBtn.onclick = enterExperience
 
-/* Geometric quadrant coordinates layout: overrides all layout keys */
+/* Geometric quadrant coordinates layout: overrides all layout keys, filters out deleted tracks */
 function applyGeometricLayout(N) {
   const R = 8.0 // baseline spacing radius
   const pts = []
-  if (N === 1) {
+  
+  const activeTracks = []
+  for (let i = 0; i < data.tracks.length; i++) {
+    if (!data.tracks[i].deleted) {
+      activeTracks.push(i)
+    }
+  }
+  
+  const limit = Math.min(N, activeTracks.length)
+  
+  if (limit === 1) {
     pts.push([0, 0])
-  } else if (N === 2) {
+  } else if (limit === 2) {
     pts.push([-R * 0.7, 0])
     pts.push([R * 0.7, 0])
-  } else if (N === 3) {
+  } else if (limit === 3) {
     for (let i = 0; i < 3; i++) {
       const theta = -Math.PI / 2 + (i * Math.PI * 2) / 3
       pts.push([R * Math.cos(theta), R * Math.sin(theta)])
     }
-  } else if (N === 4) {
-    // Quadrants: top-left, top-right, bottom-left, bottom-right
+  } else if (limit === 4) {
     pts.push([-R * 0.8, -R * 0.8]) // Q1
     pts.push([R * 0.8, -R * 0.8])  // Q2
     pts.push([-R * 0.8, R * 0.8])  // Q3
     pts.push([R * 0.8, R * 0.8])   // Q4
   } else {
-    // Spiral layout for N > 4
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < limit; i++) {
       const theta = i * 0.35
       const r = R + i * 0.15
       pts.push([r * Math.cos(theta), r * Math.sin(theta)])
     }
   }
 
-  const total = data.tracks.length
-  for (let i = 0; i < total; i++) {
-    const pt = pts[i] || [0, 0]
-    world.positions[i * 2] = pt[0]
-    world.positions[i * 2 + 1] = pt[1]
+  for (let i = 0; i < limit; i++) {
+    const trackIdx = activeTracks[i]
+    world.positions[trackIdx * 2] = pts[i][0]
+    world.positions[trackIdx * 2 + 1] = pts[i][1]
+  }
+
+  // Push all inactive or deleted tracks extremely far away to keep them silent
+  for (let i = 0; i < data.tracks.length; i++) {
+    const isUnderLimit = activeTracks.indexOf(i) !== -1 && activeTracks.indexOf(i) < limit
+    if (!isUnderLimit) {
+      world.positions[i * 2] = 9999.0
+      world.positions[i * 2 + 1] = 9999.0
+    }
   }
 
   field.positions = world.positions
   drift.positions = world.positions
+  
+  world.rebuildTerrain()
 }
 applyGeometricLayout(trackLimitCount)
+
+/* Unified HUD Mixer songs list renderer */
+function updateActiveSongsList() {
+  const container = $("#hud-active-songs")
+  if (!container) return
+  
+  const activeTrackIndices = Array.from(field.voices.keys())
+  
+  if (activeTrackIndices.length === 0) {
+    container.innerHTML = `<div style="font-size: 11px; color: #62757d; text-align: center; padding: 4px 0;">No active tracks in region</div>`
+    return
+  }
+  
+  const existingItems = Array.from(container.children)
+  const existingMap = new Map()
+  for (const el of existingItems) {
+    const trackIdx = parseInt(el.dataset.trackIdx)
+    existingMap.set(trackIdx, el)
+  }
+  
+  const keepIndices = new Set(activeTrackIndices)
+  for (const el of existingItems) {
+    const trackIdx = parseInt(el.dataset.trackIdx)
+    if (!keepIndices.has(trackIdx)) {
+      container.removeChild(el)
+    }
+  }
+  
+  for (const trackIdx of activeTrackIndices) {
+    const v = field.voices.get(trackIdx)
+    const t = data.tracks[trackIdx]
+    if (!t) continue
+    
+    let el = existingMap.get(trackIdx)
+    if (!el) {
+      el = document.createElement("div")
+      el.className = "active-song-item"
+      el.dataset.trackIdx = trackIdx
+      
+      const titleSpan = document.createElement("span")
+      titleSpan.className = "song-title"
+      titleSpan.textContent = t.title
+      
+      const playPauseBtn = document.createElement("button")
+      playPauseBtn.className = "hud-btn play-pause-btn"
+      playPauseBtn.textContent = t.manualPaused ? "▶" : "‖"
+      playPauseBtn.onclick = (e) => {
+        e.stopPropagation()
+        t.manualPaused = !t.manualPaused
+        playPauseBtn.textContent = t.manualPaused ? "▶" : "‖"
+      }
+      
+      const volSlider = document.createElement("input")
+      volSlider.type = "range"
+      volSlider.min = "0"
+      volSlider.max = "1"
+      volSlider.step = "0.01"
+      volSlider.className = "hud-vol-slider"
+      volSlider.value = t.manualVolume !== undefined ? t.manualVolume : "1.0"
+      volSlider.oninput = (e) => {
+        t.manualVolume = parseFloat(e.target.value)
+      }
+      
+      const deleteBtn = document.createElement("button")
+      deleteBtn.className = "hud-btn delete-song-btn"
+      deleteBtn.textContent = "✖"
+      deleteBtn.onclick = (e) => {
+        e.stopPropagation()
+        t.deleted = true
+        field._release(trackIdx)
+        changeTrackLimit(0)
+      }
+      
+      el.appendChild(titleSpan)
+      el.appendChild(playPauseBtn)
+      el.appendChild(volSlider)
+      el.appendChild(deleteBtn)
+      container.appendChild(el)
+    } else {
+      const playPauseBtn = el.querySelector(".play-pause-btn")
+      if (playPauseBtn) {
+        playPauseBtn.textContent = t.manualPaused ? "▶" : "‖"
+      }
+      const isDominant = (trackIdx === field.dominant())
+      el.classList.toggle("dominant", isDominant)
+    }
+  }
+}
 
 /* flight speed */
 function applyFlightSpeed(fs) {
@@ -115,7 +221,6 @@ function applyRegion(r) {
   field.falloff = 3 + r * 14
 }
 applyRegion(0.20)
-$("#region").addEventListener("input", (e) => applyRegion(parseFloat(e.target.value)))
 
 /* modes */
 function setAuto(on) {
@@ -247,33 +352,6 @@ field.onended = () => drift.onSongEnded()
 
 /* status rollover: who is flying, and when auto resumes */
 const elStatus = $("#status")
-function updateStatus() {
-  let text
-  if (paused) text = "paused — space to resume"
-  else if (drift.autoActive) text = "auto-flight"
-  else {
-    const s = Math.ceil(drift.autoResumeIn() / 1000)
-    text = drift.auto ? `yours — auto-flight resumes in ${s}s` : "wander — you have the tiller"
-  }
-  if (elStatus.textContent !== text) elStatus.textContent = text
-  elStatus.classList.toggle("manual", !paused && !drift.autoActive)
-}
-
-/* caption */
-const elAlbum = $("#hud .album"), elTrack = $("#hud .track"), elPrompt = $("#hud .prompt")
-let lastDom = -1
-function updateCaption() {
-  const dom = field.dominant()
-  if (dom === lastDom) return
-  lastDom = dom
-  if (dom < 0) { elAlbum.textContent = ""; elTrack.textContent = ""; elPrompt.textContent = ""; return }
-  const t = data.tracks[dom]
-  const a = data.albums[t.album]
-  elAlbum.textContent = a.title
-  elTrack.textContent = t.title
-  elPrompt.textContent = a.prompt
-}
-
 /* logic tick: drift + audio mix on a timer so the music keeps flowing even
    when the tab/window is hidden (rAF freezes there; setInterval survives) */
 let lastTick = performance.now()
@@ -281,11 +359,9 @@ setInterval(() => {
   const now = performance.now()
   const dt = Math.min(1, (now - lastTick) / 1000)
   lastTick = now
-  if (paused) { updateStatus(); return }
+  if (paused) return
   const [nx, ny] = drift.step(dt)
   field.setNexus(nx, ny)
-  updateCaption()
-  updateStatus()
 }, 180)
 
 /* render loop: visuals only */
@@ -301,6 +377,9 @@ function frame(now) {
   world.currentDominantIdx = dom
   world.updateRegionRing(nx, ny, field.falloff, introActive, now / 1000)
   world.updateSpheres((i) => field.level(i), now / 1000, field.falloff)
+
+  // Update dynamic song listings inside consolidated HUD
+  updateActiveSongsList()
 
   world.setPlayhead(dom, dom >= 0 ? field.progress(dom) : null)
 

@@ -10,66 +10,145 @@
   body { font: 13px/1.45 -apple-system, "Helvetica Neue", sans-serif; color: #cfd8dc; }
   #scene { position: fixed; inset: 0; }
   #hud {
-    position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
-    max-width: min(640px, 85vw); text-align: center;
-    pointer-events: none; text-shadow: 0 2px 10px rgba(0,0,0,.95);
-    z-index: 4;
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+    background: rgba(8, 12, 16, 0.85); border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 24px; border-radius: 16px; backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    pointer-events: auto;
+    width: min(540px, 92vw);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 1.2s;
   }
-  #hud .album { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: .02em; }
-  #hud .track { font-size: 15px; color: #d8b56a; margin-top: 6px; font-weight: 550; }
-  #hud .prompt {
-    font-size: 12px; font-style: italic; color: #90a4ae; margin-top: 10px;
-    line-height: 1.55;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  .hud-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 10px;
   }
-  #panel {
-    position: fixed; right: 16px; top: 44px; width: 208px;
-    background: rgba(8,12,16,.72); border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px; padding: 12px 14px; backdrop-filter: blur(10px);
-    z-index: 5;
+  .hud-label {
+    font-size: 10px;
+    color: #8fa3ab;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 4px;
   }
-  @media (max-width: 760px) {
-    #panel { width: 156px; padding: 9px 11px; top: 40px; }
-    #hud { max-width: 88vw; }
+  .track-counter-container {
+    display: inline-flex; align-items: center; gap: 6px;
   }
-  #panel label { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7e8f97; margin: 8px 0 2px; }
-  #panel input[type=range] { width: 100%; accent-color: #d8b56a; }
-  #panel .mode { display: flex; margin-top: 10px; }
-  #panel button {
-    width: 100%; background: rgba(244, 67, 54, 0.06); color: #ff8a80; border: 1px solid rgba(244, 67, 54, 0.25);
-    border-radius: 7px; padding: 6px 0; font-size: 11px; cursor: pointer;
+  .chevron-btn {
+    background: none; border: none; color: #d8b56a; font-size: 14px; cursor: pointer;
+    padding: 0 4px; line-height: 1; transition: transform 0.2s, color 0.2s;
+  }
+  .chevron-btn:hover { color: #fff; transform: scale(1.2); }
+  #track-count-val { font-weight: 700; color: #fff; font-size: 14px; min-width: 24px; display: inline-block; text-align: center; }
+
+  #flight-speed-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.4s;
+  }
+  #flight-speed-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #flight-speed-container input[type=range] {
+    width: 80px;
+    accent-color: #d8b56a;
+    height: 4px;
+    cursor: pointer;
+    margin: 0;
+  }
+  #toggle-autoflight {
+    background: rgba(244, 67, 54, 0.06); color: #ff8a80; border: 1px solid rgba(244, 67, 54, 0.25);
+    border-radius: 6px; padding: 4px 10px; font-size: 10px; cursor: pointer;
     font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
     transition: all 0.3s;
   }
-  #panel button.active { background: #d8b56a; color: #14100a; border-color: #d8b56a; font-weight: 600; }
-  #title {
-    position: fixed; left: 16px; top: 14px; pointer-events: none;
-    font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #90a4ae;
-    text-shadow: 0 1px 6px rgba(0,0,0,.8);
-    z-index: 5;
+  #toggle-autoflight.active {
+    background: #d8b56a; color: #14100a; border-color: #d8b56a; font-weight: 600;
   }
-  #title b { color: #e6d3a3; font-weight: 650; }
+
+  .active-songs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-height: 140px;
+    overflow-y: auto;
+  }
+  .active-song-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #cfd8dc;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.03);
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .active-song-item.dominant {
+    border-color: rgba(216, 181, 106, 0.25);
+    background: rgba(216, 181, 106, 0.04);
+  }
+  .active-song-item.dominant .song-title {
+    color: #d8b56a;
+    font-weight: 600;
+  }
+  .song-title {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+  }
+  .hud-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #cfd8dc;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 3px 6px;
+    font-size: 10px;
+    line-height: 1;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hud-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  .delete-song-btn {
+    color: #ef9a9a;
+    border-color: rgba(239, 154, 154, 0.2);
+  }
+  .delete-song-btn:hover {
+    background: rgba(244, 67, 54, 0.12);
+    color: #ff8a80;
+  }
+  .hud-vol-slider {
+    width: 60px;
+    margin: 0;
+    accent-color: #d8b56a;
+    height: 3px;
+    cursor: pointer;
+  }
+
   #loading {
     position: fixed; inset: 0; display: grid; place-items: center;
     background: #05070a; z-index: 20; transition: opacity .8s; font-size: 13px; color: #90a4ae;
     letter-spacing: .1em;
   }
   #loading.done { opacity: 0; pointer-events: none; }
-  #hint { position: fixed; right: 18px; bottom: 16px; width: 240px; font-size: 11px; color: #62757d; text-align: right; pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,.8); z-index: 5; }
-  @media (max-width: 760px) { #hint { display: none; } }
-  #status {
-    position: fixed; left: 16px; top: 40px;
-    font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
-    color: #7e8f97; pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,.8);
-    transition: color .4s;
-    z-index: 5;
-  }
-  #status.manual { color: #e6d3a3; }
-
-  /* Hidden initially until start */
-  #hud, #panel, #title, #status, #hint, #track-counter {
-    opacity: 0; pointer-events: none; transition: opacity 1.2s;
-  }
 
   /* Intro Overlay */
   #intro {
@@ -105,39 +184,8 @@
   }
   #enter-btn:hover { background: #e6d3a3; transform: scale(1.02); }
 
-  #flight-speed-container {
-    transition: opacity 0.4s, max-height 0.4s;
-    overflow: hidden;
-  }
-  #flight-speed-container.hidden {
-    opacity: 0;
-    max-height: 0;
-    margin: 0;
-    padding: 0;
-    pointer-events: none;
-  }
-
-  .track-counter-container {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    margin-bottom: 14px; font-size: 11px; color: #8fa3ab; pointer-events: auto;
-    background: rgba(8,12,16,.5); border: 1px solid rgba(255,255,255,.05);
-    padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    text-transform: uppercase; letter-spacing: 0.08em;
-  }
-  .chevron-btn {
-    background: none; border: none; color: #d8b56a; font-size: 15px; cursor: pointer;
-    padding: 0 4px; line-height: 1; transition: transform 0.2s, color 0.2s;
-  }
-  .chevron-btn:hover { color: #fff; transform: scale(1.2); }
-  #track-count-val { font-weight: 700; color: #fff; font-size: 14px; min-width: 32px; display: inline-block; text-align: center; }
-
-  .track-label {
-    position: absolute; color: #cfd8dc; font-size: 11px;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.95); pointer-events: none;
-    white-space: nowrap; transform: translate(-50%, -100%);
-    transition: color 0.3s, font-size 0.3s, opacity 0.3s;
-    z-index: 3;
+  #panel, #hint, #title, #status {
+    display: none !important;
   }
 </style>
 </head>
@@ -161,29 +209,24 @@
   </div>
 </div>
 <div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; display: none; z-index: 3;"></div>
-<div id="track-counter" class="track-counter-container">
-  <button id="dec-tracks" class="chevron-btn">▼</button>
-  <span id="track-count-val">1</span>
-  <button id="inc-tracks" class="chevron-btn">▲</button>
-</div>
-<div id="title"><b>171exp</b> &nbsp;·&nbsp; a navigable soundscape · music created in suno · glia.ca</div>
-<div id="hint">drag orbit · scroll/pinch zoom · click a sphere to travel<br/>space pauses · any click borrows the tiller from auto-flight</div>
-<div id="status">auto-flight</div>
 <div id="hud">
-  <div class="album"></div>
-  <div class="track"></div>
-  <div class="prompt"></div>
-</div>
-<div id="panel">
-  <label>listening region</label>
-  <input id="region" type="range" min="0" max="1" step="0.01" value="0.20" />
-  <div id="flight-speed-container" class="hidden">
-    <label>change rate</label>
-    <input id="flight-speed" type="range" min="0" max="1" step="0.01" value="0.0" />
-  </div>
-  <div class="mode">
+  <div class="hud-controls-row">
+    <div class="track-counter-container">
+      <span class="hud-label">Tracks:</span>
+      <button id="dec-tracks" class="chevron-btn">▼</button>
+      <span id="track-count-val">1</span>
+      <button id="inc-tracks" class="chevron-btn">▲</button>
+    </div>
+    
+    <div id="flight-speed-container" class="hidden">
+      <span class="hud-label">Change Rate:</span>
+      <input id="flight-speed" type="range" min="0" max="1" step="0.01" value="0.0" />
+    </div>
+    
     <button id="toggle-autoflight">Auto-Flight: OFF</button>
   </div>
+  
+  <div id="hud-active-songs" class="active-songs-list"></div>
 </div>
 <script type="module" src="app.js"></script>
 </body>

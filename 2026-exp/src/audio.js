@@ -130,8 +130,20 @@ export class SoundField {
       if (!v) v = this._acquire(i)
       if (!v) continue
       const share = total > 0 ? g / total : 0
-      // sqrt(share): equal-power blend across simultaneous voices
-      v.gain.gain.setTargetAtTime(Math.sqrt(share) * overall * 0.9, this.ctx.currentTime, 0.35)
+      
+      const t = this.tracks[i]
+      const manualVol = t.manualVolume !== undefined ? t.manualVolume : 1.0
+      const isPaused = t.manualPaused || false
+      
+      if (isPaused) {
+        if (!v.el.paused) v.el.pause()
+      } else {
+        if (v.el.paused) v.el.play().catch(() => {})
+      }
+      
+      // sqrt(share): equal-power blend across simultaneous voices, scaled by manual controls
+      const targetGain = Math.sqrt(share) * overall * 0.9 * manualVol * (isPaused ? 0 : 1)
+      v.gain.gain.setTargetAtTime(targetGain, this.ctx.currentTime, 0.35)
     }
     for (const idx of [...this.voices.keys()]) {
       if (!keep.has(idx)) {
