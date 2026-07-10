@@ -25,13 +25,14 @@ export class World {
     const d = WORLD * 0.85
     this.camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, -400, 800)
     this.camera.position.set(WORLD, WORLD * 0.95, WORLD)
+    this.camera.zoom = 2.6
     this.camera.lookAt(0, 0, 0)
 
     this.controls = new MapControls(this.camera, canvas)
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.08
-    this.controls.minZoom = 0.5
-    this.controls.maxZoom = 7
+    this.controls.minZoom = 1.0
+    this.controls.maxZoom = 12.0
     this.controls.maxPolarAngle = Math.PI * 0.46
 
     this.scene.add(new THREE.AmbientLight(0x8899bb, 0.55))
@@ -45,6 +46,7 @@ export class World {
     this.terrainGeo.rotateX(-Math.PI / 2)
     const mat = new THREE.MeshStandardMaterial({
       vertexColors: true, roughness: 0.92, metalness: 0.05, flatShading: false,
+      visible: false, // make terrain mesh invisible to show floating constellation of points
     })
     this.terrain = new THREE.Mesh(this.terrainGeo, mat)
     this.scene.add(this.terrain)
@@ -139,10 +141,10 @@ export class World {
     off.setFromSpherical(sph)
     this.camera.position.copy(this.controls.target).add(off)
     this.camera.lookAt(this.controls.target)
-    // Zoom oscillation when arrived (sweeps 1.5 to 5.5 for a close single-track orbit camera)
+    // Zoom oscillation when arrived (sweeps 2.5 to 7.5 for an ultra-close single-track orbit camera)
     const zTarget = arrived
-      ? Math.max(1.5, 3.5 + Math.sin(time * 0.08) * 2.0)
-      : 1.15
+      ? 5.0 + Math.sin(time * 0.08) * 2.5
+      : 2.6
     this.camera.zoom += (zTarget - this.camera.zoom) * (1 - Math.exp(-dt * 0.35))
     this.camera.updateProjectionMatrix()
   }
