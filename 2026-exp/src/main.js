@@ -141,12 +141,9 @@ function autoMorph(now) {
   }
 }
 
-/* flight speed / chaos mapping */
+/* flight speed */
 function applyFlightSpeed(fs) {
-  // temporarily map flightSpeed to drift/field chaos properties
-  field.chaos = fs
-  drift.chaos = fs
-  field.maxVoices = 1 + Math.round(fs * 3) // 1..4 voices
+  drift.flightSpeed = fs
 }
 applyFlightSpeed(0.3)
 $("#flight-speed").addEventListener("input", (e) => applyFlightSpeed(parseFloat(e.target.value)))
@@ -292,7 +289,8 @@ function frame(now) {
   last = now
   const nx = drift.nx, ny = drift.ny
   world.setNexusPos(nx, ny)
-  world.updateSpheres((i) => field.level(i), now / 1000)
+  world.updateRegionRing(nx, ny, field.falloff, introActive, now / 1000)
+  world.updateSpheres((i) => field.level(i), now / 1000, field.falloff)
 
   const dom = field.dominant()
   world.setPlayhead(dom, dom >= 0 ? field.progress(dom) : null)
