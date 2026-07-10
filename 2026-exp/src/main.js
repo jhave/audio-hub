@@ -330,22 +330,32 @@ addEventListener("pointermove", (e) => {
   
   if (introActive) return
   
-  // Map X to Change Rate (flight speed) - Simple (left is 0.0, right is 1.0/100)
-  const fs = Math.min(1.0, Math.max(0.0, e.clientX / window.innerWidth))
-  if (fs < 0.03) {
+  // Mark user interaction to override pilot target switching
+  drift.lastUserInput = now
+  
+  let limit
+  if (e.clientY < 10) {
+    limit = 1
     setAuto(false)
     applyFlightSpeed(0.0)
   } else {
-    setAuto(true)
-    applyFlightSpeed(fs)
+    // Map Y to Number of Songs (trackLimitCount) - Simple (top is 1, bottom is total count)
+    const pctY = Math.min(1.0, Math.max(0.0, (e.clientY - 10) / (window.innerHeight - 10)))
+    limit = Math.round(1 + pctY * (data.tracks.length - 1))
+    
+    // Map X to Change Rate (flight speed) - Simple (left is 0.0, right is 1.0/100)
+    const fs = Math.min(1.0, Math.max(0.0, e.clientX / window.innerWidth))
+    if (fs < 0.03) {
+      setAuto(false)
+      applyFlightSpeed(0.0)
+    } else {
+      setAuto(true)
+      applyFlightSpeed(fs)
+    }
+    
+    // Dynamically map listening region falloff based on complexity Y (ranges up to 21.0)
+    field.falloff = 3.0 + pctY * 18.0
   }
-  
-  // Map Y to Number of Songs (trackLimitCount) - Simple (top is 1, bottom is total count)
-  const pctY = Math.min(1.0, Math.max(0.0, e.clientY / window.innerHeight))
-  const limit = Math.round(1 + pctY * (data.tracks.length - 1))
-  
-  // Dynamically map listening region falloff based on complexity Y (ranges up to 21.0)
-  field.falloff = 3.0 + pctY * 18.0
   
   // Directly update parameters
   trackLimitCount = limit
