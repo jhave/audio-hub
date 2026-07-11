@@ -47,15 +47,20 @@ clicked in any lens becomes the global focus everywhere.
 
 | Order | Module | Difficulty | Value | Rationale |
 |------|--------|-----------|-------|-----------|
-| 1 | Data foundation (offline `atlas.json` + loader) | Med | Blocking | Everything needs it |
-| 2 | ATLAS map + audio engine + focus state | **High** | **Highest** | The centerpiece; the "money shot" dual-topology morph |
-| 3 | INSPECTOR (track fractal + curves + tags + lyrics) | High | High | Reused by every lens; the "fractal of a track" |
+| **0** | **DH-Archive View** (`index_experience.html`, per-track fold) | **Med-High** | **Highest now** | Grafts ML insight onto the WORKING player; fastest human-readable review of the deep-analysis data; validates data before the ambitious Atlas |
+| 1 | Data foundation (offline `atlas.json` + loader) | Med | Blocking | DH-View needs a slim subset; Atlas needs all |
+| 2 | ATLAS map + audio engine + focus state | High | High | The immersive map; dual-topology morph |
+| 3 | INSPECTOR (track fractal + curves + tags + lyrics) | High | High | Reused by lenses; the "fractal of a track" |
 | 4 | INDEX (sortable/filterable table) | Low | High | Accessibility spine; fastest path to any track |
 | 5 | READER (essay with embedded figures) | Med | High | Ties the argument together; needs 2–4 as widgets |
 | 6 | Polish, a11y, deploy, dual-topology transitions | Med | High | Ship quality |
 
-Start at module 2's hardest sub-parts once module 1 is done. Module 1 is
-mostly mechanical and partially already possible from existing data.
+**Build Module 0 (DH-Archive View) FIRST** — jhave's directive. It reuses the
+proven 2026-site playlist player and surfaces the ML data in human-readable
+folds, which doubles as a review of Phase A2 before the larger Atlas is built.
+Its neighborhood-graph needs only a slim data-foundation subset (boxes 1.1–1.3
+producing 2D positions + neighbors), so do that subset first, then Module 0,
+then return to the full Module 1 for the Atlas.
 
 ---
 
@@ -104,6 +109,100 @@ github.io it points at raw.githubusercontent).
 - **75 probes, not 76.** Read `tag-probes.json.length` dynamically.
 - Some albums have twin-generation duplicates at near-identical positions;
   keep the pair-repulsion relax step so points stay clickable.
+
+---
+
+## Module 0 — DH-Archive View (`index_experience.html`)  `[ ]`
+
+**The idea (jhave, 2026-07-11):** Duplicate the working 2026 playlist player,
+keep ALL its functionality, and graft the ML analysis onto it so a person can
+review the deep-analysis data in human-readable form. Each track has a **fold**
+— an expandable info panel the listener may open or ignore. Open, it shows
+where that track sits in the topological landscape and all its analytics,
+neatly arranged. "DH" = Digital Humanities: this is the scholarly reading room
+for the archive, versus the immersive Atlas.
+
+This is the FIRST thing to build. It is lower-risk (reuses proven code) and it
+validates the Phase A2 data by making every field visible and playable.
+
+### 0A. Where it lives & how it's built  `[ ]`
+- [ ] **0.1** Duplicate the 2026-site player into an `experience` route that
+  static-exports to `experience/index.html` (deployed at
+  `glia.ca/2026/171days/experience/` — adjacent to the audio it already uses).
+  Duplicate `ManifestClient` → `ExperienceClient` and `AudioLibraryClient` →
+  `ExperienceLibraryClient` so the original player at `/2026/171days/` is
+  untouched. (Alt if Next routing is fussy: a standalone static page in
+  2026-exp that re-implements the card list — but reusing the React player is
+  preferred to "keep all the playlist functionality.")
+- [ ] **0.2** Build a slim data file `2026-site/public/data/dh.json` via a
+  script `tools/build-dh.mjs` that reads from `2026-exp/public/data/v2/` +
+  `atlas.json` (boxes 1.1–1.3) and emits, per track, ONLY what the fold needs:
+  `{ trackId, i, neighborXY:[x,y] in the chosen 2D layout, neighbors:[{i,
+  title, album, w}], prompt(styleTags), lyricsPresent, descriptorsSubset
+  (key,keyMode,tempo,tempoDrift,sections,dropAt,bounce,melodicComplexity,
+  weirdness,styleWeight,journey,spread,novelty,topTags:[{probe,score}]), fav }`.
+  Also include a corpus-wide `points:[[x,y,albumIdx]...746]` array for drawing
+  the neighborhood field behind each track's dot. Target < 400 KB. (Copy into
+  2026-site/public so the exported folder is self-contained + archive-safe.)
+
+### 0B. Player enhancements (keep everything, widen a little)  `[ ]`
+- [ ] **0.3** Widen each album card / track row slightly to make room, left of
+  the play button, for a **star indicator** marking published/starred tracks
+  (from `favorites.json`, matched by normalized title). Star = filled for
+  favorites, hollow/absent otherwise. Tooltip: "published by jhave (a favorite)."
+- [ ] **0.4** Playback-order toggle (three-way): **sequential** (current
+  behavior) · **random** (shuffle all) · **random-star** (shuffle, but only
+  among starred tracks — a curated random walk through the good ones). Wire it
+  into the existing flat-queue / auto-advance logic. Persist choice in
+  localStorage; show current mode in the floating dock.
+
+### 0C. The per-track FOLD (the ML review surface)  `[ ]`
+- [ ] **0.5** Each track row gets a disclosure control (▸/▾) that expands an
+  inline **info fold** below it. Closed by default; opening is the listener's
+  choice. Opening the fold does NOT change playback. State per-row; only one
+  fold need be open at a time (optional) or many (decide via D6).
+- [ ] **0.6** **Neighborhood graph** inside the fold: a small 2D scatter
+  (Canvas/SVG) of the UMAP/t-SNE XY. The THIS-track dot is a **pulsing red
+  dot**; around it, its nearest neighbors (and the faint mass of all other
+  tracks) are plotted so you see what it's affiliated with. Zoom framed on the
+  local neighborhood by default, with a "see whole field" toggle.
+- [ ] **0.7** Graph interaction — **hover a dot**: show that track's title +
+  album name (small label). **Click play on a hovered dot**: start playing it;
+  the player list **scrolls up to center** that track's row; and if info folds
+  are open, open that track's fold too (so the graph + analytics follow the
+  music). When nothing is hovered, the currently-PLAYING track is the pulsing
+  red dot, surrounded by its analytic data.
+- [ ] **0.8** Fold analytics panel, neatly arranged beside/below the graph:
+  the track's **prompt** (styleTags, URLs linkified), a **waveform** (render
+  from the mp3 via WebAudio decode of a short fetch, or from the `rms` curve in
+  `curves.bin` as a cheap silhouette — prefer the rms silhouette to avoid
+  decoding full mp3s), and a **readable list of the JSON data** (key, tempo +
+  drift, sections/dropAt, bounce, melodic complexity, weirdness/styleWeight,
+  journey/spread/novelty, top tags). Label every value in plain language.
+- [ ] **0.9** Sync the pulsing dot + waveform playhead to actual playback
+  progress of the playing track (the fold of the playing track is the "live"
+  one; other open folds are static references).
+
+### 0D. Ship  `[ ]`
+- [ ] **0.10** Verify in preview (Range-serving stage): stars show, order
+  toggle works, folds open, graph hover/click-play/scroll-center works, data
+  reads correctly for spot-checked tracks (cross-check a `[74W 85S]` track's
+  weirdness/styleWeight). Portable build (relative paths). Deploy to
+  `experience/` on glia.ca + gh-pages. Tag `exp-v0.5-dh`.
+
+**Definition of done (M0):** the existing player, now with star indicators and
+a random/random-star/sequential order toggle, where any track can be unfolded
+to reveal its position in the topological landscape (pulsing red dot amid its
+neighbors), its prompt, its waveform, and its full analytics — and where
+hovering/playing neighbor dots navigates the list. A complete, playable,
+human-readable review of the ML analysis.
+
+### Open decisions for M0 (defaults chosen)
+- [!] **D5** Which 2D layout for the neighborhood graph: `audio` UMAP (what the
+  machine hears) is the default; a small lens toggle (audio/lyric/prompt) in
+  the fold is a nice-to-have stretch.
+- [!] **D6** One fold open at a time vs many. *Default: many allowed, but the
+  playing track's fold auto-opens and stays "live."*
 
 ---
 
@@ -365,6 +464,11 @@ by a playable, data-driven figure drawn from the same core.
 
 ## Suggested build sessions (each ends shippable)
 
+- **Session B0** — Data-foundation subset (boxes 1.1–1.3: positions +
+  neighbors) → Module 0 (DH-Archive View) complete. Ship: "the working player,
+  now with stars, an order toggle, and a per-track fold that reveals each
+  track's place in the landscape + all its analytics." This is the FIRST build
+  and the human-readable review of the ML data.
 - **Session B1** — Module 1 complete + Module 2A/2B minimal (map plots, click
   plays one voice). Ship: "you can see and hear the field."
 - **Session B2** — Module 3 (Inspector) + Module 2.9 fractal playhead. Ship:
@@ -376,10 +480,13 @@ by a playable, data-driven figure drawn from the same core.
 - **Session B5** — Module 5 (Reader) + Module 6 polish/deploy. Ship: "the
   essay that plays; live on glia.ca."
 
-Begin Session B1 at box 1.1. The single hardest, highest-value sub-parts are
-2.9 (fractal playhead) and 2.10–2.11 (dual-topology morph + ReRites highlight)
-— attempt those as soon as the map renders, since they are the intellectual
-payload and the most likely to need iteration.
+**Begin Session B0 at box 1.1**, but scope 1.1–1.3 to just what the DH-View
+neighborhood graph needs (2D positions per space + k-NN neighbors), then build
+Module 0. The DH-Archive View is now the first shippable deliverable and the
+review surface for the Phase A2 data. After it ships and jhave has reviewed the
+data through it, proceed to the full Module 1 and the Atlas; the single
+hardest, highest-value sub-parts there remain 2.9 (fractal playhead) and
+2.10–2.11 (dual-topology morph + ReRites highlight).
 
 ---
 
