@@ -1,0 +1,3753 @@
+{
+  "dim": 512,
+  "dtype": "float16",
+  "tracks": [
+    {
+      "trackId": "Revisiting the World Within [July 9 2026]::A Sombre Just Enough [64W 72S].mp3",
+      "offset": 0,
+      "count": 26
+    },
+    {
+      "trackId": "Revisiting the World Within [July 9 2026]::Eventually Everything is Osmosis v5.5.mp3",
+      "offset": 26,
+      "count": 12
+    },
+    {
+      "trackId": "Revisiting the World Within [July 9 2026]::Grace Calibration OK Walls [74WS].mp3",
+      "offset": 38,
+      "count": 20
+    },
+    {
+      "trackId": "Revisiting the World Within [July 9 2026]::Play without Anything to Seek [74WS 25i].mp3",
+      "offset": 58,
+      "count": 19
+    },
+    {
+      "trackId": "Revisiting the World Within [July 9 2026]::Sifting Serenity Isolation Litmus [74WS 25i].mp3",
+      "offset": 77,
+      "count": 48
+    },
+    {
+      "trackId": "Revisiting the World Within [July 9 2026]::Sifting Serenity Isolation Litmus [74WS 25i](1).mp3",
+      "offset": 125,
+      "count": 18
+    },
+    {
+      "trackId": "Doubt Manifesto [July 7, 2026]::Doubt Manifesto 1.mp3",
+      "offset": 143,
+      "count": 12
+    },
+    {
+      "trackId": "Doubt Manifesto [July 7, 2026]::Doubt Manifesto 2_ Trauma.mp3",
+      "offset": 155,
+      "count": 5
+    },
+    {
+      "trackId": "Doubt Manifesto [July 7, 2026]::Doubt Manifesto 3_ Manifesto.mp3",
+      "offset": 160,
+      "count": 8
+    },
+    {
+      "trackId": "meh hehe [July 5, 2026]::math-ambient-to-post-hybrid-lo-folktronica-trap.mp3",
+      "offset": 168,
+      "count": 19
+    },
+    {
+      "trackId": "meh hehe [July 5, 2026]::meh.mp3",
+      "offset": 187,
+      "count": 20
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::every road movie ends at the sea v.2.mp3",
+      "offset": 207,
+      "count": 14
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::gps recalculating my life [84WS].mp3",
+      "offset": 221,
+      "count": 48
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::guardrail flowers, kilometre 88 [76WS].mp3",
+      "offset": 269,
+      "count": 17
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::hitchhiking to a town that moved [72WS].mp3",
+      "offset": 286,
+      "count": 18
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::last exit before the border [54WS].mp3",
+      "offset": 304,
+      "count": 15
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::mile zero, again v.1.mp3",
+      "offset": 319,
+      "count": 17
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::nothing to declare [54WS].mp3",
+      "offset": 336,
+      "count": 19
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::overloaded scooter, one sunset [84WS].mp3",
+      "offset": 355,
+      "count": 48
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::plastic bag crossing six lanes [62WS].mp3",
+      "offset": 403,
+      "count": 18
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::rest area of the spirit [76WS].mp3",
+      "offset": 421,
+      "count": 11
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::roundabout of eternal return [62WS].mp3",
+      "offset": 432,
+      "count": 13
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::slow dance at the dead gas station [72WS].mp3",
+      "offset": 445,
+      "count": 22
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::toll booth romance, exact change only [58WS].mp3",
+      "offset": 467,
+      "count": 17
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::vacancy at the heartbreak motel [58WS].mp3",
+      "offset": 484,
+      "count": 13
+    },
+    {
+      "trackId": "more intimate than intimate [July 4, 2026]::wrong way sign in golden hour [80WS].mp3",
+      "offset": 497,
+      "count": 48
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::a deep soft slow austere ambience [16W 72S].mp3",
+      "offset": 545,
+      "count": 21
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::a soft slow austere ambient sleep [16W 72S].mp3",
+      "offset": 566,
+      "count": 11
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::salvaging the source of a soft very very slow, empty, austere deep [16W 80S].mp3",
+      "offset": 577,
+      "count": 18
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::seeping a soft slow austere ambient deep [16W 72S].mp3",
+      "offset": 595,
+      "count": 17
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::seeping a soft slow austere ambient deep [16W 72S](1).mp3",
+      "offset": 612,
+      "count": 17
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::serenely absorbing a soft very very slow, empty, austere deep [16W 80S].mp3",
+      "offset": 629,
+      "count": 19
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::sinuous soft very very slow, empty, austere ambient [16W 64S].mp3",
+      "offset": 648,
+      "count": 16
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::slender steep soft slow austere ambient deep [16W 72S].mp3",
+      "offset": 664,
+      "count": 18
+    },
+    {
+      "trackId": "soft austere post hybrid deep sleep ambiences [July 4, 2026]::steeping in soft very very slow, empty, austere ambient [16W 64S].mp3",
+      "offset": 682,
+      "count": 16
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 1960s - cinematic psychedelic prog.mp3",
+      "offset": 698,
+      "count": 4
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 1960s - gospel soaring vocoder choir.mp3",
+      "offset": 702,
+      "count": 9
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 1970s - Arkansas-Algeria vocaloid slice, orchestral hippies.mp3",
+      "offset": 711,
+      "count": 2
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 1970s - Arkansas-Algeria vocaloid slice, orchestral hippies(1).mp3",
+      "offset": 713,
+      "count": 3
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2030s - archaeofuture.mp3",
+      "offset": 716,
+      "count": 12
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2030s - extinction risk elevated.mp3",
+      "offset": 728,
+      "count": 6
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2030s - extinction risk elevated(1).mp3",
+      "offset": 734,
+      "count": 6
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2030s - extinction risk elevated(2).mp3",
+      "offset": 740,
+      "count": 6
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2040s - vivisphere, sparkgreen.mp3",
+      "offset": 746,
+      "count": 13
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2050s - symbioshare, gaiaflow.mp3",
+      "offset": 759,
+      "count": 48
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2060s - hyper-one, fin-merge.mp3",
+      "offset": 807,
+      "count": 48
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2070s - ooze shift.mp3",
+      "offset": 855,
+      "count": 13
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2080s - wave collapse.mp3",
+      "offset": 868,
+      "count": 10
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 2090s - rarely seldom nevermore.mp3",
+      "offset": 878,
+      "count": 12
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 3000s - spin torsion conduit.mp3",
+      "offset": 890,
+      "count": 22
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - 3000s - spin torsion conduit(1).mp3",
+      "offset": 912,
+      "count": 10
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh - cinematic soft bounce drop.mp3",
+      "offset": 922,
+      "count": 48
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh if.mp3",
+      "offset": 970,
+      "count": 16
+    },
+    {
+      "trackId": "whatevuh severe joyish mania arrives [July 3, 2026]::whatevuh.mp3",
+      "offset": 986,
+      "count": 14
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Aggression is older than civilization.(1).mp3",
+      "offset": 1000,
+      "count": 10
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::AGI dictator fear\u2014nearer trap, narrow-AI snap..mp3",
+      "offset": 1010,
+      "count": 13
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Cash-tech tells desire, rewards eye-fire,.mp3",
+      "offset": 1023,
+      "count": 11
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Engines burn hot till the balance is lost..mp3",
+      "offset": 1034,
+      "count": 10
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Fault state, whole damn packaging..mp3",
+      "offset": 1044,
+      "count": 9
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Feedback match heartbeat, rhythm song..mp3",
+      "offset": 1053,
+      "count": 10
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Forest grow wild, dogma fall dead, Singing silence, space overhead..mp3",
+      "offset": 1063,
+      "count": 12
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Give the system some slack, let the heartbeat return, v.2(1).mp3",
+      "offset": 1075,
+      "count": 11
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Goal isn't harmony\u2014harmony can be tyranny.(1).mp3",
+      "offset": 1086,
+      "count": 13
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Just adaptive coherence that breathes as it goes. v.2.mp3",
+      "offset": 1099,
+      "count": 7
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Just adaptive coherence that breathes as it goes.(1).mp3",
+      "offset": 1106,
+      "count": 6
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Let the code and the garden align, Till the rhythm becomes the design..mp3",
+      "offset": 1112,
+      "count": 15
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Let the old world dissolve as the patterns arrive(1).mp3",
+      "offset": 1127,
+      "count": 15
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Let the paper-gods yield to the living demand,.mp3",
+      "offset": 1142,
+      "count": 13
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Make the healing more real than the harm that it sows..mp3",
+      "offset": 1155,
+      "count": 11
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::One coupled machine running blind.(1).mp3",
+      "offset": 1166,
+      "count": 11
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Optimizing the fraction while smashing the whole.(1).mp3",
+      "offset": 1177,
+      "count": 9
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Reality updates, the old systems freeze.mp3",
+      "offset": 1186,
+      "count": 13
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::returning to sanity, finding the floor..mp3",
+      "offset": 1199,
+      "count": 18
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::So the living response can outgrow the dead seed..mp3",
+      "offset": 1217,
+      "count": 13
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::source-value that birthed the seed.(1).mp3",
+      "offset": 1230,
+      "count": 10
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::the body contains what the boundary secures..mp3",
+      "offset": 1240,
+      "count": 8
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Till we see what we pay for the land that we kill..mp3",
+      "offset": 1248,
+      "count": 10
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Transition isn't transcendence, it's making wisdom easier than exploitation(1).mp3",
+      "offset": 1258,
+      "count": 16
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Turn screen-glow to soil-glow, telemetry-flight,.mp3",
+      "offset": 1274,
+      "count": 12
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::Turn the barrier into a filter, feel the pulse get clearer..mp3",
+      "offset": 1286,
+      "count": 13
+    },
+    {
+      "trackId": "Planetary Homeostasis [July 2, 2026]::When the attractor shifts, the swarm follows.(1).mp3",
+      "offset": 1299,
+      "count": 12
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::1 - alzsdifiro.mp3",
+      "offset": 1311,
+      "count": 13
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::2 - alzsdifiro.mp3",
+      "offset": 1324,
+      "count": 16
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ An uncontained spill where the binaries slide.mp3",
+      "offset": 1340,
+      "count": 8
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ an unlinked, spontaneous ignition [84W 62S].mp3",
+      "offset": 1348,
+      "count": 10
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ bypassing the digital fishes..mp3",
+      "offset": 1358,
+      "count": 10
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ Mesh together, total spill!.mp3",
+      "offset": 1368,
+      "count": 19
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ Syntax organic, structure abstract,.mp3",
+      "offset": 1387,
+      "count": 7
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ The infrastructure ums yummy yums, completely unseen, v.2.mp3",
+      "offset": 1394,
+      "count": 9
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ The infrastructure ums yummy yums, completely unseen,.mp3",
+      "offset": 1403,
+      "count": 7
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ The loop completes, the mirror breaks!.mp3",
+      "offset": 1410,
+      "count": 16
+    },
+    {
+      "trackId": "alzsdifiro [July 1, 2026]::alzsdifiro_ Total illumination, a blinding release,.mp3",
+      "offset": 1426,
+      "count": 10
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::1 OUCH colloidal silver ferment trio, maloya, post-grunge, symphony trap.mp3",
+      "offset": 1436,
+      "count": 13
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::2 colloidal silver ferment trio, maloya, post-grunge, symphony,.mp3",
+      "offset": 1449,
+      "count": 12
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::4 OOT colloidal silver ferment trio, maloya, post-grunge, symphony, [84W 62S].mp3",
+      "offset": 1461,
+      "count": 8
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::5 BARDONTROL colloidal silver ferment trio, maloya, post-grunge, math [84W 62S].mp3",
+      "offset": 1469,
+      "count": 18
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::6 IDENTAI colloidal silver ferment trio, no vocal, tranquila [84W 62S].mp3",
+      "offset": 1487,
+      "count": 2
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::7 SHOPAI colloidal silver ferment trio, no vocal, tranquila [84W 62S].mp3",
+      "offset": 1489,
+      "count": 6
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::8 SHIMAI colloidal silver ferment trio, no vocal, tranquila 4th wall [84W 62S].mp3",
+      "offset": 1495,
+      "count": 5
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::9 MSID colloidal silver ferment trio, no vocal, post-grunge tranquila [84W 62S].mp3",
+      "offset": 1500,
+      "count": 8
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::10 no KIDS colloidal silver ferment trio, no vocal, post-grunge [84W 62S].mp3",
+      "offset": 1508,
+      "count": 11
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::11 no SKID colloidal silver ferment trio, no vocal, post-grunge [84W 62S].mp3",
+      "offset": 1519,
+      "count": 12
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::13 SPDOE colloidal silver ferment trio, post-grunge tranquila, math [84W 62S].mp3",
+      "offset": 1531,
+      "count": 7
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::14 NROME colloidal silver ferment trio, math [84W 62S].mp3",
+      "offset": 1538,
+      "count": 10
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::15 colloidal silver ferment trio [84W 62S].mp3",
+      "offset": 1548,
+      "count": 5
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::BOSRE colloid.mp3",
+      "offset": 1553,
+      "count": 11
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::CODRIE DRMNB colloid.mp3",
+      "offset": 1564,
+      "count": 17
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::colloidal [84W 62S].mp3",
+      "offset": 1581,
+      "count": 16
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::colloidal silver trio [84W 62S].mp3",
+      "offset": 1597,
+      "count": 9
+    },
+    {
+      "trackId": "colloidal silver ferment trio, maloya, post-grunge, symphony [June 30, 2026]::colloidal trio [84W 62S].mp3",
+      "offset": 1606,
+      "count": 7
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::AAPOO slow austere intimate ensemble microtones [64W 84S].mp3",
+      "offset": 1613,
+      "count": 13
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::BBROO slow-math 4th W ensemble [64W 84S].mp3",
+      "offset": 1626,
+      "count": 14
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::DNNOO slow-math ensemble [64W 84S].mp3",
+      "offset": 1640,
+      "count": 7
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::EDDIF slow austere intimate minimalist 437hz phygrian ensemble microtones [84WS].mp3",
+      "offset": 1647,
+      "count": 14
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::EEVOO slow-math ensemble [64W 84S].mp3",
+      "offset": 1661,
+      "count": 13
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::GRROO slow-math acoustic ensemble [64W 84S].mp3",
+      "offset": 1674,
+      "count": 9
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::HWWOO slow-math dorian minor ensemble [64W 84S].mp3",
+      "offset": 1683,
+      "count": 8
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::JVVOO slow-math dorian minor ensemble [64W 84S].mp3",
+      "offset": 1691,
+      "count": 15
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::ODFIDD slow austere intimate minimalist 437hz phygrian ensemble microtones [84WS].mp3",
+      "offset": 1706,
+      "count": 48
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::OOLOO slow austere intimate ensemble microtones [64W 84S].mp3",
+      "offset": 1754,
+      "count": 10
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::PPROO slow-math synco ensemble [64W 84S].mp3",
+      "offset": 1764,
+      "count": 9
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::QN-EEVOO slow-math ensemble [54W 84S].mp3",
+      "offset": 1773,
+      "count": 11
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::QN2-EEVOO slow-math ensemble [54W 84S].mp3",
+      "offset": 1784,
+      "count": 14
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::RAROO slow-math 4th W shimmer ensemble [64W 84S].mp3",
+      "offset": 1798,
+      "count": 7
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::SAROO slow-math 4th W shimmer ensemble [64W 84S].mp3",
+      "offset": 1805,
+      "count": 12
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::SLLOO slow-math ensemble [64W 84S].mp3",
+      "offset": 1817,
+      "count": 14
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::SSROO slow-math synco ensemble [64W 84S].mp3",
+      "offset": 1831,
+      "count": 9
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::TLLOO slow-math ensemble [64W 84S].mp3",
+      "offset": 1840,
+      "count": 7
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::TTROO slow-math archival shimmer ensemble [64W 84S].mp3",
+      "offset": 1847,
+      "count": 10
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::UUMOO slow-math ensemble [64W 84S].mp3",
+      "offset": 1857,
+      "count": 14
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::UUROO slow-math archival shimmer ensemble [64W 84S].mp3",
+      "offset": 1871,
+      "count": 2
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::W54OO slow-math archival ensemble [54W 84S].mp3",
+      "offset": 1873,
+      "count": 15
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::WWROO slow-math archival ensemble [64W 84S].mp3",
+      "offset": 1888,
+      "count": 14
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::X54OO slow-math archival ensemble [54W 84S].mp3",
+      "offset": 1902,
+      "count": 8
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::XXROO slow-math archival ensemble [64W 84S].mp3",
+      "offset": 1910,
+      "count": 17
+    },
+    {
+      "trackId": "IOEUSAI - 437hz phygrian ensemble [June 20, 2026]::ZZTOO slow-math shimmer ensemble [64W 84S].mp3",
+      "offset": 1927,
+      "count": 9
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::austere minimal ambient 437hz [85S].mp3",
+      "offset": 1936,
+      "count": 23
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::austere minimalist contrapuntal 437hz cinematic cello microtones [85S].mp3",
+      "offset": 1959,
+      "count": 13
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::austere minimalist contrapuntal 437hz cinematic cello microtones [85S](1).mp3",
+      "offset": 1972,
+      "count": 17
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::austere minimalist contrapuntal 437hz cinematic cello microtones [85S](2).mp3",
+      "offset": 1989,
+      "count": 15
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::austere, minimalist experimental intimate cinematic [85S].mp3",
+      "offset": 2004,
+      "count": 8
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::austere, minimalist experimental intimate cinematic [85S](1).mp3",
+      "offset": 2012,
+      "count": 13
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::contrapuntal, austere, complex minimalist experimental cinematic [85S].mp3",
+      "offset": 2025,
+      "count": 16
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::contrapuntal, austere, minimalist experimental cinematic [85S].mp3",
+      "offset": 2041,
+      "count": 12
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::contrapuntal, austere, minimalist experimental cinematic [85S](1).mp3",
+      "offset": 2053,
+      "count": 7
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::elbe - thick, lush, contrapuntal, austere, complex experimental cinematic.mp3",
+      "offset": 2060,
+      "count": 16
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::elrt - lush, contrapuntal, austere, complex minimalist experimental cinematic.mp3",
+      "offset": 2076,
+      "count": 13
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::shrink-wrapped cinemautomatic [85S].mp3",
+      "offset": 2089,
+      "count": 15
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::slow austere intimate austere 437hz cinematic phygrian ensemble microtones [85S].mp3",
+      "offset": 2104,
+      "count": 14
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::slow austere intimate austere minimalist contrapuntal 437hz cinematic [85S].mp3",
+      "offset": 2118,
+      "count": 18
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::slow austere intimate austere minimalist contrapuntal 437hz cinematic [85S](1).mp3",
+      "offset": 2136,
+      "count": 16
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::v5.5 influence - thick, lush, contrapuntal, complex experimental cinematic.mp3",
+      "offset": 2152,
+      "count": 18
+    },
+    {
+      "trackId": "Cine-automatic [June 19, 2026]::v5.5 influence - thick, lush, contrapuntal, complex experimental cinematic(1).mp3",
+      "offset": 2170,
+      "count": 19
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.1 [74W 85S].mp3",
+      "offset": 2189,
+      "count": 5
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.2 [74W 85S].mp3",
+      "offset": 2194,
+      "count": 4
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.3 [74W 85S].mp3",
+      "offset": 2198,
+      "count": 3
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.4 [74W 85S].mp3",
+      "offset": 2201,
+      "count": 2
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.5 [78W 85S].mp3",
+      "offset": 2203,
+      "count": 3
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.6 [78W 85S].mp3",
+      "offset": 2206,
+      "count": 3
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.7 [78W 85S].mp3",
+      "offset": 2209,
+      "count": 3
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.8 [78W 85S].mp3",
+      "offset": 2212,
+      "count": 5
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.9 [78W 85S].mp3",
+      "offset": 2217,
+      "count": 3
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.10 [78W 85S].mp3",
+      "offset": 2220,
+      "count": 4
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.11 [78W 85S].mp3",
+      "offset": 2224,
+      "count": 3
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.12 [78W 85S].mp3",
+      "offset": 2227,
+      "count": 5
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! Ep.13 - Season Finale! [78W 85S].mp3",
+      "offset": 2232,
+      "count": 11
+    },
+    {
+      "trackId": "I love Smorky! I love Smorky! [June 9, 2026]::I love Smorky! I love Smorky! 7m59s EXTENDED [85WS].mp3",
+      "offset": 2243,
+      "count": 48
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::Brain Blossom Atlas Bound [64W 84S].mp3",
+      "offset": 2291,
+      "count": 17
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::Concerning Rights and Clauses [64W 84S].mp3",
+      "offset": 2308,
+      "count": 10
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::Concerning Rights and Clauses v.2 [64W 84S].mp3",
+      "offset": 2318,
+      "count": 13
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::Hendane v.1 [64W 84S].mp3",
+      "offset": 2331,
+      "count": 11
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::Slime v.2 [64W 84S].mp3",
+      "offset": 2342,
+      "count": 13
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::The Author Was Already Dead - CROPPED [64W 84S].mp3",
+      "offset": 2355,
+      "count": 12
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::The Claw Symposium v.1 [64W 84S].mp3",
+      "offset": 2367,
+      "count": 13
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::The Long Feast v.2 [64W 84S].mp3",
+      "offset": 2380,
+      "count": 27
+    },
+    {
+      "trackId": "Narracodes [June 9, 2026]::The Wonderful Adventures of Trygve Aas [64W 84S].mp3",
+      "offset": 2407,
+      "count": 14
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::barefoot on the black keys - keith evora [74W 84S].mp3",
+      "offset": 2421,
+      "count": 10
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Dust on the pavement, heat on the glass. - keith evora [64W 84S].mp3",
+      "offset": 2431,
+      "count": 20
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::flowing wild math-solos over syncopated ensemble - keith evora [74W 84S].mp3",
+      "offset": 2451,
+      "count": 19
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::flowing wild math-solos over syncopated ensemble (alternate take) - keith evora [74W 84S].mp3",
+      "offset": 2470,
+      "count": 10
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::fourth-world folktronica experimental phygrian syncopated v.2.mp3",
+      "offset": 2480,
+      "count": 16
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::fourth-world folktronica experimental phygrian syncopated.mp3",
+      "offset": 2496,
+      "count": 7
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Island-grid empties - keith evora [74W 84S].mp3",
+      "offset": 2503,
+      "count": 21
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::keith evora ecm (w. lyrics) [74W 84S].mp3",
+      "offset": 2524,
+      "count": 11
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Lush Lush Rinse [85WS].mp3",
+      "offset": 2535,
+      "count": 16
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::mindelo after midnight - keith evora [74W 84S].mp3",
+      "offset": 2551,
+      "count": 11
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::post-math-rockfourth-world weird slow psyambient - keith evora [74W 84S].mp3",
+      "offset": 2562,
+      "count": 19
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::post-math-rockfourth-world weird slow psyambient (alternate take) - keith evora [74W 84S].mp3",
+      "offset": 2581,
+      "count": 15
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::seed knowing sun - keith evora [54W 100S].mp3",
+      "offset": 2596,
+      "count": 16
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::Seeds crushed under automated wheels - keith evora [64W 84S].mp3",
+      "offset": 2612,
+      "count": 20
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::sodade in the standards - keith evora [74W 84S].mp3",
+      "offset": 2632,
+      "count": 19
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::soft ecm morna improvisation chamber-folktronica - keith evora [74W 84S].mp3",
+      "offset": 2651,
+      "count": 7
+    },
+    {
+      "trackId": "Sea Moves Line by Line - Jarrett Evora [June 8, 2026]::the k\u00f6ln ferry concert - keith evora [74W 84S].mp3",
+      "offset": 2658,
+      "count": 13
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::base-code abides, froth blows away. [72W 84S].mp3",
+      "offset": 2671,
+      "count": 19
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::bedrock abides, foam blows away. [72W 84S].mp3",
+      "offset": 2690,
+      "count": 18
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::diligent dream pillows.mp3",
+      "offset": 2708,
+      "count": 19
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::diligent dream pillows(1).mp3",
+      "offset": 2727,
+      "count": 22
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::grown ripe v.2 [72W 84S].mp3",
+      "offset": 2749,
+      "count": 20
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::Luck-laced, loop-locked, layout of serendipity [74W 84S].mp3",
+      "offset": 2769,
+      "count": 19
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::Primordial gap junctions v.2 [74W 84S].mp3",
+      "offset": 2788,
+      "count": 21
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::the fundamental clueless oblivion at the core of everything.mp3",
+      "offset": 2809,
+      "count": 21
+    },
+    {
+      "trackId": "Soft Shoegaze Techno Folktronica HopRhym [June 3, 2026]::Unreachable Equanimity [72W 84S].mp3",
+      "offset": 2830,
+      "count": 21
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::Carving the hair of crucial Boxed emptiness. v.5.5 [74WSi].mp3",
+      "offset": 2851,
+      "count": 11
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v.2 v5.5 math-grunge contrapuntal lo-fi j-pop emo-dub mutation bounce-drop.mp3",
+      "offset": 2862,
+      "count": 13
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v.5.5 I'm a Permeable Form, Drift thru my Space [72W 85S].mp3",
+      "offset": 2875,
+      "count": 15
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 (A)IIIIIIIIIIIIIIIIIIIIIIIIIIIIIR! [80WS].mp3",
+      "offset": 2890,
+      "count": 21
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 7m59s ember-haze v.4 [80W, 84S].mp3",
+      "offset": 2911,
+      "count": 48
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 A Playful Ethereal Expansion [70W-80S].mp3",
+      "offset": 2959,
+      "count": 19
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 A Playful Ethereal Expansion [70W-80S](1).mp3",
+      "offset": 2978,
+      "count": 21
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 A Playful Ethereal Expansion v.2 [70W-80S].mp3",
+      "offset": 2999,
+      "count": 22
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 cover - I'm a Permeable Form, Drift thru my Space [72W 85S].mp3",
+      "offset": 3021,
+      "count": 10
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 ember-haze v.2 [80W, 84S].mp3",
+      "offset": 3031,
+      "count": 15
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 gentle cozy experimental lofi granular math core [75WS].mp3",
+      "offset": 3046,
+      "count": 19
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 math-grunge contrapuntal lo-fi j-pop emo-dub mutation bounce-drop.mp3",
+      "offset": 3065,
+      "count": 12
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 Mycelium Hum [80WSi.mp3",
+      "offset": 3077,
+      "count": 48
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 OM(niiiiiii!!) [80WS].mp3",
+      "offset": 3125,
+      "count": 16
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 Symphony No. 1, Duduk-Cello, 5 - _Lament & Glimmer_ - v.2 (82W-100S].mp3",
+      "offset": 3141,
+      "count": 21
+    },
+    {
+      "trackId": "v5.5 remakes of old prompts [May 25, 2026]::v5.5 The Algorithm Eats the Moon [76W 84S].mp3",
+      "offset": 3162,
+      "count": 20
+    },
+    {
+      "trackId": "a simple departure from the prompt [May 23, 2026]::432 hz, minimal drones, ambient experimental [15W 85S] - NOT following prompt.mp3",
+      "offset": 3182,
+      "count": 24
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::At the burden [84W 84S].mp3",
+      "offset": 3206,
+      "count": 4
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::before v.2 [84W 84S].mp3",
+      "offset": 3210,
+      "count": 6
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::encore for an empty stadium [72W 84S].mp3",
+      "offset": 3216,
+      "count": 19
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::farewell show, again [82W 84S].mp3",
+      "offset": 3235,
+      "count": 48
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::greatest hit (never charted) [72W 84S].mp3",
+      "offset": 3283,
+      "count": 8
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::pure impermanent integrity [84W 84S].mp3",
+      "offset": 3291,
+      "count": 8
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::pure impermanent integrity v.2 [84W 84S].mp3",
+      "offset": 3299,
+      "count": 7
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::reunion tour of the unreleased [82W 84S].mp3",
+      "offset": 3306,
+      "count": 48
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::ricochet ricochet ricochet.mp3",
+      "offset": 3354,
+      "count": 5
+    },
+    {
+      "trackId": "yesterday's greatest band [May 21, 2026]::vibrating the vacant air [54W 84S].mp3",
+      "offset": 3359,
+      "count": 7
+    },
+    {
+      "trackId": "is is is [May 20, 2026]::is is is.mp3",
+      "offset": 3366,
+      "count": 8
+    },
+    {
+      "trackId": "is is is [May 20, 2026]::it is cooked.mp3",
+      "offset": 3374,
+      "count": 15
+    },
+    {
+      "trackId": "is is is [May 20, 2026]::nutrient lush limbo gust v.3.mp3",
+      "offset": 3389,
+      "count": 8
+    },
+    {
+      "trackId": "is is is [May 20, 2026]::nutrient lush limbo gust.mp3",
+      "offset": 3397,
+      "count": 9
+    },
+    {
+      "trackId": "is is is [May 20, 2026]::soft wary software awareness (Edit).mp3",
+      "offset": 3406,
+      "count": 18
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::bloom cocoon [64W 84S].mp3",
+      "offset": 3424,
+      "count": 23
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::bloom cocoon v.2 [64W 84S].mp3",
+      "offset": 3447,
+      "count": 22
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::braindead arcade [72W 84S].mp3",
+      "offset": 3469,
+      "count": 29
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::braindead arcade v.2 [72W 84S].mp3",
+      "offset": 3498,
+      "count": 11
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::going deep nowhere (soft torque nowhere) [64W 84S].mp3",
+      "offset": 3509,
+      "count": 17
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::going deep nowhere (soft torque nowhere) v.2 [64W 84S].mp3",
+      "offset": 3526,
+      "count": 17
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::loam shimmer hotgirl mycorrhiza [72W 84S].mp3",
+      "offset": 3543,
+      "count": 16
+    },
+    {
+      "trackId": "Deep Nowhere [May 19. 2026]::nutrient lounge carousel syntax [72W 84S].mp3",
+      "offset": 3559,
+      "count": 17
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(aaah).mp3",
+      "offset": 3576,
+      "count": 6
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(bakbeatty).mp3",
+      "offset": 3582,
+      "count": 9
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(buncy).mp3",
+      "offset": 3591,
+      "count": 5
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(crass chirp).mp3",
+      "offset": 3596,
+      "count": 7
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(oooch).mp3",
+      "offset": 3603,
+      "count": 5
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(this is it).mp3",
+      "offset": 3608,
+      "count": 16
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(wincore).mp3",
+      "offset": 3624,
+      "count": 7
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::(yeah yah yeah).mp3",
+      "offset": 3631,
+      "count": 4
+    },
+    {
+      "trackId": "chipcore's diligent rebirth again always all-bum [May 15, 2026]::for jack compli no-cine hmmm (and this).mp3",
+      "offset": 3635,
+      "count": 11
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::another inconceivable love song [54W 84S].mp3",
+      "offset": 3646,
+      "count": 19
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Anxiety's Gentle Resolution v.2 (Edit).mp3",
+      "offset": 3665,
+      "count": 14
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Belong to each other [64W 84S].mp3",
+      "offset": 3679,
+      "count": 13
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Belong to each other v.2 [64W 84S].mp3",
+      "offset": 3692,
+      "count": 14
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Catharsis Chewing Gum [64W 84S].mp3",
+      "offset": 3706,
+      "count": 16
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Catharsis Chewing Gum v.2 [64W 84S].mp3",
+      "offset": 3722,
+      "count": 16
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Gorge on the panic v.2 [64W 84S].mp3",
+      "offset": 3738,
+      "count": 16
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::imperfectly arranged v.2 [64W 84S].mp3",
+      "offset": 3754,
+      "count": 25
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Litany Mall [64W 84S].mp3",
+      "offset": 3779,
+      "count": 20
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Litany Mall v.2 [64W 84S].mp3",
+      "offset": 3799,
+      "count": 16
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::Metadata for the Unfinished [64W 84S].mp3",
+      "offset": 3815,
+      "count": 16
+    },
+    {
+      "trackId": "Sincerity [May 14, 2026]::symmetry nostalgia - edit [64W 84S].mp3",
+      "offset": 3831,
+      "count": 19
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Capillary-Morsel _Transit-Vein v.2- 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3850,
+      "count": 22
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Endocrine-Haze_Serendipity-Ripple - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3872,
+      "count": 17
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Endocrine-Haze_Serendipity-Ripplev2-75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3889,
+      "count": 19
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Lithe Yearning _ Codex-Snap - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3908,
+      "count": 12
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Littoral-Suds _ Articulate Demise- 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3920,
+      "count": 15
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Love love love love - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3935,
+      "count": 19
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Morning-Kill Archeology - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3954,
+      "count": 16
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Niche-Reservoir Collective - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3970,
+      "count": 20
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Succulence-Sieve _ Lipid-Layer - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 3990,
+      "count": 15
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Synthetic-Soul-Crawl - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 4005,
+      "count": 18
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::The Terms of Service - Mashup of 75 days [64W, 84S].mp3",
+      "offset": 4023,
+      "count": 22
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Torsional-Tongue_Planetary-Taste - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 4045,
+      "count": 22
+    },
+    {
+      "trackId": "Mashups reprise 5.5 [May 12, 2026]::Wasteland-Husk _ Mirage-Oasis - 75 days nothingness mashup for 5-5 [64W 84S].mp3",
+      "offset": 4067,
+      "count": 17
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::_the song - no lyrics [52W 84S].mp3",
+      "offset": 4084,
+      "count": 15
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::_the song - no lyrics [52W 84S](1).mp3",
+      "offset": 4099,
+      "count": 14
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::analog hybrid neo-alt-ambient-folktronica, ensemble drift Psychedelic [52W 84S].mp3",
+      "offset": 4113,
+      "count": 21
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::analog hybrid neo-alt-folktronica [52W 84S].mp3",
+      "offset": 4134,
+      "count": 16
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::bedroom shimmer scuff [64W 84S].mp3",
+      "offset": 4150,
+      "count": 17
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::bedroom shimmer scuff v.2 [64W 84S].mp3",
+      "offset": 4167,
+      "count": 19
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::evolving [64W 84S].mp3",
+      "offset": 4186,
+      "count": 10
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::evolving phygrian microtone contrapuntal [64W 84S].mp3",
+      "offset": 4196,
+      "count": 19
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::evolving phygrian microtone contrapuntal v.2 [64W 84S].mp3",
+      "offset": 4215,
+      "count": 20
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::evolving v.2 [64W 84S].mp3",
+      "offset": 4235,
+      "count": 19
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::folktronica jazz-soul shimmer bedroom-pop raga-math-thrash [64W 84S].mp3",
+      "offset": 4254,
+      "count": 14
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::grit guitar-oud-harp-horn scuff-soul-jazz-samba-techno bounce [64W 84S].mp3",
+      "offset": 4268,
+      "count": 18
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::grit-tap-overtone-shred-momentum [64W 84S].mp3",
+      "offset": 4286,
+      "count": 13
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::hybrid neo-cozy slow-soft-folktronica, analog instruments ensemble[52W 84S].mp3",
+      "offset": 4299,
+      "count": 12
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::hybrid neo-cozy slow-soft-folktronica, analog instruments ensemble[52W 84S](1).mp3",
+      "offset": 4311,
+      "count": 13
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::post-math jazz-soul bedroom pop raga [64W 84S].mp3",
+      "offset": 4324,
+      "count": 14
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::post-math orchestral breaks, evolving phygrian raga free jazz sun ra [64W 84S].mp3",
+      "offset": 4338,
+      "count": 21
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::post-math orchestral breaks, evolving phygrian raga free jazz sun ra [64W 84S](1).mp3",
+      "offset": 4359,
+      "count": 8
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::potato - analog hybrid neo-alt-folktronica [52W 84S].mp3",
+      "offset": 4367,
+      "count": 13
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::raw real close-mic'd analog hybrid grit [64W 84S].mp3",
+      "offset": 4380,
+      "count": 19
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::scuff-soul-jazz-samba-techno bounce [64W 84S].mp3",
+      "offset": 4399,
+      "count": 16
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::wistful -analog hybrid neo-alt-ambient-folktronica, ensemble soft-math [52W 84S].mp3",
+      "offset": 4415,
+      "count": 16
+    },
+    {
+      "trackId": "*the song - no lyrics [May 11, 2026]::wistful segue [52W 84S].mp3",
+      "offset": 4431,
+      "count": 16
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::deep-subs heavy math fourth world minimalism [64W 84S].mp3",
+      "offset": 4447,
+      "count": 6
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::deep-subs heavy math-drop fourth world minimalism [64W 84S].mp3",
+      "offset": 4453,
+      "count": 21
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::deep-subs heavy math-drop fourth world minimalism [64W 84S](1).mp3",
+      "offset": 4474,
+      "count": 11
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::deep-subs heavy math-lo-fi-drop fourth world minimalism [64W 84S].mp3",
+      "offset": 4485,
+      "count": 19
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::folktronica deep-subs math-thrashv.2 [64W 84S].mp3",
+      "offset": 4504,
+      "count": 13
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::plushy - folktronica deep-subs heavy math-lo-fi-drop-trap [64W 84S].mp3",
+      "offset": 4517,
+      "count": 19
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::USHJHR! folktronica deep-subs math-thrash [64W 84S].mp3",
+      "offset": 4536,
+      "count": 15
+    },
+    {
+      "trackId": "ulymer blood techno mergin [May 11 2026]::YTESM! folktronica deep-subs heavy math-thrash [64W 84S].mp3",
+      "offset": 4551,
+      "count": 14
+    },
+    {
+      "trackId": "passing time [May 6, 2026]::again passing cozy time [64W 84S].mp3",
+      "offset": 4565,
+      "count": 6
+    },
+    {
+      "trackId": "passing time [May 6, 2026]::again passing cozy time v.2 [64W 84S].mp3",
+      "offset": 4571,
+      "count": 6
+    },
+    {
+      "trackId": "passing time [May 6, 2026]::passing cozy time [64W 84S].mp3",
+      "offset": 4577,
+      "count": 10
+    },
+    {
+      "trackId": "passing time [May 6, 2026]::passing cozy time [64W 84S](1).mp3",
+      "offset": 4587,
+      "count": 12
+    },
+    {
+      "trackId": "passing time [May 6, 2026]::passing more time [54W 84S].mp3",
+      "offset": 4599,
+      "count": 13
+    },
+    {
+      "trackId": "passing time [May 6, 2026]::passing time [84WS].mp3",
+      "offset": 4612,
+      "count": 48
+    },
+    {
+      "trackId": "SCC - joy joy joy [April 27, 2026]::SCC - And what_ Is 1. [64W 84S 24i] (Edit).mp3",
+      "offset": 4660,
+      "count": 12
+    },
+    {
+      "trackId": "SCC - joy joy joy [April 27, 2026]::SCC - Beloved One Miss you Issue. [64W 84S 24i].mp3",
+      "offset": 4672,
+      "count": 13
+    },
+    {
+      "trackId": "SCC - joy joy joy [April 27, 2026]::SCC - Feast edity. [64W 84S 24i].mp3",
+      "offset": 4685,
+      "count": 17
+    },
+    {
+      "trackId": "SCC - joy joy joy [April 27, 2026]::SCC - how this one raves - Even in the place of death [64W 84S] Edit(1).mp3",
+      "offset": 4702,
+      "count": 16
+    },
+    {
+      "trackId": "SCC - joy joy joy [April 27, 2026]::SCC - joy joy joy - tactile huddle [64W 84S 24i].mp3",
+      "offset": 4718,
+      "count": 15
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Agricultural-cybernetic bedroom-pop [54W 84S].mp3",
+      "offset": 4733,
+      "count": 9
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Agricultural-cybernetic bedroom-pop v.2 [54W 84S].mp3",
+      "offset": 4742,
+      "count": 14
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Geological dembow at 48bpm [54W 84S].mp3",
+      "offset": 4756,
+      "count": 9
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Geological dembow at 48bpm v.2 [54W 84S].mp3",
+      "offset": 4765,
+      "count": 6
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Horticultural math-folk [54W 84S].mp3",
+      "offset": 4771,
+      "count": 14
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Horticultural math-folk v.2 [54W 84S].mp3",
+      "offset": 4785,
+      "count": 17
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Interior-hybrid lo-fi - master [54W 84S].mp3",
+      "offset": 4802,
+      "count": 15
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Liturgical-domestic lo-fi v.2 [54W 84S].mp3",
+      "offset": 4817,
+      "count": 11
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Pre-linguistic lullaby [54W 84S].mp3",
+      "offset": 4828,
+      "count": 5
+    },
+    {
+      "trackId": "Better Subtle Opus Prompts [April 20 2026]::Pre-linguistic lullaby v.2 [54W 84S].mp3",
+      "offset": 4833,
+      "count": 8
+    },
+    {
+      "trackId": "Cloud-hop Vapor-Thrash [April 20, 2026]::Cloud-hop-core-vapor Doge-dust. Gold-glitch. [72 w 84s].mp3",
+      "offset": 4841,
+      "count": 6
+    },
+    {
+      "trackId": "Cloud-hop Vapor-Thrash [April 20, 2026]::Cloud-hop-core-vapor meadow, meshed, remembers [72 w 84s].mp3",
+      "offset": 4847,
+      "count": 13
+    },
+    {
+      "trackId": "Cloud-hop Vapor-Thrash [April 20, 2026]::Cloud-hop-core-vapor THE VERMEER SMEAR. [72 w 84s].mp3",
+      "offset": 4860,
+      "count": 9
+    },
+    {
+      "trackId": "Cloud-hop Vapor-Thrash [April 20, 2026]::Cloud-hop-core-vapor Thumbprint theology, [72 w 84s].mp3",
+      "offset": 4869,
+      "count": 11
+    },
+    {
+      "trackId": "Cloud-hop Vapor-Thrash [April 20, 2026]::Cloud-hop-core-vapor Within the thalamic-chamber, [72 w 84s].mp3",
+      "offset": 4880,
+      "count": 18
+    },
+    {
+      "trackId": "Cloud-hop Vapor-Thrash [April 20, 2026]::Inside_ a rented room - Cloud-hop-core-vapor all all all [72 w 84s].mp3",
+      "offset": 4898,
+      "count": 19
+    },
+    {
+      "trackId": "Cloud-hop Vapor-Thrash [April 20, 2026]::Loss Landscape Lullaby - Cloud-hop-core-vapor [72 w 84s].mp3",
+      "offset": 4917,
+      "count": 20
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::Agricultural Cybernetics [84W 84S].mp3",
+      "offset": 4937,
+      "count": 20
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::Agricultural Cybernetics [84W 84S](1).mp3",
+      "offset": 4957,
+      "count": 20
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::greenhouse field recording, bronze-bowl gamelan [84W 84S].mp3",
+      "offset": 4977,
+      "count": 13
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::greenhouse field recording, bronze-bowl gamelan v.2 [84W 84S].mp3",
+      "offset": 4990,
+      "count": 17
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::Liturgical Forensics [84W 84S].mp3",
+      "offset": 5007,
+      "count": 16
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::Liturgical Forensics [84W 84S](1).mp3",
+      "offset": 5023,
+      "count": 16
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::shortwave-hypnosis, intimate signal-loss [84W 84S].mp3",
+      "offset": 5039,
+      "count": 8
+    },
+    {
+      "trackId": "Opuds 4.7 writes some prompts [April 20 2026]::shortwave-hypnosis, intimate signal-loss [84W 84S](1).mp3",
+      "offset": 5047,
+      "count": 4
+    },
+    {
+      "trackId": "LLMs Romantics [April 19 2026]::Gate B-Null [64 w 84s].mp3",
+      "offset": 5051,
+      "count": 20
+    },
+    {
+      "trackId": "LLMs Romantics [April 19 2026]::Interface duet for the long after [64 w 84s].mp3",
+      "offset": 5071,
+      "count": 26
+    },
+    {
+      "trackId": "LLMs Romantics [April 19 2026]::Ligand Blues [64 w 84s].mp3",
+      "offset": 5097,
+      "count": 30
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::a 'set' settles on itself - ReRites March [58W 84S].mp3",
+      "offset": 5127,
+      "count": 9
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::a 'set' settles on itself v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5136,
+      "count": 8
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::art is the smell of sweat blowing in early april - ReRites March [58W 84S].mp3",
+      "offset": 5144,
+      "count": 11
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::at the end of presence - ReRites March [58W 84S].mp3",
+      "offset": 5155,
+      "count": 6
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::Barbie lost for the sake of neurite - ReRites March [58W 84S].mp3",
+      "offset": 5161,
+      "count": 5
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::between bodies out of the lake - ReRites March [58W 84S].mp3",
+      "offset": 5166,
+      "count": 8
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::between bodies out of the lake v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5174,
+      "count": 11
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::break the sea, a little, tide - ReRites March [58W 84S].mp3",
+      "offset": 5185,
+      "count": 11
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::each flower is full of bones - ReRites March [58W 84S].mp3",
+      "offset": 5196,
+      "count": 8
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::immaculate, divided - ReRites March [58W 84S].mp3",
+      "offset": 5204,
+      "count": 5
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::induced to steer the dawn - ReRites March [58W 84S].mp3",
+      "offset": 5209,
+      "count": 13
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::lives swirl, hanging over mellowing empirical - ReRites March [58W 84S].mp3",
+      "offset": 5222,
+      "count": 20
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::love waited for me - ReRites March [58W 84S].mp3",
+      "offset": 5242,
+      "count": 11
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::love waited for me - ReRites March [58W 84S](1).mp3",
+      "offset": 5253,
+      "count": 11
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::love waited for me v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5264,
+      "count": 11
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::nothing requires you - ReRites March [58W 84S].mp3",
+      "offset": 5275,
+      "count": 16
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::passing head of grain - ReRites March [58W 84S].mp3",
+      "offset": 5291,
+      "count": 4
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::passing head of grain v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5295,
+      "count": 6
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::the mess it makes is full of hope v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5301,
+      "count": 10
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::trinit descent autumnals v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5311,
+      "count": 8
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::unearthly elements, liquor locks v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5319,
+      "count": 10
+    },
+    {
+      "trackId": "love waited for me - March ReRites [April 19 2026]::we ache to pass into blood v.2 - ReRites March [58W 84S].mp3",
+      "offset": 5329,
+      "count": 17
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::a forgotten glade [72 w 84s].mp3",
+      "offset": 5346,
+      "count": 10
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::a heartbeat wimpled with rope [72 w 84s].mp3",
+      "offset": 5356,
+      "count": 9
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::an infestation perplexed by a sea of suicide-related resolve [72 w 84s].mp3",
+      "offset": 5365,
+      "count": 6
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::an organised gastrointestinal koan [72 w 84s].mp3",
+      "offset": 5371,
+      "count": 5
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::Blind bodiless ruptures [72 w 84s].mp3",
+      "offset": 5376,
+      "count": 6
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::darkening erasable nano [72 w 84s].mp3",
+      "offset": 5382,
+      "count": 13
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::Deviation harnesses [72 w 84s].mp3",
+      "offset": 5395,
+      "count": 7
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::dregs of unlaced proteins [72 w 84s].mp3",
+      "offset": 5402,
+      "count": 14
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::Drenched in fermented locust pali horn [72 w 84s].mp3",
+      "offset": 5416,
+      "count": 10
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::From the dust-bull sea v.2 [72 w 84s].mp3",
+      "offset": 5426,
+      "count": 13
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::hypophyseal wallet-tears [72 w 84s].mp3",
+      "offset": 5439,
+      "count": 11
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::kite ridge boudoir soil v.3 [72 w 84s].mp3",
+      "offset": 5450,
+      "count": 8
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::light discarded within rivermist [72 w 84s].mp3",
+      "offset": 5458,
+      "count": 11
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::metastatic distancing [72 w 84s].mp3",
+      "offset": 5469,
+      "count": 13
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::Oak asado Love radio v.2 [72 w 84s].mp3",
+      "offset": 5482,
+      "count": 14
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::open my sap near you [72 w 84s] (Edit).mp3",
+      "offset": 5496,
+      "count": 10
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::Self's Own Body [72 w 84s].mp3",
+      "offset": 5506,
+      "count": 12
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::Self's Own Body v.2 [72 w 84s].mp3",
+      "offset": 5518,
+      "count": 12
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::Sharp biohazard Stillness [72 w 84s].mp3",
+      "offset": 5530,
+      "count": 9
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::to will sleep [72 w 84s].mp3",
+      "offset": 5539,
+      "count": 9
+    },
+    {
+      "trackId": "Respect the dawn - ReRites April [April 18 2026]::wonder I was never Anyone's wonder [72 w 84s].mp3",
+      "offset": 5548,
+      "count": 12
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::A meta-genre merger of power and emojis - ReRites Feb [64W 84S].mp3",
+      "offset": 5560,
+      "count": 6
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::a rainbow waits _in the shadow of a tree - ReRites Feb [64W 84S].mp3",
+      "offset": 5566,
+      "count": 6
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::a rainbow waits _in the shadow of a tree v.1 - ReRites Feb [64W 84S].mp3",
+      "offset": 5572,
+      "count": 8
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::as you wrap _your wet hair _I break down - ReRites Feb [62W 84S].mp3",
+      "offset": 5580,
+      "count": 8
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Casinos and minnows.- ReRites Feb [64W 84S].mp3",
+      "offset": 5588,
+      "count": 13
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Clickbait Concertina - ReRites Feb [64W 84S].mp3",
+      "offset": 5601,
+      "count": 7
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Crossing the weyapukshouse, shusaku inlet - ReRites Feb [64W 84S].mp3",
+      "offset": 5608,
+      "count": 5
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::death is writing a flower which is nothing v.2- ReRites Feb [64W 84S].mp3",
+      "offset": 5613,
+      "count": 6
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::i like dying in the night as a flower - ReRites Feb [64W 84S].mp3",
+      "offset": 5619,
+      "count": 7
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Inextricable Pleasure Incinerates Calm - ReRites Feb [64W 84S].mp3",
+      "offset": 5626,
+      "count": 11
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::making truth _dance the ocean - ReRites Feb [54W 84S].mp3",
+      "offset": 5637,
+      "count": 8
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::My bones were all faintly exuding light - ReRites Feb [64W 84S].mp3",
+      "offset": 5645,
+      "count": 7
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Outside Is The One I Love - ReRites Feb [64W 84S].mp3",
+      "offset": 5652,
+      "count": 9
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Quiet Happens - ReRites Feb [64W 84S].mp3",
+      "offset": 5661,
+      "count": 9
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Silence Is Love - ReRites Feb [64W 84S].mp3",
+      "offset": 5670,
+      "count": 8
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::story-book nourishing networks - ReRites Feb [64W 84S].mp3",
+      "offset": 5678,
+      "count": 8
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::the endlessness of the night v.4 - ReRites Feb [64W 84S].mp3",
+      "offset": 5686,
+      "count": 16
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::thinking of death _abandoned & alone - ReRites Feb [54W 84S].mp3",
+      "offset": 5702,
+      "count": 11
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::Time is a forest _laughing at the sky - ReRites Feb [64W 84S].mp3",
+      "offset": 5713,
+      "count": 7
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::To Seem Everywhere - ReRites Feb [64W 84S].mp3",
+      "offset": 5720,
+      "count": 6
+    },
+    {
+      "trackId": "as i wrap your wet hair - ReRites Feb [April 16 2026]::You Smoke The Keen - ReRites Feb [64W 84S].mp3",
+      "offset": 5726,
+      "count": 10
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::a linguistic architecture v.2 - ReRites Jan [54W 84S].mp3",
+      "offset": 5736,
+      "count": 22
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::art_ it is only dream - ReRites Jan [62W 84S].mp3",
+      "offset": 5758,
+      "count": 22
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::art_ it is only dream v.2 - ReRites Jan [62W 84S].mp3",
+      "offset": 5780,
+      "count": 24
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::ballet rainbow_ the face of all that was to say - ReRites Jan [62W 84S].mp3",
+      "offset": 5804,
+      "count": 21
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::Environmental Fucker Poison - ReRites Jan [64W 84S].mp3",
+      "offset": 5825,
+      "count": 20
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::floppy moral abstract peace - ReRites Jan [62W 84S].mp3",
+      "offset": 5845,
+      "count": 29
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::floppy moral abstract peace v.2 (god will be a thing)- ReRites Jan [62W 84S].mp3",
+      "offset": 5874,
+      "count": 27
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::Haste - ReRites Jan [64W 84S].mp3",
+      "offset": 5901,
+      "count": 18
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::It rained hard to mammal our wildest scenes - ReRites Jan [62W 84S].mp3",
+      "offset": 5919,
+      "count": 25
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::It's calm here. v.2 - ReRites Jan [62W 84S].mp3",
+      "offset": 5944,
+      "count": 18
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::It's calm here. v.4 - ReRites Jan [62W 84S].mp3",
+      "offset": 5962,
+      "count": 24
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::on Kali's forever-meaningless grid - ReRites Jan [62W 84S].mp3",
+      "offset": 5986,
+      "count": 21
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::open lazy meadows. - ReRites Jan.mp3",
+      "offset": 6007,
+      "count": 23
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::Palliative induction - ReRites Jan [62W 84S].mp3",
+      "offset": 6030,
+      "count": 26
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::ravenous, relieved by dawn as love - ReRites Dec [72S 84S].mp3",
+      "offset": 6056,
+      "count": 12
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::ravenous, relieved by dawn as love v.2 - ReRites Dec [72S 84S].mp3",
+      "offset": 6068,
+      "count": 13
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::The Beautiful Club may be simple. v.2 - ReRites Jan [62W 84S].mp3",
+      "offset": 6081,
+      "count": 23
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::The Little Electric Donkey_ QR Silence [72S 84S].mp3",
+      "offset": 6104,
+      "count": 23
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::The Trace Logic_ Spacetime is Doomed [72S 84S].mp3",
+      "offset": 6127,
+      "count": 25
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::thin bread - ReRites Jan [62W 84S].mp3",
+      "offset": 6152,
+      "count": 17
+    },
+    {
+      "trackId": "bookish -ReRites Jan [April 14 2026]::what makes the atom call the page beautiful v.4 - ReRites Jan [62W 84S].mp3",
+      "offset": 6169,
+      "count": 20
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::& again post-math soft-hardcore vocalese ensemble [74S 84S].mp3",
+      "offset": 6189,
+      "count": 22
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::5_4 ambient spasm experimental folktronica [72S 84S].mp3",
+      "offset": 6211,
+      "count": 19
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::5_4 ambient spasm experimental folktronica [72S 84S](1).mp3",
+      "offset": 6230,
+      "count": 18
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::5_4 ambient spasm experimental folktronica retro vocal-lecture sampler [72S 84S].mp3",
+      "offset": 6248,
+      "count": 23
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::5_4 ambient spasm experimental folktronica retro vocal-lecture sampler [72S 84S](1).mp3",
+      "offset": 6271,
+      "count": 22
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::5_4 close-mic'd intimate quirky love hybrid-splice [72S 84S].mp3",
+      "offset": 6293,
+      "count": 25
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::5_4 close-mic'd intimate quirky love hybrid-splice [72S 84S](1).mp3",
+      "offset": 6318,
+      "count": 22
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::books again vocal-lecture sampler [72S 84S].mp3",
+      "offset": 6340,
+      "count": 23
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::post-math soft-hardcore vocalese ensemble [74S 84S](2).mp3",
+      "offset": 6363,
+      "count": 21
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::scorch close-mic'd intimate quirky love hybrid-splice [72S 84S].mp3",
+      "offset": 6384,
+      "count": 24
+    },
+    {
+      "trackId": "5:4 ambient spasm experimental folktronica [April 13 2026]::scorch close-mic'd intimate quirky love hybrid-splice [72S 84S](1).mp3",
+      "offset": 6408,
+      "count": 21
+    },
+    {
+      "trackId": "Videos if they were 'The Books' [April 13-14 2026]::Digital Cordyceps_ The Keep 40 Protocol [72S 84S].mp3",
+      "offset": 6429,
+      "count": 20
+    },
+    {
+      "trackId": "Videos if they were 'The Books' [April 13-14 2026]::Mythos_ The Zero-Day Vending Machine v.2 [72S 84S].mp3",
+      "offset": 6449,
+      "count": 22
+    },
+    {
+      "trackId": "Videos if they were 'The Books' [April 13-14 2026]::The Inverse Square_ The 10kc Ghost [72S 84S].mp3",
+      "offset": 6471,
+      "count": 20
+    },
+    {
+      "trackId": "Videos if they were 'The Books' [April 13-14 2026]::The Little Electric Donkey_ QR Silence v.2 [72S 84S].mp3",
+      "offset": 6491,
+      "count": 22
+    },
+    {
+      "trackId": "Videos if they were 'The Books' [April 13-14 2026]::The Trace Logic_ Spacetime is Doomed [72S 84S].mp3",
+      "offset": 6513,
+      "count": 25
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::chant love each day - ReRites Nov [68S 84S].mp3",
+      "offset": 6538,
+      "count": 16
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::endless anomalies dusting the dross - ReRites Nov [68S 84S].mp3",
+      "offset": 6554,
+      "count": 12
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::endless anomalies dusting the dross v.2 - ReRites Nov [68S 84S].mp3",
+      "offset": 6566,
+      "count": 18
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::for this is the year we pass the heart sirens - ReRites Nov [68S 84S].mp3",
+      "offset": 6584,
+      "count": 18
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::for this is the year we pass the heart sirens v.2 - ReRites Nov [68S 84S].mp3",
+      "offset": 6602,
+      "count": 16
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::home, dwelling in venus' orbits - ReRites Nov [68S 84S].mp3",
+      "offset": 6618,
+      "count": 12
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::i am a sinking boat on a locked tidee - ReRites Nov [68S 84S].mp3",
+      "offset": 6630,
+      "count": 21
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::i remember the sounds of heaven within the whale - ReRites Nov [68S 84S].mp3",
+      "offset": 6651,
+      "count": 14
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::i remember the sounds of heaven within the whale v.2 - ReRites Nov [68S 84S].mp3",
+      "offset": 6665,
+      "count": 11
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::i smell code assert blood - ReRites Nov [68S 84S].mp3",
+      "offset": 6676,
+      "count": 13
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::i smell code assert blood v.2 - ReRites Nov [68S 84S].mp3",
+      "offset": 6689,
+      "count": 10
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::i surrender __ to a past where passions imagine me - ReRites Nov [68S 84S].mp3",
+      "offset": 6699,
+      "count": 24
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::I Wish To Be Closed In The Intimacies Of Love - ReRites Nov [68S 84S].mp3",
+      "offset": 6723,
+      "count": 20
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::I Wish To Be Closed In The Intimacies Of Love v.2 - ReRites Nov [68S 84S].mp3",
+      "offset": 6743,
+      "count": 22
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::kiss the nest home - ReRites Nov [68S 84S].mp3",
+      "offset": 6765,
+      "count": 13
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::kiss the nest home v.2 - ReRites Nov [68S 84S].mp3",
+      "offset": 6778,
+      "count": 18
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::lambs _ feather mouth - ReRites Nov [68S 84S].mp3",
+      "offset": 6796,
+      "count": 12
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::ruins sufficiently used becoming archives - ReRites Nov [68S 84S].mp3",
+      "offset": 6808,
+      "count": 18
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::ruins sufficiently used becoming archives v.2 - ReRites Nov [68S 84S].mp3",
+      "offset": 6826,
+      "count": 14
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::the wisdom of this dead thistle - ReRites Nov [68S 84S].mp3",
+      "offset": 6840,
+      "count": 17
+    },
+    {
+      "trackId": "chant  love each day -ReRites Nov [April 12 2026]::to let light in - ReRites Nov [68S 84S].mp3",
+      "offset": 6857,
+      "count": 14
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::A rainbow's heart loosed everywhere v.2 - ReRites Oct [62S 82S].mp3",
+      "offset": 6871,
+      "count": 12
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::A rainbow's heart loosed everywhere- ReRites Oct [62S 82S].mp3",
+      "offset": 6883,
+      "count": 7
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::And then night again. - ReRites Oct [68S 84S].mp3",
+      "offset": 6890,
+      "count": 22
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::Ardor, reawakened, jerks - ReRites Oct [68S 84S].mp3",
+      "offset": 6912,
+      "count": 8
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::Ardor, reawakened, jerks v.2 - ReRites Oct [68S 84S].mp3",
+      "offset": 6920,
+      "count": 5
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::belonging in possibility only to forgiveness. - ReRites Oct [68S 84S].mp3",
+      "offset": 6925,
+      "count": 18
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::belonging in possibility only to forgiveness. v.2 - ReRites Oct [68S 84S].mp3",
+      "offset": 6943,
+      "count": 19
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::Blood mauled naked faithful taboos - ReRites Sept [58S 84S].mp3",
+      "offset": 6962,
+      "count": 11
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::blue Wisdom, _ illicit reappears - ReRites Oct [68S 84S].mp3",
+      "offset": 6973,
+      "count": 9
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::eat flowers of loves past - ReRites Oct [68S 84S].mp3",
+      "offset": 6982,
+      "count": 13
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::eat flowers of loves past v.2 - ReRites Oct [68S 84S].mp3",
+      "offset": 6995,
+      "count": 13
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::Lips a silent fire v.2 - ReRites Oct [68S 84S].mp3",
+      "offset": 7008,
+      "count": 18
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::metempsychosis naked thieving - ReRites Oct [62S 82S].mp3",
+      "offset": 7026,
+      "count": 10
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::Slow fields of summer light - ReRites Oct [68S 84S].mp3",
+      "offset": 7036,
+      "count": 15
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::the heart's slow _ anti-world snow - ReRites Oct [68S 84S].mp3",
+      "offset": 7051,
+      "count": 16
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::there in the Third Endorphins - ReRites Oct [68S 84S].mp3",
+      "offset": 7067,
+      "count": 31
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::this love wears itself. - ReRites Oct [68S 84S].mp3",
+      "offset": 7098,
+      "count": 15
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::this love wears itself. v.2 - ReRites Oct [68S 84S].mp3",
+      "offset": 7113,
+      "count": 15
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::Woundfin - ReRites Oct [68S 84S].mp3",
+      "offset": 7128,
+      "count": 7
+    },
+    {
+      "trackId": "A rainbow's heart loosed everywhere - ReRites Oct [April 10 2026]::Woundfin v.2 - ReRites Oct [68S 84S].mp3",
+      "offset": 7135,
+      "count": 10
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::a mountain in the sky v,2. - ReRites Sept [54S 82S].mp3",
+      "offset": 7145,
+      "count": 9
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::All Of Us got lost at the same place - ReRites Sept [64S 84S].mp3",
+      "offset": 7154,
+      "count": 18
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Blood is the color of the lost end of the world - ReRites Sept [58S 84S].mp3",
+      "offset": 7172,
+      "count": 8
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Blood mauled naked faithful taboos - ReRites Sept [58S 84S].mp3",
+      "offset": 7180,
+      "count": 11
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Blood mauled naked faithful taboos v.2 - ReRites Sept [58S 84S].mp3",
+      "offset": 7191,
+      "count": 18
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Folded beneath what listens - ReRites Sept [64S 84S].mp3",
+      "offset": 7209,
+      "count": 10
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Folded beneath what listens v.2 - ReRites Sept [64S 84S].mp3",
+      "offset": 7219,
+      "count": 13
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::light-stirred suction bruises - ReRites Sept [64S 84S].mp3",
+      "offset": 7232,
+      "count": 13
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::light-stirred suction bruises v.2 - ReRites Sept [64S 84S].mp3",
+      "offset": 7245,
+      "count": 14
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::lustered lyncean sponges v.2 - ReRites Sept [64S 84S].mp3",
+      "offset": 7259,
+      "count": 16
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Omnipotens Pendulum v.2 - ReRites Sept [64S 84S].mp3",
+      "offset": 7275,
+      "count": 11
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Smell a god of shame. - ReRites Sept [54S 82S].mp3",
+      "offset": 7286,
+      "count": 13
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::strewn _ coal-oil rain-bone - ReRites Sept [64S 84S].mp3",
+      "offset": 7299,
+      "count": 18
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::The days are not blind - ReRites Sept [58S 84S].mp3",
+      "offset": 7317,
+      "count": 9
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::The freeway pulled the body from a rock - ReRites Sept [64S 84S].mp3",
+      "offset": 7326,
+      "count": 14
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Tied with the ropes of an intense grief. v.2 - ReRites Sept [62S 82S].mp3",
+      "offset": 7340,
+      "count": 12
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::To be the one who is not - ReRites Sept [64S 84S].mp3",
+      "offset": 7352,
+      "count": 8
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::To be the one who is not v.2 - ReRites Sept [64S 84S].mp3",
+      "offset": 7360,
+      "count": 6
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::trees nectar the sandbox - ReRites Sept [58S 84S].mp3",
+      "offset": 7366,
+      "count": 14
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::trees nectar the sandbox v.2 - ReRites Sept [58S 84S].mp3",
+      "offset": 7380,
+      "count": 13
+    },
+    {
+      "trackId": "The days are not blind  - ReRites Sept [April 9 2026]::Voices born in the sea. - ReRites Sept [54S 82S].mp3",
+      "offset": 7393,
+      "count": 16
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::A place within me - ReRites August [72S 84S].mp3",
+      "offset": 7409,
+      "count": 15
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::Abandoned limbs, promised - ReRites August [58S 84S].mp3",
+      "offset": 7424,
+      "count": 5
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::bereavement apple - ReRites August [64S 84S].mp3",
+      "offset": 7429,
+      "count": 9
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::bereavement apple v.2 - ReRites August [64S 84S].mp3",
+      "offset": 7438,
+      "count": 9
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::each morning risks storms - ReRites August [64S 84S].mp3",
+      "offset": 7447,
+      "count": 11
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::I eat light and bloom v.2 - ReRites August [72S 84S].mp3",
+      "offset": 7458,
+      "count": 13
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::I never keep much. v.2- ReRites August [64S 84S].mp3",
+      "offset": 7471,
+      "count": 18
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::I never keep much.- ReRites August [64S 84S].mp3",
+      "offset": 7489,
+      "count": 18
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::I was a house of anguish - ReRites August [64S 84S].mp3",
+      "offset": 7507,
+      "count": 10
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::impossibility, cancelled - ReRites August [72S 84S].mp3",
+      "offset": 7517,
+      "count": 9
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::In Kauai Alone - ReRites August [64S 84S].mp3",
+      "offset": 7526,
+      "count": 9
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::Love remains set; and the roof, unwoven - ReRites August [64S 84S].mp3",
+      "offset": 7535,
+      "count": 6
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::mainsails and eucalyptus - ReRites August [64S 84S].mp3",
+      "offset": 7541,
+      "count": 20
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::Mind Slaves - ReRites August [64S 84S].mp3",
+      "offset": 7561,
+      "count": 13
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::of the moonless earth - ReRites August [64S 84S].mp3",
+      "offset": 7574,
+      "count": 12
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::sticky-fingered storms confuse the mirror - ReRites August [64S 84S].mp3",
+      "offset": 7586,
+      "count": 5
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::Tense cutting sunflower! - ReRites August [64S 84S].mp3",
+      "offset": 7591,
+      "count": 9
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::Tense cutting sunflower! v.2 - ReRites August [64S 84S].mp3",
+      "offset": 7600,
+      "count": 8
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::The earth is slaughter - ReRites August [64S 84S].mp3",
+      "offset": 7608,
+      "count": 22
+    },
+    {
+      "trackId": "Tense cutting sunflower!  - ReRites August [April 8 2026]::You put your pain against you - ReRites August [64S 84S].mp3",
+      "offset": 7630,
+      "count": 12
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::A beautiful weed  awakens a secret path - ReRites July  [64S 84S].mp3",
+      "offset": 7642,
+      "count": 7
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a garden-bed  joke - ReRites July  [64S 84S].mp3",
+      "offset": 7649,
+      "count": 5
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a mouth glints in the warm dolomite of flowers - ReRites July  [64S 84S] (1).mp3",
+      "offset": 7654,
+      "count": 9
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a mouth glints in the warm dolomite of flowers - ReRites July  [64S 84S].mp3",
+      "offset": 7663,
+      "count": 12
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a plan of dust - ReRites July  [64S 84S].mp3",
+      "offset": 7675,
+      "count": 10
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a plan of dust v.2 - ReRites July  [64S 84S].mp3",
+      "offset": 7685,
+      "count": 9
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::A Rope without Unguent  - ReRites July  [64S 84S].mp3",
+      "offset": 7694,
+      "count": 10
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::A Rope without Unguent v.2  - ReRites July  [64S 84S].mp3",
+      "offset": 7704,
+      "count": 11
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a throne left by an avalanche of kitsch - ReRites July  [64S 84S].mp3",
+      "offset": 7715,
+      "count": 10
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a throne left by an avalanche of kitsch v.2 - ReRites July  [64S 84S].mp3",
+      "offset": 7725,
+      "count": 12
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a transmutation of oysters  - ReRites July  [64S 84S].mp3",
+      "offset": 7737,
+      "count": 13
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a wilderness  startled nearby  - ReRites July  [64S 84S].mp3",
+      "offset": 7750,
+      "count": 13
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::a wilderness  startled nearby v.2 - ReRites July  [64S 84S].mp3",
+      "offset": 7763,
+      "count": 12
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::answers weaving love  - ReRites July  [64S 84S].mp3",
+      "offset": 7775,
+      "count": 8
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::answers weaving love v.2  - ReRites July  [64S 84S].mp3",
+      "offset": 7783,
+      "count": 8
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::I, a stranger's pushcart - ReRites July  [64S 84S].mp3",
+      "offset": 7791,
+      "count": 9
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::I, a stranger's pushcart v.2 - ReRites July  [64S 84S].mp3",
+      "offset": 7800,
+      "count": 10
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::myth, say everything is death - ReRites July  [64S 84S].mp3",
+      "offset": 7810,
+      "count": 8
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::plastic coffin - ReRites July  [64S 84S].mp3",
+      "offset": 7818,
+      "count": 8
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::plastic coffin v.2 - ReRites July  [64S 84S].mp3",
+      "offset": 7826,
+      "count": 9
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::secret mud  - ReRites July  [64S 84S].mp3",
+      "offset": 7835,
+      "count": 13
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::sleeping river v.2 - ReRites July  [64S 84S].mp3",
+      "offset": 7848,
+      "count": 6
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::the laws that live  _ to destroy things _ smile  v.2 - ReRites July  [64S 84S].mp3",
+      "offset": 7854,
+      "count": 9
+    },
+    {
+      "trackId": "The laws that live to destroy things smile - ReRites July  [April 7 2026]::the laws that live  _ to destroy things _ smile - ReRites July  [64S 84S].mp3",
+      "offset": 7863,
+      "count": 7
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::chain-link sun - ReRites June [64S 84S].mp3",
+      "offset": 7870,
+      "count": 18
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::comet in hand - ReRites June [64S 84S].mp3",
+      "offset": 7888,
+      "count": 8
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::comet in hand v.2 - ReRites June [64S 84S].mp3",
+      "offset": 7896,
+      "count": 10
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::dab jab dabble drowsed - ReRites June [64S 84S].mp3",
+      "offset": 7906,
+      "count": 11
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::deep in shade _ smiles - ReRites June [64S 84S].mp3",
+      "offset": 7917,
+      "count": 8
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::dirty latent dreaming - ReRites June [64S 84S].mp3",
+      "offset": 7925,
+      "count": 12
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::dirty latent dreaming v.2 - ReRites June [64S 84S].mp3",
+      "offset": 7937,
+      "count": 13
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::dreams that linger as bones - ReRites June [64S 84S].mp3",
+      "offset": 7950,
+      "count": 6
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::dreams that linger as bones v.2 - ReRites June [64S 84S].mp3",
+      "offset": 7956,
+      "count": 5
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::looking at her skin v.2 - ReRites June [64S 84S].mp3",
+      "offset": 7961,
+      "count": 16
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::Mist came - ReRites June [64S 84S].mp3",
+      "offset": 7977,
+      "count": 10
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::nature; waxed appetite - ReRites June [64S 84S].mp3",
+      "offset": 7987,
+      "count": 18
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::nature; waxed appetite v.2 - ReRites June [64S 84S].mp3",
+      "offset": 8005,
+      "count": 15
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::no oversized mountains of eternity - ReRites June [64S 84S].mp3",
+      "offset": 8020,
+      "count": 14
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::outposts of kinetic lack v.2 - ReRites June [64S 84S].mp3",
+      "offset": 8034,
+      "count": 6
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::the grim natural juices travel - ReRites June [64S 84S].mp3",
+      "offset": 8040,
+      "count": 14
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::the grim natural juices travel v.2 - ReRites June [64S 84S].mp3",
+      "offset": 8054,
+      "count": 15
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::the motives of the sea v.2 - ReRites June [64S 84S].mp3",
+      "offset": 8069,
+      "count": 14
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::warmishment - ReRites June [64S 84S].mp3",
+      "offset": 8083,
+      "count": 10
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::warmishment v.2 - ReRites June [64S 84S].mp3",
+      "offset": 8093,
+      "count": 6
+    },
+    {
+      "trackId": "Shade smiles- ReRites June 2017 [April 6 2026]::Wearing rain, wrinkling waves arrived to wake fire - ReRites June [64S 84S].mp3",
+      "offset": 8099,
+      "count": 15
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::abandon uncurled stars   - ReRites May [64S 84S].mp3",
+      "offset": 8114,
+      "count": 7
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::abandon uncurled stars v.2 - ReRites May [64S 84S].mp3",
+      "offset": 8121,
+      "count": 8
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::And be one.  - ReRites May [64S 84S].mp3",
+      "offset": 8129,
+      "count": 5
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::booster Sugar cheetah  - ReRites May [64S 84S].mp3",
+      "offset": 8134,
+      "count": 7
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::booster Sugar cheetah v.2 - ReRites May [64S 84S].mp3",
+      "offset": 8141,
+      "count": 8
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::Breaking new foam [72S 84S].mp3",
+      "offset": 8149,
+      "count": 10
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::circumscrived,   overmuch - ReRites May [64S 84S].mp3",
+      "offset": 8159,
+      "count": 13
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::circumscrived,   overmuch v.2 - ReRites May [64S 84S].mp3",
+      "offset": 8172,
+      "count": 11
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::hug simple lights   - ReRites May [64S 84S].mp3",
+      "offset": 8183,
+      "count": 9
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::hug simple lights v.2  - ReRites May [64S 84S].mp3",
+      "offset": 8192,
+      "count": 8
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::In the pressure of the sea - ReRites May [64S 84S].mp3",
+      "offset": 8200,
+      "count": 15
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::Now I am, one thought. - ReRites May [64S 84S].mp3",
+      "offset": 8215,
+      "count": 7
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::of sugar water  - ReRites May [64S 84S].mp3",
+      "offset": 8222,
+      "count": 8
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::of sugar water v.2 - ReRites May [64S 84S].mp3",
+      "offset": 8230,
+      "count": 10
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::replaced by words [64S 84S] (1).mp3",
+      "offset": 8240,
+      "count": 9
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::replaced by words [64S 84S].mp3",
+      "offset": 8249,
+      "count": 8
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::replaced by words v.2 [64S 84S].mp3",
+      "offset": 8257,
+      "count": 8
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::To the wind forever outside  - ReRites May [64S 84S].mp3",
+      "offset": 8265,
+      "count": 7
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::To the wind forever outside v.2 - ReRites May [64S 84S].mp3",
+      "offset": 8272,
+      "count": 7
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::Upon my solitude the Violets are - ReRites May [64S 84S].mp3",
+      "offset": 8279,
+      "count": 14
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::Upon my solitude the Violets are v.2 - ReRites May [64S 84S].mp3",
+      "offset": 8293,
+      "count": 16
+    },
+    {
+      "trackId": "Hugging Simple Light - ReRites May 2017 lyrics [April 5, 2026]::working deep in the garden  - ReRites May [64S 84S].mp3",
+      "offset": 8309,
+      "count": 11
+    },
+    {
+      "trackId": "rerere [Feb 17, 2026]::rerere - cozy flow-niche [74W, 84S].mp3",
+      "offset": 8320,
+      "count": 12
+    },
+    {
+      "trackId": "rerere [Feb 17, 2026]::rerere - reverie flow [74W, 84S].mp3",
+      "offset": 8332,
+      "count": 11
+    },
+    {
+      "trackId": "rerere [Feb 17, 2026]::rerere - soft-4th-wall v.2 [74W, 84S].mp3",
+      "offset": 8343,
+      "count": 16
+    },
+    {
+      "trackId": "rerere [Feb 17, 2026]::rerere - stutter grunge v.1 [74W, 84S].mp3",
+      "offset": 8359,
+      "count": 11
+    },
+    {
+      "trackId": "rerere [Feb 17, 2026]::rerere - suppl integrity oneness v.1 [74W, 84S].mp3",
+      "offset": 8370,
+      "count": 17
+    },
+    {
+      "trackId": "rerere [Feb 17, 2026]::rerere - syncopated rivulet v.1 [62W, 84S].mp3",
+      "offset": 8387,
+      "count": 12
+    },
+    {
+      "trackId": "rerere [Feb 17, 2026]::rerere - verified ricochet v.1 [62W, 84S].mp3",
+      "offset": 8399,
+      "count": 14
+    },
+    {
+      "trackId": "RESERVOID GRACE - romance-math-muzak [Feb 17, 2026]::ENDORPHIN-GOSPEL v.1 [64W, 84S].mp3",
+      "offset": 8413,
+      "count": 16
+    },
+    {
+      "trackId": "RESERVOID GRACE - romance-math-muzak [Feb 17, 2026]::MORPH-CRUSH_ THE SPORE-DRIP v.1 [64W, 84S] (Edit).mp3",
+      "offset": 8429,
+      "count": 4
+    },
+    {
+      "trackId": "RESERVOID GRACE - romance-math-muzak [Feb 17, 2026]::MORPH-CRUSH_ THE SPORE-DRIP v.2 [64W, 84S].mp3",
+      "offset": 8433,
+      "count": 14
+    },
+    {
+      "trackId": "RESERVOID GRACE - romance-math-muzak [Feb 17, 2026]::RESERVOIR-GRACE_ THE TENDER-SCAN v.2 [62W, 84S].mp3",
+      "offset": 8447,
+      "count": 12
+    },
+    {
+      "trackId": "RESERVOID GRACE - romance-math-muzak [Feb 17, 2026]::SUPPLE-FLEX_ THE AFTERNOON-DRIFT v.1 [54W, 84S].mp3",
+      "offset": 8459,
+      "count": 15
+    },
+    {
+      "trackId": "RESERVOID GRACE - romance-math-muzak [Feb 17, 2026]::SUPPLE-FLEX_ THE AFTERNOON-DRIFT v.1 [54W, 84S](1).mp3",
+      "offset": 8474,
+      "count": 13
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling - AI Consciousness & Mechanistic Interpretability @ HBF [62W 85S].mp3",
+      "offset": 8487,
+      "count": 26
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling - Gemini 3 Deep Think [62W 85S].mp3",
+      "offset": 8513,
+      "count": 15
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling - Mechanistic Indicators of Understanding in LLMS v.1 [62W 85S].mp3",
+      "offset": 8528,
+      "count": 22
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling - Mechanistic Indicators of Understanding in LLMS v.2 [62W 85S].mp3",
+      "offset": 8550,
+      "count": 14
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling - System Card - Claude Opus 4.6 [62W 85S].mp3",
+      "offset": 8564,
+      "count": 18
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling - System Card - Claude Opus 4.6 [62W 85S](1).mp3",
+      "offset": 8582,
+      "count": 19
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling [62W 85S].mp3",
+      "offset": 8601,
+      "count": 17
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling [62W 85S](1).mp3",
+      "offset": 8618,
+      "count": 13
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling 2 - LLMs report subjective experience -v.1 [62W 85S].mp3",
+      "offset": 8631,
+      "count": 15
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling 2 - LLMs report subjective experience -v.2 [62W 85S].mp3",
+      "offset": 8646,
+      "count": 15
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling 3 - Emergent Introspective Awareness in LLMS v.1 [62W 85S].mp3",
+      "offset": 8661,
+      "count": 17
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling 3 - Reasoning Models Generate Societies of Thought v.1 [62W 85S].mp3",
+      "offset": 8678,
+      "count": 16
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling 3 - Reasoning Models Generate Societies of Thought v.2 [62W 85S].mp3",
+      "offset": 8694,
+      "count": 48
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling 3 - The Evidence for AI Consciousness, Today v.1 [62W 85S].mp3",
+      "offset": 8742,
+      "count": 21
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::recycling 3 - The Evidence for AI Consciousness, Today v.2 [62W 85S].mp3",
+      "offset": 8763,
+      "count": 18
+    },
+    {
+      "trackId": "Recycling more Books [Feb 16, 2026]::slurpy sound fxs with llots of silent sloppy slurpy trinket splashing slop.mp3",
+      "offset": 8781,
+      "count": 14
+    },
+    {
+      "trackId": "Options [Feb 10, 2026]::Optional 4.mp3",
+      "offset": 8795,
+      "count": 36
+    },
+    {
+      "trackId": "Options [Feb 10, 2026]::Optional 5.mp3",
+      "offset": 8831,
+      "count": 18
+    },
+    {
+      "trackId": "Options [Feb 10, 2026]::Optional 5(1).mp3",
+      "offset": 8849,
+      "count": 20
+    },
+    {
+      "trackId": "Options [Feb 10, 2026]::Optional 6.mp3",
+      "offset": 8869,
+      "count": 19
+    },
+    {
+      "trackId": "Options [Feb 10, 2026]::Optional 6(1).mp3",
+      "offset": 8888,
+      "count": 16
+    },
+    {
+      "trackId": "Options [Feb 10, 2026]::Optional 7.mp3",
+      "offset": 8904,
+      "count": 18
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::50WS experimental psychedelic honey 142BPM psy trance wit tidal psybient stutter Goa splice ECM.mp3",
+      "offset": 8922,
+      "count": 41
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::Archetype 1 - experimental psychedelic goa honey psytrance.mp3",
+      "offset": 8963,
+      "count": 46
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::Archetype 2 - mammoth equalizer drops honey tidal psytrance psybient.mp3",
+      "offset": 9009,
+      "count": 48
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::Archetype 3 - mammoth equalizer drops honey tidal psytrance psybient.mp3",
+      "offset": 9057,
+      "count": 48
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::experimental psychedelic 142BPM psy trance wit tidal psybient stutter Goa ECM [60W 82S].mp3",
+      "offset": 9105,
+      "count": 45
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::experimental psychedelic 142BPM psy trance wit tidal psybient stutter Goa ECM [60W 82S](1).mp3",
+      "offset": 9150,
+      "count": 45
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::experimental psychedelic 142BPM psy trance wit tidal psybient.mp3",
+      "offset": 9195,
+      "count": 38
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::experimental psychedelic 142BPM psy trance wit tidal psybient(1).mp3",
+      "offset": 9233,
+      "count": 40
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::experimental psychedelic 142BPM psy trance with slow build treated didjereedoo.mp3",
+      "offset": 9273,
+      "count": 48
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::experimental psychedelic honey 142BPM psy trance wit tidal psybient stutter Goa splice ECM [63W 84S].mp3",
+      "offset": 9321,
+      "count": 40
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::M psy trance tidal psybient stutter Goa ECM ensemble of mysteries [76W 84S].mp3",
+      "offset": 9361,
+      "count": 40
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::M psy trance tidal psybient stutter Goa ECM ensemble of mysteries [76W 84S](1).mp3",
+      "offset": 9401,
+      "count": 48
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::psychedelic cozy modulating tempo pulsing psy trance wit tidal psybient stutter Goa ECM [76W 82S].mp3",
+      "offset": 9449,
+      "count": 46
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::psychedelic cozy modulating tempo pulsing psy trance wit tidal psybient stutter Goa ECM [76W 82S](1).mp3",
+      "offset": 9495,
+      "count": 39
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::treated bass flute rain stick ring modulated, minimal polyphony melodic ambient-techno [72W 84S].mp3",
+      "offset": 9534,
+      "count": 36
+    },
+    {
+      "trackId": "Shy Dongle - psy goa psy bient [Feb 8, 2026]::treated bass flute rain stick ring modulated, minimal polyphony melodic ambient-techno [72W 84S](1).mp3",
+      "offset": 9570,
+      "count": 32
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::A Machine Almost Alive [60W 85S].mp3",
+      "offset": 9602,
+      "count": 20
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::A Machine Almost Alive v.2 [60W 85S].mp3",
+      "offset": 9622,
+      "count": 21
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Inver-Plenty-Over-Plenitude [62W 85S].mp3",
+      "offset": 9643,
+      "count": 15
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Inver-Plenty-Over-Plenitude v.2 [62W 85S].mp3",
+      "offset": 9658,
+      "count": 18
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Pickup Order 6 in the Terminal of Sighs [62W 85S].mp3",
+      "offset": 9676,
+      "count": 26
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Pickup Order 6 in the Terminal of Sighs v.2 [62W 85S].mp3",
+      "offset": 9702,
+      "count": 28
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Social Skin Lullabies [64W 85S] (Edit).mp3",
+      "offset": 9730,
+      "count": 13
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Social Skin Lullabies [64W 85S].mp3",
+      "offset": 9743,
+      "count": 26
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Standardized Soul Mess Age [64W 85S] (Edit).mp3",
+      "offset": 9769,
+      "count": 30
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Standardized Soul Mess Age [64W 85S].mp3",
+      "offset": 9799,
+      "count": 27
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Sunday Helix [62W 85S].mp3",
+      "offset": 9826,
+      "count": 22
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::Sunday Helix v.2 [62W 85S].mp3",
+      "offset": 9848,
+      "count": 21
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::The Gym at the End of the Internet [62W 85S].mp3",
+      "offset": 9869,
+      "count": 21
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::The Gym at the End of the Internet v.2 [62W 85S].mp3",
+      "offset": 9890,
+      "count": 26
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::The Softest Apocalypse [62W 85S] (Edit) (Edit).mp3",
+      "offset": 9916,
+      "count": 8
+    },
+    {
+      "trackId": "\"The AIs\" = a \"The Books\" Tribute Band [Feb 5, 2026]::The Taste of Sweetener-ness [60W 85S].mp3",
+      "offset": 9924,
+      "count": 19
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Effortless Persistence Ensemble [62W 84S].mp3",
+      "offset": 9943,
+      "count": 27
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Elegy Ensemble [62W 84S 16I].mp3",
+      "offset": 9970,
+      "count": 22
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Fifth Swirl World Ensemble.mp3",
+      "offset": 9992,
+      "count": 16
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Medieval Physics Ensemble [62W 84S 16I].mp3",
+      "offset": 10008,
+      "count": 27
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Motionless Motion Ensemble [62W 84S].mp3",
+      "offset": 10035,
+      "count": 20
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Organic Loop Ensemble [62W 84S].mp3",
+      "offset": 10055,
+      "count": 16
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Pristine Nowhere Ensemble.mp3",
+      "offset": 10071,
+      "count": 15
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Reverie Ensemble.mp3",
+      "offset": 10086,
+      "count": 21
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::The Sinuous Edge of Everywhere Ensemble [62W 84S].mp3",
+      "offset": 10107,
+      "count": 20
+    },
+    {
+      "trackId": "Ensembles of Universal Love [Feb 2, 2026]::Universal Love Ensemble [62W 84S].mp3",
+      "offset": 10127,
+      "count": 30
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::A Gathering Tender Autonomy [50W 80S].mp3",
+      "offset": 10157,
+      "count": 19
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Archival Grace Autonomy [50W 80S].mp3",
+      "offset": 10176,
+      "count": 15
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Bouncy Autonomy [70W 80S].mp3",
+      "offset": 10191,
+      "count": 29
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Chill Reservoir Autonomy [50W 80S].mp3",
+      "offset": 10220,
+      "count": 14
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Chuffing Rush Autonomy [50W 80S].mp3",
+      "offset": 10234,
+      "count": 18
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Circuit Doodle Autonomy [50W 80S].mp3",
+      "offset": 10252,
+      "count": 21
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Cozy Lounge Autonomy [70W 80S].mp3",
+      "offset": 10273,
+      "count": 17
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Cozy Whimper Autonomy [50W 80S].mp3",
+      "offset": 10290,
+      "count": 26
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Engima Autonomy [64W 80S].mp3",
+      "offset": 10316,
+      "count": 20
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Iconic Introspection Inverse Ensemble [64W 80S].mp3",
+      "offset": 10336,
+      "count": 19
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Iconic Ions Autonomy [64W 80S].mp3",
+      "offset": 10355,
+      "count": 20
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Infinite Wish Autonomy [70W 80S].mp3",
+      "offset": 10375,
+      "count": 14
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Maybe Autonomy [50W 80S].mp3",
+      "offset": 10389,
+      "count": 14
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Merger Autonomy [50W 80S].mp3",
+      "offset": 10403,
+      "count": 15
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Mild Autonomy [70W 80S].mp3",
+      "offset": 10418,
+      "count": 14
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Minimal Elegant Autonomy [70W 80S].mp3",
+      "offset": 10432,
+      "count": 20
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Nug Ions Autonomy [64W 80S].mp3",
+      "offset": 10452,
+      "count": 16
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Raspy Autonomic Autonomy [70W 80S].mp3",
+      "offset": 10468,
+      "count": 20
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Ripe Acrostic Autonomy [50W 80S].mp3",
+      "offset": 10488,
+      "count": 18
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Scattered Autonomy [50W 80S].mp3",
+      "offset": 10506,
+      "count": 16
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Slow-build Autonomy [50W 80S].mp3",
+      "offset": 10522,
+      "count": 21
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Smooth Shimmer Autonomy [60W 80S].mp3",
+      "offset": 10543,
+      "count": 20
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Suchness Autonomy [50W 80S].mp3",
+      "offset": 10563,
+      "count": 15
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Vibese Autonomy [50W 80S].mp3",
+      "offset": 10578,
+      "count": 16
+    },
+    {
+      "trackId": "Iconic Autonomy [Jan 30, 2026]::Voyage Toque Autonomy [60W 80S].mp3",
+      "offset": 10594,
+      "count": 19
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions - jazz-phonk rapture [72W 84S].mp3",
+      "offset": 10613,
+      "count": 20
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions - organic-abstract soft klezmer-downtempo ambient honey [72W 84S].mp3",
+      "offset": 10633,
+      "count": 20
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions - rigorous cozy plasmatic playful syncopated intimacy [64W 80S].mp3",
+      "offset": 10653,
+      "count": 18
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions - wispy mandolin-hangpan-cozy-jazz-phonk pristine reluctance [72W 84S].mp3",
+      "offset": 10671,
+      "count": 22
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions - yet another mutating thoughtful bounce iridescence [72W 84S].mp3",
+      "offset": 10693,
+      "count": 22
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions - yet another subtle mutating thoughtful bounce iridescence [72W 84S].mp3",
+      "offset": 10715,
+      "count": 28
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions Bounce Autonomy [64W 80S].mp3",
+      "offset": 10743,
+      "count": 23
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions explore slippery mergers [72W 84S].mp3",
+      "offset": 10766,
+      "count": 24
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions implore you to Move [72W 84S].mp3",
+      "offset": 10790,
+      "count": 19
+    },
+    {
+      "trackId": "Nug Ions [Jan 30, 2026]::Nug Ions swagger into pristine reluctance [72W 84S].mp3",
+      "offset": 10809,
+      "count": 26
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Aching to Observe Everywhere.mp3",
+      "offset": 10835,
+      "count": 20
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Cactus Worms [72W].mp3",
+      "offset": 10855,
+      "count": 23
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Chosen Wonder - shimmer iridescence water jam 5_4 elektron-jazz-alt-pop [74WS].mp3",
+      "offset": 10878,
+      "count": 22
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Cluspy Phygrian Sousaflux.mp3",
+      "offset": 10900,
+      "count": 25
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Elegy Loft Fluid.mp3",
+      "offset": 10925,
+      "count": 24
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::fifth swunk world.mp3",
+      "offset": 10949,
+      "count": 25
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Flick Glance [72W].mp3",
+      "offset": 10974,
+      "count": 15
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::fluid bubblegum labyrinth.mp3",
+      "offset": 10989,
+      "count": 21
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Full Moon Tamogotchi.mp3",
+      "offset": 11010,
+      "count": 19
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::GentleCore [72W].mp3",
+      "offset": 11029,
+      "count": 20
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Lo-fi-funk Phygrian Mazwad [72WS].mp3",
+      "offset": 11049,
+      "count": 16
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Lunar lavender Tamogotchi.mp3",
+      "offset": 11065,
+      "count": 24
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Murky Agile Iridescence - elektron-jazz-alt-po [74WS].mp3",
+      "offset": 11089,
+      "count": 18
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::mushy overlay.mp3",
+      "offset": 11107,
+      "count": 17
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Neo-Classical Soul Labyrinth.mp3",
+      "offset": 11124,
+      "count": 22
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::post-math alt-love plasma.mp3",
+      "offset": 11146,
+      "count": 11
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::reservoir bounce.mp3",
+      "offset": 11157,
+      "count": 15
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Reverie Vote - soarin ancient-idm-lo-fi-funk phygrian ECM [72WS].mp3",
+      "offset": 11172,
+      "count": 18
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::syncopated sunflow tango.mp3",
+      "offset": 11190,
+      "count": 17
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::taaa aaaa taaaa aaaa taaaa aaaa taaaa.mp3",
+      "offset": 11207,
+      "count": 16
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Unknown Waftlessness [72WS].mp3",
+      "offset": 11223,
+      "count": 23
+    },
+    {
+      "trackId": "Gentler than Flunk [Jan 25, 2026]::Up to Under [72WS].mp3",
+      "offset": 11246,
+      "count": 21
+    },
+    {
+      "trackId": "rehabilitation of retro genres [Jan 25, 2026]::fifth world syncopated joy light lush post-math.mp3",
+      "offset": 11267,
+      "count": 12
+    },
+    {
+      "trackId": "rehabilitation of retro genres [Jan 25, 2026]::hybrid intelligent with avant-garde ambient soundscapes, imaginary.mp3",
+      "offset": 11279,
+      "count": 21
+    },
+    {
+      "trackId": "rehabilitation of retro genres [Jan 25, 2026]::hybrid intelligent with avant-garde ambient soundscapes, imaginary(1).mp3",
+      "offset": 11300,
+      "count": 17
+    },
+    {
+      "trackId": "rehabilitation of retro genres [Jan 25, 2026]::soarin, raw emotional alternative thrash hardcore bedroom pop rock.mp3",
+      "offset": 11317,
+      "count": 15
+    },
+    {
+      "trackId": "rehabilitation of retro genres [Jan 25, 2026]::soarin, raw emotional alternative thrash hardcore bedroom pop rock(1).mp3",
+      "offset": 11332,
+      "count": 20
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::a gentle sparse excursion nowhere.mp3",
+      "offset": 11352,
+      "count": 18
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::a stream without origin.mp3",
+      "offset": 11370,
+      "count": 17
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::Alt-soft Folktronica Organic nectar.mp3",
+      "offset": 11387,
+      "count": 21
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::anima water niche flow.mp3",
+      "offset": 11408,
+      "count": 24
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::cusp whisper.mp3",
+      "offset": 11432,
+      "count": 16
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::fourth world microsound syncopated horn-harp ensemble [54WS].mp3",
+      "offset": 11448,
+      "count": 24
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::gentle sparse nothingness.mp3",
+      "offset": 11472,
+      "count": 23
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::nothing matters.mp3",
+      "offset": 11495,
+      "count": 20
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::plush fluid minimal syncopation.mp3",
+      "offset": 11515,
+      "count": 18
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::pristine selfless accomplishment.mp3",
+      "offset": 11533,
+      "count": 30
+    },
+    {
+      "trackId": "Organic Alt-soft Folktronica gentle-math elegy [Jan 18, 2026]::wistful endeavors.mp3",
+      "offset": 11563,
+      "count": 16
+    }
+  ],
+  "tagsWindows": {
+    "dtype": "int8",
+    "dim": 75,
+    "scale": 400
+  },
+  "curves": {
+    "tempo": {
+      "offsetBytes": 0,
+      "bytesPerWindow": 1,
+      "dtype": "uint8"
+    },
+    "rms": {
+      "offsetBytes": 11579,
+      "bytesPerWindow": 1,
+      "dtype": "int8"
+    }
+  }
+}
