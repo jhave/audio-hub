@@ -125,84 +125,100 @@ for the archive, versus the immersive Atlas.
 This is the FIRST thing to build. It is lower-risk (reuses proven code) and it
 validates the Phase A2 data by making every field visible and playable.
 
-### 0A. Where it lives & how it's built  `[ ]`
-- [ ] **0.1** Duplicate the 2026-site player into an `experience` route that
-  static-exports to `experience/index.html` (deployed at
-  `glia.ca/2026/171days/experience/` — adjacent to the audio it already uses).
-  Duplicate `ManifestClient` → `ExperienceClient` and `AudioLibraryClient` →
-  `ExperienceLibraryClient` so the original player at `/2026/171days/` is
-  untouched. (Alt if Next routing is fussy: a standalone static page in
-  2026-exp that re-implements the card list — but reusing the React player is
-  preferred to "keep all the playlist functionality.")
-- [ ] **0.2** Build a slim data file `2026-site/public/data/dh.json` via a
-  script `tools/build-dh.mjs` that reads from `2026-exp/public/data/v2/` +
-  `atlas.json` (boxes 1.1–1.3) and emits, per track, ONLY what the fold needs:
-  `{ trackId, i, neighborXY:[x,y] in the chosen 2D layout, neighbors:[{i,
-  title, album, w}], prompt(styleTags), lyricsPresent, descriptorsSubset
-  (key,keyMode,tempo,tempoDrift,sections,dropAt,bounce,melodicComplexity,
-  weirdness,styleWeight,journey,spread,novelty,topTags:[{probe,score}]), fav }`.
-  Also include a corpus-wide `points:[[x,y,albumIdx]...746]` array for drawing
-  the neighborhood field behind each track's dot. Target < 400 KB. (Copy into
-  2026-site/public so the exported folder is self-contained + archive-safe.)
+### RESOLVED LAYOUT (jhave, 2026-07-11) — three columns, player untouched
 
-### 0B. Player enhancements (keep everything, widen a little)  `[ ]`
-- [ ] **0.3** Widen each album card / track row slightly to make room, left of
-  the play button, for a **star indicator** marking published/starred tracks
-  (from `favorites.json`, matched by normalized title). Star = filled for
-  favorites, hollow/absent otherwise. Tooltip: "published by jhave (a favorite)."
-- [ ] **0.4** Playback-order toggle (three-way): **sequential** (current
-  behavior) · **random** (shuffle all) · **random-star** (shuffle, but only
-  among starred tracks — a curated random walk through the good ones). Wire it
-  into the existing flat-queue / auto-advance logic. Persist choice in
-  localStorage; show current mode in the floating dock.
+The existing center player-list stays **exactly as is** (album cards, rows,
+floating bottom dock). We FRAME it: add a persistent **map column on the left**
+and a persistent **data column on the right**. No per-row folds, no widened
+rows, no duplicated maps. Master–detail with a single shared map + single
+shared data panel.
 
-### 0C. The per-track FOLD (the ML review surface)  `[ ]`
-- [ ] **0.5** Each track row gets a disclosure control (▸/▾) that expands an
-  inline **info fold** below it. Closed by default; opening is the listener's
-  choice. Opening the fold does NOT change playback. State per-row; only one
-  fold need be open at a time (optional) or many (decide via D6).
-- [ ] **0.6** **Neighborhood graph** inside the fold: a small 2D scatter
-  (Canvas/SVG) of the UMAP/t-SNE XY. The THIS-track dot is a **pulsing red
-  dot**; around it, its nearest neighbors (and the faint mass of all other
-  tracks) are plotted so you see what it's affiliated with. Zoom framed on the
-  local neighborhood by default, with a "see whole field" toggle.
-- [ ] **0.7** Graph interaction — **hover a dot**: show that track's title +
-  album name (small label). **Click play on a hovered dot**: start playing it;
-  the player list **scrolls up to center** that track's row; and if info folds
-  are open, open that track's fold too (so the graph + analytics follow the
-  music). When nothing is hovered, the currently-PLAYING track is the pulsing
-  red dot, surrounded by its analytic data.
-- [ ] **0.8** Fold analytics panel, neatly arranged beside/below the graph:
-  the track's **prompt** (styleTags, URLs linkified), a **waveform** (render
-  from the mp3 via WebAudio decode of a short fetch, or from the `rms` curve in
-  `curves.bin` as a cheap silhouette — prefer the rms silhouette to avoid
-  decoding full mp3s), and a **readable list of the JSON data** (key, tempo +
-  drift, sections/dropAt, bounce, melodic complexity, weirdness/styleWeight,
-  journey/spread/novelty, top tags). Label every value in plain language.
-- [ ] **0.9** Sync the pulsing dot + waveform playhead to actual playback
-  progress of the playing track (the fold of the playing track is the "live"
-  one; other open folds are static references).
+- **Left column (persistent map):** the neighborhood graph / topology. Dots:
+  **grey = unplayed → gold = played → red pulse = playing**, **ring = starred**.
+  A "N / 746 heard" counter; the field warms to gold as you listen (coverage
+  as reward). The map is also a minimap: click a dot → center that row in the
+  list; hovering a row lights its neighbors here.
+- **Center column (UNCHANGED player):** current cards + rows + bottom dock,
+  with only the two tiny additions below (star badge + order icon).
+- **Right column (persistent data):** analytics for the **focal track**. Focal
+  = the playing track by default; but if the user scrolls and **rolls over
+  another track's title (or a map dot)**, the right column *previews* that
+  track's data while the original keeps playing in the dock. On mouse-out it
+  reverts to the playing track. (Preview = look without committing.)
 
-### 0D. Ship  `[ ]`
-- [ ] **0.10** Verify in preview (Range-serving stage): stars show, order
-  toggle works, folds open, graph hover/click-play/scroll-center works, data
-  reads correctly for spot-checked tracks (cross-check a `[74W 85S]` track's
-  weirdness/styleWeight). Portable build (relative paths). Deploy to
+### 0A. Build & data  `[ ]`
+- [ ] **0.1** Duplicate the 2026-site player into an `experience` route
+  (static-export → `experience/index.html`, deployed at
+  `glia.ca/2026/171days/experience/`). Duplicate `ManifestClient` →
+  `ExperienceClient`, `AudioLibraryClient` → `ExperienceLibraryClient`; the
+  original player at `/2026/171days/` stays untouched. Wrap the (unchanged)
+  library in a 3-column CSS grid: `[map] [player] [data]`. On narrow screens
+  the side columns collapse (see 0.9 mobile).
+- [ ] **0.2** `tools/build-dh.mjs` reads `2026-exp/public/data/v2/` +
+  `atlas.json` (boxes 1.1–1.3) → `2026-site/public/data/dh.json`, per track:
+  `{ trackId, i, xy:[x,y] (audio layout), neighbors:[{i,title,album,w}],
+  prompt(styleTags), lyricsPresent, key,keyMode,tempo,tempoDrift,sections,
+  dropAt,bounce,melodicComplexity,weirdness,styleWeight,journey,spread,
+  novelty, topTags:[{probe,score}], rmsSilhouette:[~48 uint8], fav }`, plus
+  corpus `points:[[x,y,albumIdx]...746]`. Target < 450 KB; copy into
+  2026-site/public so the export is self-contained + archive-safe.
+
+### 0B. Two tiny additions to the player (nothing else changes)  `[ ]`
+- [ ] **0.3** **Star badge** for published/starred tracks (from
+  `favorites.json`, normalized-title match): glued to the **top-left corner of
+  the play button**, INSIDE the play/pause clickable hit-area (no row
+  widening). Filled star = favorite; absent otherwise. Tooltip: "published by
+  jhave (a favorite)."
+- [ ] **0.4** **Order toggle in the bottom dock** — one icon beside the
+  existing transport (like VLC's loop toggle): cycles **sequential → random →
+  random-star** on click, the icon glyph changing to show the mode; hover
+  tooltip names it. Wire into the existing flat-queue/auto-advance;
+  random-star shuffles only starred tracks. Persist in localStorage. The dock
+  is otherwise unchanged (play/pause, scrub, prev/next as they are).
+
+### 0C. The shared map (left) + shared data (right)  `[ ]`
+- [ ] **0.5** **Map** (left, Canvas/SVG): plot `points` (grey/gold by
+  played-state from localStorage), the focal track as **pulsing red**, its
+  `neighbors` emphasized, starred = ring, album labels faint at zoom. Framed
+  on the focal neighborhood; "see whole field" toggle.
+- [ ] **0.6** **Map interaction:** hover a dot → label (title + album) + a play
+  affordance; clicking play → play it, **scroll the center list to center that
+  row**, focal follows. Hover (no click) → right column previews that track.
+- [ ] **0.7** **Row↔map link:** hovering a track title in the center list
+  lights that track + its neighbors on the map AND previews its data on the
+  right (playing track keeps playing). Clicking play behaves as the player
+  always did, and sets focal.
+- [ ] **0.8** **Data column** (right): for the focal track — title + star,
+  album + date (Suno link), key/tempo/sections/modulation chips, the
+  **rms-silhouette waveform** (from `rmsSilhouette`, cheap; playhead synced
+  when this IS the playing track), **weirdness + styleWeight meters**, **top
+  tags**, and the **prompt** (linkified). Plain-language labels throughout.
+  Preview state is visually marked (e.g. subtle "previewing" tag) vs the live
+  playing track.
+
+### 0D. Mobile + ship  `[ ]`
+- [ ] **0.9** **Mobile/narrow:** side columns collapse; the center player is
+  primary; tapping a track's disclosure reveals map+data inline beneath that
+  row (one open at a time), in a bordered card tied to the track. Same
+  components, relocated.
+- [ ] **0.10** Verify in preview (Range stage): star badges click-through to
+  play, order icon cycles, map played-state warms, hover-preview vs playing
+  focal works, scroll-center works, data correct (cross-check a `[74W 85S]`
+  track's weirdness/styleWeight ≈ .74/.85). Portable build. Deploy to
   `experience/` on glia.ca + gh-pages. Tag `exp-v0.5-dh`.
 
-**Definition of done (M0):** the existing player, now with star indicators and
-a random/random-star/sequential order toggle, where any track can be unfolded
-to reveal its position in the topological landscape (pulsing red dot amid its
-neighbors), its prompt, its waveform, and its full analytics — and where
-hovering/playing neighbor dots navigates the list. A complete, playable,
-human-readable review of the ML analysis.
+**Definition of done (M0):** the unchanged player, framed by a persistent
+topology map (left, warming grey→gold as you listen) and a persistent data
+panel (right, showing the playing track or a hover-preview), with a star badge
+on the play button and a three-state order icon in the dock. A complete,
+playable, human-readable review of the ML analysis that touches none of the
+player's working internals.
 
 ### Open decisions for M0 (defaults chosen)
-- [!] **D5** Which 2D layout for the neighborhood graph: `audio` UMAP (what the
-  machine hears) is the default; a small lens toggle (audio/lyric/prompt) in
-  the fold is a nice-to-have stretch.
-- [!] **D6** One fold open at a time vs many. *Default: many allowed, but the
-  playing track's fold auto-opens and stays "live."*
+- [!] **D5** Map layout: `audio` UMAP default; a lens toggle (audio/lyric/
+  prompt) on the map is a stretch.
+- [!] **D6** Resolved — NO multi-fold; single shared map + single shared data
+  panel, focal = playing track, hover = preview.
 
 ---
 
