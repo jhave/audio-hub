@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[16618,["/audio-hub/_next/static/chunks/0db6060a776415c3.js"],"default"]
+3:I[70249,["/audio-hub/_next/static/chunks/f1c832448466dca6.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"3FFtSnnSh4CzyPbGvPsz1","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"mx-auto max-w-2xl p-6","children":["$","$L2",null,{}]}],[["$","script","script-0",{"src":"/audio-hub/_next/static/chunks/0db6060a776415c3.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[70249,["/audio-hub/_next/static/chunks/f1c832448466dca6.js"],"ViewportBoundary"]
+3:I[70249,["/audio-hub/_next/static/chunks/f1c832448466dca6.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[67766,["/audio-hub/_next/static/chunks/f1c832448466dca6.js"],"IconMark"]
+0:{"buildId":"3FFtSnnSh4CzyPbGvPsz1","rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"173 days (of Music Created in Suno) — Glia"}],["$","meta","1",{"name":"description","content":"Audio library for the 2026 Suno set on glia.ca. January 18, 2026 — July 9, 2026. 173 days • 746 tracks • 4.31 tracks/day • 11.0 min/day. Total duration: 31h 47m 28s. The price of music/muzak is falling to zero."}],["$","link","2",{"rel":"icon","href":"/img/glia-bw.png"}],["$","$L5","3",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"loading":null,"isPartial":false}

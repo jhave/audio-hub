@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>171exp — a navigable soundscape (Music Created in Suno) — Glia</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #05070a; }
+  body { font: 13px/1.45 -apple-system, "Helvetica Neue", sans-serif; color: #cfd8dc; }
+  #scene { position: fixed; inset: 0; }
+  #hud-active-songs {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+    background: rgba(8, 12, 16, 0.85); border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 24px; border-radius: 16px; backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    pointer-events: auto;
+    width: min(640px, 92vw);
+    max-height: 180px;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 1.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .active-song-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #cfd8dc;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.03);
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .active-song-item.dominant {
+    border-color: rgba(216, 181, 106, 0.25);
+    background: rgba(216, 181, 106, 0.04);
+  }
+  .active-song-item.dominant .song-title {
+    color: #d8b56a;
+    font-weight: 600;
+  }
+  .song-title {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 340px;
+  }
+  .hud-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #cfd8dc;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 3px 6px;
+    font-size: 10px;
+    line-height: 1;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hud-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  .delete-song-btn {
+    color: #ef9a9a;
+    border-color: rgba(239, 154, 154, 0.2);
+  }
+  .delete-song-btn:hover {
+    background: rgba(244, 67, 54, 0.12);
+    color: #ff8a80;
+  }
+  .hud-vol-slider {
+    width: 80px;
+    margin: 0 4px;
+    accent-color: #d8b56a;
+    height: 3px;
+    cursor: pointer;
+  }
+  .floating-btn {
+    position: fixed; right: 24px; top: 24px;
+    background: rgba(8, 12, 16, 0.82); border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 16px; border-radius: 12px; backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    color: #d8b56a; font-weight: 600; font-size: 11.5px; cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1.2s, transform 0.2s, background 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .floating-btn:hover {
+    background: rgba(216, 181, 106, 0.15);
+    transform: scale(1.02);
+  }
+
+  #loading {
+    position: fixed; inset: 0; display: grid; place-items: center;
+    background: #05070a; z-index: 20; transition: opacity .8s; font-size: 13px; color: #90a4ae;
+    letter-spacing: .1em;
+  }
+  #loading.done { opacity: 0; pointer-events: none; }
+
+  /* Intro Overlay */
+  #intro {
+    position: fixed; inset: 0; display: grid; place-items: center;
+    background: rgba(5,7,10,0.82); z-index: 10; transition: opacity 0.8s;
+  }
+  #intro.fade-out { opacity: 0; pointer-events: none; }
+  .intro-content {
+    max-width: 420px; padding: 36px 32px; background: rgba(8,12,16,0.76);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.65);
+  }
+  .intro-content h1 { margin: 0; font-size: 28px; color: #fff; font-weight: 700; letter-spacing: 0.08em; }
+  .intro-content .subtitle { margin: 4px 0 18px; font-size: 11px; color: #d8b56a; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; }
+  .intro-content .desc { margin-bottom: 24px; font-size: 12.5px; color: #b3c2c9; line-height: 1.65; }
+  .intro-content .instruction { font-size: 11.5px; color: #8fa3ab; font-style: italic; margin-bottom: 24px; }
+  .enter-btn-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .blinking-arrow {
+    font-size: 26px; color: #d8b56a;
+    animation: arrow-blink 1.2s infinite ease-in-out;
+  }
+  @keyframes arrow-blink {
+    0%, 100% { opacity: 0.25; transform: translateY(-4px); }
+    50% { opacity: 1; transform: translateY(4px); }
+  }
+  #enter-btn {
+    background: #d8b56a; color: #14100a; border: none; border-radius: 8px;
+    padding: 12px 30px; font-size: 11.5px; font-weight: 700; cursor: pointer;
+    letter-spacing: 0.08em; transition: background 0.3s, transform 0.2s;
+    text-transform: uppercase;
+  }
+  #enter-btn:hover { background: #e6d3a3; transform: scale(1.02); }
+
+  #panel, #hint, #title, #status {
+    display: none !important;
+  }
+  .stats-overlay {
+    position: fixed; left: 24px; top: 24px;
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #cfd8dc;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1.2s;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+  }
+  .stats-val {
+    color: #d8b56a;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="loading">tuning the topology&hellip;</div>
+<div id="intro">
+  <div class="intro-content">
+    <h1>171exp</h1>
+    <div class="subtitle">a navigable soundscape</div>
+    <div class="desc">
+      An isometric 3D landscape grown from 171 days of Suno music. The terrain is the kernel density of style-clusters. The golden nexus crossfades the nearest tracks as it moves, so traveling the land *is* the remix.
+    </div>
+    <div class="instruction">
+      Click anywhere to activate audio and start the journey.
+    </div>
+    <div class="enter-btn-container">
+      <div class="blinking-arrow">↓</div>
+      <button id="enter-btn">enter soundscape</button>
+    </div>
+  </div>
+</div>
+<div id="labels-container" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden; display: none; z-index: 3;"></div>
+<button id="load-file-btn" class="floating-btn">📁 Load Audio</button>
+<input id="file-input" type="file" accept="audio/*" multiple style="display: none;" />
+
+<div id="stats-overlay" class="stats-overlay">
+  speed: <span id="stat-speed" class="stats-val">0</span><br/>
+  # of tracks: <span id="stat-tracks" class="stats-val">0</span><br/>
+  topology complexity: <span id="stat-complexity" class="stats-val">0</span>
+</div>
+
+<div id="hud-active-songs"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
