@@ -1,5 +1,5 @@
 // The visible land: terrain raised by the kernel density of track positions
-// (style-clusters literally become hills), tracks as a point cloud of glowing stars, a
+// (style-clusters literally become hills), tracks as pulsing spheres, a
 // glowing nexus, and an isometric orthographic camera.
 import * as THREE from "three"
 import { MapControls } from "three/examples/jsm/controls/MapControls.js"
@@ -8,26 +8,13 @@ export const WORLD = 60 // half-extent of the land in world units
 const GRID = 150 // terrain segments per side
 const HMAX = 7.5 // peak hill height
 
-function createCircleTexture() {
-  const canvas = document.createElement("canvas")
-  canvas.width = 16
-  canvas.height = 16
-  const ctx = canvas.getContext("2d")
-  const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8)
-  grad.addColorStop(0, "rgba(255, 255, 255, 1)")
-  grad.addColorStop(0.35, "rgba(255, 255, 255, 0.8)")
-  grad.addColorStop(1, "rgba(255, 255, 255, 0)")
-  ctx.fillStyle = grad
-  ctx.fillRect(0, 0, 16, 16)
-  return new THREE.CanvasTexture(canvas)
-}
-
 export class World {
   constructor(canvas, data) {
     this.data = data
     this.n = data.tracks.length
     this.positions = new Float32Array(this.n * 2) // layout-space [-1,1] -> world
-    
+    this.heights = new Float32Array(this.n)
+
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true })
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
     this.scene = new THREE.Scene()
@@ -38,14 +25,13 @@ export class World {
     const d = WORLD * 0.85
     this.camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, -400, 800)
     this.camera.position.set(WORLD, WORLD * 0.95, WORLD)
-    this.camera.zoom = 2.8
     this.camera.lookAt(0, 0, 0)
 
     this.controls = new MapControls(this.camera, canvas)
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.08
-    this.controls.minZoom = 1.0
-    this.controls.maxZoom = 12.0
+    this.controls.minZoom = 0.5
+    this.controls.maxZoom = 7
     this.controls.maxPolarAngle = Math.PI * 0.46
 
     this.scene.add(new THREE.AmbientLight(0x8899bb, 0.55))
@@ -54,16 +40,11 @@ export class World {
     this.scene.add(sun)
     this.sun = sun
 
-    this.light = new THREE.PointLight(0xffe9c4, 7.0, 35.0)
-    this.light.decay = 2
-    this.scene.add(this.light)
-
     /* terrain */
     this.terrainGeo = new THREE.PlaneGeometry(WORLD * 2, WORLD * 2, GRID, GRID)
     this.terrainGeo.rotateX(-Math.PI / 2)
     const mat = new THREE.MeshStandardMaterial({
       vertexColors: true, roughness: 0.92, metalness: 0.05, flatShading: false,
-      visible: true, // Terrain mesh is visible to show landscape!
     })
     this.terrain = new THREE.Mesh(this.terrainGeo, mat)
     this.scene.add(this.terrain)
@@ -71,11 +52,15 @@ export class World {
       new Float32Array(this.terrainGeo.attributes.position.count * 3), 3)
     this.terrainGeo.setAttribute("color", colorAttr)
 
-    /* track points: glowing point cloud instead of spheres */
-    const pointsGeo = new THREE.BufferGeometry()
-    const posArray = new Float32Array(this.n * 3)
-    const colorArray = new Float32Array(this.n * 3)
-    
+    /* track spheres: larger + translucent so the 700-track abundance glows
+       through itself where flocks overlap */
+    const sphereGeo = new THREE.SphereGeometry(0.8, 16, 14)
+    const sphereMat = new THREE.MeshStandardMaterial({
+      roughness: 0.3, metalness: 0.1, transparent: true, opacity: 0.72, depthWrite: false,
+    })
+    this.spheres = new THREE.InstancedMesh(sphereGeo, sphereMat, this.n)
+    this.spheres.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
+    this.scene.add(this.spheres)
     this.baseColors = []
     const c = new THREE.Color()
     for (let i = 0; i < this.n; i++) {
@@ -84,29 +69,10 @@ export class World {
       const sat = t.fav ? 0.85 : 0.55
       const lum = t.fav ? 0.68 : 0.5
       c.setHSL(a.hue, sat, lum)
+      this.spheres.setColorAt(i, c)
       this.baseColors.push(c.clone())
-      
-      colorArray[i * 3] = c.r
-      colorArray[i * 3 + 1] = c.g
-      colorArray[i * 3 + 2] = c.b
     }
-    
-    pointsGeo.setAttribute("position", new THREE.BufferAttribute(posArray, 3))
-    pointsGeo.setAttribute("color", new THREE.BufferAttribute(colorArray, 3))
-    
-    const pointsMat = new THREE.PointsMaterial({
-      size: 3.5,
-      vertexColors: true,
-      map: createCircleTexture(),
-      transparent: true,
-      opacity: 0.95,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      sizeAttenuation: true
-    })
-    
-    this.points = new THREE.Points(pointsGeo, pointsMat)
-    this.scene.add(this.points)
+    this.spheres.instanceColor.needsUpdate = true
 
     /* nexus marker: a slow-breathing ring + pillar of light */
     const ring = new THREE.Mesh(
@@ -122,24 +88,7 @@ export class World {
     this.nexus = new THREE.Group()
     this.nexus.add(ring, pillar)
     this.nexusRing = ring
-    this.nexus.visible = false // Hide pointer group and light beam
     this.scene.add(this.nexus)
-
-    this.labelsContainer = document.getElementById("labels-container")
-    this.labelElements = []
-    this.trackLimit = 1
-    this.activeSet = null // Set of active catalog indices (null = all)
-    this.currentDominantIdx = -1
-
-    /* region ring: contours the hills */
-    const ringPoints = new Float32Array(64 * 3)
-    const ringGeo = new THREE.BufferGeometry()
-    ringGeo.setAttribute("position", new THREE.BufferAttribute(ringPoints, 3))
-    const ringMat = new THREE.LineBasicMaterial({
-      color: 0xe8c877, transparent: true, opacity: 0.35
-    })
-    this.regionRing = new THREE.LineLoop(ringGeo, ringMat)
-    this.scene.add(this.regionRing)
 
     /* orbital playhead: a ring around the focal sphere, a dot as the needle */
     this.progressRing = new THREE.Mesh(
@@ -155,60 +104,52 @@ export class World {
     this.scene.add(this.progressRing, this.progressDot)
 
     this.raycaster = new THREE.Raycaster()
-    this.raycaster.params.Points.threshold = 1.2
+    this._dummy = new THREE.Object3D()
+    this._sphereScale = new Float32Array(this.n)
     this.lastCamInput = -1e9
     this.controls.addEventListener("start", () => (this.lastCamInput = performance.now()))
     this._resize()
     addEventListener("resize", () => this._resize())
   }
 
-  cinematicUpdate(dt, anchor, arrived, time, complexity = 0) {
+  /** Cinematic auto-camera: slow orbit, tilt-wobble, dives toward the focal
+      song while it plays and recedes for the flight to the next. Hands the
+      camera back to the user for 25s after any manual gesture. */
+  cinematicUpdate(dt, focus, arrived, time) {
     if (performance.now() - this.lastCamInput < 25_000) {
       this.controls.update()
       return
     }
-    this.controls.target.lerp(anchor, 1 - Math.exp(-dt * 0.7))
+    this.controls.target.lerp(focus, 1 - Math.exp(-dt * 0.7))
     const off = this.camera.position.clone().sub(this.controls.target)
     const sph = new THREE.Spherical().setFromVector3(off)
-    sph.theta += dt * 0.035
-    sph.phi = Math.min(1.35, Math.max(0.55, 0.95 + Math.sin(time * 0.06) * 0.09))
+    sph.theta += dt * 0.035 // perpetual slow migration
+    sph.phi = Math.min(1.35, Math.max(0.55, 0.95 + Math.sin(time * 0.06) * 0.09)) // landscape wobble
     sph.radius = WORLD * 1.6
     off.setFromSpherical(sph)
     this.camera.position.copy(this.controls.target).add(off)
     this.camera.lookAt(this.controls.target)
-    // zoom out as complexity spreads the land; breathe while listening
-    const zBase = arrived ? 5.0 + Math.sin(time * 0.08) * 2.5 : 2.8
-    const zTarget = zBase / (1 + complexity * 1.2)
+    const zTarget = arrived ? 2.4 : 1.15
     this.camera.zoom += (zTarget - this.camera.zoom) * (1 - Math.exp(-dt * 0.35))
     this.camera.updateProjectionMatrix()
   }
 
-  /** Grow position/point buffers when locally-loaded tracks join the catalog. */
-  growTo(n) {
-    if (n <= this.n) return
-    const oldPos = this.positions
-    this.positions = new Float32Array(n * 2).fill(9999)
-    this.positions.set(oldPos)
-    const geo = this.points.geometry
-    const pos = new Float32Array(n * 3)
-    pos.set(geo.attributes.position.array)
-    const col = new Float32Array(n * 3)
-    col.set(geo.attributes.color.array)
-    for (let i = this.n; i < n; i++) {
-      col[i * 3] = 1; col[i * 3 + 1] = 0.9; col[i * 3 + 2] = 0.6
-      this.baseColors.push(new THREE.Color(1, 0.9, 0.6))
-    }
-    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3))
-    geo.setAttribute("color", new THREE.BufferAttribute(col, 3))
-    this.n = n
-  }
-
+  /** Wrap the play-line around the focal sphere; frac in [0,1]. */
   setPlayhead(trackIdx, frac) {
-    this.progressRing.visible = this.progressDot.visible = false
-  }
-
-  setTrackLimit(N) {
-    this.trackLimit = N
+    if (trackIdx < 0 || frac == null) {
+      this.progressRing.visible = this.progressDot.visible = false
+      return
+    }
+    const x = this.positions[trackIdx * 2]
+    const z = this.positions[trackIdx * 2 + 1]
+    const s = (this._sphereScale[trackIdx] || 0.7) * 0.8
+    const r = s * 2.1
+    const y = this.heightAt(x, z) + 0.5 + s + 0.1
+    this.progressRing.position.set(x, y, z)
+    this.progressRing.scale.setScalar(r)
+    const ang = -frac * Math.PI * 2 + Math.PI / 2
+    this.progressDot.position.set(x + Math.cos(ang) * r, y, z + Math.sin(ang) * r)
+    this.progressRing.visible = this.progressDot.visible = true
   }
 
   _resize() {
@@ -222,6 +163,7 @@ export class World {
     this.renderer.setSize(innerWidth, innerHeight)
   }
 
+  /** Set current 2D layout positions (array of [x,y] in [-1,1]). */
   setLayout(pts) {
     for (let i = 0; i < this.n; i++) {
       this.positions[i * 2] = pts[i][0] * WORLD * 0.92
@@ -230,9 +172,12 @@ export class World {
     this.rebuildTerrain()
   }
 
+  /** Blend two layouts (raw + cluster-relaxed variants) for hyperparameter
+      morphs; k in [0,1], spread in [0,1] mixes toward the diffused variant. */
   blendLayout(aRaw, bRaw, aRel, bRel, k, spread) {
-    const e = k * k * (3 - 2 * k)
+    const e = k * k * (3 - 2 * k) // smoothstep
     for (let i = 0; i < this.n; i++) {
+      // slight per-index stagger so the flock doesn't move as one rigid sheet
       const kk = Math.min(1, Math.max(0, e * 1.25 - (i % 97) / 97 * 0.25))
       const rx = aRaw[i][0] + (bRaw[i][0] - aRaw[i][0]) * kk
       const ry = aRaw[i][1] + (bRaw[i][1] - aRaw[i][1]) * kk
@@ -243,6 +188,7 @@ export class World {
     }
   }
 
+  /** Density-field heightmap: every track is a gaussian splat of land. */
   rebuildTerrain() {
     const pos = this.terrainGeo.attributes.position
     const col = this.terrainGeo.attributes.color
@@ -254,8 +200,6 @@ export class World {
     const rad = Math.ceil((sigma * 3) / cell)
     for (let i = 0; i < this.n; i++) {
       const x = this.positions[i * 2], z = this.positions[i * 2 + 1]
-      if (x > 9000) continue // Skip inactive or deleted tracks
-      
       const cx = Math.round((x + WORLD) / cell), cz = Math.round((z + WORLD) / cell)
       for (let dz = -rad; dz <= rad; dz++) {
         const iz = cz + dz
@@ -272,10 +216,10 @@ export class World {
     let max = 0
     for (let i = 0; i < field.length; i++) max = Math.max(max, field[i])
     const c = new THREE.Color()
-    const deep = new THREE.Color(0x0a1420)
-    const mid = new THREE.Color(0x1d3a33)
-    const high = new THREE.Color(0x8a7a55)
-    const peak = new THREE.Color(0xe8e0cc)
+    const deep = new THREE.Color(0x0a1420)   // valley — night water
+    const mid = new THREE.Color(0x1d3a33)    // lowland moss
+    const high = new THREE.Color(0x8a7a55)   // ridge earth
+    const peak = new THREE.Color(0xe8e0cc)   // lit summit
     for (let vi = 0, iz = 0; iz < g; iz++) {
       for (let ix = 0; ix < g; ix++, vi++) {
         const hRaw = max > 0 ? field[iz * g + ix] / max : 0
@@ -291,6 +235,7 @@ export class World {
     pos.needsUpdate = true
     col.needsUpdate = true
     this.terrainGeo.computeVertexNormals()
+    // cache for height lookups
     this._field = field
     this._fieldMax = max
   }
@@ -305,83 +250,38 @@ export class World {
     return Math.pow(hRaw, 0.62) * HMAX
   }
 
-  updateSpheres(levelFn, time, falloff) {
-    const active = this.activeSet
-    const posAttr = this.points.geometry.attributes.position
-    const colAttr = this.points.geometry.attributes.color
-
-    const nx = this.nexus.position.x
-    const nz = this.nexus.position.z
-    const c = new THREE.Color()
-
+  /** Per-frame: place spheres on the terrain, pulse the audible ones. */
+  updateSpheres(levelFn, time) {
+    const d = this._dummy
     for (let i = 0; i < this.n; i++) {
-      const x = this.positions[i * 2]
-      const z = this.positions[i * 2 + 1]
-      const y = this.heightAt(x, z)
-
-      posAttr.setXYZ(i, x, y + 0.25, z)
-
-      if (!active || active.has(i)) {
-        const level = levelFn(i)
-        const dx = x - nx
-        const dz = z - nz
-        const dist = Math.sqrt(dx * dx + dz * dz)
-        
-        const baseColor = this.baseColors[i]
-
-        let scaleFactor = 1.0
-        if (dist > falloff) {
-          const k = Math.min(1.0, (dist - falloff) / (falloff * 2.0))
-          scaleFactor = 1.0 - k * 0.85
-        }
-
-        const isDominant = (i === this.currentDominantIdx)
-        if (isDominant) {
-          c.setRGB(1.0, 0.95, 0.6)
-        } else if (dist < falloff) {
-          c.copy(baseColor).multiplyScalar(1.0 + level * 1.5)
-        } else {
-          c.copy(baseColor).multiplyScalar(0.15 * scaleFactor)
-        }
-        colAttr.setXYZ(i, c.r, c.g, c.b)
-      } else {
-        colAttr.setXYZ(i, 0, 0, 0)
-      }
+      const x = this.positions[i * 2], z = this.positions[i * 2 + 1]
+      const level = levelFn(i)
+      const fav = this.data.tracks[i].fav
+      const base = fav ? 0.95 : 0.7
+      const bob = level > 0.01 ? Math.sin(time * 7 + i) * level * 0.6 : 0
+      const s = base * (1 + level * 1.6)
+      this._sphereScale[i] = s
+      d.position.set(x, this.heightAt(x, z) + 0.5 + base + bob + level * 2.2, z)
+      d.scale.setScalar(s)
+      d.updateMatrix()
+      this.spheres.setMatrixAt(i, d.matrix)
     }
-    posAttr.needsUpdate = true
-    colAttr.needsUpdate = true
-  }
-
-  updateRegionRing(nx, nz, R, isBlinking, time) {
-    const posAttr = this.regionRing.geometry.attributes.position
-    const array = posAttr.array
-    for (let i = 0; i < 64; i++) {
-      const theta = (i / 64) * Math.PI * 2
-      const px = nx + Math.cos(theta) * R
-      const pz = nz + Math.sin(theta) * R
-      const py = this.heightAt(px, pz) + 0.15
-      array[i * 3] = px
-      array[i * 3 + 1] = py
-      array[i * 3 + 2] = pz
-    }
-    posAttr.needsUpdate = true
+    this.spheres.instanceMatrix.needsUpdate = true
   }
 
   setNexusPos(x, z) {
     this.nexus.position.set(x, this.heightAt(x, z) + 0.6, z)
-    if (this.light) {
-      this.light.position.set(x, this.heightAt(x, z) + 2.5, z)
-    }
   }
 
+  /** Raycast a pointer event; returns { trackIdx } or { ground: [x, z] } or null. */
   pick(ev) {
     const ndc = new THREE.Vector2(
       (ev.clientX / innerWidth) * 2 - 1,
       -(ev.clientY / innerHeight) * 2 + 1
     )
     this.raycaster.setFromCamera(ndc, this.camera)
-    const hitS = this.raycaster.intersectObject(this.points)
-    if (hitS.length) return { trackIdx: hitS[0].index }
+    const hitS = this.raycaster.intersectObject(this.spheres)
+    if (hitS.length) return { trackIdx: hitS[0].instanceId }
     const hitT = this.raycaster.intersectObject(this.terrain)
     if (hitT.length) return { ground: [hitT[0].point.x, hitT[0].point.z] }
     return null

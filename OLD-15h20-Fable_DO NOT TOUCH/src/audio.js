@@ -1,7 +1,7 @@
 // Spatial crossfade engine: the nexus position mixes the nearest tracks with
 // inverse-distance gains. A small pool of media elements is recycled so the
 // full 746-track archive stays streamable without preloading anything.
-const MAX_POOL = 32
+const MAX_POOL = 6
 
 export class SoundField {
   constructor(tracks) {
@@ -12,6 +12,7 @@ export class SoundField {
     this.pool = []
     this.maxVoices = 2
     this.falloff = 7 // world units at which a voice is ~half gain
+    this.chaos = 0.25
     this.onended = null // (trackIdx) => void
     this.positions = null // Float32Array [x,y]*n, set by main each morph
   }
@@ -54,33 +55,23 @@ export class SoundField {
     const t = this.tracks[trackIdx]
     v.trackIdx = trackIdx
     v.el.src = t.url
-    
-    // Restore progress if it was previously playing
-    const saved = t.savedTime || 0
-    if (saved > 0 && saved < t.dur) {
-      v.el.currentTime = saved
+    // chaos seeks into the middle of tracks: mashup of moments, not intros
+    const seek = this.chaos > 0.15 && t.dur > 40 ? Math.random() * t.dur * 0.7 * this.chaos : 0
+    if (seek > 1) {
+      v.el.currentTime = seek
     }
-
     v.el.onended = () => {
       if (this.onended) this.onended(trackIdx)
-      this._release(trackIdx, true)
+      this._release(trackIdx)
     }
     v.el.play().catch(() => {})
     this.voices.set(trackIdx, v)
     return v
   }
 
-  _release(trackIdx, naturallyEnded = false) {
+  _release(trackIdx) {
     const v = this.voices.get(trackIdx)
     if (!v) return
-
-    // Save playback position so it can resume from the same spot
-    if (naturallyEnded) {
-      this.tracks[trackIdx].savedTime = 0
-    } else if (v.el.currentTime > 0.1 && v.el.duration) {
-      this.tracks[trackIdx].savedTime = v.el.currentTime
-    }
-
     v.el.onended = null
     v.el.pause()
     v.el.removeAttribute("src")
@@ -130,37 +121,16 @@ export class SoundField {
       if (!v) v = this._acquire(i)
       if (!v) continue
       const share = total > 0 ? g / total : 0
-      
-      const t = this.tracks[i]
-      const manualVol = t.manualVolume !== undefined ? t.manualVolume : 1.0
-      const isPaused = t.manualPaused || false
-      
-      if (isPaused) {
-        if (!v.el.paused) v.el.pause()
-      } else {
-        if (v.el.paused) v.el.play().catch(() => {})
-      }
-      
-      // sqrt(share): equal-power blend across simultaneous voices, scaled by manual controls
-      const targetGain = Math.sqrt(share) * overall * 0.9 * manualVol * (isPaused ? 0 : 1)
-      v.gain.gain.setTargetAtTime(targetGain, this.ctx.currentTime, 0.35)
+      // sqrt(share): equal-power blend across simultaneous voices
+      v.gain.gain.setTargetAtTime(Math.sqrt(share) * overall * 0.9, this.ctx.currentTime, 0.35)
     }
-    const fading = []
     for (const idx of [...this.voices.keys()]) {
       if (!keep.has(idx)) {
         const v = this.voices.get(idx)
         v.gain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.4)
         // release once actually inaudible (checked on the next ticks)
         if (v.gain.gain.value < 0.01) this._release(idx)
-        else fading.push([v.gain.gain.value, idx])
       }
-    }
-    // fast window-rotation can stack up fading voices; hard-cap the total by
-    // culling the quietest early so streams never pile up
-    const excess = this.voices.size - (this.maxVoices + 4)
-    if (excess > 0) {
-      fading.sort((a, b) => a[0] - b[0])
-      for (let i = 0; i < Math.min(excess, fading.length); i++) this._release(fading[i][1])
     }
   }
 
