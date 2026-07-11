@@ -45,3 +45,8 @@ next-env.d.ts
 
 # 171exp build output
 2026-exp/dist/
+
+# 171exp audio intermediate files
+2026-exp/.audio-work/
+2026-exp/.audio-work/*
+
