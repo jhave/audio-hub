@@ -44,6 +44,7 @@ export type DHData = {
   albums: { id: string; title: string; dateISO: string | null }[]
   points: [number, number, number][] // x, y, albumIdx
   lyricPoints?: [number, number, number][] // lx, ly, albumIdx
+  metricPoints?: [number, number, number][] // mx, my, albumIdx
   tracks: DHTrack[]
 }
 

@@ -10,11 +10,12 @@ type Props = {
   played: Set<number>
   onHover: (i: number | null) => void
   onPlay: (i: number) => void
-  mapMode?: "music" | "lyrics"
+  mapMode?: "music" | "lyrics" | "metrics"
   hideInstrumentals?: boolean
   activeTag?: string | null
   clickedTag?: string | null
   onClearTag?: () => void
+  showPaths?: boolean
 }
 
 // Colors: unplayed grey, played gold, playing red pulse, starred ring, lyrics blue
@@ -119,6 +120,7 @@ export default function DHMap({
   activeTag = null,
   clickedTag = null,
   onClearTag,
+  showPaths = true,
 }: Props) {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
   const wrapRef = React.useRef<HTMLDivElement | null>(null)
@@ -161,7 +163,12 @@ export default function DHMap({
 
     const pts = currentPtsRef.current.length > 0 
       ? currentPtsRef.current 
-      : (mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points).map(pt => ({ x: pt[0], y: pt[1] }))
+      : (mapMode === "lyrics" 
+          ? (data.lyricPoints || data.points) 
+          : mapMode === "metrics"
+          ? (data.metricPoints || data.points)
+          : data.points
+        ).map(pt => ({ x: pt[0], y: pt[1] }))
 
     const matchingIndices = getMatchingIndices(clickedTag, data.tracks)
     const matchingPts: { x: number; y: number }[] = []
@@ -240,7 +247,11 @@ export default function DHMap({
       const { w, h } = size
       ctx.clearRect(0, 0, w, h)
 
-      const targetPts = mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points
+      const targetPts = mapMode === "lyrics" 
+        ? (data.lyricPoints || data.points) 
+        : mapMode === "metrics"
+        ? (data.metricPoints || data.points)
+        : data.points
 
       // Initialize or interpolate current positions
       if (currentPtsRef.current.length !== targetPts.length) {
@@ -259,24 +270,57 @@ export default function DHMap({
       const pts = currentPtsRef.current
       const isLyricsMode = mapMode === "lyrics"
 
-      // 1. Draw Nearest Neighbors Web (faint curved lines)
+      // 1. Draw Nearest Neighbors Web or Sequential Flow Path
       if (focusIdx != null && pts[focusIdx]) {
         const isFocusHidden = hideInstrumentals && data.tracks[focusIdx].lyricsPresent !== 1
         if (!isFocusHidden) {
           const track = data.tracks[focusIdx]
-          const [px0, py0] = project(pts[focusIdx].x, pts[focusIdx].y, w, h)
-          ctx.strokeStyle = "rgba(226,75,74,0.18)"
-          ctx.lineWidth = 1.0
-          for (const [neighIdx] of track.neighbors) {
-            const isNeighHidden = hideInstrumentals && data.tracks[neighIdx].lyricsPresent !== 1
-            if (pts[neighIdx] && !isNeighHidden) {
-              const [px1, py1] = project(pts[neighIdx].x, pts[neighIdx].y, w, h)
+          
+          if (showPaths) {
+            // Draw sequential marching ants trajectory path: focusIdx -> neighbor 0 -> neighbor 1 -> ...
+            const pathPoints: [number, number][] = []
+            if (pts[focusIdx]) {
+              const [x, y] = project(pts[focusIdx].x, pts[focusIdx].y, w, h)
+              pathPoints.push([x, y])
+            }
+            for (const [neighIdx] of track.neighbors) {
+              const isNeighHidden = hideInstrumentals && data.tracks[neighIdx].lyricsPresent !== 1
+              if (pts[neighIdx] && !isNeighHidden) {
+                const [x, y] = project(pts[neighIdx].x, pts[neighIdx].y, w, h)
+                pathPoints.push([x, y])
+              }
+            }
+
+            if (pathPoints.length > 1) {
+              ctx.save()
               ctx.beginPath()
-              ctx.moveTo(px0, py0)
-              const cx = (px0 + px1) / 2 + (w / 2 - (px0 + px1) / 2) * 0.12
-              const cy = (py0 + py1) / 2 + (h / 2 - (py0 + py1) / 2) * 0.12
-              ctx.quadraticCurveTo(cx, cy, px1, py1)
+              ctx.moveTo(pathPoints[0][0], pathPoints[0][1])
+              for (let i = 1; i < pathPoints.length; i++) {
+                ctx.lineTo(pathPoints[i][0], pathPoints[i][1])
+              }
+              ctx.strokeStyle = "rgba(226, 75, 74, 0.7)" // playhead red
+              ctx.lineWidth = 1.8
+              ctx.setLineDash([5, 5])
+              ctx.lineDashOffset = -tRef.current * 12
               ctx.stroke()
+              ctx.restore()
+            }
+          } else {
+            // Draw default faint web lines
+            const [px0, py0] = project(pts[focusIdx].x, pts[focusIdx].y, w, h)
+            ctx.strokeStyle = "rgba(226,75,74,0.18)"
+            ctx.lineWidth = 1.0
+            for (const [neighIdx] of track.neighbors) {
+              const isNeighHidden = hideInstrumentals && data.tracks[neighIdx].lyricsPresent !== 1
+              if (pts[neighIdx] && !isNeighHidden) {
+                const [px1, py1] = project(pts[neighIdx].x, pts[neighIdx].y, w, h)
+                ctx.beginPath()
+                ctx.moveTo(px0, py0)
+                const cx = (px0 + px1) / 2 + (w / 2 - (px0 + px1) / 2) * 0.12
+                const cy = (py0 + py1) / 2 + (h / 2 - (py0 + py1) / 2) * 0.12
+                ctx.quadraticCurveTo(cx, cy, px1, py1)
+                ctx.stroke()
+              }
             }
           }
         }

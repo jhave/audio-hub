@@ -14,8 +14,9 @@ If two fingerprints have similar numbers, the songs sound similar to the compute
 ### 2. How did we calculate the shapes/trajectories?
 Instead of just taking the average sound of a song, we kept the individual fingerprints of every 10-second window. By tracing the sequence of these fingerprints from the beginning to the end of the song, we get a **path** (or trajectory) through parameter space. We project this path onto the top 3 directions of variation in the entire library (using PCA or Principal Component Analysis) and draw it as a 16-point geometric shape. This represents the track's internal *narrative shape*.
 
-### 3. What do the sliders do?
-When generating music in Suno, creators use text style tags and control parameters like **weirdness** and **style weight**. We scraped these ground-truth settings directly from the song pages on Suno.com using Next.js payload parsing. This lets us see exactly how much the creator nudged the model's parameters to perturb the state space of the known.
+### 3. What do the sliders do? And what is "Weirdness"?
+* **Weirdness (0.0 to 1.0)**: A control parameter in Suno that forces the model to generate audio outside its highest-probability distribution. High weirdness (e.g., `> 0.8`) introduces strange instrumental textures, unpredictable modulations, and experimental structure. You can click the **Sparkles icon** (weirdness) on the bottom player dock to sort the playlist by weirdness, listing the most experimental tracks first.
+* **Style Weight (0.0 to 1.0)**: Determines how strictly the generation model adheres to the text style prompts vs. introducing random variations.
 </details>
 
 <details>

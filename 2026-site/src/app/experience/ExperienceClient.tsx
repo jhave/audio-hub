@@ -9,14 +9,14 @@ import {
   useAudioPlayer,
   useAudioPlayerTime,
 } from "@/components/ui/audio-player"
-import { PauseIcon, PlayIcon, ArrowLeft, ArrowRight, ShuffleIcon, StarIcon, ListOrderedIcon } from "lucide-react"
+import { PauseIcon, PlayIcon, ArrowLeft, ArrowRight, ShuffleIcon, StarIcon, ListOrderedIcon, SparklesIcon } from "lucide-react"
 import { loadDH, resolveSrc, type DHData, type DHTrack } from "@/lib/dh"
 import DHMap from "./DHMap"
 import DHData_ from "./DHData"
 import DHEssay from "./DHEssay"
 import DHFAQ from "./DHFAQ"
 
-type OrderMode = "sequential" | "random" | "random-star"
+type OrderMode = "sequential" | "random" | "random-star" | "weirdness"
 type Item = { id: string; src: string; data: { title: string; album: string } }
 
 function linkify(text: string) {
@@ -74,12 +74,25 @@ function Inner({ data }: { data: DHData }) {
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
-  const [mapMode, setMapMode] = React.useState<"music" | "lyrics">("music")
+  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics">("music")
   const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
+  const [showPaths, setShowPaths] = React.useState(true)
   const [hoveredTag, setHoveredTag] = React.useState<string | null>(null)
   const [clickedTag, setClickedTag] = React.useState<string | null>(null)
   const activeTag = hoveredTag || clickedTag
   const [bottomTab, setBottomTab] = React.useState<"prompt" | "faq">("faq")
+
+  const modes: ("music" | "lyrics" | "metrics")[] = ["music", "lyrics", "metrics"]
+  const handlePrevMode = () => {
+    const idx = modes.indexOf(mapMode)
+    const nextIdx = (idx - 1 + modes.length) % modes.length
+    setMapMode(modes[nextIdx])
+  }
+  const handleNextMode = () => {
+    const idx = modes.indexOf(mapMode)
+    const nextIdx = (idx + 1) % modes.length
+    setMapMode(modes[nextIdx])
+  }
 
   React.useEffect(() => {
     if (hoverIdx != null) {
@@ -173,6 +186,13 @@ function Inner({ data }: { data: DHData }) {
 
   const nextIdx = React.useCallback((): number | null => {
     const n = data.tracks.length
+    if (order === "weirdness") {
+      const sorted = [...data.tracks].sort((a, b) => (b.weirdness ?? 0) - (a.weirdness ?? 0))
+      const currIdx = sorted.findIndex((t) => t.i === focusIdx)
+      const nextTrack = sorted[(currIdx + 1) % sorted.length]
+      justPlayedRef.current = nextTrack.i
+      return nextTrack.i
+    }
     if (order === "sequential") {
       const i = focusIdx == null ? 0 : (focusIdx + 1) % n
       justPlayedRef.current = i
@@ -186,8 +206,14 @@ function Inner({ data }: { data: DHData }) {
 
   const prevIdx = React.useCallback((): number | null => {
     if (focusIdx == null) return 0
+    if (order === "weirdness") {
+      const sorted = [...data.tracks].sort((a, b) => (b.weirdness ?? 0) - (a.weirdness ?? 0))
+      const currIdx = sorted.findIndex((t) => t.i === focusIdx)
+      const prevTrack = sorted[(currIdx - 1 + sorted.length) % sorted.length]
+      return prevTrack.i
+    }
     return (focusIdx - 1 + data.tracks.length) % data.tracks.length
-  }, [focusIdx, data])
+  }, [focusIdx, data, order])
 
   // auto-advance
   React.useEffect(() => {
@@ -315,6 +341,10 @@ function Inner({ data }: { data: DHData }) {
 
   // group tracks by album (dh order preserves album grouping)
   const groups = React.useMemo(() => {
+    if (order === "weirdness") {
+      const sorted = [...data.tracks].sort((a, b) => (b.weirdness ?? 0) - (a.weirdness ?? 0))
+      return [{ album: "Sorted by Weirdness (Most Weird First)", dateISO: null, rows: sorted }]
+    }
     const g: { album: string; dateISO: string | null; rows: DHTrack[] }[] = []
     for (const t of data.tracks) {
       const last = g[g.length - 1]
@@ -322,7 +352,7 @@ function Inner({ data }: { data: DHData }) {
       else g.push({ album: t.album, dateISO: t.dateISO, rows: [t] })
     }
     return g
-  }, [data])
+  }, [data, order])
 
   return (
     <div
@@ -360,38 +390,75 @@ function Inner({ data }: { data: DHData }) {
         <div className="flex items-center justify-between px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none">
           <div className="flex items-center gap-1.5">
             <span className="font-semibold text-neutral-700">topology:</span>
-            <div className="flex bg-neutral-200/60 rounded p-0.5 text-[10px] font-bold">
-              <button
-                onClick={() => setMapMode("music")}
-                className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                  mapMode === "music" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                }`}
+            <div className="flex items-center gap-1">
+              <button 
+                onClick={handlePrevMode} 
+                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
+                title="Previous Topology Mode"
               >
-                Music
+                &lt;
               </button>
-              <button
-                onClick={() => setMapMode("lyrics")}
-                className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                  mapMode === "lyrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                }`}
+              <div className="flex bg-neutral-200/60 rounded p-0.5 text-[10px] font-bold">
+                <button
+                  onClick={() => setMapMode("music")}
+                  className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                    mapMode === "music" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                  }`}
+                  title="Acoustic Texture Similarity"
+                >
+                  Music
+                </button>
+                <button
+                  onClick={() => setMapMode("lyrics")}
+                  className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                    mapMode === "lyrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                  }`}
+                  title="Semantic Lyric Similarity"
+                >
+                  Lyrics
+                </button>
+                <button
+                  onClick={() => setMapMode("metrics")}
+                  className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                    mapMode === "metrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                  }`}
+                  title="Structural Metrics Similarity"
+                >
+                  Metrics
+                </button>
+              </div>
+              <button 
+                onClick={handleNextMode} 
+                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
+                title="Next Topology Mode"
               >
-                Lyrics
+                &gt;
               </button>
             </div>
           </div>
-          {mapMode === "lyrics" ? (
-            <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700">
+          <div className="flex items-center gap-2">
+            {mapMode === "lyrics" && (
+              <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700">
+                <input
+                  type="checkbox"
+                  checked={hideInstrumentals}
+                  onChange={(e) => setHideInstrumentals(e.target.checked)}
+                  className="rounded border-neutral-300 text-neutral-900 focus:ring-0 w-3 h-3 cursor-pointer"
+                />
+                <span>hide instrumentals</span>
+              </label>
+            )}
+            <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700" title="Draw sequential similarity trajectories on selection">
               <input
                 type="checkbox"
-                checked={hideInstrumentals}
-                onChange={(e) => setHideInstrumentals(e.target.checked)}
+                checked={showPaths}
+                onChange={(e) => setShowPaths(e.target.checked)}
                 className="rounded border-neutral-300 text-neutral-900 focus:ring-0 w-3 h-3 cursor-pointer"
               />
-              <span>hide instrumentals</span>
+              <span>show paths</span>
             </label>
-          ) : (
-            <span className="font-mono text-[10.5px]">{played.size} / {data.tracks.length} heard</span>
-          )}
+            <span className="font-mono text-[9px] text-neutral-400">{played.size}/{data.tracks.length} heard</span>
+          </div>
         </div>
         <div className="h-[270px] w-full flex-shrink-0 relative border-b bg-neutral-50">
           <DHMap
@@ -406,6 +473,7 @@ function Inner({ data }: { data: DHData }) {
             activeTag={activeTag}
             clickedTag={clickedTag}
             onClearTag={() => setClickedTag(null)}
+            showPaths={showPaths}
           />
         </div>
         <div className="flex-1 min-h-0 bg-white overflow-hidden">
@@ -632,12 +700,28 @@ function Dock({
   onNext: () => void
 }) {
   const player = useAudioPlayer()
-  const cycle = () =>
-    setOrder(order === "sequential" ? "random" : order === "random" ? "random-star" : "sequential")
+  const cycle = () => {
+    if (order === "sequential") setOrder("random")
+    else if (order === "random") setOrder("random-star")
+    else if (order === "random-star") setOrder("weirdness")
+    else setOrder("sequential")
+  }
   const orderIcon =
-    order === "sequential" ? <ListOrderedIcon className="h-4 w-4" /> : <ShuffleIcon className="h-4 w-4" />
+    order === "sequential" ? (
+      <ListOrderedIcon className="h-4 w-4" />
+    ) : order === "weirdness" ? (
+      <SparklesIcon className="h-4 w-4 text-purple-600" />
+    ) : (
+      <ShuffleIcon className="h-4 w-4" />
+    )
   const orderTitle =
-    order === "sequential" ? "Sequential (click: shuffle)" : order === "random" ? "Random (click: random of favorites)" : "Random favorites (click: sequential)"
+    order === "sequential"
+      ? "Sequential (click: shuffle)"
+      : order === "random"
+      ? "Random (click: random of favorites)"
+      : order === "random-star"
+      ? "Random favorites (click: weirdest first)"
+      : "Weirdest first (click: sequential)"
 
   const btn = "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-200 bg-white text-black hover:bg-neutral-100"
 
