@@ -24,7 +24,7 @@ const RED = "#e24b4a"
 const BLUE = "#38bdf8" // bright light blue for unplayed vocals
 const RICH_BLUE = "#2563eb" // deep rich blue for played vocals
 
-function getMatchingIndices(tagOrMetric: string | null, activeTrack: DHTrack | null, tracks: DHTrack[]): number[] {
+function getMatchingIndices(tagOrMetric: string | null, tracks: DHTrack[]): number[] {
   if (!tagOrMetric) return []
   
   if (!tagOrMetric.startsWith("metric:")) {
@@ -38,55 +38,67 @@ function getMatchingIndices(tagOrMetric: string | null, activeTrack: DHTrack | n
     return indices
   }
 
-  if (!activeTrack) return []
   const parts = tagOrMetric.split(":")
   if (parts.length < 3) return []
   const key = parts[1]
+  const valStr = parts[2]
 
   const indices: number[] = []
   
   for (let i = 0; i < tracks.length; i++) {
     const t = tracks[i]
     if (key === "key") {
-      if (t.key === activeTrack.key) indices.push(i)
+      if (t.key === valStr) indices.push(i)
     } else if (key === "tempo") {
-      if (t.tempo != null && activeTrack.tempo != null && Math.abs(t.tempo - activeTrack.tempo) <= 3) {
+      const targetVal = parseFloat(valStr)
+      if (t.tempo != null && Math.abs(t.tempo - targetVal) <= 3) {
         indices.push(i)
       }
     } else if (key === "tempoDrift") {
-      if (t.tempoDrift != null && activeTrack.tempoDrift != null && Math.abs(t.tempoDrift - activeTrack.tempoDrift) <= 2) {
+      const targetVal = parseFloat(valStr)
+      if (t.tempoDrift != null && Math.abs(t.tempoDrift - targetVal) <= 2) {
         indices.push(i)
       }
     } else if (key === "tempoJumps") {
-      if (t.tempoJumps === activeTrack.tempoJumps) indices.push(i)
+      const targetVal = parseInt(valStr)
+      if (t.tempoJumps === targetVal) indices.push(i)
     } else if (key === "sectionCount" || key === "sections") {
-      if (t.sectionCount === activeTrack.sectionCount) indices.push(i)
+      const targetVal = parseInt(valStr)
+      if (t.sectionCount === targetVal) indices.push(i)
     } else if (key === "modulations") {
-      if (t.modulations === activeTrack.modulations) indices.push(i)
+      const targetVal = parseInt(valStr)
+      if (t.modulations === targetVal) indices.push(i)
     } else if (key === "weirdness") {
-      if (t.weirdness != null && activeTrack.weirdness != null && Math.abs(t.weirdness - activeTrack.weirdness) <= 0.05) {
+      const targetVal = parseFloat(valStr)
+      if (t.weirdness != null && Math.abs(t.weirdness - targetVal) <= 0.05) {
         indices.push(i)
       }
     } else if (key === "styleWeight") {
-      if (t.styleWeight != null && activeTrack.styleWeight != null && Math.abs(t.styleWeight - activeTrack.styleWeight) <= 0.05) {
+      const targetVal = parseFloat(valStr)
+      if (t.styleWeight != null && Math.abs(t.styleWeight - targetVal) <= 0.05) {
         indices.push(i)
       }
     } else if (key === "journey") {
-      if (t.journey != null && activeTrack.journey != null && Math.abs(t.journey - activeTrack.journey) <= 1.0) {
+      const targetVal = parseFloat(valStr)
+      if (t.journey != null && Math.abs(t.journey - targetVal) <= 1.0) {
         indices.push(i)
       }
     } else if (key === "spread") {
-      if (t.spread != null && activeTrack.spread != null && Math.abs(t.spread - activeTrack.spread) <= 0.2) {
+      const targetVal = parseFloat(valStr)
+      if (t.spread != null && Math.abs(t.spread - targetVal) <= 0.2) {
         indices.push(i)
       }
     } else if (key === "shifts") {
-      if (t.novelty === activeTrack.novelty) indices.push(i)
+      const targetVal = parseInt(valStr)
+      if (t.novelty === targetVal) indices.push(i)
     } else if (key === "bounce") {
-      if (t.bounce != null && activeTrack.bounce != null && Math.abs(t.bounce - activeTrack.bounce) <= 0.05) {
+      const targetVal = parseFloat(valStr)
+      if (t.bounce != null && Math.abs(t.bounce - targetVal) <= 0.05) {
         indices.push(i)
       }
     } else if (key === "complexity") {
-      if (t.melodicComplexity != null && activeTrack.melodicComplexity != null && Math.abs(t.melodicComplexity - activeTrack.melodicComplexity) <= 0.05) {
+      const targetVal = parseFloat(valStr)
+      if (t.melodicComplexity != null && Math.abs(t.melodicComplexity - targetVal) <= 0.05) {
         indices.push(i)
       }
     }
@@ -119,6 +131,9 @@ export default function DHMap({
   const [pan, setPan] = React.useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = React.useState(false)
 
+  // Track the last centered tag to prevent hover/move changes from resetting manual zoom/pan
+  const lastCenteredTagRef = React.useRef<string | null>(null)
+
   // neighbors of the active (hover or focus) track, for emphasis
   const activeIdx = hoverIdx ?? focusIdx
   const neighborSet = React.useMemo(() => {
@@ -133,14 +148,22 @@ export default function DHMap({
 
   // Auto-centering when a tag is clicked
   React.useEffect(() => {
-    if (!clickedTag || size.w === 0 || size.h === 0) return
+    if (!clickedTag || size.w === 0 || size.h === 0) {
+      lastCenteredTagRef.current = clickedTag
+      return
+    }
+
+    // Only run centering calculation when the clicked tag changes!
+    if (clickedTag === lastCenteredTagRef.current) {
+      return
+    }
+    lastCenteredTagRef.current = clickedTag
 
     const pts = currentPtsRef.current.length > 0 
       ? currentPtsRef.current 
       : (mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points).map(pt => ({ x: pt[0], y: pt[1] }))
 
-    const activeTrack = activeIdx != null ? data.tracks[activeIdx] : null
-    const matchingIndices = getMatchingIndices(clickedTag, activeTrack, data.tracks)
+    const matchingIndices = getMatchingIndices(clickedTag, data.tracks)
     const matchingPts: { x: number; y: number }[] = []
     for (const idx of matchingIndices) {
       if (hideInstrumentals && data.tracks[idx].lyricsPresent !== 1) continue
@@ -179,7 +202,7 @@ export default function DHMap({
       setZoom(nextZoom)
       setPan({ x: nextPanX, y: nextPanY })
     }
-  }, [clickedTag, data, size.w, size.h, mapMode, hideInstrumentals, activeIdx])
+  }, [clickedTag, data, size.w, size.h, mapMode, hideInstrumentals])
   const dragRef = React.useRef({ startX: 0, startY: 0, curX: 0, curY: 0, moved: false })
 
   React.useEffect(() => {
@@ -261,8 +284,7 @@ export default function DHMap({
 
       // 2. Draw Relational Tag/Metric Constellation (blue lines to centroid hub)
       if (activeTag) {
-        const activeTrack = activeIdx != null ? data.tracks[activeIdx] : null
-        const matchingIndices = getMatchingIndices(activeTag, activeTrack, data.tracks).filter(
+        const matchingIndices = getMatchingIndices(activeTag, data.tracks).filter(
           (idx) => !(hideInstrumentals && data.tracks[idx].lyricsPresent !== 1)
         )
 
@@ -305,8 +327,7 @@ export default function DHMap({
         }
       }
 
-      const activeTrack = activeIdx != null ? data.tracks[activeIdx] : null
-      const activeTagIndices = activeTag ? getMatchingIndices(activeTag, activeTrack, data.tracks) : []
+      const activeTagIndices = activeTag ? getMatchingIndices(activeTag, data.tracks) : []
       const activeTagSet = new Set(activeTagIndices)
 
       // 3. Draw base dots
