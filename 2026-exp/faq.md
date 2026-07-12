@@ -18,6 +18,37 @@ Instead of just taking the average sound of a song, we kept the individual finge
 When generating music in Suno, creators use text style tags and control parameters like **weirdness** and **style weight**. We scraped these ground-truth settings directly from the song pages on Suno.com using Next.js payload parsing. This lets us see exactly how much the creator nudged the model's parameters to perturb the state space of the known.
 </details>
 
+<details>
+<summary><b>Technical Pipeline Pathway (Detailed Specifications)</b></summary>
+
+### 1. Audio Processing & Segmentation
+* **Ingestion**: Raw audio tracks (.mp3) are loaded and downsampled to a standardized sample rate of 22,050 Hz.
+* **Segmentation**: The audio is divided into sequential, non-overlapping 10-second windows. If a track is 3 minutes long, it yields 18 window segments.
+
+### 2. CLAP Feature Extraction
+* **Audio Encoding**: Each 10-second segment is passed through the **Contrastive Language-Audio Pretraining (CLAP)** audio encoder. This generates a 512-dimensional dense embedding vector representing the segment's acoustic features.
+* **Track-Level Centroid**: The global embedding for each track is the average (mean centroid) of all its segment vectors.
+
+### 3. Zero-Shot Tagging & The "Sousaphone" Effect
+* **Text Encoding**: The 76 glossary text probes (e.g., `"the sound of male vocals"`, `"the sound of sousaphone/brass"`) are prefixed with `"the sound of "` and passed through CLAP’s text encoder to get matching 512-dimensional text vectors.
+* **Similarity Score**: Zero-shot tags are calculated by computing the dot product between the segment vectors and the text vectors. 
+* **Acoustic Texture vs. Literal Instruments**: The CLAP model matches *acoustic textures and frequency profiles*, not physical instruments. For example:
+  * **Doubt Manifesto 1** has the ground-truth prompt: `slow-math philly-rap subs, powerful bassline...`
+  * The track contains deep, resonant, low-frequency sub-bass frequencies (`subs`).
+  * The acoustic profile of these sub-bass frequencies matches the low-frequency resonance patterns of a **sousaphone/brass** instrument in the CLAP model's semantic training space.
+  * Thus, the model assigns a high score to `"sousaphone/brass"`. It is a sonic profile match, not literal physical instrument detection.
+
+### 4. 2D Map (UMAP) & Trajectories (PCA)
+* **2D Layout**: We center the 746 track-level centroids and run **Uniform Manifold Approximation and Projection (UMAP)** to project the 512-dimensional representations into 2D coordinates `[x, y]` for the browser canvas map.
+* **Trajectories (3D Shapes)**: We run **Principal Component Analysis (PCA)** across all segment embeddings in the database to find the top 3 directions of acoustic variation. Each track's segment sequence is projected onto these 3 components, resampled to 16 points, and rendered as a geometric shape representing the song's internal trajectory.
+
+### 5. Traditional Audio Descriptors (Librosa & Tempo Double/Half Limits)
+* **Tonal Key**: Correlates chroma energy profiles against the 24 Krumhansl-Schmuckler major/minor pitch templates. Modulations measure key shifts between windows.
+* **Global Tempo (Limits)**: Estimated using spectral autocorrelation of the onset strength envelope. Autocorrelation is prone to **octave errors** (tempo doubling/halving). For example:
+  * In tracks with dense sub-beats (like fast hi-hats, syncopations, or synth arpeggiators), the onset detector can mistake subdivisions for the beat, doubling a 99 BPM track to **198 BPM** (as is the case with *Doubt Manifesto 1*).
+  * In ambient or drumless tracks, it may latch onto slow chord shifts, under-estimating the tempo. It acts as a measure of onset density rather than human beat perception.
+</details>
+
 ---
 
 ## Glossary of Descriptors
