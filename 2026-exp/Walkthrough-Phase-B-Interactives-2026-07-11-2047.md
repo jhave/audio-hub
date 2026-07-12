@@ -79,6 +79,11 @@ This document records the completion of Phase B UI enhancements and interactions
 - [x] **Step 22: Limits of Machine Listening FAQ Fold & Commentary**
   - Edited [commentary on limits.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/commentary on limits.md) to add a naive-friendly introductory paragraph explaining why AI listening models misinterpret tempo and texture in tracks like *A Sombre Just Enough*.
   - Incorporated the full commentary as a new collapsible `<details>` / `<summary>` fold inside the FAQ [faq.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/faq.md) to help users understand why subjective aesthetic taste remains mathematically elusive.
+- [x] **Step 23: Playlist column layout, Lyrics UMAP space toggle, and Vermeer Smear paradox fold**
+  - Reduced the center playlist width by 30% on desktop (by changing three-column grid columns definition from `300px` sidebars to `390px` sidebars in [ExperienceClient.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/ExperienceClient.tsx)), which naturally shrinks the center column and lets long track titles truncate cleanly.
+  - Calculated a second 2D UMAP projection based on lyrics embeddings (with prompt embeddings fallback for instrumentals) in [build-dh.mjs](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/tools/build-dh.mjs) and exported the layout as `lyricPoints` in `dh.json`.
+  - Added a state-controlled toggle (`Music` / `Lyrics`) above the map in the sidebar header inside [ExperienceClient.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/ExperienceClient.tsx) and updated [DHMap.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHMap.tsx) to smoothly animate and float the map dots between the acoustic and textual layout coordinate spaces.
+  - Added a collapsible details fold titled `"The Vermeer Smear Paradox: Why Music Exceeds the Numbers"` inside [faq.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/faq.md) to explain the co-existence of contradictory metrics (vocals/no-vocals, 6 sections / 0 shifts / 8.4 journey) and discuss emergent AI analysis techniques.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -93,7 +98,7 @@ All steps were staged, compiled, verified to build without errors, committed, an
 9. `f35e558` — `feat: show intro screen on every refresh and remove hovered map track label`
 10. `d0a4bb6` — `feat: add glia logo and credits to intro, and add highest/lowest play buttons to FAQ glossary`
 11. `ef86d98` — `feat: design updates to intro overlay screen`
-12. `33bbcb4` — `feat: widen subtext and reduce spacing in experience entry page`
+12. `33bbcb4` — `feat: widen subtext and reduce spacing in experience experience entry page`
 13. `98d690b` — `feat: simplify subtext on intro overlay page`
 14. `ac682dc` — `style: remove horizontal separator line under subtitle`
 15. `09cf162` — `feat: render novelty as integer rather than float`
@@ -105,3 +110,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 21. `281a38b` — `feat: apply mean-centering to CLAP tag scores to remove global class bias (e.g. sousaphone)`
 22. `abf6091` — `feat: add subjective taste quote to intro screen subtitle`
 23. `972fa39` — `feat: include limits of machine listening fold in FAQ, and update commentary file with structured naive-friendly intro`
+24. `52be4f5` — `feat: reduce center playlist width, add lyrics UMAP space coordinates, create Music/Lyrics toggle with smooth transitions, and add Vermeer Smear paradox fold in FAQ`
