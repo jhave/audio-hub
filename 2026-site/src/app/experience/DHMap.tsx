@@ -127,8 +127,6 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
     [data, size, project]
   )
 
-  const label = hoverIdx != null ? data.tracks[hoverIdx] : null
-
   return (
     <div ref={wrapRef} className="relative h-full w-full">
       <canvas
@@ -144,12 +142,6 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
           if (i >= 0) onPlay(i)
         }}
       />
-      {label && (
-        <div className="pointer-events-none absolute left-2 top-2 max-w-[90%] rounded bg-black/80 px-2 py-1 text-[11px] text-white">
-          <span className="font-medium">{label.title}</span>
-          <span className="text-neutral-400"> · {label.album}</span>
-        </div>
-      )}
     </div>
   )
 }

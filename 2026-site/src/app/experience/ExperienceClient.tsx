@@ -62,13 +62,6 @@ function Inner({ data }: { data: DHData }) {
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
 
-  React.useEffect(() => {
-    try {
-      const dismissed = sessionStorage.getItem("dh-intro-dismissed")
-      if (dismissed) setShowIntro(false)
-    } catch {}
-  }, [])
-
 
   // restore played set
   React.useEffect(() => {
@@ -112,9 +105,6 @@ function Inner({ data }: { data: DHData }) {
     setTimeout(() => {
       setShowIntro(false)
     }, 500)
-    try {
-      sessionStorage.setItem("dh-intro-dismissed", "true")
-    } catch {}
     if (data.tracks.length > 0) {
       playIdx(0)
     }
