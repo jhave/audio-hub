@@ -65,6 +65,8 @@ This document records the completion of Phase B UI enhancements and interactions
 - [x] **Step 17: Interactive Tempo Drift & Jumps scroll routing**
   - Configured highlight text parser in [DHFAQ.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHFAQ.tsx) to match multi-word terms (`"tempo drift"` and `"tempo jumps"`) and associate them with their respective hyphenated attributes.
   - Re-routed click handlers for `tempoDrift` (bpm drift) and `tempoJumps` badges in [DHData.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHData.tsx) to target `"tempo-drift"` and `"tempo-jumps"` text blocks directly in the FAQ instead of generic `"tempo"`.
+- [x] **Step 18: Intro Subtitle Copy update**
+  - Updated the intro screen description text to read: *"Machine learning analysis of a 31 hour corpus of AI generated music in a playable interface."*
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -86,3 +88,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 16. `ec3ab3b` — `feat: show tempoDrift/tempoJumps chips, add 30s scroll reset timeout, update FAQ tech details`
 17. `29168d8` — `feat: add technical specifications fold to FAQ describing pipeline, CLAP matching, and tempo doubling limits`
 18. `0950d13` — `feat: redirect tempo drift/jump clicks to exact FAQ terms`
+19. `aadf702` — `feat: update subtitle copy on entry screen`
