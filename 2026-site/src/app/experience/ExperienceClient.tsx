@@ -347,7 +347,7 @@ function Inner({ data }: { data: DHData }) {
           <DHData_ track={rightTrack} isLive={isLive} progress={progress} onMetricClick={handleMetricClick} />
         </div>
         <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto scroll-smooth">
-          <DHFAQ text={data.faq || ""} />
+          <DHFAQ text={data.faq || ""} tracks={data.tracks} onPlay={playIdx} />
         </div>
       </aside>
 
@@ -370,13 +370,25 @@ function Inner({ data }: { data: DHData }) {
             isFading ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
+          {/* Top Centered Logo */}
+          <div className="absolute top-12 left-0 right-0 flex justify-center select-none">
+            <img src="/img/glia-bw.png" alt="glia.ca" className="h-7 object-contain opacity-70" />
+          </div>
+
           <div className="max-w-md text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 mb-3 select-none">
               171 Days
             </h1>
-            <p className="text-[14px] leading-relaxed text-neutral-500 mb-8 font-light select-none">
+            <p className="text-[14px] leading-relaxed text-neutral-500 mb-2 font-light select-none">
               Machine learning applied to a single person's generative music archive.
             </p>
+            <p className="text-[11px] text-neutral-400 mb-8 select-none font-mono">
+              July 2026
+            </p>
+            <div className="text-[10.5px] text-neutral-500 mb-6 font-mono select-none space-y-0.5 border-t border-neutral-100 pt-5">
+              <div>Music: Suno 5.5 · Human: Jhave</div>
+              <div>Data-science: Fable 5 · Gemini 3.5 Flash</div>
+            </div>
             <button
               onClick={dismissIntro}
               className="px-6 py-3 rounded-full bg-neutral-900 text-white text-[13px] font-semibold hover:bg-neutral-800 active:scale-95 transition-all shadow-md cursor-pointer select-none"

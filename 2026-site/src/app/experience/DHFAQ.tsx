@@ -1,8 +1,27 @@
 "use client"
 
 import * as React from "react"
+import type { DHTrack } from "@/lib/dh"
 
-export default function DHFAQ({ text }: { text: string }) {
+function findExtremeTracks(tracks: DHTrack[], key: keyof DHTrack) {
+  const valid = tracks.filter((t) => t[key] != null && typeof t[key] === "number")
+  if (valid.length === 0) return { max: null, min: null }
+  const sorted = [...valid].sort((a, b) => (a[key] as number) - (b[key] as number))
+  return {
+    min: sorted[0],
+    max: sorted[sorted.length - 1],
+  }
+}
+
+export default function DHFAQ({
+  text,
+  tracks,
+  onPlay,
+}: {
+  text: string
+  tracks?: DHTrack[]
+  onPlay?: (i: number) => void
+}) {
   if (!text) return null
 
   const lines = text.split("\n")
@@ -12,6 +31,42 @@ export default function DHFAQ({ text }: { text: string }) {
   let inDetails = false
   let detailsSummary: React.ReactNode = null
   let detailsInnerLines: string[] = []
+
+  const renderPlayButtons = (metricName: string) => {
+    if (!tracks || !onPlay) return null
+    let key: keyof DHTrack | null = null
+    const norm = metricName.toLowerCase()
+    if (norm === "spread") key = "spread"
+    else if (norm === "journey") key = "journey"
+    else if (norm === "novelty") key = "novelty"
+    else if (norm === "tempo") key = "tempo"
+    else if (norm === "bounce") key = "bounce"
+    else if (norm === "complexity") key = "melodicComplexity"
+
+    if (!key) return null
+
+    const { min, max } = findExtremeTracks(tracks, key)
+    if (!min || !max) return null
+
+    return (
+      <div className="mt-1.5 mb-2.5 flex gap-1.5 select-none" key={`btns-${metricName}`}>
+        <button
+          onClick={() => onPlay(max.i)}
+          className="flex-1 py-1 px-2 bg-neutral-900 text-white rounded text-[9.5px] font-semibold hover:bg-neutral-800 transition-colors cursor-pointer text-left truncate leading-tight"
+          title={`Play track with highest ${metricName}: "${max.title}"`}
+        >
+          ▲ Highest: <span className="font-light italic font-serif">"{max.title}"</span>
+        </button>
+        <button
+          onClick={() => onPlay(min.i)}
+          className="flex-1 py-1 px-2 bg-neutral-200 text-neutral-800 rounded text-[9.5px] font-semibold hover:bg-neutral-300 transition-colors cursor-pointer text-left truncate leading-tight"
+          title={`Play track with lowest ${metricName}: "${min.title}"`}
+        >
+          ▼ Lowest: <span className="font-light italic font-serif">"{min.title}"</span>
+        </button>
+      </div>
+    )
+  }
 
   const parseLinesToReact = (lineList: string[]): React.ReactNode[] => {
     const list: React.ReactNode[] = []
@@ -67,11 +122,14 @@ export default function DHFAQ({ text }: { text: string }) {
           </h2>
         )
       } else if (trimmed.startsWith("### ")) {
+        const textVal = trimmed.replace(/^###\s+/, "").trim()
         list.push(
           <h3 key={keyIdx++} id={elementId || undefined} className="mt-3 mb-1 text-[11px] font-bold text-neutral-700 scroll-mt-4">
             {trimmed.slice(4)}
           </h3>
         )
+        const btns = renderPlayButtons(textVal)
+        if (btns) list.push(btns)
       } else if (trimmed.startsWith("> ")) {
         list.push(
           <blockquote key={keyIdx++} className="border-l-2 border-neutral-300 pl-3 my-2.5 italic text-[11px] text-neutral-500">
