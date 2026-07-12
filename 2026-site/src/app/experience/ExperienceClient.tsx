@@ -487,7 +487,9 @@ function Row({
       id={`dh-row-${t.i}`}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className={`group flex items-center rounded-lg px-2 py-2 ${active ? "bg-neutral-100" : "hover:bg-neutral-50"}`}
+      className={`group flex items-center rounded-lg px-2 py-2 border-l-2 transition-all ${
+        active ? "bg-yellow-100/80 border-yellow-500 rounded-l-none font-medium" : "hover:bg-neutral-50 border-transparent"
+      }`}
     >
       <button
         onClick={onPlay}
