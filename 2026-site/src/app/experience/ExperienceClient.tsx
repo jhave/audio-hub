@@ -178,13 +178,13 @@ function Inner({ data }: { data: DHData }) {
       targetEl.classList.remove("bg-yellow-200", "scale-105")
     }, 1500)
 
-    const sidebar = document.getElementById("dh-right-sidebar")
-    if (sidebar && targetEl) {
-      const sidebarRect = sidebar.getBoundingClientRect()
+    const container = document.getElementById("dh-faq-container")
+    if (container && targetEl) {
+      const containerRect = container.getBoundingClientRect()
       const targetRect = targetEl.getBoundingClientRect()
-      const relativeTop = targetRect.top - sidebarRect.top + sidebar.scrollTop
-      sidebar.scrollTo({
-        top: relativeTop - 20,
+      const relativeTop = targetRect.top - containerRect.top + container.scrollTop
+      container.scrollTo({
+        top: relativeTop - 12,
         behavior: "smooth"
       })
     }
@@ -326,13 +326,14 @@ function Inner({ data }: { data: DHData }) {
 
       {/* RIGHT: persistent data + FAQ */}
       <aside
-        id="dh-right-sidebar"
         className={`${
-          mobileTab === "faq" ? "block flex-1" : "hidden"
-        } md:block overflow-y-auto border-l bg-white scroll-smooth`}
+          mobileTab === "faq" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
+        } md:flex md:flex-col border-l bg-white h-full min-h-0 overflow-hidden`}
       >
-        <DHData_ track={rightTrack} isLive={isLive} progress={progress} onMetricClick={handleMetricClick} />
-        <div className="border-t bg-neutral-50">
+        <div className="flex-shrink-0 border-b bg-white overflow-y-auto scrollbar-none max-h-[60vh]">
+          <DHData_ track={rightTrack} isLive={isLive} progress={progress} onMetricClick={handleMetricClick} />
+        </div>
+        <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto scroll-smooth">
           <DHFAQ text={data.faq || ""} />
         </div>
       </aside>

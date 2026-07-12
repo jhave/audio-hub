@@ -199,9 +199,15 @@ export default function DHData({
       </div>
 
       {track.prompt && (
-        <div className="mt-2 border-t pt-2 text-[11px] italic leading-snug text-neutral-500">
-          {linkify(track.prompt)}
-        </div>
+        <details className="mt-2.5 border-t pt-2.5 group">
+          <summary className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider cursor-pointer select-none list-none flex justify-between items-center hover:text-neutral-600 transition-colors">
+            <span>Suno Style Prompt</span>
+            <span className="text-[9px] group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div className="mt-1.5 text-[11px] italic leading-snug text-neutral-500 select-text">
+            {linkify(track.prompt)}
+          </div>
+        </details>
       )}
     </div>
   )
