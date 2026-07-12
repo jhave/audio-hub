@@ -25,6 +25,10 @@ This document records the completion of Phase B UI enhancements and interactions
   - Swiping horizontally on mobile loops the active screen between three view tabs: **Map & Theory** (Left sidebar), **Player** (Center list), and **FAQ & Data** (Right sidebar).
   - Kept the floating bottom `Dock` playbar persistent across all views.
   - Added a responsive tab bar header for mobile navigation.
+- [x] **Step 6: Sticky Right Column & Folded Style Prompt**
+  - Restructured the right sidebar so the selected track details stay fixed at the top (with a scrollable fallback on short screens) and the FAQ scrolls separately beneath it.
+  - Placed the Suno style prompt into a collapsible `<details>` / `<summary>` block to preserve vertical space for the FAQ.
+  - Updated the scrolling offset calculation to target the new separate FAQ scroll container.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -33,3 +37,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 3. `43e6aa7` — `feat: add technical FAQ with collapsible simplified explanation folds`
 4. `183798c` — `feat: add interactive tooltips and descriptor auto-scrolling to FAQ`
 5. `b872aab` — `feat: implement mobile tab swipe loop layout with persistent player`
+6. `e9c79f6` — `feat: make track data sticky in right column, scroll FAQ separately, and fold style prompt`
