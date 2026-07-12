@@ -54,6 +54,11 @@ This document records the completion of Phase B UI enhancements and interactions
   - Simplified the subtext copy to read: *"Machine learning applied to analyze a 31 hour corpus of AI generated music"*.
 - [x] **Step 14: Novelty Format & Precision adjustment**
   - Updated the frontend UI metric card inside [DHData.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHData.tsx) to format `novelty` as a discrete integer (whole number) instead of using a decimal float display.
+- [x] **Step 15: Tempo granularity, technical FAQ additions, and 30s reset timers**
+  - Mapped `tempoJumps` from descriptors data inside [build-dh.mjs](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/tools/build-dh.mjs) and rebuilt the `dh.json` asset bundle.
+  - Added new descriptor metadata chips for `tempoDrift` (e.g. `±X bpm drift`) and `tempoJumps` (e.g. `Y tempo jumps`) in the sidebar details panel [DHData.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHData.tsx) to reveal tracking instabilities or tempo shifts.
+  - Refined technical details inside [faq.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/faq.md) glossary, describing onset autocorrelation anomalies, tempo drift, and jumps estimation.
+  - Implemented a 30-seconds inactivity timeout for each metric word cycle in [ExperienceClient.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/ExperienceClient.tsx). If a metric button has not been pressed for 30s, the scroll cycle resets to target the section header first on the next interaction.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -72,3 +77,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 13. `98d690b` — `feat: simplify subtext on intro overlay page`
 14. `ac682dc` — `style: remove horizontal separator line under subtitle`
 15. `09cf162` — `feat: render novelty as integer rather than float`
+16. `ec3ab3b` — `feat: show tempoDrift/tempoJumps chips, add 30s scroll reset timeout, update FAQ tech details`
