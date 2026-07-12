@@ -131,8 +131,24 @@ function topTags(trackId, k = 5) {
     .map(([s, i]) => ({ probe: probes[i], score: Math.round((s / scaleTag) * 1000) / 1000 }))
 }
 
+// ---- read essay and faq from root ----
+const essayPath = path.join(HERE, "../essay.md")
+const faqPath = path.join(HERE, "../faq.md")
+let essay = ""
+let faq = ""
+try {
+  essay = fs.readFileSync(essayPath, "utf8")
+} catch (e) {
+  console.warn("Could not read essay.md:", e.message)
+}
+try {
+  faq = fs.readFileSync(faqPath, "utf8")
+} catch (e) {
+  console.warn("Could not read faq.md:", e.message)
+}
+
 // ---- assemble ----
-const out = { version: 1, generatedAt: new Date().toISOString(), trackCount: N, tagScale: scaleTag }
+const out = { version: 1, generatedAt: new Date().toISOString(), trackCount: N, tagScale: scaleTag, essay, faq }
 out.albums = albumOrder.map((id) => ({ id, title: albumMeta[id].title, dateISO: albumMeta[id].dateISO }))
 out.points = tracks.map((t, i) => [xy[i][0], xy[i][1], albumIdx[t.albumId] ?? -1])
 
