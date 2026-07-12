@@ -172,7 +172,9 @@ export default function DHData({
             title={`${desc}. Click to scroll to definition.`}
             className="rounded bg-neutral-50 py-1.5 cursor-pointer hover:bg-neutral-100 transition-colors border"
           >
-            <div className="text-[13px] font-bold text-black">{v != null ? v.toFixed(v < 10 ? 1 : 0) : "—"}</div>
+            <div className="text-[13px] font-bold text-black">
+              {v != null ? (k === "novelty" ? v.toFixed(0) : v.toFixed(v < 10 ? 1 : 0)) : "—"}
+            </div>
             <div className="text-[9px] uppercase tracking-wide text-neutral-400 font-semibold">{k}</div>
           </div>
         ))}
