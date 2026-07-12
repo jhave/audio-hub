@@ -177,14 +177,17 @@ export default function DHMap({
     return () => ro.disconnect()
   }, [])
 
+  const camPanRef = React.useRef({ x: 0, y: 0 })
+  const camZoomRef = React.useRef(1.0)
+
   // map layout-space [-1,1] to canvas with padding, zoom and pan
   const project = React.useCallback(
     (x: number, y: number, w: number, h: number) => {
       const pad = 18
-      const s = (Math.min(w, h) - pad * 2) * zoom
-      return [w / 2 + x * (s / 2) + pan.x, h / 2 + y * (s / 2) + pan.y] as const
+      const s = (Math.min(w, h) - pad * 2) * camZoomRef.current
+      return [w / 2 + x * (s / 2) + camPanRef.current.x, h / 2 + y * (s / 2) + camPanRef.current.y] as const
     },
-    [zoom, pan]
+    []
   )
 
   React.useEffect(() => {
@@ -246,6 +249,30 @@ export default function DHMap({
       }
 
       const pts = currentPtsRef.current
+
+      // Camera zoom & pan fluid drift tracking
+      const camLerpRate = 0.05
+      camZoomRef.current += (zoom - camZoomRef.current) * camLerpRate
+
+      if (isDragging) {
+        // Follow dragging exactly
+        camPanRef.current.x = pan.x
+        camPanRef.current.y = pan.y
+      } else if (focusIdx != null && pts[focusIdx]) {
+        // Drift pan to center the active playing track, preserving the current zoom level!
+        const pad = 18
+        const s = (Math.min(w, h) - pad * 2) * camZoomRef.current
+        const targetPanX = -pts[focusIdx].x * (s / 2)
+        const targetPanY = -pts[focusIdx].y * (s / 2)
+        
+        camPanRef.current.x += (targetPanX - camPanRef.current.x) * camLerpRate
+        camPanRef.current.y += (targetPanY - camPanRef.current.y) * camLerpRate
+      } else {
+        // Fallback to panned coordinates
+        camPanRef.current.x += (pan.x - camPanRef.current.x) * camLerpRate
+        camPanRef.current.y += (pan.y - camPanRef.current.y) * camLerpRate
+      }
+
       const isLyricsMode = mapMode === "lyrics"
 
       // 1. Draw Nearest Neighbors Web or Sequential Flow Path
