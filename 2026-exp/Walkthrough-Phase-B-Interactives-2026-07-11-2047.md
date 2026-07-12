@@ -50,6 +50,8 @@ This document records the completion of Phase B UI enhancements and interactions
 - [x] **Step 12: Intro Page Spacing & Subtitle Width adjustment**
   - Widened the subtitle container to `max-w-3xl` so that the entire text fits cleanly on exactly 2 lines.
   - Reduced the vertical margins and paddings by 50% between the subtitle paragraph, project credits divider, and active CTA button to tighten the vertical structure.
+- [x] **Step 13: Subtext Simplification**
+  - Simplified the subtext copy to read: *"Machine learning applied to analyze a 31 hour corpus of AI generated music"*.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -65,3 +67,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 10. `d0a4bb6` — `feat: add glia logo and credits to intro, and add highest/lowest play buttons to FAQ glossary`
 11. `ef86d98` — `feat: design updates to intro overlay screen`
 12. `33bbcb4` — `feat: widen subtext and reduce spacing in experience entry page`
+13. `98d690b` — `feat: simplify subtext on intro overlay page`
