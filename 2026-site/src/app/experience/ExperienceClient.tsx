@@ -19,6 +19,19 @@ import DHFAQ from "./DHFAQ"
 type OrderMode = "sequential" | "random" | "random-star"
 type Item = { id: string; src: string; data: { title: string; album: string } }
 
+function linkify(text: string) {
+  const parts = text.split(/(https?:\/\/[^\s<>()]+[^\s<>().,;:!?'"])/g)
+  return parts.map((p, i) =>
+    /^https?:\/\//.test(p) ? (
+      <a key={i} href={p} target="_blank" rel="noreferrer" className="underline">
+        {p}
+      </a>
+    ) : (
+      <React.Fragment key={i}>{p}</React.Fragment>
+    )
+  )
+}
+
 
 function itemFor(t: DHTrack): Item {
   return { id: t.trackId, src: resolveSrc(t.src) || "", data: { title: t.title, album: t.album } }
@@ -66,6 +79,13 @@ function Inner({ data }: { data: DHData }) {
   const [hoveredTag, setHoveredTag] = React.useState<string | null>(null)
   const [clickedTag, setClickedTag] = React.useState<string | null>(null)
   const activeTag = hoveredTag || clickedTag
+  const [bottomTab, setBottomTab] = React.useState<"prompt" | "faq">("faq")
+
+  React.useEffect(() => {
+    if (hoverIdx != null) {
+      setBottomTab("prompt")
+    }
+  }, [hoverIdx])
 
 
   // restore played set
@@ -451,16 +471,48 @@ function Inner({ data }: { data: DHData }) {
             hoverIdx={hoverIdx}
           />
         </div>
-        <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto scroll-smooth">
-          <DHFAQ
-            text={data.faq || ""}
-            tracks={data.tracks}
-            onPlay={playIdx}
-            activeTag={activeTag}
-            onTagHover={setHoveredTag}
-            clickedTag={clickedTag}
-            onTagClick={setClickedTag}
-          />
+        <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 flex flex-col overflow-hidden">
+          {rightTrack?.prompt && (
+            <div className="flex border-b bg-neutral-100 text-[10px] uppercase font-bold tracking-wider select-none flex-shrink-0">
+              <button
+                onClick={() => setBottomTab("prompt")}
+                className={`px-3 py-2 border-r transition-all cursor-pointer ${
+                  bottomTab === "prompt" ? "bg-white text-neutral-900 border-b-2 border-b-blue-500" : "text-neutral-500 hover:text-neutral-700"
+                }`}
+              >
+                Prompt
+              </button>
+              <button
+                onClick={() => setBottomTab("faq")}
+                className={`px-3 py-2 transition-all cursor-pointer ${
+                  bottomTab === "faq" ? "bg-white text-neutral-900 border-b-2 border-b-blue-500" : "text-neutral-500 hover:text-neutral-700"
+                }`}
+              >
+                Methodology & FAQ
+              </button>
+            </div>
+          )}
+          
+          <div className="flex-1 min-h-0 overflow-y-auto p-4 scroll-smooth">
+            {bottomTab === "prompt" && rightTrack?.prompt ? (
+              <div className="text-neutral-700">
+                <div className="text-[10px] font-bold text-neutral-400 tracking-wider uppercase mb-2">PROMPT:</div>
+                <div className="text-[14px] italic leading-relaxed whitespace-pre-wrap select-text font-serif bg-white p-4 rounded border shadow-sm">
+                  {linkify(rightTrack.prompt)}
+                </div>
+              </div>
+            ) : (
+              <DHFAQ
+                text={data.faq || ""}
+                tracks={data.tracks}
+                onPlay={playIdx}
+                activeTag={activeTag}
+                onTagHover={setHoveredTag}
+                clickedTag={clickedTag}
+                onTagClick={setClickedTag}
+              />
+            )}
+          </div>
         </div>
       </aside>
 
