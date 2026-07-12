@@ -395,6 +395,9 @@ function Inner({ data }: { data: DHData }) {
 
             <p className="text-[18px] leading-relaxed text-neutral-700 mb-4 font-light select-text max-w-3xl">
               Machine learning analysis of a 31 hour corpus of AI generated music in a playable interface.
+              <span className="block mt-3.5 text-[14.5px] text-neutral-500 italic font-serif leading-relaxed">
+                “It is a mild comfort to realize that basic datascience cannot discern beauty, identify novelty, know banality, etc. Subjective taste remains elusive.”
+              </span>
             </p>
 
             <div className="text-[10.5px] text-neutral-500 mb-4 font-mono select-none space-y-0.5 w-full max-w-md">
