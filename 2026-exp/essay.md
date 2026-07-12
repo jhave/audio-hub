@@ -13,6 +13,13 @@ the succulence of music, how it beats over and within the boy, as a tide reaches
 
 "The price of music/muzak is falling to zero." — the site description that has quietly framed the whole archive since 2025. 171 days, 746 tracks, 31 hours: not an album but a *rate*. The archive is evidence of a metabolism.
 
+Related sets in this generative sequence:
+* **[173 days](https://glia.ca/2026/171days/)** (Jan 18 – Jul 9, 2026) — 746 tracks • 31h 47m
+* **[75 days](https://glia.ca/2025/75days/)** (Oct 13 – Dec 25, 2025) — 422 tracks • 22h 21m
+* **[71 days](https://glia.ca/2025/71days/)** (Jul 29 – Oct 7, 2025) — 266 tracks
+* **[(Un)(Very)Listenable](https://glia.ca/2025/listen/)** (Jun – Jul 2025) — 163 tracks
+* **[Suno v3 w. ReRites](https://glia.ca/2024/suno-v3-rerites/)** (Mar 6, 2024) — 39 tracks
+
 ## two marching bands, not a block party
 
 The first navigable soundscape failed in a precise way: "instead of the Charles Ives experience of two marching bands intersecting in the middle of a village there's instead this sense of multiple block parties, simultaneously overlapping." (jhave) — Ives's counterpoint works because two musics intersecting is an *event*; eight is weather. Density must be earned by geography, not granted by default. The redesign followed: one song per island, polyphony only at coastlines, where it means something.

@@ -263,7 +263,7 @@ function Inner({ data }: { data: DHData }) {
     <div
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="flex flex-col h-screen overflow-hidden md:grid md:grid-cols-[390px_minmax(0,1fr)_390px]"
+      className="flex flex-col h-screen overflow-hidden md:grid md:grid-cols-3"
     >
       {/* Mobile Tab Bar Header */}
       <div className="flex border-b bg-white text-[12px] md:hidden select-none flex-shrink-0">
@@ -404,8 +404,8 @@ function Inner({ data }: { data: DHData }) {
           }`}
         >
           <div className="max-w-4xl text-center flex flex-col items-center">
-            {/* Top Centered Logo (now inside content box and 2x larger) */}
-            <img src="/img/glia-bw.png" alt="glia.ca" className="h-14 object-contain opacity-80 mb-5 select-none" />
+            {/* Top Centered Logo (now inside content box and 40% larger) */}
+            <img src="/img/glia-bw.png" alt="glia.ca" className="h-20 object-contain opacity-80 mb-5 select-none" />
 
             <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 mb-1 select-none">
               171 Days
@@ -429,7 +429,7 @@ function Inner({ data }: { data: DHData }) {
 
             <button
               onClick={dismissIntro}
-              className="px-6 py-3 rounded-full bg-neutral-900 text-white text-[13px] font-semibold hover:bg-neutral-800 active:scale-95 transition-all shadow-md cursor-pointer select-none"
+              className="px-6 py-3 rounded-full bg-neutral-900 text-white text-[13px] font-semibold hover:bg-neutral-800 active:scale-95 transition-all shadow-md cursor-pointer select-none mt-10"
             >
               Explore the Experience
             </button>
