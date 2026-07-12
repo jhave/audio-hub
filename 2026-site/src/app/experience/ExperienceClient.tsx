@@ -69,15 +69,6 @@ function Inner({ data }: { data: DHData }) {
     } catch {}
   }, [])
 
-  const dismissIntro = React.useCallback(() => {
-    setIsFading(true)
-    setTimeout(() => {
-      setShowIntro(false)
-    }, 500)
-    try {
-      sessionStorage.setItem("dh-intro-dismissed", "true")
-    } catch {}
-  }, [])
 
   // restore played set
   React.useEffect(() => {
@@ -115,6 +106,19 @@ function Inner({ data }: { data: DHData }) {
     },
     [player, data]
   )
+
+  const dismissIntro = React.useCallback(() => {
+    setIsFading(true)
+    setTimeout(() => {
+      setShowIntro(false)
+    }, 500)
+    try {
+      sessionStorage.setItem("dh-intro-dismissed", "true")
+    } catch {}
+    if (data.tracks.length > 0) {
+      playIdx(0)
+    }
+  }, [data.tracks, playIdx])
 
   // shuffle "bag": exhaust every track in the pool before any repeats.
   // Bag items are popped from the END. `justPlayedRef` tracks the last pick so
