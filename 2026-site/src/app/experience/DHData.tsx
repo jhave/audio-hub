@@ -288,6 +288,15 @@ export default function DHData({
         ))}
       </div>
 
+      {/* Dynamic Prompt Roll-over Preview */}
+      {hoverIdx !== null && track.prompt && (
+        <div className="mt-3.5 border-t pt-3.5 text-left">
+          <div className="text-[10px] font-bold text-neutral-400 tracking-wider uppercase mb-1.5 select-none">PROMPT:</div>
+          <div className="text-[13px] italic leading-relaxed whitespace-pre-wrap select-text font-serif bg-neutral-50 p-2.5 rounded border border-neutral-100 text-neutral-700">
+            {linkify(track.prompt)}
+          </div>
+        </div>
+      )}
 
     </div>
   )
