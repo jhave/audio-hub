@@ -38,6 +38,10 @@ This document records the completion of Phase B UI enhancements and interactions
 - [x] **Step 9: Page Refresh Reset & Label Removal**
   - Configured the intro screen to display on every page refresh (removed `sessionStorage` persistence checks).
   - Removed the hover track title label tooltip overlay drawn in the top-left corner of the UMAP map.
+- [x] **Step 10: Intro Screen Branding & Interactive Glossary play buttons**
+  - Placed the **glia.ca logo** (linked from public `/img/glia-bw.png`) centered at the top of the intro page.
+  - Added a date subtitle (`July 2026`) and structured project credits (*"Music: Suno 5.5 · Human: Jhave · Data-science: Fable 5 · Gemini 3.5 Flash"*) just above the entry button.
+  - Implemented dynamic highest/lowest track lookup inside [DHFAQ.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHFAQ.tsx). Under each major numeric metric section (Spread, Journey, Novelty, Tempo, Bounce, Complexity), rendered two interactive play buttons to immediately play the track with the highest/lowest values, showing the track titles dynamically in their labels.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -50,3 +54,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 7. `0e5dc63` — `feat: add fading 171 Days intro screen overlay`
 8. `845e885` — `feat: auto-play first track on entering archive from intro screen`
 9. `f35e558` — `feat: show intro screen on every refresh and remove hovered map track label`
+10. `d0a4bb6` — `feat: add glia logo and credits to intro, and add highest/lowest play buttons to FAQ glossary`
