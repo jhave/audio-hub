@@ -76,6 +76,9 @@ This document records the completion of Phase B UI enhancements and interactions
   - Mitigated global class bias in [build-dh.mjs](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/tools/build-dh.mjs) by precalculating the global baseline mean for all 76 probes and subtracting the mean from scores during sorting in the `topTags` function. This ensures top-rendered tags are *distinctive* deviations from the dataset average, successfully removing irrelevant tags (like `"sousaphone/brass"`) from tracks (like `Beloved One Miss you Issue.`).
 - [x] **Step 21: Added Subjective Taste Quote to Intro Screen**
   - Updated the subtitle text on the entry overlay page in [ExperienceClient.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/ExperienceClient.tsx) to append the quote block: *"“It is a mild comfort to realize that basic datascience cannot discern beauty, identify novelty, know banality, etc. Subjective taste remains elusive.”"* in a subtle italic font.
+- [x] **Step 22: Limits of Machine Listening FAQ Fold & Commentary**
+  - Edited [commentary on limits.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/commentary on limits.md) to add a naive-friendly introductory paragraph explaining why AI listening models misinterpret tempo and texture in tracks like *A Sombre Just Enough*.
+  - Incorporated the full commentary as a new collapsible `<details>` / `<summary>` fold inside the FAQ [faq.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/faq.md) to help users understand why subjective aesthetic taste remains mathematically elusive.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -101,3 +104,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 20. `feb8bd2` — `feat: rename novelty to shifts in UI/FAQ, add naming critique, and draft outlier-plan.md`
 21. `281a38b` — `feat: apply mean-centering to CLAP tag scores to remove global class bias (e.g. sousaphone)`
 22. `abf6091` — `feat: add subjective taste quote to intro screen subtitle`
+23. `972fa39` — `feat: include limits of machine listening fold in FAQ, and update commentary file with structured naive-friendly intro`
