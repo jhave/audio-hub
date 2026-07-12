@@ -22,7 +22,11 @@ Related sets in this generative sequence:
 
 ## two marching bands, not a block party
 
-The first navigable soundscape failed in a precise way: "instead of the Charles Ives experience of two marching bands intersecting in the middle of a village there's instead this sense of multiple block parties, simultaneously overlapping." (jhave) — Ives's counterpoint works because two musics intersecting is an *event*; eight is weather. Density must be earned by geography, not granted by default. The redesign followed: one song per island, polyphony only at coastlines, where it means something.
+The initial concept for this interface was a spatial audio landscape where the listener's cursor coordinates would dynamically blend multiple tracks together based on geographic proximity. The design was inspired by the legendary American composer Charles Ives and his piece *"Putnam's Camp, Redding, Connecticut"* (from *Three Places in New England*), which famously simulates the acoustic collision of two marching bands playing different tunes in different keys and tempos as they march past each other in a village square.
+
+However, we chose not to build a fully overlapping spatial soundscape. As Jhave noted during early prototyping: *"instead of the Charles Ives experience of two marching bands intersecting in the middle of a village, there's instead this sense of multiple block parties, simultaneously overlapping."* 
+
+Ives's polyphonic genius works because the intersection of two distinct musical worlds is an *event* structured by tension; eight tracks playing at once is just "weather" — a dense, unlistenable chaos of noise. Density must be earned by geography, not granted by default. Consequently, we redesigned the experience to focus on playing one track at a time, allowing for single-track clarity, where overlapping polyphony is a transition (a coastline) rather than a constant state.
 
 ## the mouse is the instrument
 
