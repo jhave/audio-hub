@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import type { DHData } from "@/lib/dh"
+import type { DHData, DHTrack } from "@/lib/dh"
 
 type Props = {
   data: DHData
@@ -23,6 +23,77 @@ const GOLD = "#c98500"
 const RED = "#e24b4a"
 const BLUE = "#38bdf8" // bright light blue for unplayed vocals
 const RICH_BLUE = "#2563eb" // deep rich blue for played vocals
+
+function getMatchingIndices(tagOrMetric: string | null, activeTrack: DHTrack | null, tracks: DHTrack[]): number[] {
+  if (!tagOrMetric) return []
+  
+  if (!tagOrMetric.startsWith("metric:")) {
+    const indices: number[] = []
+    for (let i = 0; i < tracks.length; i++) {
+      const hasTag = tracks[i].topTags.some(
+        (tg) => tg.probe.toLowerCase() === tagOrMetric.toLowerCase()
+      )
+      if (hasTag) indices.push(i)
+    }
+    return indices
+  }
+
+  if (!activeTrack) return []
+  const parts = tagOrMetric.split(":")
+  if (parts.length < 3) return []
+  const key = parts[1]
+
+  const indices: number[] = []
+  
+  for (let i = 0; i < tracks.length; i++) {
+    const t = tracks[i]
+    if (key === "key") {
+      if (t.key === activeTrack.key) indices.push(i)
+    } else if (key === "tempo") {
+      if (t.tempo != null && activeTrack.tempo != null && Math.abs(t.tempo - activeTrack.tempo) <= 3) {
+        indices.push(i)
+      }
+    } else if (key === "tempoDrift") {
+      if (t.tempoDrift != null && activeTrack.tempoDrift != null && Math.abs(t.tempoDrift - activeTrack.tempoDrift) <= 2) {
+        indices.push(i)
+      }
+    } else if (key === "tempoJumps") {
+      if (t.tempoJumps === activeTrack.tempoJumps) indices.push(i)
+    } else if (key === "sectionCount" || key === "sections") {
+      if (t.sectionCount === activeTrack.sectionCount) indices.push(i)
+    } else if (key === "modulations") {
+      if (t.modulations === activeTrack.modulations) indices.push(i)
+    } else if (key === "weirdness") {
+      if (t.weirdness != null && activeTrack.weirdness != null && Math.abs(t.weirdness - activeTrack.weirdness) <= 0.05) {
+        indices.push(i)
+      }
+    } else if (key === "styleWeight") {
+      if (t.styleWeight != null && activeTrack.styleWeight != null && Math.abs(t.styleWeight - activeTrack.styleWeight) <= 0.05) {
+        indices.push(i)
+      }
+    } else if (key === "journey") {
+      if (t.journey != null && activeTrack.journey != null && Math.abs(t.journey - activeTrack.journey) <= 1.0) {
+        indices.push(i)
+      }
+    } else if (key === "spread") {
+      if (t.spread != null && activeTrack.spread != null && Math.abs(t.spread - activeTrack.spread) <= 0.2) {
+        indices.push(i)
+      }
+    } else if (key === "shifts") {
+      if (t.novelty === activeTrack.novelty) indices.push(i)
+    } else if (key === "bounce") {
+      if (t.bounce != null && activeTrack.bounce != null && Math.abs(t.bounce - activeTrack.bounce) <= 0.05) {
+        indices.push(i)
+      }
+    } else if (key === "complexity") {
+      if (t.melodicComplexity != null && activeTrack.melodicComplexity != null && Math.abs(t.melodicComplexity - activeTrack.melodicComplexity) <= 0.05) {
+        indices.push(i)
+      }
+    }
+  }
+
+  return indices
+}
 
 export default function DHMap({
   data,
@@ -48,6 +119,18 @@ export default function DHMap({
   const [pan, setPan] = React.useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = React.useState(false)
 
+  // neighbors of the active (hover or focus) track, for emphasis
+  const activeIdx = hoverIdx ?? focusIdx
+  const neighborSet = React.useMemo(() => {
+    const s = new Set<number>()
+    if (activeIdx != null) {
+      // Don't show neighbor associations if the track itself is filtered out
+      if (hideInstrumentals && data.tracks[activeIdx].lyricsPresent !== 1) return s
+      for (const [j] of data.tracks[activeIdx].neighbors) s.add(j)
+    }
+    return s
+  }, [activeIdx, data, hideInstrumentals])
+
   // Auto-centering when a tag is clicked
   React.useEffect(() => {
     if (!clickedTag || size.w === 0 || size.h === 0) return
@@ -56,14 +139,13 @@ export default function DHMap({
       ? currentPtsRef.current 
       : (mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points).map(pt => ({ x: pt[0], y: pt[1] }))
 
+    const activeTrack = activeIdx != null ? data.tracks[activeIdx] : null
+    const matchingIndices = getMatchingIndices(clickedTag, activeTrack, data.tracks)
     const matchingPts: { x: number; y: number }[] = []
-    for (let i = 0; i < data.tracks.length; i++) {
-      if (hideInstrumentals && data.tracks[i].lyricsPresent !== 1) continue
-      const hasTag = data.tracks[i].topTags.some(
-        (tg) => tg.probe.toLowerCase() === clickedTag.toLowerCase()
-      )
-      if (hasTag && pts[i]) {
-        matchingPts.push(pts[i])
+    for (const idx of matchingIndices) {
+      if (hideInstrumentals && data.tracks[idx].lyricsPresent !== 1) continue
+      if (pts[idx]) {
+        matchingPts.push(pts[idx])
       }
     }
 
@@ -97,20 +179,8 @@ export default function DHMap({
       setZoom(nextZoom)
       setPan({ x: nextPanX, y: nextPanY })
     }
-  }, [clickedTag, data, size.w, size.h, mapMode, hideInstrumentals])
+  }, [clickedTag, data, size.w, size.h, mapMode, hideInstrumentals, activeIdx])
   const dragRef = React.useRef({ startX: 0, startY: 0, curX: 0, curY: 0, moved: false })
-
-  // neighbors of the active (hover or focus) track, for emphasis
-  const activeIdx = hoverIdx ?? focusIdx
-  const neighborSet = React.useMemo(() => {
-    const s = new Set<number>()
-    if (activeIdx != null) {
-      // Don't show neighbor associations if the track itself is filtered out
-      if (hideInstrumentals && data.tracks[activeIdx].lyricsPresent !== 1) return s
-      for (const [j] of data.tracks[activeIdx].neighbors) s.add(j)
-    }
-    return s
-  }, [activeIdx, data, hideInstrumentals])
 
   React.useEffect(() => {
     const el = wrapRef.current
@@ -189,25 +259,21 @@ export default function DHMap({
         }
       }
 
-      // 2. Draw Relational Tag Constellation (blue lines to centroid hub)
+      // 2. Draw Relational Tag/Metric Constellation (blue lines to centroid hub)
       if (activeTag) {
-        const matchingIndices: number[] = []
-        for (let i = 0; i < data.tracks.length; i++) {
-          if (hideInstrumentals && data.tracks[i].lyricsPresent !== 1) continue
-          const hasTag = data.tracks[i].topTags.some(
-            (tg) => tg.probe.toLowerCase() === activeTag.toLowerCase()
-          )
-          if (hasTag) {
-            matchingIndices.push(i)
-          }
-        }
+        const activeTrack = activeIdx != null ? data.tracks[activeIdx] : null
+        const matchingIndices = getMatchingIndices(activeTag, activeTrack, data.tracks).filter(
+          (idx) => !(hideInstrumentals && data.tracks[idx].lyricsPresent !== 1)
+        )
 
         if (matchingIndices.length > 0) {
           // Calculate centroid
           let sumX = 0, sumY = 0
           for (const idx of matchingIndices) {
-            sumX += pts[idx].x
-            sumY += pts[idx].y
+            if (pts[idx]) {
+              sumX += pts[idx].x
+              sumY += pts[idx].y
+            }
           }
           const avgX = sumX / matchingIndices.length
           const avgY = sumY / matchingIndices.length
@@ -226,16 +292,22 @@ export default function DHMap({
           ctx.strokeStyle = "rgba(59, 130, 246, 0.35)"
           ctx.lineWidth = 1.2
           for (const idx of matchingIndices) {
-            const [px, py] = project(pts[idx].x, pts[idx].y, w, h)
-            ctx.beginPath()
-            ctx.moveTo(cx, cy)
-            const ctrlX = (cx + px) / 2 + (w / 2 - (cx + px) / 2) * 0.1
-            const ctrlY = (cy + py) / 2 + (h / 2 - (cy + py) / 2) * 0.1
-            ctx.quadraticCurveTo(ctrlX, ctrlY, px, py)
-            ctx.stroke()
+            if (pts[idx]) {
+              const [px, py] = project(pts[idx].x, pts[idx].y, w, h)
+              ctx.beginPath()
+              ctx.moveTo(cx, cy)
+              const ctrlX = (cx + px) / 2 + (w / 2 - (cx + px) / 2) * 0.1
+              const ctrlY = (cy + py) / 2 + (h / 2 - (cy + py) / 2) * 0.1
+              ctx.quadraticCurveTo(ctrlX, ctrlY, px, py)
+              ctx.stroke()
+            }
           }
         }
       }
+
+      const activeTrack = activeIdx != null ? data.tracks[activeIdx] : null
+      const activeTagIndices = activeTag ? getMatchingIndices(activeTag, activeTrack, data.tracks) : []
+      const activeTagSet = new Set(activeTagIndices)
 
       // 3. Draw base dots
       for (let i = 0; i < pts.length; i++) {
@@ -247,9 +319,7 @@ export default function DHMap({
         const isHover = i === hoverIdx
         
         // Relational activeTag check
-        const isTagMatched = activeTag 
-          ? data.tracks[i].topTags.some(tg => tg.probe.toLowerCase() === activeTag.toLowerCase())
-          : false
+        const isTagMatched = activeTagSet.has(i)
 
         // Determine dot color: vocal tracks highlight in blue in lyrics mode
         const hasLyrics = data.tracks[i].lyricsPresent === 1

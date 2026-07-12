@@ -448,6 +448,7 @@ function Inner({ data }: { data: DHData }) {
             onTagHover={setHoveredTag}
             clickedTag={clickedTag}
             onTagClick={setClickedTag}
+            hoverIdx={hoverIdx}
           />
         </div>
         <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto scroll-smooth">

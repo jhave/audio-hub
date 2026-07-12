@@ -3,16 +3,43 @@
 import * as React from "react"
 import type { DHTrack } from "@/lib/dh"
 
-function Meter({ label, value }: { label: string; value: number | null }) {
+function Meter({
+  label,
+  value,
+  serial,
+  activeTag,
+  clickedTag,
+  onTagHover,
+  onTagClick,
+}: {
+  label: string
+  value: number | null
+  serial: string
+  activeTag?: string | null
+  clickedTag?: string | null
+  onTagHover?: (tag: string | null) => void
+  onTagClick?: (tag: string | null) => void
+}) {
   if (value == null) return null
+  const isActive = activeTag === serial || clickedTag === serial
   return (
-    <div className="mb-1.5">
+    <div
+      onMouseEnter={() => onTagHover?.(serial)}
+      onMouseLeave={() => onTagHover?.(null)}
+      onClick={() => {
+        if (clickedTag === serial) onTagClick?.(null)
+        else onTagClick?.(serial)
+      }}
+      className={`p-1 rounded transition-colors cursor-pointer select-none border ${
+        isActive ? "bg-blue-50 border-blue-200 text-blue-900" : "border-transparent hover:bg-neutral-50"
+      }`}
+    >
       <div className="flex justify-between text-[10px] text-neutral-500">
-        <span>{label}</span>
-        <span>{value.toFixed(2)}</span>
+        <span className={isActive ? "text-blue-600 font-semibold" : ""}>{label}</span>
+        <span className={isActive ? "text-blue-600 font-mono font-semibold" : ""}>{value.toFixed(2)}</span>
       </div>
-      <div className="h-1 overflow-hidden rounded bg-neutral-200">
-        <div className="h-full bg-neutral-500" style={{ width: `${Math.round(value * 100)}%` }} />
+      <div className="h-1 overflow-hidden rounded bg-neutral-200 mt-1">
+        <div className={`h-full ${isActive ? "bg-blue-500" : "bg-neutral-500"}`} style={{ width: `${Math.round(value * 100)}%` }} />
       </div>
     </div>
   )
@@ -41,6 +68,7 @@ export default function DHData({
   onTagHover,
   clickedTag,
   onTagClick,
+  hoverIdx,
 }: {
   track: DHTrack | null
   isLive: boolean
@@ -50,7 +78,18 @@ export default function DHData({
   onTagHover?: (tag: string | null) => void
   clickedTag?: string | null
   onTagClick?: (tag: string | null) => void
+  hoverIdx?: number | null
 }) {
+  const [promptOpen, setPromptOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    if (hoverIdx != null) {
+      setPromptOpen(true)
+    } else {
+      setPromptOpen(false)
+    }
+  }, [hoverIdx])
+
   if (!track)
     return (
       <div className="p-4 text-[12px] text-neutral-400">
@@ -63,7 +102,8 @@ export default function DHData({
     chipsList.push({
       key: "key",
       label: track.key,
-      tooltip: "Estimated key center. Click to scroll to definition.",
+      value: track.key,
+      tooltip: "Estimated key center. Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("key")
     })
   }
@@ -71,7 +111,8 @@ export default function DHData({
     chipsList.push({
       key: "tempo",
       label: `${Math.round(track.tempo)} bpm`,
-      tooltip: "Estimated tempo in beats per minute. Click to scroll to definition.",
+      value: Math.round(track.tempo),
+      tooltip: "Estimated tempo in beats per minute. Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("tempo")
     })
   }
@@ -79,7 +120,8 @@ export default function DHData({
     chipsList.push({
       key: "tempoDrift",
       label: `±${Math.round(track.tempoDrift)} bpm drift`,
-      tooltip: "Tempo drift (standard deviation of local tempo across windows). Click to scroll to definition.",
+      value: Math.round(track.tempoDrift),
+      tooltip: "Tempo drift (standard deviation of local tempo across windows). Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("tempo-drift")
     })
   }
@@ -87,7 +129,8 @@ export default function DHData({
     chipsList.push({
       key: "tempoJumps",
       label: `${track.tempoJumps} tempo jump${track.tempoJumps > 1 ? "s" : ""}`,
-      tooltip: "Count of local tempo jumps exceeding 10 BPM. Click to scroll to definition.",
+      value: track.tempoJumps,
+      tooltip: "Count of local tempo jumps exceeding 10 BPM. Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("tempo-jumps")
     })
   }
@@ -95,15 +138,17 @@ export default function DHData({
     chipsList.push({
       key: "sections",
       label: `${track.sectionCount} sections`,
-      tooltip: "Estimated structural sections inside the track.",
-      onClick: undefined
+      value: track.sectionCount,
+      tooltip: "Estimated structural sections. Click to zoom map.",
+      onClick: () => {}
     })
   }
   if (track.modulations != null) {
     chipsList.push({
       key: "modulations",
       label: `${track.modulations} modulation${track.modulations > 1 ? "s" : ""}`,
-      tooltip: "Count of key modulation events. Click to scroll to definition.",
+      value: track.modulations,
+      tooltip: "Count of key modulation events. Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("key")
     })
   }
@@ -111,6 +156,7 @@ export default function DHData({
     chipsList.push({
       key: "drop",
       label: `drop @ ${Math.round(track.dropAt)}s`,
+      value: Math.round(track.dropAt),
       tooltip: "Estimated drop location.",
       onClick: undefined
     })
@@ -129,24 +175,53 @@ export default function DHData({
       </div>
 
       <div className="mb-2.5 flex flex-wrap gap-1.5">
-        {chipsList.map((c) => (
-          <span
-            key={c.key}
-            onClick={c.onClick}
-            title={c.tooltip}
-            className={`rounded-full border px-2 py-0.5 text-[10px] text-neutral-600 select-none ${
-              c.onClick ? "cursor-pointer hover:bg-neutral-50 hover:text-black transition-colors" : ""
-            }`}
-          >
-            {c.label}
-          </span>
-        ))}
+        {chipsList.map((c) => {
+          const serial = c.value != null ? `metric:${c.key}:${c.value}` : null
+          const isActive = serial ? (activeTag === serial || clickedTag === serial) : false
+          return (
+            <span
+              key={c.key}
+              onMouseEnter={() => serial && onTagHover?.(serial)}
+              onMouseLeave={() => serial && onTagHover?.(null)}
+              onClick={() => {
+                c.onClick?.()
+                if (!serial) return
+                if (clickedTag === serial) {
+                  onTagClick?.(null)
+                } else {
+                  onTagClick?.(serial)
+                }
+              }}
+              title={c.tooltip}
+              className={`rounded-full border px-2 py-0.5 text-[10px] select-none cursor-pointer transition-colors ${
+                isActive ? "bg-blue-500 text-white border-blue-500 font-semibold" : "text-neutral-600 hover:bg-neutral-50 hover:text-black"
+              }`}
+            >
+              {c.label}
+            </span>
+          )
+        })}
       </div>
 
-
       <div className="grid grid-cols-2 gap-3 mb-2.5">
-        <Meter label="weirdness" value={track.weirdness} />
-        <Meter label="style weight" value={track.styleWeight} />
+        <Meter
+          label="weirdness"
+          value={track.weirdness}
+          serial={`metric:weirdness:${track.weirdness}`}
+          activeTag={activeTag}
+          clickedTag={clickedTag}
+          onTagHover={onTagHover}
+          onTagClick={onTagClick}
+        />
+        <Meter
+          label="style weight"
+          value={track.styleWeight}
+          serial={`metric:styleWeight:${track.styleWeight}`}
+          activeTag={activeTag}
+          clickedTag={clickedTag}
+          onTagHover={onTagHover}
+          onTagClick={onTagClick}
+        />
       </div>
 
       {track.topTags.length > 0 && (
@@ -223,7 +298,11 @@ export default function DHData({
       </div>
 
       {track.prompt && (
-        <details className="mt-2.5 border-t pt-2.5 group">
+        <details
+          open={promptOpen}
+          onToggle={(e) => setPromptOpen(e.currentTarget.open)}
+          className="mt-2.5 border-t pt-2.5 group"
+        >
           <summary className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider cursor-pointer select-none list-none flex justify-between items-center hover:text-neutral-600 transition-colors">
             <span>Suno Style Prompt</span>
             <span className="text-[9px] group-open:rotate-180 transition-transform">▼</span>
