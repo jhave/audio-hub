@@ -34,6 +34,8 @@ This document records the completion of Phase B UI enhancements and interactions
   - Features the title **171 Days**, the requested synopsis *"Machine learning applied to a single person's generative music archive"*, and an *"Enter the Field"* button.
   - Fades out smoothly on dismissal (`opacity-0 pointer-events-none`) with a 500ms CSS transition.
   - Persists the dismissed state in browser `sessionStorage` to avoid intrusive reload prompts within the same session.
+- [x] **Step 8: Auto-play on entry**
+  - Configured the "Enter the Field" button callback to automatically initiate playback of the first track (`playIdx(0)`) when the overlay is dismissed.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -44,3 +46,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 5. `b872aab` — `feat: implement mobile tab swipe loop layout with persistent player`
 6. `e9c79f6` — `feat: make track data sticky in right column, scroll FAQ separately, and fold style prompt`
 7. `0e5dc63` — `feat: add fading 171 Days intro screen overlay`
+8. `845e885` — `feat: auto-play first track on entering archive from intro screen`
