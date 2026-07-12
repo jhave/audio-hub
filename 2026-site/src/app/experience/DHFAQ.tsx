@@ -13,6 +13,42 @@ function findExtremeTracks(tracks: DHTrack[], key: keyof DHTrack) {
   }
 }
 
+function parseInlineMarkdown(text: string): React.ReactNode[] {
+  const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\))/g
+  const matches = text.split(regex)
+  return matches.map((part, idx) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      const inner = part.slice(2, -2)
+      if (inner.startsWith("[") && inner.endsWith(")")) {
+        const linkMatch = inner.match(/\[(.*?)\]\((.*?)\)/)
+        if (linkMatch) {
+          const [, label, href] = linkMatch
+          return (
+            <strong key={idx}>
+              <a href={href} target="_blank" rel="noopener noreferrer" className="underline text-neutral-800 hover:text-black">
+                {label}
+              </a>
+            </strong>
+          )
+        }
+      }
+      return <strong key={idx} className="font-bold text-neutral-800">{inner}</strong>
+    }
+    if (part.startsWith("[") && part.includes("](")) {
+      const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/)
+      if (linkMatch) {
+        const [, label, href] = linkMatch
+        return (
+          <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="underline text-neutral-800 hover:text-black">
+            {label}
+          </a>
+        )
+      }
+    }
+    return part
+  })
+}
+
 export default function DHFAQ({
   text,
   tracks,
@@ -78,7 +114,7 @@ export default function DHFAQ({
         list.push(
           <ul key={`list-${keyIdx++}`} className="list-disc pl-4 mb-3 space-y-1 text-[11px] text-neutral-600">
             {listItems.map((item, idx) => (
-              <li key={idx}>{item}</li>
+              <li key={idx}>{parseInlineMarkdown(item)}</li>
             ))}
           </ul>
         )
@@ -169,7 +205,7 @@ export default function DHFAQ({
           </span>
         )
       }
-      return part
+      return parseInlineMarkdown(part)
     })
   }
 

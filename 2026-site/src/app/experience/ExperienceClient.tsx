@@ -86,6 +86,8 @@ function Inner({ data }: { data: DHData }) {
       } catch {}
       return next
     })
+    // Remove active track from the current shuffle bag so it isn't repeated
+    bagRef.current = bagRef.current.filter((idx) => idx !== focusIdx)
   }, [focusIdx])
 
   React.useEffect(() => {
@@ -118,8 +120,15 @@ function Inner({ data }: { data: DHData }) {
   const bagModeRef = React.useRef<OrderMode | null>(null)
   const justPlayedRef = React.useRef<number | null>(null)
   const refillBag = React.useCallback(() => {
-    const pool =
+    let pool =
       order === "random-star" ? data.tracks.filter((t) => t.fav).map((t) => t.i) : data.tracks.map((t) => t.i)
+    
+    // Prioritize unlistened tracks
+    const unlistened = pool.filter((idx) => !played.has(idx))
+    if (unlistened.length > 0) {
+      pool = unlistened
+    }
+
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
       ;[pool[i], pool[j]] = [pool[j], pool[i]]
@@ -131,7 +140,7 @@ function Inner({ data }: { data: DHData }) {
     }
     bagRef.current = pool
     bagModeRef.current = order
-  }, [order, data])
+  }, [order, data, played])
 
   const nextIdx = React.useCallback((): number | null => {
     const n = data.tracks.length
@@ -386,6 +395,7 @@ function Inner({ data }: { data: DHData }) {
                     t={t}
                     active={focusIdx === t.i}
                     playing={focusIdx === t.i && player.isPlaying}
+                    isPlayed={played.has(t.i)}
                     onPlay={() => (focusIdx === t.i && player.isPlaying ? player.pause() : playIdx(t.i))}
                     onHover={() => setHoverIdx(t.i)}
                     onLeave={() => setHoverIdx(null)}
@@ -471,6 +481,7 @@ function Row({
   t,
   active,
   playing,
+  isPlayed,
   onPlay,
   onHover,
   onLeave,
@@ -478,6 +489,7 @@ function Row({
   t: DHTrack
   active: boolean
   playing: boolean
+  isPlayed: boolean
   onPlay: () => void
   onHover: () => void
   onLeave: () => void
@@ -505,7 +517,9 @@ function Row({
         ) : null}
       </button>
       <div className="ml-3 min-w-0 leading-tight">
-        <div className="truncate text-[13px] font-medium">{t.title}</div>
+        <div className={`truncate text-[13px] ${isPlayed && !active ? "text-neutral-400 font-normal" : "text-neutral-800 font-medium"}`}>
+          {t.title}
+        </div>
       </div>
     </div>
   )

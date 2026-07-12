@@ -2,6 +2,42 @@
 
 import * as React from "react"
 
+function parseInlineMarkdown(text: string): React.ReactNode[] {
+  const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\))/g
+  const matches = text.split(regex)
+  return matches.map((part, idx) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      const inner = part.slice(2, -2)
+      if (inner.startsWith("[") && inner.endsWith(")")) {
+        const linkMatch = inner.match(/\[(.*?)\]\((.*?)\)/)
+        if (linkMatch) {
+          const [, label, href] = linkMatch
+          return (
+            <strong key={idx}>
+              <a href={href} target="_blank" rel="noopener noreferrer" className="underline text-neutral-800 hover:text-black">
+                {label}
+              </a>
+            </strong>
+          )
+        }
+      }
+      return <strong key={idx} className="font-bold text-neutral-800">{inner}</strong>
+    }
+    if (part.startsWith("[") && part.includes("](")) {
+      const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/)
+      if (linkMatch) {
+        const [, label, href] = linkMatch
+        return (
+          <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="underline text-neutral-800 hover:text-black">
+            {label}
+          </a>
+        )
+      }
+    }
+    return part
+  })
+}
+
 export default function DHEssay({ text }: { text: string }) {
   if (!text) return null
 
@@ -18,7 +54,7 @@ export default function DHEssay({ text }: { text: string }) {
       elements.push(
         <ul key={`list-${keyIdx++}`} className="list-disc pl-4 mb-3.5 space-y-1 text-[11px] text-neutral-600">
           {listItems.map((item, idx) => (
-            <li key={idx}>{item}</li>
+            <li key={idx}>{parseInlineMarkdown(item)}</li>
           ))}
         </ul>
       )
@@ -62,7 +98,7 @@ export default function DHEssay({ text }: { text: string }) {
     } else if (trimmed.startsWith("> ")) {
       elements.push(
         <blockquote key={keyIdx++} className="border-l-2 border-neutral-300 pl-3 my-2.5 italic text-[11px] text-neutral-500">
-          {trimmed.slice(2)}
+          {parseInlineMarkdown(trimmed.slice(2))}
         </blockquote>
       )
     } else if (trimmed === "---") {
@@ -72,7 +108,7 @@ export default function DHEssay({ text }: { text: string }) {
     } else {
       elements.push(
         <p key={keyIdx++} className="mb-2.5 text-[11px] leading-relaxed text-neutral-600">
-          {trimmed}
+          {parseInlineMarkdown(trimmed)}
         </p>
       )
     }

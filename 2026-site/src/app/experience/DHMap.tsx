@@ -29,7 +29,7 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
   const [zoom, setZoom] = React.useState(1.0)
   const [pan, setPan] = React.useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = React.useState(false)
-  const dragRef = React.useRef({ startX: 0, startY: 0, moved: false })
+  const dragRef = React.useRef({ startX: 0, startY: 0, curX: 0, curY: 0, moved: false })
 
   // neighbors of the active (hover or focus) track, for emphasis
   const activeIdx = hoverIdx ?? focusIdx
@@ -164,19 +164,28 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     setIsDragging(true)
-    dragRef.current = { startX: e.clientX, startY: e.clientY, moved: false }
+    dragRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      curX: e.clientX,
+      curY: e.clientY,
+      moved: false,
+    }
   }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const drag = dragRef.current
     if (isDragging) {
-      const dx = e.clientX - dragRef.current.startX
-      const dy = e.clientY - dragRef.current.startY
-      if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
-        dragRef.current.moved = true
-      }
+      const dx = e.clientX - drag.curX
+      const dy = e.clientY - drag.curY
       setPan(p => ({ x: p.x + dx, y: p.y + dy }))
-      dragRef.current.startX = e.clientX
-      dragRef.current.startY = e.clientY
+      drag.curX = e.clientX
+      drag.curY = e.clientY
+
+      const dist = Math.sqrt((e.clientX - drag.startX) ** 2 + (e.clientY - drag.startY) ** 2)
+      if (dist > 5) {
+        drag.moved = true
+      }
       onHover(null)
     } else {
       const i = pick(e.clientX, e.clientY)
@@ -202,20 +211,31 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
   const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
     if (e.touches.length === 1) {
       setIsDragging(true)
-      dragRef.current = { startX: e.touches[0].clientX, startY: e.touches[0].clientY, moved: false }
+      const t = e.touches[0]
+      dragRef.current = {
+        startX: t.clientX,
+        startY: t.clientY,
+        curX: t.clientX,
+        curY: t.clientY,
+        moved: false,
+      }
     }
   }
 
   const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    const drag = dragRef.current
     if (isDragging && e.touches.length === 1) {
-      const dx = e.touches[0].clientX - dragRef.current.startX
-      const dy = e.touches[0].clientY - dragRef.current.startY
-      if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
-        dragRef.current.moved = true
-      }
+      const t = e.touches[0]
+      const dx = t.clientX - drag.curX
+      const dy = t.clientY - drag.curY
       setPan(p => ({ x: p.x + dx, y: p.y + dy }))
-      dragRef.current.startX = e.touches[0].clientX
-      dragRef.current.startY = e.touches[0].clientY
+      drag.curX = t.clientX
+      drag.curY = t.clientY
+
+      const dist = Math.sqrt((t.clientX - drag.startX) ** 2 + (t.clientY - drag.startY) ** 2)
+      if (dist > 5) {
+        drag.moved = true
+      }
       onHover(null)
     }
   }
