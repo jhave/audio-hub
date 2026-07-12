@@ -58,6 +58,7 @@ function Inner({ data }: { data: DHData }) {
   const [hoverIdx, setHoverIdx] = React.useState<number | null>(null)
   const [order, setOrder] = React.useState<OrderMode>("sequential")
   const [played, setPlayed] = React.useState<Set<number>>(new Set())
+  const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
 
   // restore played set
   React.useEffect(() => {
@@ -189,6 +190,34 @@ function Inner({ data }: { data: DHData }) {
     }
   }, [])
 
+  const touchStartXRef = React.useRef(0)
+  const touchStartYRef = React.useRef(0)
+
+  const handleTouchStart = React.useCallback((e: React.TouchEvent) => {
+    touchStartXRef.current = e.changedTouches[0].clientX
+    touchStartYRef.current = e.changedTouches[0].clientY
+  }, [])
+
+  const handleTouchEnd = React.useCallback((e: React.TouchEvent) => {
+    const endX = e.changedTouches[0].clientX
+    const endY = e.changedTouches[0].clientY
+    
+    const diffX = endX - touchStartXRef.current
+    const diffY = endY - touchStartYRef.current
+
+    if (Math.abs(diffX) > 60 && Math.abs(diffY) < 50) {
+      const tabs: ("map-essay" | "listen" | "faq")[] = ["map-essay", "listen", "faq"]
+      const idx = tabs.indexOf(mobileTab)
+      if (diffX < 0) {
+        const next = tabs[(idx + 1) % tabs.length]
+        setMobileTab(next)
+      } else {
+        const prev = tabs[(idx - 1 + tabs.length) % tabs.length]
+        setMobileTab(prev)
+      }
+    }
+  }, [mobileTab])
+
   const rightIdx = hoverIdx ?? focusIdx
   const rightTrack = rightIdx != null ? data.tracks[rightIdx] : null
   const isLive = rightIdx === focusIdx && hoverIdx == null
@@ -206,14 +235,43 @@ function Inner({ data }: { data: DHData }) {
   }, [data])
 
   return (
-    <div className="grid h-screen grid-cols-1 md:grid-cols-[300px_minmax(0,1fr)_300px]">
+    <div
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      className="flex flex-col h-screen overflow-hidden md:grid md:grid-cols-[300px_minmax(0,1fr)_300px]"
+    >
+      {/* Mobile Tab Bar Header */}
+      <div className="flex border-b bg-white text-[12px] md:hidden select-none flex-shrink-0">
+        {(
+          [
+            ["map-essay", "Map & Theory"],
+            ["listen", "Player"],
+            ["faq", "FAQ & Data"],
+          ] as const
+        ).map(([tab, label]) => (
+          <button
+            key={tab}
+            onClick={() => setMobileTab(tab)}
+            className={`flex-1 py-3 text-center font-bold border-b-2 transition-colors ${
+              mobileTab === tab ? "border-[#e24b4a] text-[#e24b4a]" : "border-transparent text-neutral-500"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
       {/* LEFT: persistent map + essay */}
-      <aside className="hidden border-r bg-neutral-50 md:flex md:flex-col h-full min-h-0">
-        <div className="flex items-center justify-between px-3 py-2 text-[11px] text-neutral-500 border-b">
+      <aside
+        className={`${
+          mobileTab === "map-essay" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
+        } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden`}
+      >
+        <div className="flex items-center justify-between px-3 py-2 text-[11px] text-neutral-500 border-b flex-shrink-0">
           <span>audio topology</span>
           <span>{played.size} / {data.tracks.length} heard</span>
         </div>
-        <div className="h-[270px] w-full flex-shrink-0 relative border-b">
+        <div className="h-[270px] w-full flex-shrink-0 relative border-b bg-neutral-50">
           <DHMap
             data={data}
             focusIdx={focusIdx}
@@ -223,13 +281,17 @@ function Inner({ data }: { data: DHData }) {
             onPlay={playIdx}
           />
         </div>
-        <div className="flex-1 min-h-0 bg-white">
+        <div className="flex-1 min-h-0 bg-white overflow-hidden">
           <DHEssay text={data.essay || ""} />
         </div>
       </aside>
 
       {/* CENTER: the (familiar) player list */}
-      <main className="min-h-0 overflow-y-auto px-4 pb-28 pt-4">
+      <main
+        className={`${
+          mobileTab === "listen" ? "block flex-1" : "hidden"
+        } md:block min-h-0 overflow-y-auto px-4 pb-28 pt-4`}
+      >
         <header className="mb-4">
           <h1 className="text-xl font-semibold">171 days — DH archive view</h1>
           <p className="mt-1 text-[12px] text-neutral-500">
@@ -263,14 +325,30 @@ function Inner({ data }: { data: DHData }) {
       </main>
 
       {/* RIGHT: persistent data + FAQ */}
-      <aside id="dh-right-sidebar" className="hidden overflow-y-auto border-l bg-white md:block scroll-smooth">
+      <aside
+        id="dh-right-sidebar"
+        className={`${
+          mobileTab === "faq" ? "block flex-1" : "hidden"
+        } md:block overflow-y-auto border-l bg-white scroll-smooth`}
+      >
         <DHData_ track={rightTrack} isLive={isLive} progress={progress} onMetricClick={handleMetricClick} />
         <div className="border-t bg-neutral-50">
           <DHFAQ text={data.faq || ""} />
         </div>
       </aside>
 
-      <Dock order={order} setOrder={setOrder} onPrev={() => { const i = prevIdx(); if (i != null) playIdx(i) }} onNext={() => { const i = nextIdx(); if (i != null) playIdx(i) }} />
+      <Dock
+        order={order}
+        setOrder={setOrder}
+        onPrev={() => {
+          const i = prevIdx()
+          if (i != null) playIdx(i)
+        }}
+        onNext={() => {
+          const i = nextIdx()
+          if (i != null) playIdx(i)
+        }}
+      />
     </div>
   )
 }
