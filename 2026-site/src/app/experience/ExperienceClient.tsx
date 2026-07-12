@@ -383,7 +383,7 @@ function Inner({ data }: { data: DHData }) {
             </p>
 
             <p className="text-[18px] leading-relaxed text-neutral-700 mb-4 font-light select-text max-w-3xl">
-              Machine learning applied to analyze a 31 hour corpus of AI generated music made by a single artist in the first 6 months of 2026
+              Machine learning applied to analyze a 31 hour corpus of AI generated music
             </p>
 
             <div className="text-[10.5px] text-neutral-500 mb-4 font-mono select-none space-y-0.5 border-t border-neutral-100 pt-2.5 w-full max-w-md">
