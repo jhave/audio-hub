@@ -74,6 +74,8 @@ This document records the completion of Phase B UI enhancements and interactions
 - [x] **Step 20: CLAP Class Bias Removal (Tag Normalization)**
   - Coded a diagnostic script [diag-tags.mjs](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/tools/diag-tags.mjs) showing that probes like `violin`, `dub reggae`, and `sousaphone/brass` had disproportionately high raw global baseline averages (above 2.1) while tags like `acoustic guitar` scored below 0.7.
   - Mitigated global class bias in [build-dh.mjs](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/tools/build-dh.mjs) by precalculating the global baseline mean for all 76 probes and subtracting the mean from scores during sorting in the `topTags` function. This ensures top-rendered tags are *distinctive* deviations from the dataset average, successfully removing irrelevant tags (like `"sousaphone/brass"`) from tracks (like `Beloved One Miss you Issue.`).
+- [x] **Step 21: Added Subjective Taste Quote to Intro Screen**
+  - Updated the subtitle text on the entry overlay page in [ExperienceClient.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/ExperienceClient.tsx) to append the quote block: *"“It is a mild comfort to realize that basic datascience cannot discern beauty, identify novelty, know banality, etc. Subjective taste remains elusive.”"* in a subtle italic font.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -98,3 +100,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 19. `aadf702` — `feat: update subtitle copy on entry screen`
 20. `feb8bd2` — `feat: rename novelty to shifts in UI/FAQ, add naming critique, and draft outlier-plan.md`
 21. `281a38b` — `feat: apply mean-centering to CLAP tag scores to remove global class bias (e.g. sousaphone)`
+22. `abf6091` — `feat: add subjective taste quote to intro screen subtitle`
