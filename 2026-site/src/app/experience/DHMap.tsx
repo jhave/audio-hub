@@ -161,55 +161,10 @@ export default function DHMap({
     }
     lastCenteredTagRef.current = clickedTag
 
-    const pts = currentPtsRef.current.length > 0 
-      ? currentPtsRef.current 
-      : (mapMode === "lyrics" 
-          ? (data.lyricPoints || data.points) 
-          : mapMode === "metrics"
-          ? (data.metricPoints || data.points)
-          : data.points
-        ).map(pt => ({ x: pt[0], y: pt[1] }))
-
-    const matchingIndices = getMatchingIndices(clickedTag, data.tracks)
-    const matchingPts: { x: number; y: number }[] = []
-    for (const idx of matchingIndices) {
-      if (hideInstrumentals && data.tracks[idx].lyricsPresent !== 1) continue
-      if (pts[idx]) {
-        matchingPts.push(pts[idx])
-      }
-    }
-
-    if (matchingPts.length > 0) {
-      let minX = Infinity, maxX = -Infinity
-      let minY = Infinity, maxY = -Infinity
-      for (const pt of matchingPts) {
-        if (pt.x < minX) minX = pt.x
-        if (pt.x > maxX) maxX = pt.x
-        if (pt.y < minY) minY = pt.y
-        if (pt.y > maxY) maxY = pt.y
-      }
-
-      const cx = (minX + maxX) / 2
-      const cy = (minY + maxY) / 2
-
-      const dx = Math.max(0.1, maxX - minX)
-      const dy = Math.max(0.1, maxY - minY)
-
-      const pad = 18
-      const availableSize = Math.min(size.w, size.h) - pad * 2
-      
-      const targetZoomX = 1.3 / dx
-      const targetZoomY = 1.3 / dy
-      const nextZoom = Math.max(1.0, Math.min(Math.min(targetZoomX, targetZoomY), 12.0))
-
-      const s = availableSize * nextZoom
-      const nextPanX = -cx * (s / 2)
-      const nextPanY = -cy * (s / 2)
-
-      setZoom(nextZoom)
-      setPan({ x: nextPanX, y: nextPanY })
-    }
-  }, [clickedTag, data, size.w, size.h, mapMode, hideInstrumentals])
+    // Reset pan and set a comfortable zoom to frame the new central cluster
+    setZoom(2.8)
+    setPan({ x: 0, y: 0 })
+  }, [clickedTag, size.w, size.h])
   const dragRef = React.useRef({ startX: 0, startY: 0, curX: 0, curY: 0, moved: false })
 
   React.useEffect(() => {
@@ -247,17 +202,40 @@ export default function DHMap({
       const { w, h } = size
       ctx.clearRect(0, 0, w, h)
 
-      const targetPts = mapMode === "lyrics" 
+      // Calculate target coordinates based on active layout and clicked tag distortion
+      const basePts = mapMode === "lyrics" 
         ? (data.lyricPoints || data.points) 
         : mapMode === "metrics"
         ? (data.metricPoints || data.points)
         : data.points
 
+      const clickedTagIndices = clickedTag ? getMatchingIndices(clickedTag, data.tracks) : []
+      const clickedTagSet = new Set(clickedTagIndices)
+
+      const targetPts: [number, number][] = []
+      if (clickedTag && clickedTagIndices.length > 0) {
+        for (let i = 0; i < basePts.length; i++) {
+          if (clickedTagSet.has(i)) {
+            // Pull matching dots to the center
+            targetPts.push([basePts[i][0] * 0.28, basePts[i][1] * 0.28])
+          } else {
+            // Push non-matching dots to outer ring
+            const angle = Math.atan2(basePts[i][1], basePts[i][0])
+            const r = 1.05 + 0.12 * Math.sin(i * 9.87)
+            targetPts.push([Math.cos(angle) * r, Math.sin(angle) * r])
+          }
+        }
+      } else {
+        for (let i = 0; i < basePts.length; i++) {
+          targetPts.push([basePts[i][0], basePts[i][1]])
+        }
+      }
+
       // Initialize or interpolate current positions
       if (currentPtsRef.current.length !== targetPts.length) {
         currentPtsRef.current = targetPts.map(pt => ({ x: pt[0], y: pt[1] }))
       } else {
-        const lerpRate = 0.12
+        const lerpRate = 0.08 // fluid morph speed
         for (let i = 0; i < targetPts.length; i++) {
           const cur = currentPtsRef.current[i]
           const tarX = targetPts[i][0]
