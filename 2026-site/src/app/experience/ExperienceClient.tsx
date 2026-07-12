@@ -56,7 +56,7 @@ function Inner({ data }: { data: DHData }) {
   )
   const focusIdx = player.activeItem ? idxById[player.activeItem.id as string] ?? null : null
   const [hoverIdx, setHoverIdx] = React.useState<number | null>(null)
-  const [order, setOrder] = React.useState<OrderMode>("sequential")
+  const [order, setOrder] = React.useState<OrderMode>("random")
   const [played, setPlayed] = React.useState<Set<number>>(new Set())
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
   const [showIntro, setShowIntro] = React.useState(true)
@@ -108,10 +108,15 @@ function Inner({ data }: { data: DHData }) {
     setTimeout(() => {
       setShowIntro(false)
     }, 500)
-    if (data.tracks.length > 0) {
-      playIdx(0)
+    if (data && data.tracks.length > 0) {
+      let startIdx = 0
+      if (played.size > 0) {
+        const firstUnplayed = data.tracks.find((t) => !played.has(t.i))
+        if (firstUnplayed) startIdx = firstUnplayed.i
+      }
+      playIdx(startIdx)
     }
-  }, [data.tracks, playIdx])
+  }, [data, played, playIdx])
 
   // shuffle "bag": exhaust every track in the pool before any repeats.
   // Bag items are popped from the END. `justPlayedRef` tracks the last pick so

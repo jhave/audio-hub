@@ -111,6 +111,16 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
           ctx.lineWidth = 1
           ctx.stroke()
         }
+
+        // Draw track title text labels if zoomed in
+        if (zoom > 2.2) {
+          ctx.globalAlpha = isHover ? 1.0 : isN ? 0.8 : played.has(i) ? 0.7 : 0.35
+          ctx.fillStyle = isHover ? RED : isN ? "#000" : played.has(i) ? "#9e6900" : "#555"
+          ctx.font = isHover || isN ? "600 7.5px sans-serif" : "7px sans-serif"
+          ctx.textAlign = "left"
+          ctx.textBaseline = "middle"
+          ctx.fillText(data.tracks[i].title, px + 5, py)
+        }
       }
       ctx.globalAlpha = 1
 
@@ -126,13 +136,23 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
         ctx.arc(px, py, 4.5, 0, Math.PI * 2)
         ctx.fillStyle = RED
         ctx.fill()
+
+        // Draw active track title label if zoomed in
+        if (zoom > 2.2) {
+          ctx.globalAlpha = 1.0
+          ctx.fillStyle = RED
+          ctx.font = "bold 8px sans-serif"
+          ctx.textAlign = "left"
+          ctx.textBaseline = "middle"
+          ctx.fillText(data.tracks[focusIdx].title, px + 6, py)
+        }
       }
       raf = requestAnimationFrame(draw)
     }
 
     draw()
     return () => cancelAnimationFrame(raf)
-  }, [data, size, focusIdx, hoverIdx, played, neighborSet, project, mapMode])
+  }, [data, size, focusIdx, hoverIdx, played, neighborSet, project, mapMode, zoom])
 
   // hit-testing on move/click
   const pick = React.useCallback(
