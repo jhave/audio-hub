@@ -59,6 +59,9 @@ This document records the completion of Phase B UI enhancements and interactions
   - Added new descriptor metadata chips for `tempoDrift` (e.g. `±X bpm drift`) and `tempoJumps` (e.g. `Y tempo jumps`) in the sidebar details panel [DHData.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHData.tsx) to reveal tracking instabilities or tempo shifts.
   - Refined technical details inside [faq.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/faq.md) glossary, describing onset autocorrelation anomalies, tempo drift, and jumps estimation.
   - Implemented a 30-seconds inactivity timeout for each metric word cycle in [ExperienceClient.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/ExperienceClient.tsx). If a metric button has not been pressed for 30s, the scroll cycle resets to target the section header first on the next interaction.
+- [x] **Step 16: Technical Specification Fold in FAQ**
+  - Added a comprehensive collapsible `<details>` / `<summary>` fold inside [faq.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/faq.md) outlining the entire pipeline: audio downsampling, 512-D CLAP extraction, UMAP mapping, 3D trajectory PCA projection, and Librosa analysis metrics.
+  - Added explicit technical explanation of the **"Sousaphone" Effect** (why sub-bass matching frequency profiles trigger false-positive tags) and **Tempo Estimation Limits** (spectral autocorrelation doubling/halving octave errors on syncopated/arpeggiated beats).
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -78,3 +81,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 14. `ac682dc` — `style: remove horizontal separator line under subtitle`
 15. `09cf162` — `feat: render novelty as integer rather than float`
 16. `ec3ab3b` — `feat: show tempoDrift/tempoJumps chips, add 30s scroll reset timeout, update FAQ tech details`
+17. `29168d8` — `feat: add technical specifications fold to FAQ describing pipeline, CLAP matching, and tempo doubling limits`
