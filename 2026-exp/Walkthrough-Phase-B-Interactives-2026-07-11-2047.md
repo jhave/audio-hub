@@ -67,6 +67,13 @@ This document records the completion of Phase B UI enhancements and interactions
   - Re-routed click handlers for `tempoDrift` (bpm drift) and `tempoJumps` badges in [DHData.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHData.tsx) to target `"tempo-drift"` and `"tempo-jumps"` text blocks directly in the FAQ instead of generic `"tempo"`.
 - [x] **Step 18: Intro Subtitle Copy update**
   - Updated the intro screen description text to read: *"Machine learning analysis of a 31 hour corpus of AI generated music in a playable interface."*
+- [x] **Step 19: Metric Renamed from Novelty to Shifts**
+  - Renamed all frontend text labels, tooltips, and click scroll handlers for the metric from **Novelty** to **Shifts** in [DHData.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHData.tsx) and [DHFAQ.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHFAQ.tsx).
+  - Updated [faq.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/faq.md) glossary heading to `SHIFTS (formerly Novelty)` and added a detailed technical note explaining why count-based novelty fails to capture aesthetic originality and instead reflects transition density.
+  - Drafted a new [outlier-plan.md](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/outlier-plan.md) mapping out scikit-learn Local Outlier Factor (LOF) and Mahalanobis algorithms to compute anomaly indexes.
+- [x] **Step 20: CLAP Class Bias Removal (Tag Normalization)**
+  - Coded a diagnostic script [diag-tags.mjs](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/tools/diag-tags.mjs) showing that probes like `violin`, `dub reggae`, and `sousaphone/brass` had disproportionately high raw global baseline averages (above 2.1) while tags like `acoustic guitar` scored below 0.7.
+  - Mitigated global class bias in [build-dh.mjs](file:///Users/jhave/VIBE_Coding/audio-hub/2026-exp/tools/build-dh.mjs) by precalculating the global baseline mean for all 76 probes and subtracting the mean from scores during sorting in the `topTags` function. This ensures top-rendered tags are *distinctive* deviations from the dataset average, successfully removing irrelevant tags (like `"sousaphone/brass"`) from tracks (like `Beloved One Miss you Issue.`).
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -89,3 +96,5 @@ All steps were staged, compiled, verified to build without errors, committed, an
 17. `29168d8` — `feat: add technical specifications fold to FAQ describing pipeline, CLAP matching, and tempo doubling limits`
 18. `0950d13` — `feat: redirect tempo drift/jump clicks to exact FAQ terms`
 19. `aadf702` — `feat: update subtitle copy on entry screen`
+20. `feb8bd2` — `feat: rename novelty to shifts in UI/FAQ, add naming critique, and draft outlier-plan.md`
+21. `281a38b` — `feat: apply mean-centering to CLAP tag scores to remove global class bias (e.g. sousaphone)`
