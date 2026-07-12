@@ -63,7 +63,9 @@ function Inner({ data }: { data: DHData }) {
   const [isFading, setIsFading] = React.useState(false)
   const [mapMode, setMapMode] = React.useState<"music" | "lyrics">("music")
   const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
-  const [activeTag, setActiveTag] = React.useState<string | null>(null)
+  const [hoveredTag, setHoveredTag] = React.useState<string | null>(null)
+  const [clickedTag, setClickedTag] = React.useState<string | null>(null)
+  const activeTag = hoveredTag || clickedTag
 
 
   // restore played set
@@ -382,6 +384,8 @@ function Inner({ data }: { data: DHData }) {
             mapMode={mapMode}
             hideInstrumentals={hideInstrumentals}
             activeTag={activeTag}
+            clickedTag={clickedTag}
+            onClearTag={() => setClickedTag(null)}
           />
         </div>
         <div className="flex-1 min-h-0 bg-white overflow-hidden">
@@ -441,7 +445,9 @@ function Inner({ data }: { data: DHData }) {
             progress={progress}
             onMetricClick={handleMetricClick}
             activeTag={activeTag}
-            onTagHover={setActiveTag}
+            onTagHover={setHoveredTag}
+            clickedTag={clickedTag}
+            onTagClick={setClickedTag}
           />
         </div>
         <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto scroll-smooth">
@@ -450,7 +456,9 @@ function Inner({ data }: { data: DHData }) {
             tracks={data.tracks}
             onPlay={playIdx}
             activeTag={activeTag}
-            onTagHover={setActiveTag}
+            onTagHover={setHoveredTag}
+            clickedTag={clickedTag}
+            onTagClick={setClickedTag}
           />
         </div>
       </aside>
@@ -581,7 +589,7 @@ function Dock({
   const btn = "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-200 bg-white text-black hover:bg-neutral-100"
 
   return (
-    <div className="fixed bottom-3 left-1/2 z-20 w-[min(680px,92vw)] -translate-x-1/2">
+    <div className="fixed bottom-3 left-1/2 z-20 w-[min(476px,92vw)] -translate-x-1/2">
       <div className="rounded-full border bg-white/90 px-4 py-3 shadow-md backdrop-blur">
         <div className="flex items-center gap-3">
           <button className={btn} onClick={onPrev} aria-label="Previous"><ArrowLeft className="h-4 w-4" /></button>
@@ -598,8 +606,8 @@ function Dock({
               {player.activeItem?.data ? (player.activeItem.data as Item["data"]).title : "Nothing playing"}
             </div>
           </div>
-          <div className="hidden min-w-[190px] items-center gap-2 sm:flex">
-            <AudioPlayerProgress className="w-[110px]" />
+          <div className="hidden min-w-[130px] items-center gap-2 sm:flex">
+            <AudioPlayerProgress className="w-[60px]" />
             <div className="flex items-center gap-1 text-[11px] text-neutral-500">
               <AudioPlayerTime /><span>/</span><AudioPlayerDuration />
             </div>

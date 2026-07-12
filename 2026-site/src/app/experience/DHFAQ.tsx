@@ -55,12 +55,16 @@ export default function DHFAQ({
   onPlay,
   activeTag,
   onTagHover,
+  clickedTag,
+  onTagClick,
 }: {
   text: string
   tracks?: DHTrack[]
   onPlay?: (i: number) => void
   activeTag?: string | null
   onTagHover?: (tag: string | null) => void
+  clickedTag?: string | null
+  onTagClick?: (tag: string | null) => void
 }) {
   if (!text) return null
 
@@ -201,12 +205,21 @@ export default function DHFAQ({
       if (terms.includes(part.toLowerCase())) {
         const isHovered = activeTag?.toLowerCase() === part.toLowerCase() ||
                           (activeTag === "shifts" && part.toLowerCase() === "shifts") ||
-                          (activeTag?.replace("-", " ") === part.toLowerCase())
+                          (activeTag?.replace("-", " ") === part.toLowerCase()) ||
+                          clickedTag?.toLowerCase() === part.toLowerCase() ||
+                          (clickedTag?.replace("-", " ") === part.toLowerCase())
         return (
           <span
             key={idx}
             onMouseEnter={() => onTagHover?.(part)}
             onMouseLeave={() => onTagHover?.(null)}
+            onClick={() => {
+              if (clickedTag?.toLowerCase() === part.toLowerCase() || clickedTag?.replace("-", " ") === part.toLowerCase()) {
+                onTagClick?.(null)
+              } else {
+                onTagClick?.(part)
+              }
+            }}
             className={`font-bold px-1 rounded faq-word-occ scroll-mt-6 cursor-pointer transition-colors ${
               isHovered ? "bg-blue-500 text-white shadow-sm" : "text-neutral-900 bg-neutral-200/50 hover:bg-neutral-300/80"
             }`}

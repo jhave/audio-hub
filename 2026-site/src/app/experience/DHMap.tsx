@@ -13,6 +13,8 @@ type Props = {
   mapMode?: "music" | "lyrics"
   hideInstrumentals?: boolean
   activeTag?: string | null
+  clickedTag?: string | null
+  onClearTag?: () => void
 }
 
 // Colors: unplayed grey, played gold, playing red pulse, starred ring, lyrics blue
@@ -32,6 +34,8 @@ export default function DHMap({
   mapMode = "music",
   hideInstrumentals = false,
   activeTag = null,
+  clickedTag = null,
+  onClearTag,
 }: Props) {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
   const wrapRef = React.useRef<HTMLDivElement | null>(null)
@@ -43,6 +47,57 @@ export default function DHMap({
   const [zoom, setZoom] = React.useState(1.0)
   const [pan, setPan] = React.useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = React.useState(false)
+
+  // Auto-centering when a tag is clicked
+  React.useEffect(() => {
+    if (!clickedTag || size.w === 0 || size.h === 0) return
+
+    const pts = currentPtsRef.current.length > 0 
+      ? currentPtsRef.current 
+      : (mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points).map(pt => ({ x: pt[0], y: pt[1] }))
+
+    const matchingPts: { x: number; y: number }[] = []
+    for (let i = 0; i < data.tracks.length; i++) {
+      if (hideInstrumentals && data.tracks[i].lyricsPresent !== 1) continue
+      const hasTag = data.tracks[i].topTags.some(
+        (tg) => tg.probe.toLowerCase() === clickedTag.toLowerCase()
+      )
+      if (hasTag && pts[i]) {
+        matchingPts.push(pts[i])
+      }
+    }
+
+    if (matchingPts.length > 0) {
+      let minX = Infinity, maxX = -Infinity
+      let minY = Infinity, maxY = -Infinity
+      for (const pt of matchingPts) {
+        if (pt.x < minX) minX = pt.x
+        if (pt.x > maxX) maxX = pt.x
+        if (pt.y < minY) minY = pt.y
+        if (pt.y > maxY) maxY = pt.y
+      }
+
+      const cx = (minX + maxX) / 2
+      const cy = (minY + maxY) / 2
+
+      const dx = Math.max(0.1, maxX - minX)
+      const dy = Math.max(0.1, maxY - minY)
+
+      const pad = 18
+      const availableSize = Math.min(size.w, size.h) - pad * 2
+      
+      const targetZoomX = 1.3 / dx
+      const targetZoomY = 1.3 / dy
+      const nextZoom = Math.max(1.0, Math.min(Math.min(targetZoomX, targetZoomY), 12.0))
+
+      const s = availableSize * nextZoom
+      const nextPanX = -cx * (s / 2)
+      const nextPanY = -cy * (s / 2)
+
+      setZoom(nextZoom)
+      setPan({ x: nextPanX, y: nextPanY })
+    }
+  }, [clickedTag, data, size.w, size.h, mapMode, hideInstrumentals])
   const dragRef = React.useRef({ startX: 0, startY: 0, curX: 0, curY: 0, moved: false })
 
   // neighbors of the active (hover or focus) track, for emphasis
@@ -411,11 +466,12 @@ export default function DHMap({
         >
           -
         </button>
-        {(zoom !== 1.0 || pan.x !== 0 || pan.y !== 0) && (
+        {(zoom !== 1.0 || pan.x !== 0 || pan.y !== 0 || clickedTag !== null) && (
           <button
             onClick={() => {
               setZoom(1.0)
               setPan({ x: 0, y: 0 })
+              onClearTag?.()
             }}
             className="w-6 h-6 flex items-center justify-center bg-white border border-neutral-200 rounded shadow-sm text-[10px] font-bold text-neutral-400 hover:bg-neutral-50 hover:text-neutral-600 active:scale-90 transition-all cursor-pointer"
             title="Reset View"

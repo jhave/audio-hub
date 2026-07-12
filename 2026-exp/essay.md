@@ -1,4 +1,4 @@
-# sentience and parameter nudging
+# Controversial Sentience olemic: if Suno was a music lable would we see it as a genius?
 
 The capacity to create music constitutes one aesthetic proof of a form of sentience, far superior to pattern matching yet perhaps simply that the capacity for creativity is parameter nudging perturbing the state space of the known just a tiny bit to create a further opportunity for exploration of the absolute aesthetic space which is life's inherent path to know itself thru expressing-ingesting-analyzing resonance-rhythms-patterns-ricochets thru constrained sensors.
 
@@ -63,6 +63,17 @@ First measured result, and the best one: the eleven ReRites albums cluster tight
 ## the savant in the machine
 
 Whether making music is evidence of anything interior remains the open wound the whole project probes: 746 tracks that moved a human for 171 days, made by something that may have felt nothing.
+
+## the sousaphone phantom (AI classification drift)
+
+<details>
+<summary><b>Why is there a "sousaphone" in my electronic track?</b></summary>
+
+Many tracks in this archive are automatically tagged with **"sousaphone/brass"** even though no brass instruments are present in the audio. This false positive highlights the limits of machine listening:
+* **Spectral Energy Matching**: The classification model (CLAP) does not hear literal instruments; it evaluates spectral profiles and frequency density.
+* **Low-Frequency Resonance**: Heavy, deep, resonant synth sub-bass frequencies (frequent in rap, electronic, and ambient tracks) occupy the exact same sub-bass register as a sousaphone or tuba.
+* **Zero-Shot Confusion**: Because the model is trained on broad contrastive descriptions and was not fine-tuned on synthetic electronic genres, it maps the heavy, resonant acoustic signature of sub-bass to the closest physical instrument it knows: the sousaphone.
+</details>
 
 ## archive-safety as aesthetics
 

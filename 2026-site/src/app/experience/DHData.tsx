@@ -62,6 +62,8 @@ export default function DHData({
   onMetricClick,
   activeTag,
   onTagHover,
+  clickedTag,
+  onTagClick,
 }: {
   track: DHTrack | null
   isLive: boolean
@@ -69,6 +71,8 @@ export default function DHData({
   onMetricClick: (term: string) => void
   activeTag?: string | null
   onTagHover?: (tag: string | null) => void
+  clickedTag?: string | null
+  onTagClick?: (tag: string | null) => void
 }) {
   if (!track)
     return (
@@ -164,18 +168,28 @@ export default function DHData({
 
       <Silhouette rms={track.rmsSilhouette} progress={isLive ? progress : null} />
 
-      <Meter label="weirdness" value={track.weirdness} />
-      <Meter label="style weight" value={track.styleWeight} />
+      <div className="grid grid-cols-2 gap-3 mb-2.5">
+        <Meter label="weirdness" value={track.weirdness} />
+        <Meter label="style weight" value={track.styleWeight} />
+      </div>
 
       {track.topTags.length > 0 && (
         <div className="mb-3.5 mt-2 flex flex-wrap gap-1 select-none">
           {track.topTags.map((t) => {
-            const isActive = activeTag?.toLowerCase() === t.probe.toLowerCase()
+            const isActive = activeTag?.toLowerCase() === t.probe.toLowerCase() ||
+                             clickedTag?.toLowerCase() === t.probe.toLowerCase()
             return (
               <span
                 key={t.probe}
                 onMouseEnter={() => onTagHover?.(t.probe)}
                 onMouseLeave={() => onTagHover?.(null)}
+                onClick={() => {
+                  if (clickedTag?.toLowerCase() === t.probe.toLowerCase()) {
+                    onTagClick?.(null)
+                  } else {
+                    onTagClick?.(t.probe)
+                  }
+                }}
                 className={`rounded px-1.5 py-0.5 text-[10px] cursor-pointer transition-colors ${
                   isActive ? "bg-blue-500 text-white font-semibold" : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
                 }`}
@@ -188,44 +202,46 @@ export default function DHData({
       )}
 
       {/* Trajectory Metrics */}
-      <div className="mb-2 grid grid-cols-3 gap-2 text-center">
+      <div className="mb-2 grid grid-cols-3 gap-2 text-center select-none">
         {(
           [
-            ["journey", track.journey, "Total distance traveled through parameter space"],
-            ["spread", track.spread, "Style variety and internal diversity"],
-            ["shifts", track.novelty, "Count of internal scene changes or transitions"],
+            ["journey", track.journey, "Total distance traveled through parameter space", "1–15"],
+            ["spread", track.spread, "Style variety and internal diversity", "0.1–3.0"],
+            ["shifts", track.novelty, "Count of internal scene changes or transitions", "0–8"],
           ] as const
-        ).map(([k, v, desc]) => (
+        ).map(([k, v, desc, range]) => (
           <div
             key={k}
             onClick={() => onMetricClick(k)}
             title={`${desc}. Click to scroll to definition.`}
-            className="rounded bg-neutral-50 py-1.5 cursor-pointer hover:bg-neutral-100 transition-colors border"
+            className="rounded bg-neutral-50 py-1 cursor-pointer hover:bg-neutral-100 transition-colors border"
           >
-            <div className="text-[13px] font-bold text-black">
+            <div className="text-[13px] font-bold text-black leading-tight">
               {v != null ? (k === "shifts" ? v.toFixed(0) : v.toFixed(v < 10 ? 1 : 0)) : "—"}
             </div>
-            <div className="text-[9px] uppercase tracking-wide text-neutral-400 font-semibold">{k}</div>
+            <div className="text-[9px] uppercase tracking-wide text-neutral-400 font-bold">{k}</div>
+            <div className="text-[7.5px] text-neutral-400 font-mono mt-0.5">range: {range}</div>
           </div>
         ))}
       </div>
 
       {/* Acoustic Rhythm/Melodic Metrics */}
-      <div className="mb-3 grid grid-cols-2 gap-2 text-center">
+      <div className="mb-3 grid grid-cols-2 gap-2 text-center select-none">
         {(
           [
-            ["bounce", track.bounce, "Low-frequency groove/rhythm bounce"],
-            ["complexity", track.melodicComplexity, "Melodic and harmonic complexity"],
+            ["bounce", track.bounce, "Low-frequency groove/rhythm bounce", "0.05–0.6"],
+            ["complexity", track.melodicComplexity, "Melodic and harmonic complexity", "0.05–0.7"],
           ] as const
-        ).map(([k, v, desc]) => (
+        ).map(([k, v, desc, range]) => (
           <div
             key={k}
             onClick={() => onMetricClick(k)}
             title={`${desc}. Click to scroll to definition.`}
-            className="rounded bg-neutral-50 py-1.5 cursor-pointer hover:bg-neutral-100 transition-colors border"
+            className="rounded bg-neutral-50 py-1 cursor-pointer hover:bg-neutral-100 transition-colors border"
           >
-            <div className="text-[12px] font-bold text-black">{v != null ? v.toFixed(2) : "—"}</div>
-            <div className="text-[8.5px] uppercase tracking-wide text-neutral-400 font-semibold">{k}</div>
+            <div className="text-[12px] font-bold text-black leading-tight">{v != null ? v.toFixed(2) : "—"}</div>
+            <div className="text-[8.5px] uppercase tracking-wide text-neutral-400 font-bold">{k}</div>
+            <div className="text-[7.5px] text-neutral-400 font-mono mt-0.5">range: {range}</div>
           </div>
         ))}
       </div>
