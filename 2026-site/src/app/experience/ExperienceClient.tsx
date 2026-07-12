@@ -14,6 +14,7 @@ import { loadDH, resolveSrc, type DHData, type DHTrack } from "@/lib/dh"
 import DHMap from "./DHMap"
 import DHData_ from "./DHData"
 import DHEssay from "./DHEssay"
+import DHFAQ from "./DHFAQ"
 
 type OrderMode = "sequential" | "random" | "random-star"
 type Item = { id: string; src: string; data: { title: string; album: string } }
@@ -227,9 +228,12 @@ function Inner({ data }: { data: DHData }) {
         </div>
       </main>
 
-      {/* RIGHT: persistent data */}
-      <aside className="hidden overflow-y-auto border-l bg-white md:block">
+      {/* RIGHT: persistent data + FAQ */}
+      <aside id="dh-right-sidebar" className="hidden overflow-y-auto border-l bg-white md:block scroll-smooth">
         <DHData_ track={rightTrack} isLive={isLive} progress={progress} />
+        <div className="border-t bg-neutral-50">
+          <DHFAQ text={data.faq || ""} />
+        </div>
       </aside>
 
       <Dock order={order} setOrder={setOrder} onPrev={() => { const i = prevIdx(); if (i != null) playIdx(i) }} onNext={() => { const i = nextIdx(); if (i != null) playIdx(i) }} />
