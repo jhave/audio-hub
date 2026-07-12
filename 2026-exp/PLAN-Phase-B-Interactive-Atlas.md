@@ -112,7 +112,25 @@ github.io it points at raw.githubusercontent).
 
 ---
 
-## Module 0 — DH-Archive View (`index_experience.html`)  `[ ]`
+## Module 0 — DH-Archive View (`index_experience.html`)  `[~]`
+
+> **SESSION B0 STATUS (2026-07-11, commit 1ceadb1):** BUILT & VERIFIED in dev.
+> Done: 1.1–1.3 subset (`tools/build-dh.mjs` → `2026-site/public/data/dh.json`,
+> mean-centered UMAP positions + k-NN neighbors + folded analytics; 154 KB
+> gzipped; ReRites cluster verified). `/experience` route
+> (`2026-site/src/app/experience/{page,ExperienceClient,DHMap,DHData}.tsx` +
+> `src/lib/dh.ts`): three-column layout, map with played-state + focal pulse +
+> hover, star badge in play button, dock order toggle (seq/random/random-star),
+> shared data panel with hover-preview, auto-advance honoring order, played-set
+> in localStorage, scroll-to-center. Boxes 0.1–0.8 + 1.1–1.3 subset = DONE.
+> **REMAINING for B0:** box 0.9 (mobile inline card — side columns are currently
+> just `hidden md:` , not yet relocated inline) and box 0.10 (portable build +
+> deploy to `experience/` on glia.ca + gh-pages + tag `exp-v0.5-dh`; NOTE the
+> gh-pages build needs `NEXT_PUBLIC_AUDIO_BASE` so dh audio resolves to
+> raw.githubusercontent, and `dh.json` must ship in the export — it lives in
+> `2026-site/public/data/` so it will). Verify a real deploy: audio resolves via
+> `../audio/` from `/experience/`. Next session: finish 0.9–0.10, then Module 1
+> full + Atlas.
 
 **The idea (jhave, 2026-07-11):** Duplicate the working 2026 playlist player,
 keep ALL its functionality, and graft the ML analysis onto it so a person can
@@ -521,4 +539,6 @@ hardest, highest-value sub-parts there remain 2.9 (fractal playhead) and
 ## PROGRESS LOG (append one line per completed box: `box — commit — note`)
 
 - 2026-07-11 — Phase A2 data delivered & committed (grunt/Gemini); this plan written.
-- (next) — 1.1 build-atlas.mjs …
+- 2026-07-11 — 6aecaea — build-dh.mjs + dh.json (1.1–1.3 subset; UMAP+neighbors+analytics; 154KB gz; ReRites cluster ok).
+- 2026-07-11 — 1ceadb1 — DH-Archive View /experience route (boxes 0.1–0.8): 3-col map|player|data, star badge, order toggle, hover-preview, played-state; verified in dev preview.
+- (next) — 0.9 mobile inline + 0.10 deploy (tag exp-v0.5-dh); then Module 1 full + Atlas (start 2.9 fractal playhead / 2.10–2.11 dual-topology).
