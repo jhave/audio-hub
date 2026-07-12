@@ -52,6 +52,8 @@ This document records the completion of Phase B UI enhancements and interactions
   - Reduced the vertical margins and paddings by 50% between the subtitle paragraph, project credits divider, and active CTA button to tighten the vertical structure.
 - [x] **Step 13: Subtext Simplification**
   - Simplified the subtext copy to read: *"Machine learning applied to analyze a 31 hour corpus of AI generated music"*.
+- [x] **Step 14: Novelty Format & Precision adjustment**
+  - Updated the frontend UI metric card inside [DHData.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHData.tsx) to format `novelty` as a discrete integer (whole number) instead of using a decimal float display.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -68,3 +70,5 @@ All steps were staged, compiled, verified to build without errors, committed, an
 11. `ef86d98` — `feat: design updates to intro overlay screen`
 12. `33bbcb4` — `feat: widen subtext and reduce spacing in experience entry page`
 13. `98d690b` — `feat: simplify subtext on intro overlay page`
+14. `ac682dc` — `style: remove horizontal separator line under subtitle`
+15. `09cf162` — `feat: render novelty as integer rather than float`
