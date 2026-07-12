@@ -111,16 +111,6 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
           ctx.lineWidth = 1
           ctx.stroke()
         }
-
-        // Draw track title text labels if zoomed in
-        if (zoom > 2.2) {
-          ctx.globalAlpha = isHover ? 1.0 : isN ? 0.8 : played.has(i) ? 0.7 : 0.35
-          ctx.fillStyle = isHover ? RED : isN ? "#000" : played.has(i) ? "#9e6900" : "#555"
-          ctx.font = isHover || isN ? "600 7.5px sans-serif" : "7px sans-serif"
-          ctx.textAlign = "left"
-          ctx.textBaseline = "middle"
-          ctx.fillText(data.tracks[i].title, px + 5, py)
-        }
       }
       ctx.globalAlpha = 1
 
@@ -136,16 +126,6 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
         ctx.arc(px, py, 4.5, 0, Math.PI * 2)
         ctx.fillStyle = RED
         ctx.fill()
-
-        // Draw active track title label if zoomed in
-        if (zoom > 2.2) {
-          ctx.globalAlpha = 1.0
-          ctx.fillStyle = RED
-          ctx.font = "bold 8px sans-serif"
-          ctx.textAlign = "left"
-          ctx.textBaseline = "middle"
-          ctx.fillText(data.tracks[focusIdx].title, px + 6, py)
-        }
       }
       raf = requestAnimationFrame(draw)
     }
@@ -276,7 +256,7 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
   const handleWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
     e.preventDefault()
     const delta = e.deltaY < 0 ? 1.15 : 1 / 1.15
-    const nextZoom = Math.max(0.5, Math.min(zoom * delta, 6.0))
+    const nextZoom = Math.max(0.5, Math.min(zoom * delta, 30.0))
     setZoom(nextZoom)
     if (nextZoom === 1.0) {
       setPan({ x: 0, y: 0 })
@@ -308,7 +288,7 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
       {/* Floating Zoom Controls */}
       <div className="absolute bottom-3 right-3 flex flex-col gap-1 z-10 select-none">
         <button
-          onClick={() => setZoom(z => Math.min(z * 1.3, 6.0))}
+          onClick={() => setZoom(z => Math.min(z * 1.3, 30.0))}
           className="w-6 h-6 flex items-center justify-center bg-white border border-neutral-200 rounded shadow-sm text-[13px] font-bold text-neutral-700 hover:bg-neutral-50 active:scale-90 transition-all cursor-pointer"
           title="Zoom In"
         >
