@@ -62,6 +62,8 @@ function Inner({ data }: { data: DHData }) {
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
   const [mapMode, setMapMode] = React.useState<"music" | "lyrics">("music")
+  const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
+  const [activeTag, setActiveTag] = React.useState<string | null>(null)
 
 
   // restore played set
@@ -333,7 +335,7 @@ function Inner({ data }: { data: DHData }) {
           mobileTab === "map-essay" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
         } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden`}
       >
-        <div className="flex items-center justify-between px-3 py-1.5 text-[11.5px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none">
+        <div className="flex items-center justify-between px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none">
           <div className="flex items-center gap-1.5">
             <span className="font-semibold text-neutral-700">topology:</span>
             <div className="flex bg-neutral-200/60 rounded p-0.5 text-[10px] font-bold">
@@ -355,7 +357,19 @@ function Inner({ data }: { data: DHData }) {
               </button>
             </div>
           </div>
-          <span className="font-mono text-[10.5px]">{played.size} / {data.tracks.length} heard</span>
+          {mapMode === "lyrics" ? (
+            <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700">
+              <input
+                type="checkbox"
+                checked={hideInstrumentals}
+                onChange={(e) => setHideInstrumentals(e.target.checked)}
+                className="rounded border-neutral-300 text-neutral-900 focus:ring-0 w-3 h-3 cursor-pointer"
+              />
+              <span>hide instrumentals</span>
+            </label>
+          ) : (
+            <span className="font-mono text-[10.5px]">{played.size} / {data.tracks.length} heard</span>
+          )}
         </div>
         <div className="h-[270px] w-full flex-shrink-0 relative border-b bg-neutral-50">
           <DHMap
@@ -366,6 +380,8 @@ function Inner({ data }: { data: DHData }) {
             onHover={setHoverIdx}
             onPlay={playIdx}
             mapMode={mapMode}
+            hideInstrumentals={hideInstrumentals}
+            activeTag={activeTag}
           />
         </div>
         <div className="flex-1 min-h-0 bg-white overflow-hidden">
@@ -419,10 +435,23 @@ function Inner({ data }: { data: DHData }) {
         } md:flex md:flex-col border-l bg-white h-full min-h-0 overflow-hidden`}
       >
         <div className="flex-shrink-0 border-b bg-white overflow-y-auto scrollbar-none max-h-[60vh]">
-          <DHData_ track={rightTrack} isLive={isLive} progress={progress} onMetricClick={handleMetricClick} />
+          <DHData_
+            track={rightTrack}
+            isLive={isLive}
+            progress={progress}
+            onMetricClick={handleMetricClick}
+            activeTag={activeTag}
+            onTagHover={setActiveTag}
+          />
         </div>
         <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto scroll-smooth">
-          <DHFAQ text={data.faq || ""} tracks={data.tracks} onPlay={playIdx} />
+          <DHFAQ
+            text={data.faq || ""}
+            tracks={data.tracks}
+            onPlay={playIdx}
+            activeTag={activeTag}
+            onTagHover={setActiveTag}
+          />
         </div>
       </aside>
 

@@ -53,10 +53,14 @@ export default function DHFAQ({
   text,
   tracks,
   onPlay,
+  activeTag,
+  onTagHover,
 }: {
   text: string
   tracks?: DHTrack[]
   onPlay?: (i: number) => void
+  activeTag?: string | null
+  onTagHover?: (tag: string | null) => void
 }) {
   if (!text) return null
 
@@ -195,10 +199,17 @@ export default function DHFAQ({
     return parts.map((part, idx) => {
       const normPart = part.toLowerCase().replace(/\s+/g, "-")
       if (terms.includes(part.toLowerCase())) {
+        const isHovered = activeTag?.toLowerCase() === part.toLowerCase() ||
+                          (activeTag === "shifts" && part.toLowerCase() === "shifts") ||
+                          (activeTag?.replace("-", " ") === part.toLowerCase())
         return (
           <span
             key={idx}
-            className="font-bold text-neutral-900 bg-neutral-200/50 px-1 rounded faq-word-occ scroll-mt-6"
+            onMouseEnter={() => onTagHover?.(part)}
+            onMouseLeave={() => onTagHover?.(null)}
+            className={`font-bold px-1 rounded faq-word-occ scroll-mt-6 cursor-pointer transition-colors ${
+              isHovered ? "bg-blue-500 text-white shadow-sm" : "text-neutral-900 bg-neutral-200/50 hover:bg-neutral-300/80"
+            }`}
             data-word={normPart}
           >
             {part}

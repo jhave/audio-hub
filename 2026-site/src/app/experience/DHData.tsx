@@ -60,11 +60,15 @@ export default function DHData({
   isLive,
   progress,
   onMetricClick,
+  activeTag,
+  onTagHover,
 }: {
   track: DHTrack | null
   isLive: boolean
   progress: number | null
   onMetricClick: (term: string) => void
+  activeTag?: string | null
+  onTagHover?: (tag: string | null) => void
 }) {
   if (!track)
     return (
@@ -164,12 +168,22 @@ export default function DHData({
       <Meter label="style weight" value={track.styleWeight} />
 
       {track.topTags.length > 0 && (
-        <div className="mb-3.5 mt-2 flex flex-wrap gap-1">
-          {track.topTags.map((t) => (
-            <span key={t.probe} className="rounded bg-neutral-100 px-1.5 py-0.5 text-[10px] text-neutral-600">
-              {t.probe}
-            </span>
-          ))}
+        <div className="mb-3.5 mt-2 flex flex-wrap gap-1 select-none">
+          {track.topTags.map((t) => {
+            const isActive = activeTag?.toLowerCase() === t.probe.toLowerCase()
+            return (
+              <span
+                key={t.probe}
+                onMouseEnter={() => onTagHover?.(t.probe)}
+                onMouseLeave={() => onTagHover?.(null)}
+                className={`rounded px-1.5 py-0.5 text-[10px] cursor-pointer transition-colors ${
+                  isActive ? "bg-blue-500 text-white font-semibold" : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                }`}
+              >
+                {t.probe}
+              </span>
+            )
+          })}
         </div>
       )}
 
