@@ -38,7 +38,7 @@ export default function DHFAQ({
     const norm = metricName.toLowerCase()
     if (norm === "spread") key = "spread"
     else if (norm === "journey") key = "journey"
-    else if (norm === "novelty") key = "novelty"
+    else if (norm.startsWith("shifts") || norm === "novelty") key = "novelty"
     else if (norm === "tempo") key = "tempo"
     else if (norm === "bounce") key = "bounce"
     else if (norm === "complexity") key = "melodicComplexity"
@@ -153,7 +153,7 @@ export default function DHFAQ({
   }
 
   const renderWithHighlights = (txt: string) => {
-    const terms = ["tempo drift", "tempo jumps", "spread", "journey", "novelty", "tempo", "key", "bounce", "complexity"]
+    const terms = ["tempo drift", "tempo jumps", "spread", "journey", "shifts", "tempo", "key", "bounce", "complexity"]
     const regex = new RegExp(`\\b(${terms.join("|")})\\b`, "gi")
     const parts = txt.split(regex)
     return parts.map((part, idx) => {

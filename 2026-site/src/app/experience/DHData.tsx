@@ -179,7 +179,7 @@ export default function DHData({
           [
             ["journey", track.journey, "Total distance traveled through parameter space"],
             ["spread", track.spread, "Style variety and internal diversity"],
-            ["novelty", track.novelty, "Count of internal scene changes or transitions"],
+            ["shifts", track.novelty, "Count of internal scene changes or transitions"],
           ] as const
         ).map(([k, v, desc]) => (
           <div
@@ -189,7 +189,7 @@ export default function DHData({
             className="rounded bg-neutral-50 py-1.5 cursor-pointer hover:bg-neutral-100 transition-colors border"
           >
             <div className="text-[13px] font-bold text-black">
-              {v != null ? (k === "novelty" ? v.toFixed(0) : v.toFixed(v < 10 ? 1 : 0)) : "—"}
+              {v != null ? (k === "shifts" ? v.toFixed(0) : v.toFixed(v < 10 ? 1 : 0)) : "—"}
             </div>
             <div className="text-[9px] uppercase tracking-wide text-neutral-400 font-semibold">{k}</div>
           </div>
