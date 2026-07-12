@@ -93,18 +93,40 @@ function Inner({ data }: { data: DHData }) {
     [player, data]
   )
 
+  // shuffle "bag": exhaust every track in the pool before any repeats.
+  // Bag items are popped from the END. `justPlayedRef` tracks the last pick so
+  // a fresh bag never opens with the track that just closed the previous one.
+  const bagRef = React.useRef<number[]>([])
+  const bagModeRef = React.useRef<OrderMode | null>(null)
+  const justPlayedRef = React.useRef<number | null>(null)
+  const refillBag = React.useCallback(() => {
+    const pool =
+      order === "random-star" ? data.tracks.filter((t) => t.fav).map((t) => t.i) : data.tracks.map((t) => t.i)
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[pool[i], pool[j]] = [pool[j], pool[i]]
+    }
+    // boundary guard: if the next pop (last element) equals the just-played
+    // track, swap it to the front so the new cycle starts on something else
+    if (pool.length > 1 && pool[pool.length - 1] === justPlayedRef.current) {
+      ;[pool[0], pool[pool.length - 1]] = [pool[pool.length - 1], pool[0]]
+    }
+    bagRef.current = pool
+    bagModeRef.current = order
+  }, [order, data])
+
   const nextIdx = React.useCallback((): number | null => {
     const n = data.tracks.length
     if (order === "sequential") {
-      return focusIdx == null ? 0 : (focusIdx + 1) % n
+      const i = focusIdx == null ? 0 : (focusIdx + 1) % n
+      justPlayedRef.current = i
+      return i
     }
-    const pool =
-      order === "random-star" ? data.tracks.filter((t) => t.fav).map((t) => t.i) : data.tracks.map((t) => t.i)
-    if (!pool.length) return null
-    let pick = pool[Math.floor(Math.random() * pool.length)]
-    if (pick === focusIdx && pool.length > 1) pick = pool[(pool.indexOf(pick) + 1) % pool.length]
+    if (bagModeRef.current !== order || bagRef.current.length === 0) refillBag()
+    const pick = bagRef.current.pop() ?? null
+    justPlayedRef.current = pick
     return pick
-  }, [order, focusIdx, data])
+  }, [order, focusIdx, data, refillBag])
 
   const prevIdx = React.useCallback((): number | null => {
     if (focusIdx == null) return 0

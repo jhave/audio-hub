@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   basePath,
   assetPrefix,
   trailingSlash: true,
+  devIndicators: false, // hide the dev-only "N" overlay (never in the export anyway)
 }
 
 export default nextConfig

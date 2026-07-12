@@ -51,6 +51,14 @@ const norm = (s) =>
   s.toLowerCase().replace(/\((\d+)\)\s*$/g, "").replace(/\[[^\]]*\]/g, "")
     .replace(/[.!?,;:'"]+/g, " ").replace(/\s+/g, " ").trim()
 const favTitles = new Set(favorites.map((f) => norm(f.title)).filter(Boolean))
+// favorites also carry the Suno song UUID — match against suno-truth's sunoId
+// for the tracks title-normalization misses (renamed road-movie tracks etc.)
+const favSunoIds = new Set(favorites.map((f) => f.id).filter(Boolean))
+function isFav(t) {
+  const tr = truthById[t.trackId]
+  if (tr && tr.sunoId && favSunoIds.has(tr.sunoId)) return 1
+  return favTitles.has(norm(t.trackTitle)) ? 1 : 0
+}
 
 // ---- mean-center + renormalize the 512-d vectors (CRITICAL) ----
 const D = emb[0].vec.length
@@ -144,7 +152,7 @@ out.tracks = tracks.map((t, i) => {
     dateISO: albumMeta[t.albumId]?.dateISO || null,
     durationSec: Math.round(t.durationSec),
     src: srcById[t.trackId] || null,
-    fav: favTitles.has(norm(t.trackTitle)) ? 1 : 0,
+    fav: isFav(t),
     xy: xy[i],
     neighbors: neighborsOf(i),
     key: d.key || null,
