@@ -95,7 +95,7 @@ export default function DHData({
       key: "tempoDrift",
       label: `±${Math.round(track.tempoDrift)} bpm drift`,
       tooltip: "Tempo drift (standard deviation of local tempo across windows). Click to scroll to definition.",
-      onClick: () => onMetricClick("tempo")
+      onClick: () => onMetricClick("tempo-drift")
     })
   }
   if (track.tempoJumps != null && track.tempoJumps > 0) {
@@ -103,7 +103,7 @@ export default function DHData({
       key: "tempoJumps",
       label: `${track.tempoJumps} tempo jump${track.tempoJumps > 1 ? "s" : ""}`,
       tooltip: "Count of local tempo jumps exceeding 10 BPM. Click to scroll to definition.",
-      onClick: () => onMetricClick("tempo")
+      onClick: () => onMetricClick("tempo-jumps")
     })
   }
   if (track.sectionCount != null) {

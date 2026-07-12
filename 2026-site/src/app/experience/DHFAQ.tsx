@@ -153,16 +153,17 @@ export default function DHFAQ({
   }
 
   const renderWithHighlights = (txt: string) => {
-    const terms = ["spread", "journey", "novelty", "tempo", "key", "bounce", "complexity"]
+    const terms = ["tempo drift", "tempo jumps", "spread", "journey", "novelty", "tempo", "key", "bounce", "complexity"]
     const regex = new RegExp(`\\b(${terms.join("|")})\\b`, "gi")
     const parts = txt.split(regex)
     return parts.map((part, idx) => {
+      const normPart = part.toLowerCase().replace(/\s+/g, "-")
       if (terms.includes(part.toLowerCase())) {
         return (
           <span
             key={idx}
             className="font-bold text-neutral-900 bg-neutral-200/50 px-1 rounded faq-word-occ scroll-mt-6"
-            data-word={part.toLowerCase()}
+            data-word={normPart}
           >
             {part}
           </span>
