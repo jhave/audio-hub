@@ -90,6 +90,22 @@ export default function DHData({
       onClick: () => onMetricClick("tempo")
     })
   }
+  if (track.tempoDrift != null && track.tempoDrift > 0) {
+    chipsList.push({
+      key: "tempoDrift",
+      label: `±${Math.round(track.tempoDrift)} bpm drift`,
+      tooltip: "Tempo drift (standard deviation of local tempo across windows). Click to scroll to definition.",
+      onClick: () => onMetricClick("tempo")
+    })
+  }
+  if (track.tempoJumps != null && track.tempoJumps > 0) {
+    chipsList.push({
+      key: "tempoJumps",
+      label: `${track.tempoJumps} tempo jump${track.tempoJumps > 1 ? "s" : ""}`,
+      tooltip: "Count of local tempo jumps exceeding 10 BPM. Click to scroll to definition.",
+      onClick: () => onMetricClick("tempo")
+    })
+  }
   if (track.sectionCount != null) {
     chipsList.push({
       key: "sections",

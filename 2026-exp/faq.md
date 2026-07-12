@@ -23,16 +23,18 @@ When generating music in Suno, creators use text style tags and control paramete
 ## Glossary of Descriptors
 
 ### SPREAD
-The **style variety** within a track. Calculated as the average distance from the track's individual window embeddings to its own overall centroid in PCA space. High spread indicates that a track contains highly varied parts (e.g. shifts between speech and singing, or switches between acoustic and electronic sections). Low spread indicates stylistic consistency.
+The **style variety** within a track. Calculated as the average Euclidean distance from the track's individual window embeddings to its own overall centroid in PCA space. High spread indicates that a track contains highly varied parts (e.g. shifts between speech and singing, or switches between acoustic and electronic sections). Low spread indicates stylistic consistency.
 
 ### JOURNEY
 The **total distance traveled** by a track through parameter space. Calculated as the sum of consecutive window-to-window distances. A long journey indicates a progressive, evolving structure (like a multi-part progressive rock or electronic piece), whereas a short journey indicates a static or repetitive structure (like a minimal ambient loop).
 
 ### NOVELTY
-The count of **internal scene changes** or sudden transitions. Calculated from peaks in the consecutive-window distance curve that exceed the track's average transition distance by more than two standard deviations. A high novelty count indicates clear structural boundary shifts or drops.
+The count of **internal scene changes** or sudden transitions. Calculated from peaks in the consecutive-window distance curve that exceed the track's average transition distance by more than two standard deviations ($threshold = \mu + 2.0\sigma$). Displayed as a discrete integer representing distinct structural discontinuities.
 
 ### TEMPO
-The **speed** of the track, estimated as the global beats per minute (BPM) using spectral autocorrelation. We also calculate the **tempo drift** (how much the speed fluctuates) and **tempo jumps** (how often the tempo changes abruptly by more than 10 BPM).
+The **speed** of the track in beats per minute (BPM). Estimated globally using spectral autocorrelation of the onset strength envelope. Because generative music often contains drumless intros, complex syncopations, or shifting time signatures, global auto-correlation can occasionally lock onto half-time, double-time, or arpeggiated patterns. To capture the granular dynamics of tempo, we also compute:
+* **Tempo Drift**: The standard deviation of local tempos across the track's 10-second windows, capturing overall speed variability.
+* **Tempo Jumps**: The number of times the local tempo shifts abruptly by more than 10 BPM between consecutive windows.
 
 ### KEY
 The **tonal center** of the track, estimated by correlating chroma feature vectors against the 24 Krumhansl-Schmuckler major/minor templates. We also track segment-level keys to calculate **modulations** (the count of times a song changes keys).

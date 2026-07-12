@@ -175,6 +175,7 @@ out.tracks = tracks.map((t, i) => {
     keyMode,
     tempo: d.tempo ?? null,
     tempoDrift: d.tempoDrift ?? null,
+    tempoJumps: d.tempoJumps ?? null,
     sectionCount: d.sectionCount ?? null,
     dropAt: d.dropAt ?? null,
     bounce: d.bounce ?? null,

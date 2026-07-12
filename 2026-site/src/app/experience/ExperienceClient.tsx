@@ -170,6 +170,7 @@ function Inner({ data }: { data: DHData }) {
   }, [focusIdx])
 
   const lastOccurrencesRef = React.useRef<{ [key: string]: number }>({})
+  const timeoutRefs = React.useRef<{ [key: string]: NodeJS.Timeout }>({})
 
   const handleMetricClick = React.useCallback((term: string) => {
     const normalized = term.toLowerCase().replace(/[^a-z0-9]+/g, "-")
@@ -178,9 +179,19 @@ function Inner({ data }: { data: DHData }) {
     )
     if (occurrences.length === 0) return
 
+    // Clear existing reset timeout for this term
+    if (timeoutRefs.current[normalized]) {
+      clearTimeout(timeoutRefs.current[normalized])
+    }
+
     const lastIdx = lastOccurrencesRef.current[normalized] ?? -1
     const nextIdx = (lastIdx + 1) % occurrences.length
     lastOccurrencesRef.current[normalized] = nextIdx
+
+    // Set 30 seconds timeout to reset back to -1 (the title/start)
+    timeoutRefs.current[normalized] = setTimeout(() => {
+      lastOccurrencesRef.current[normalized] = -1
+    }, 30000)
 
     const targetEl = occurrences[nextIdx] as HTMLElement
     

@@ -17,6 +17,7 @@ export type DHTrack = {
   keyMode: string | null
   tempo: number | null
   tempoDrift: number | null
+  tempoJumps: number | null
   sectionCount: number | null
   dropAt: number | null
   bounce: number | null
