@@ -59,6 +59,25 @@ function Inner({ data }: { data: DHData }) {
   const [order, setOrder] = React.useState<OrderMode>("sequential")
   const [played, setPlayed] = React.useState<Set<number>>(new Set())
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
+  const [showIntro, setShowIntro] = React.useState(true)
+  const [isFading, setIsFading] = React.useState(false)
+
+  React.useEffect(() => {
+    try {
+      const dismissed = sessionStorage.getItem("dh-intro-dismissed")
+      if (dismissed) setShowIntro(false)
+    } catch {}
+  }, [])
+
+  const dismissIntro = React.useCallback(() => {
+    setIsFading(true)
+    setTimeout(() => {
+      setShowIntro(false)
+    }, 500)
+    try {
+      sessionStorage.setItem("dh-intro-dismissed", "true")
+    } catch {}
+  }, [])
 
   // restore played set
   React.useEffect(() => {
@@ -350,6 +369,29 @@ function Inner({ data }: { data: DHData }) {
           if (i != null) playIdx(i)
         }}
       />
+
+      {showIntro && (
+        <div
+          className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-white p-8 transition-opacity duration-500 ease-in-out ${
+            isFading ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="max-w-md text-center">
+            <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 mb-3 select-none">
+              171 Days
+            </h1>
+            <p className="text-[14px] leading-relaxed text-neutral-500 mb-8 font-light select-none">
+              Machine learning applied to a single person's generative music archive.
+            </p>
+            <button
+              onClick={dismissIntro}
+              className="px-6 py-3 rounded-full bg-neutral-900 text-white text-[13px] font-semibold hover:bg-neutral-800 active:scale-95 transition-all shadow-md cursor-pointer select-none"
+            >
+              Enter the Field
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
