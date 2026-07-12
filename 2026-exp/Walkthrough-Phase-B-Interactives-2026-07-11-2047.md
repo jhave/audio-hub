@@ -40,8 +40,13 @@ This document records the completion of Phase B UI enhancements and interactions
   - Removed the hover track title label tooltip overlay drawn in the top-left corner of the UMAP map.
 - [x] **Step 10: Intro Screen Branding & Interactive Glossary play buttons**
   - Placed the **glia.ca logo** (linked from public `/img/glia-bw.png`) centered at the top of the intro page.
-  - Added a date subtitle (`July 2026`) and structured project credits (*"Music: Suno 5.5 · Human: Jhave · Data-science: Fable 5 · Gemini 3.5 Flash"*) just above the entry button.
+  - Added project credits (*"Music: Suno 5.5 · Human: Jhave · Data-science: Fable 5 · Gemini 3.5 Flash"*) just above the entry button.
   - Implemented dynamic highest/lowest track lookup inside [DHFAQ.tsx](file:///Users/jhave/VIBE_Coding/audio-hub/2026-site/src/app/experience/DHFAQ.tsx). Under each major numeric metric section (Spread, Journey, Novelty, Tempo, Bounce, Complexity), rendered two interactive play buttons to immediately play the track with the highest/lowest values, showing the track titles dynamically in their labels.
+- [x] **Step 11: Intro Page Design Refinement**
+  - Made the glia logo **2x larger** (`h-14`) and centered it inside the main vertical column content box to sit closer to the title.
+  - Moved the date range subtitle (*"January 18 to July 11, 2026"*) to sit directly beneath the title.
+  - Set the subtext font size to be **30% larger** (`text-[18px]`), made it fully selectable (`select-text`), and updated the copy: *"Machine learning applied to analyze a 31 hour corpus of AI generated music made by a single artist in the first 6 months of 2026"*.
+  - Updated the button label to read *"Explore the Experience"*.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -55,3 +60,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 8. `845e885` — `feat: auto-play first track on entering archive from intro screen`
 9. `f35e558` — `feat: show intro screen on every refresh and remove hovered map track label`
 10. `d0a4bb6` — `feat: add glia logo and credits to intro, and add highest/lowest play buttons to FAQ glossary`
+11. `ef86d98` — `feat: design updates to intro overlay screen`
