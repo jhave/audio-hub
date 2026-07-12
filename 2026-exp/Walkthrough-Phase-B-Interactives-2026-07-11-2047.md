@@ -29,6 +29,11 @@ This document records the completion of Phase B UI enhancements and interactions
   - Restructured the right sidebar so the selected track details stay fixed at the top (with a scrollable fallback on short screens) and the FAQ scrolls separately beneath it.
   - Placed the Suno style prompt into a collapsible `<details>` / `<summary>` block to preserve vertical space for the FAQ.
   - Updated the scrolling offset calculation to target the new separate FAQ scroll container.
+- [x] **Step 7: Fading Intro Screen Overlay**
+  - Implemented a clean, full-screen white entry portal.
+  - Features the title **171 Days**, the requested synopsis *"Machine learning applied to a single person's generative music archive"*, and an *"Enter the Field"* button.
+  - Fades out smoothly on dismissal (`opacity-0 pointer-events-none`) with a 500ms CSS transition.
+  - Persists the dismissed state in browser `sessionStorage` to avoid intrusive reload prompts within the same session.
 
 ## Commits & Backups
 All steps were staged, compiled, verified to build without errors, committed, and pushed to the github remote repository after each step:
@@ -38,3 +43,4 @@ All steps were staged, compiled, verified to build without errors, committed, an
 4. `183798c` — `feat: add interactive tooltips and descriptor auto-scrolling to FAQ`
 5. `b872aab` — `feat: implement mobile tab swipe loop layout with persistent player`
 6. `e9c79f6` — `feat: make track data sticky in right column, scroll FAQ separately, and fold style prompt`
+7. `0e5dc63` — `feat: add fading 171 Days intro screen overlay`
