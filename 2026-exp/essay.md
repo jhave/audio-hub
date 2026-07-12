@@ -75,6 +75,20 @@ Many tracks in this archive are automatically tagged with **"sousaphone/brass"**
 * **Zero-Shot Confusion**: Because the model is trained on broad contrastive descriptions and was not fine-tuned on synthetic electronic genres, it maps the heavy, resonant acoustic signature of sub-bass to the closest physical instrument it knows: the sousaphone.
 </details>
 
+## machine listening: a brief literature review
+
+The "sousaphone phantom" is a symptom of a broader crisis in machine listening. While generative models (Suno, Udio) synthesize complex acoustics using discrete neural codecs like Meta's **[EnCodec](https://github.com/facebookresearch/encodec)** or **[DAC](https://github.com/descriptinc/descript-audio-codec)**, analytical models struggle to describe what has been built. 
+
+Here is where the state of the art stands, in the wild and behind closed doors:
+
+* **Self-Supervised Music Encoders**: Models like **[MERT](https://arxiv.org/abs/2306.00107)** (ICLR 2024) use self-supervised masked language modeling (like BERT) trained on Constant-Q Transform (CQT) spectrograms. Unlike CLAP, which connects text to sound, MERT focuses purely on acoustic music understanding (pitches, chords, beat tracking), reducing "octave errors" and instrument false-positives, though it lacks a direct natural language interface.
+* **Text-to-Music Joint Spaces**: Google’s proprietary **[MuLan](https://arxiv.org/abs/2208.12415)** (prepress / closed source, serving as the backbone for MusicLM) link text and audio similarly to CLAP but are trained on massive internal YouTube datasets, capturing contemporary genres with higher fidelity than LAION's public CLAP.
+* **What Spotify Uses in Production**: Spotify's research (such as their **[MUSE](https://research.atspotify.com/)** framework) indicates they do not rely on raw zero-shot audio embeddings alone. Pure audio listening is highly prone to mistaking sub-bass for brass, or plucky acoustic guitars for high-tempo dance beats. Spotify bypasses this by building **hybrid embedding spaces**:
+  1. *Collaborative Filtering Embeddings*: Track representations are computed from user play session transitions.
+  2. *Graph Neural Networks (GNNs)*: Embeddings are constructed by modeling playlist co-occurrences.
+  3. *Metadata Fusion*: Combining neural audio embeddings with explicit metadata (artist ID, release year, label).
+* **Corporate NDAs & Prepress**: High-fidelity representations for prompt-based playlist generation (like Spotify's AI Playlist feature) are typically kept under corporate lock-and-key, leaving public researchers to build on older, public-domain-trained weights that struggle with modern sub-genres.
+
 ## archive-safety as aesthetics
 
 Every build relative, no URL baked in, donatable to an archive on retirement: "if i donate my website on retirement to an archive the site will still run." Longevity as a design constraint is also a claim about what the work is — not a service but an artifact, meant to outlive its address.
