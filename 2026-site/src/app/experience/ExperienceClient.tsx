@@ -370,7 +370,7 @@ function Inner({ data }: { data: DHData }) {
             isFading ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
-          <div className="max-w-xl text-center flex flex-col items-center">
+          <div className="max-w-4xl text-center flex flex-col items-center">
             {/* Top Centered Logo (now inside content box and 2x larger) */}
             <img src="/img/glia-bw.png" alt="glia.ca" className="h-14 object-contain opacity-80 mb-5 select-none" />
 
@@ -378,15 +378,15 @@ function Inner({ data }: { data: DHData }) {
               171 Days
             </h1>
             
-            <p className="text-[12px] text-neutral-400 mb-6 select-none font-mono">
+            <p className="text-[12px] text-neutral-400 mb-5 select-none font-mono">
               January 18 to July 11, 2026
             </p>
 
-            <p className="text-[18px] leading-relaxed text-neutral-700 mb-8 font-light select-text max-w-lg">
+            <p className="text-[18px] leading-relaxed text-neutral-700 mb-4 font-light select-text max-w-3xl">
               Machine learning applied to analyze a 31 hour corpus of AI generated music made by a single artist in the first 6 months of 2026
             </p>
 
-            <div className="text-[10.5px] text-neutral-500 mb-6 font-mono select-none space-y-0.5 border-t border-neutral-100 pt-5 w-full">
+            <div className="text-[10.5px] text-neutral-500 mb-4 font-mono select-none space-y-0.5 border-t border-neutral-100 pt-2.5 w-full max-w-md">
               <div>Music: Suno 5.5 · Human: Jhave</div>
               <div>Data-science: Fable 5 · Gemini 3.5 Flash</div>
             </div>
