@@ -38,6 +38,8 @@ export type DHData = {
   generatedAt: string
   trackCount: number
   tagScale: number
+  essay?: string
+  faq?: string
   albums: { id: string; title: string; dateISO: string | null }[]
   points: [number, number, number][] // x, y, albumIdx
   tracks: DHTrack[]

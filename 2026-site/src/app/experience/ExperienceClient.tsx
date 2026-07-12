@@ -13,9 +13,11 @@ import { PauseIcon, PlayIcon, SkipBackIcon, SkipForwardIcon, ShuffleIcon, StarIc
 import { loadDH, resolveSrc, type DHData, type DHTrack } from "@/lib/dh"
 import DHMap from "./DHMap"
 import DHData_ from "./DHData"
+import DHEssay from "./DHEssay"
 
 type OrderMode = "sequential" | "random" | "random-star"
 type Item = { id: string; src: string; data: { title: string; album: string } }
+
 
 function itemFor(t: DHTrack): Item {
   return { id: t.trackId, src: resolveSrc(t.src) || "", data: { title: t.title, album: t.album } }
@@ -170,13 +172,13 @@ function Inner({ data }: { data: DHData }) {
 
   return (
     <div className="grid h-screen grid-cols-1 md:grid-cols-[300px_minmax(0,1fr)_300px]">
-      {/* LEFT: persistent map */}
-      <aside className="hidden border-r bg-neutral-50 md:flex md:flex-col">
-        <div className="flex items-center justify-between px-3 py-2 text-[11px] text-neutral-500">
+      {/* LEFT: persistent map + essay */}
+      <aside className="hidden border-r bg-neutral-50 md:flex md:flex-col h-full min-h-0">
+        <div className="flex items-center justify-between px-3 py-2 text-[11px] text-neutral-500 border-b">
           <span>audio topology</span>
           <span>{played.size} / {data.tracks.length} heard</span>
         </div>
-        <div className="min-h-0 flex-1">
+        <div className="h-[270px] w-full flex-shrink-0 relative border-b">
           <DHMap
             data={data}
             focusIdx={focusIdx}
@@ -185,6 +187,9 @@ function Inner({ data }: { data: DHData }) {
             onHover={setHoverIdx}
             onPlay={playIdx}
           />
+        </div>
+        <div className="flex-1 min-h-0 bg-white">
+          <DHEssay text={data.essay || ""} />
         </div>
       </aside>
 
