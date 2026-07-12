@@ -155,6 +155,40 @@ function Inner({ data }: { data: DHData }) {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" })
   }, [focusIdx])
 
+  const lastOccurrencesRef = React.useRef<{ [key: string]: number }>({})
+
+  const handleMetricClick = React.useCallback((term: string) => {
+    const normalized = term.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+    const occurrences = Array.from(
+      document.querySelectorAll(`#faq-${normalized}, .faq-word-occ[data-word="${normalized}"]`)
+    )
+    if (occurrences.length === 0) return
+
+    const lastIdx = lastOccurrencesRef.current[normalized] ?? -1
+    const nextIdx = (lastIdx + 1) % occurrences.length
+    lastOccurrencesRef.current[normalized] = nextIdx
+
+    const targetEl = occurrences[nextIdx] as HTMLElement
+    
+    // Flash highlight
+    occurrences.forEach(el => el.classList.remove("bg-yellow-200", "scale-105"))
+    targetEl.classList.add("bg-yellow-200", "scale-105")
+    setTimeout(() => {
+      targetEl.classList.remove("bg-yellow-200", "scale-105")
+    }, 1500)
+
+    const sidebar = document.getElementById("dh-right-sidebar")
+    if (sidebar && targetEl) {
+      const sidebarRect = sidebar.getBoundingClientRect()
+      const targetRect = targetEl.getBoundingClientRect()
+      const relativeTop = targetRect.top - sidebarRect.top + sidebar.scrollTop
+      sidebar.scrollTo({
+        top: relativeTop - 20,
+        behavior: "smooth"
+      })
+    }
+  }, [])
+
   const rightIdx = hoverIdx ?? focusIdx
   const rightTrack = rightIdx != null ? data.tracks[rightIdx] : null
   const isLive = rightIdx === focusIdx && hoverIdx == null
@@ -230,7 +264,7 @@ function Inner({ data }: { data: DHData }) {
 
       {/* RIGHT: persistent data + FAQ */}
       <aside id="dh-right-sidebar" className="hidden overflow-y-auto border-l bg-white md:block scroll-smooth">
-        <DHData_ track={rightTrack} isLive={isLive} progress={progress} />
+        <DHData_ track={rightTrack} isLive={isLive} progress={progress} onMetricClick={handleMetricClick} />
         <div className="border-t bg-neutral-50">
           <DHFAQ text={data.faq || ""} />
         </div>

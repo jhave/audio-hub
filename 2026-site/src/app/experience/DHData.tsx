@@ -59,10 +59,12 @@ export default function DHData({
   track,
   isLive,
   progress,
+  onMetricClick,
 }: {
   track: DHTrack | null
   isLive: boolean
   progress: number | null
+  onMetricClick: (term: string) => void
 }) {
   if (!track)
     return (
@@ -70,12 +72,48 @@ export default function DHData({
         Play a track, or hover a title, to read its analysis here.
       </div>
     )
-  const chips: string[] = []
-  if (track.key) chips.push(track.key)
-  if (track.tempo != null) chips.push(`${Math.round(track.tempo)} bpm`)
-  if (track.sectionCount != null) chips.push(`${track.sectionCount} sections`)
-  if (track.modulations) chips.push(`${track.modulations} modulation${track.modulations > 1 ? "s" : ""}`)
-  if (track.dropAt != null) chips.push(`drop @ ${Math.round(track.dropAt)}s`)
+
+  const chipsList = []
+  if (track.key) {
+    chipsList.push({
+      key: "key",
+      label: track.key,
+      tooltip: "Estimated key center. Click to scroll to definition.",
+      onClick: () => onMetricClick("key")
+    })
+  }
+  if (track.tempo != null) {
+    chipsList.push({
+      key: "tempo",
+      label: `${Math.round(track.tempo)} bpm`,
+      tooltip: "Estimated tempo in beats per minute. Click to scroll to definition.",
+      onClick: () => onMetricClick("tempo")
+    })
+  }
+  if (track.sectionCount != null) {
+    chipsList.push({
+      key: "sections",
+      label: `${track.sectionCount} sections`,
+      tooltip: "Estimated structural sections inside the track.",
+      onClick: undefined
+    })
+  }
+  if (track.modulations != null) {
+    chipsList.push({
+      key: "modulations",
+      label: `${track.modulations} modulation${track.modulations > 1 ? "s" : ""}`,
+      tooltip: "Count of key modulation events. Click to scroll to definition.",
+      onClick: () => onMetricClick("key")
+    })
+  }
+  if (track.dropAt != null) {
+    chipsList.push({
+      key: "drop",
+      label: `drop @ ${Math.round(track.dropAt)}s`,
+      tooltip: "Estimated drop location.",
+      onClick: undefined
+    })
+  }
 
   return (
     <div className="p-4 text-[12px]">
@@ -89,10 +127,17 @@ export default function DHData({
         {!isLive ? <span className="ml-2 rounded bg-neutral-100 px-1.5 py-0.5 text-neutral-400">previewing</span> : null}
       </div>
 
-      <div className="mb-2 flex flex-wrap gap-1.5">
-        {chips.map((c) => (
-          <span key={c} className="rounded-full border px-2 py-0.5 text-[10px] text-neutral-600">
-            {c}
+      <div className="mb-2.5 flex flex-wrap gap-1.5">
+        {chipsList.map((c) => (
+          <span
+            key={c.key}
+            onClick={c.onClick}
+            title={c.tooltip}
+            className={`rounded-full border px-2 py-0.5 text-[10px] text-neutral-600 select-none ${
+              c.onClick ? "cursor-pointer hover:bg-neutral-50 hover:text-black transition-colors" : ""
+            }`}
+          >
+            {c.label}
           </span>
         ))}
       </div>
@@ -103,7 +148,7 @@ export default function DHData({
       <Meter label="style weight" value={track.styleWeight} />
 
       {track.topTags.length > 0 && (
-        <div className="mb-2 mt-2 flex flex-wrap gap-1">
+        <div className="mb-3.5 mt-2 flex flex-wrap gap-1">
           {track.topTags.map((t) => (
             <span key={t.probe} className="rounded bg-neutral-100 px-1.5 py-0.5 text-[10px] text-neutral-600">
               {t.probe}
@@ -112,17 +157,43 @@ export default function DHData({
         </div>
       )}
 
+      {/* Trajectory Metrics */}
       <div className="mb-2 grid grid-cols-3 gap-2 text-center">
         {(
           [
-            ["journey", track.journey],
-            ["spread", track.spread],
-            ["novelty", track.novelty],
+            ["journey", track.journey, "Total distance traveled through parameter space"],
+            ["spread", track.spread, "Style variety and internal diversity"],
+            ["novelty", track.novelty, "Count of internal scene changes or transitions"],
           ] as const
-        ).map(([k, v]) => (
-          <div key={k} className="rounded bg-neutral-50 py-1.5">
-            <div className="text-[13px] font-medium text-black">{v != null ? v.toFixed(v < 10 ? 1 : 0) : "—"}</div>
-            <div className="text-[9px] uppercase tracking-wide text-neutral-400">{k}</div>
+        ).map(([k, v, desc]) => (
+          <div
+            key={k}
+            onClick={() => onMetricClick(k)}
+            title={`${desc}. Click to scroll to definition.`}
+            className="rounded bg-neutral-50 py-1.5 cursor-pointer hover:bg-neutral-100 transition-colors border"
+          >
+            <div className="text-[13px] font-bold text-black">{v != null ? v.toFixed(v < 10 ? 1 : 0) : "—"}</div>
+            <div className="text-[9px] uppercase tracking-wide text-neutral-400 font-semibold">{k}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Acoustic Rhythm/Melodic Metrics */}
+      <div className="mb-3 grid grid-cols-2 gap-2 text-center">
+        {(
+          [
+            ["bounce", track.bounce, "Low-frequency groove/rhythm bounce"],
+            ["complexity", track.melodicComplexity, "Melodic and harmonic complexity"],
+          ] as const
+        ).map(([k, v, desc]) => (
+          <div
+            key={k}
+            onClick={() => onMetricClick(k)}
+            title={`${desc}. Click to scroll to definition.`}
+            className="rounded bg-neutral-50 py-1.5 cursor-pointer hover:bg-neutral-100 transition-colors border"
+          >
+            <div className="text-[12px] font-bold text-black">{v != null ? v.toFixed(2) : "—"}</div>
+            <div className="text-[8.5px] uppercase tracking-wide text-neutral-400 font-semibold">{k}</div>
           </div>
         ))}
       </div>
