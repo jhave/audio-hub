@@ -31,29 +31,6 @@ function linkify(text: string) {
   )
 }
 
-// rms silhouette (0..127) as tiny bars; progress marks the playhead when live.
-function Silhouette({ rms, progress }: { rms: number[]; progress: number | null }) {
-  if (!rms.length) return null
-  const n = rms.length
-  return (
-    <svg viewBox={`0 0 ${n * 3} 26`} className="mb-2 w-full" style={{ height: 24 }}>
-      {rms.map((v, i) => {
-        const played = progress != null && i / n <= progress
-        const hh = Math.max(1, (v / 127) * 22)
-        return (
-          <rect
-            key={i}
-            x={i * 3}
-            y={(24 - hh) / 2}
-            width={2}
-            height={hh}
-            fill={played ? "#e24b4a" : "#9a988f"}
-          />
-        )
-      })}
-    </svg>
-  )
-}
 
 export default function DHData({
   track,
@@ -166,7 +143,6 @@ export default function DHData({
         ))}
       </div>
 
-      <Silhouette rms={track.rmsSilhouette} progress={isLive ? progress : null} />
 
       <div className="grid grid-cols-2 gap-3 mb-2.5">
         <Meter label="weirdness" value={track.weirdness} />
