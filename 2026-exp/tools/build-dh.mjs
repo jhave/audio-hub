@@ -121,14 +121,24 @@ function rmsSilhouette(trackId, points = 32) {
 
 // ---- top tags ----
 const scaleTag = tagsWrap.scale || 400
+const tagMeans = new Array(probes.length).fill(0)
+for (const t of tagsWrap.tracks) {
+  for (let i = 0; i < probes.length; i++) {
+    tagMeans[i] += t.scores[i]
+  }
+}
+for (let i = 0; i < probes.length; i++) {
+  tagMeans[i] /= tagsWrap.tracks.length
+}
+
 function topTags(trackId, k = 5) {
   const r = tagsById[trackId]
   if (!r) return []
   return r.scores
-    .map((s, i) => [s, i])
+    .map((s, i) => [s - tagMeans[i], i]) // Mean-center for distinctive ranking
     .sort((a, b) => b[0] - a[0])
     .slice(0, k)
-    .map(([s, i]) => ({ probe: probes[i], score: Math.round((s / scaleTag) * 1000) / 1000 }))
+    .map(([diff, i]) => ({ probe: probes[i], score: Math.round((r.scores[i] / scaleTag) * 1000) / 1000 }))
 }
 
 // ---- read essay and faq from root ----
