@@ -25,6 +25,12 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
   const tRef = React.useRef(0)
   const currentPtsRef = React.useRef<{ x: number; y: number }[]>([])
 
+  // Zoom & Pan states
+  const [zoom, setZoom] = React.useState(1.0)
+  const [pan, setPan] = React.useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = React.useState(false)
+  const dragRef = React.useRef({ startX: 0, startY: 0, moved: false })
+
   // neighbors of the active (hover or focus) track, for emphasis
   const activeIdx = hoverIdx ?? focusIdx
   const neighborSet = React.useMemo(() => {
@@ -43,14 +49,14 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
     return () => ro.disconnect()
   }, [])
 
-  // map layout-space [-1,1] to canvas with padding
+  // map layout-space [-1,1] to canvas with padding, zoom and pan
   const project = React.useCallback(
     (x: number, y: number, w: number, h: number) => {
       const pad = 18
-      const s = Math.min(w, h) - pad * 2
-      return [w / 2 + x * (s / 2), h / 2 + y * (s / 2)] as const
+      const s = (Math.min(w, h) - pad * 2) * zoom
+      return [w / 2 + x * (s / 2) + pan.x, h / 2 + y * (s / 2) + pan.y] as const
     },
-    []
+    [zoom, pan]
   )
 
   React.useEffect(() => {
@@ -130,11 +136,11 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
 
   // hit-testing on move/click
   const pick = React.useCallback(
-    (ev: React.MouseEvent) => {
+    (clientX: number, clientY: number) => {
       const canvas = canvasRef.current!
       const r = canvas.getBoundingClientRect()
-      const mx = ev.clientX - r.left
-      const my = ev.clientY - r.top
+      const mx = clientX - r.left
+      const my = clientY - r.top
       let best = -1
       let bestD = 10 * 10
 
@@ -156,21 +162,142 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
     [data, size, project, mapMode]
   )
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    setIsDragging(true)
+    dragRef.current = { startX: e.clientX, startY: e.clientY, moved: false }
+  }
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (isDragging) {
+      const dx = e.clientX - dragRef.current.startX
+      const dy = e.clientY - dragRef.current.startY
+      if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+        dragRef.current.moved = true
+      }
+      setPan(p => ({ x: p.x + dx, y: p.y + dy }))
+      dragRef.current.startX = e.clientX
+      dragRef.current.startY = e.clientY
+      onHover(null)
+    } else {
+      const i = pick(e.clientX, e.clientY)
+      onHover(i >= 0 ? i : null)
+    }
+  }
+
+  const handleMouseUp = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (isDragging) {
+      setIsDragging(false)
+      if (!dragRef.current.moved) {
+        const i = pick(e.clientX, e.clientY)
+        if (i >= 0) onPlay(i)
+      }
+    }
+  }
+
+  const handleMouseLeave = () => {
+    setIsDragging(false)
+    onHover(null)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true)
+      dragRef.current = { startX: e.touches[0].clientX, startY: e.touches[0].clientY, moved: false }
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (isDragging && e.touches.length === 1) {
+      const dx = e.touches[0].clientX - dragRef.current.startX
+      const dy = e.touches[0].clientY - dragRef.current.startY
+      if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+        dragRef.current.moved = true
+      }
+      setPan(p => ({ x: p.x + dx, y: p.y + dy }))
+      dragRef.current.startX = e.touches[0].clientX
+      dragRef.current.startY = e.touches[0].clientY
+      onHover(null)
+    }
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (isDragging) {
+      setIsDragging(false)
+      if (!dragRef.current.moved) {
+        const touch = e.changedTouches[0]
+        if (touch) {
+          const i = pick(touch.clientX, touch.clientY)
+          if (i >= 0) onPlay(i)
+        }
+      }
+    }
+  }
+
+  const handleWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
+    e.preventDefault()
+    const delta = e.deltaY < 0 ? 1.15 : 1 / 1.15
+    const nextZoom = Math.max(0.5, Math.min(zoom * delta, 6.0))
+    setZoom(nextZoom)
+    if (nextZoom === 1.0) {
+      setPan({ x: 0, y: 0 })
+    }
+  }
+
+  const getCursor = () => {
+    if (isDragging) return "grabbing"
+    if (hoverIdx != null) return "pointer"
+    if (zoom > 1.0) return "grab"
+    return "default"
+  }
+
   return (
-    <div ref={wrapRef} className="relative h-full w-full">
+    <div ref={wrapRef} className="relative h-full w-full overflow-hidden select-none">
       <canvas
         ref={canvasRef}
-        style={{ width: size.w, height: size.h, cursor: hoverIdx != null ? "pointer" : "default" }}
-        onMouseMove={(e) => {
-          const i = pick(e)
-          onHover(i >= 0 ? i : null)
-        }}
-        onMouseLeave={() => onHover(null)}
-        onClick={(e) => {
-          const i = pick(e)
-          if (i >= 0) onPlay(i)
-        }}
+        style={{ width: size.w, height: size.h, cursor: getCursor() }}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onWheel={handleWheel}
       />
+
+      {/* Floating Zoom Controls */}
+      <div className="absolute bottom-3 right-3 flex flex-col gap-1 z-10 select-none">
+        <button
+          onClick={() => setZoom(z => Math.min(z * 1.3, 6.0))}
+          className="w-6 h-6 flex items-center justify-center bg-white border border-neutral-200 rounded shadow-sm text-[13px] font-bold text-neutral-700 hover:bg-neutral-50 active:scale-90 transition-all cursor-pointer"
+          title="Zoom In"
+        >
+          +
+        </button>
+        <button
+          onClick={() => {
+            const nextZ = Math.max(zoom / 1.3, 0.5)
+            setZoom(nextZ)
+            if (nextZ === 1.0) setPan({ x: 0, y: 0 })
+          }}
+          className="w-6 h-6 flex items-center justify-center bg-white border border-neutral-200 rounded shadow-sm text-[13px] font-bold text-neutral-700 hover:bg-neutral-50 active:scale-90 transition-all cursor-pointer"
+          title="Zoom Out"
+        >
+          -
+        </button>
+        {(zoom !== 1.0 || pan.x !== 0 || pan.y !== 0) && (
+          <button
+            onClick={() => {
+              setZoom(1.0)
+              setPan({ x: 0, y: 0 })
+            }}
+            className="w-6 h-6 flex items-center justify-center bg-white border border-neutral-200 rounded shadow-sm text-[10px] font-bold text-neutral-400 hover:bg-neutral-50 hover:text-neutral-600 active:scale-90 transition-all cursor-pointer"
+            title="Reset View"
+          >
+            ⟲
+          </button>
+        )}
+      </div>
     </div>
   )
 }

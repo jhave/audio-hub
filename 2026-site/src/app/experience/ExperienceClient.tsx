@@ -9,7 +9,7 @@ import {
   useAudioPlayer,
   useAudioPlayerTime,
 } from "@/components/ui/audio-player"
-import { PauseIcon, PlayIcon, SkipBackIcon, SkipForwardIcon, ShuffleIcon, StarIcon, ListOrderedIcon } from "lucide-react"
+import { PauseIcon, PlayIcon, ArrowLeft, ArrowRight, ShuffleIcon, StarIcon, ListOrderedIcon } from "lucide-react"
 import { loadDH, resolveSrc, type DHData, type DHTrack } from "@/lib/dh"
 import DHMap from "./DHMap"
 import DHData_ from "./DHData"
@@ -162,6 +162,33 @@ function Inner({ data }: { data: DHData }) {
     audio.addEventListener("ended", onEnded)
     return () => audio.removeEventListener("ended", onEnded)
   }, [player.ref, nextIdx, playIdx])
+
+  // Keyboard arrow keys navigation
+  React.useEffect(() => {
+    if (!data) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const activeEl = document.activeElement
+      if (
+        activeEl &&
+        (activeEl.tagName === "INPUT" ||
+          activeEl.tagName === "TEXTAREA" ||
+          activeEl.getAttribute("contenteditable") === "true")
+      ) {
+        return
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault()
+        const i = prevIdx()
+        if (i != null) playIdx(i)
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault()
+        const i = nextIdx()
+        if (i != null) playIdx(i)
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [data, playIdx, prevIdx, nextIdx])
 
   // scroll center list to focal track
   React.useEffect(() => {
@@ -507,11 +534,11 @@ function Dock({
     <div className="fixed bottom-3 left-1/2 z-20 w-[min(680px,92vw)] -translate-x-1/2">
       <div className="rounded-full border bg-white/90 px-4 py-3 shadow-md backdrop-blur">
         <div className="flex items-center gap-3">
-          <button className={btn} onClick={onPrev} aria-label="Previous"><SkipBackIcon className="h-4 w-4" /></button>
+          <button className={btn} onClick={onPrev} aria-label="Previous"><ArrowLeft className="h-4 w-4" /></button>
           <button className={btn} onClick={() => (player.isPlaying ? player.pause() : player.play())} aria-label={player.isPlaying ? "Pause" : "Play"}>
             {player.isPlaying ? <PauseIcon className="h-4 w-4" /> : <PlayIcon className="h-4 w-4" />}
           </button>
-          <button className={btn} onClick={onNext} aria-label="Next"><SkipForwardIcon className="h-4 w-4" /></button>
+          <button className={btn} onClick={onNext} aria-label="Next"><ArrowRight className="h-4 w-4" /></button>
           <button className={`${btn} ${order !== "sequential" ? "bg-neutral-200" : ""} relative`} onClick={cycle} title={orderTitle} aria-label={orderTitle}>
             {orderIcon}
             {order === "random-star" ? <StarIcon className="absolute -right-1 -top-1 h-3 w-3 fill-[#c98500] text-[#c98500]" /> : null}
