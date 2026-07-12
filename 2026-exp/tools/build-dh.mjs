@@ -27,6 +27,8 @@ const favorites = J(path.join(DATA, "favorites.json"))
 const manifest = J(path.join(SITE, "audio/albums.meta.json"))
 const winIndex = J(path.join(V2, "windows-index.json"))
 const curvesBin = fs.readFileSync(path.join(V2, "curves.bin"))
+const lyricsEmb = J(path.join(V2, "lyrics-embeddings.json"))
+const promptsEmb = J(path.join(V2, "prompt-embeddings.json"))
 
 const N = tracks.length
 const byId = (arr) => Object.fromEntries(arr.map((r) => [r.trackId, r]))
@@ -36,6 +38,8 @@ const shapeById = byId(shapes)
 const truthById = byId(truth)
 const tagsById = byId(tagsWrap.tracks)
 const winById = byId(winIndex.tracks)
+const lyrById = byId(lyricsEmb)
+const prById = byId(promptsEmb)
 
 // album index + date from manifest
 const albumOrder = manifest.albums.map((a) => a.id)
@@ -86,6 +90,33 @@ for (const [x, y] of raw) { mnX = Math.min(mnX, x); mxX = Math.max(mxX, x); mnY 
 const cx = (mnX + mxX) / 2, cy = (mnY + mxY) / 2
 const scale = 2 / Math.max(mxX - mnX, mxY - mnY)
 const xy = raw.map(([x, y]) => [Math.round((x - cx) * scale * 1000) / 1000, Math.round((y - cy) * scale * 1000) / 1000])
+
+// ---- UMAP -> 2D on centered text/lyrics vectors (cosine) ----
+const textMat = tracks.map((t) => {
+  const l = lyrById[t.trackId]
+  if (l) return Float64Array.from(l.vec)
+  const p = prById[t.trackId]
+  if (p) return Float64Array.from(p.vec)
+  return new Float64Array(D)
+})
+const textMean = new Float64Array(D)
+for (const v of textMat) for (let k = 0; k < D; k++) textMean[k] += v[k]
+for (let k = 0; k < D; k++) textMean[k] /= N
+for (const v of textMat) {
+  let nrm = 0
+  for (let k = 0; k < D; k++) { v[k] -= textMean[k]; nrm += v[k] * v[k] }
+  nrm = Math.sqrt(nrm) || 1
+  for (let k = 0; k < D; k++) v[k] /= nrm
+}
+
+console.log("running UMAP on 746x512 text/lyrics (centered)...")
+const textUmap = new UMAP({ nComponents: 2, nNeighbors: 15, minDist: 0.25, spread: 1.2 })
+const textRaw = textUmap.fit(textMat.map((v) => Array.from(v)))
+let tmnX = 1e9, tmxX = -1e9, tmnY = 1e9, tmxY = -1e9
+for (const [x, y] of textRaw) { tmnX = Math.min(tmnX, x); tmxX = Math.max(tmxX, x); tmnY = Math.min(tmnY, y); tmxY = Math.max(tmxY, y) }
+const tcx = (tmnX + tmxX) / 2, tcy = (tmnY + tmxY) / 2
+const tscale = 2 / Math.max(tmxX - tmnX, tmxY - tmnY)
+const lXy = textRaw.map(([x, y]) => [Math.round((x - tcx) * tscale * 1000) / 1000, Math.round((y - tcy) * tscale * 1000) / 1000])
 
 // ---- k-NN neighbors (cosine on centered vecs), k=8 ----
 function neighborsOf(i, k = 8) {
@@ -161,6 +192,7 @@ try {
 const out = { version: 1, generatedAt: new Date().toISOString(), trackCount: N, tagScale: scaleTag, essay, faq }
 out.albums = albumOrder.map((id) => ({ id, title: albumMeta[id].title, dateISO: albumMeta[id].dateISO }))
 out.points = tracks.map((t, i) => [xy[i][0], xy[i][1], albumIdx[t.albumId] ?? -1])
+out.lyricPoints = tracks.map((t, i) => [lXy[i][0], lXy[i][1], albumIdx[t.albumId] ?? -1])
 
 out.tracks = tracks.map((t, i) => {
   const d = descById[t.trackId] || {}

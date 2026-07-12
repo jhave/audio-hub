@@ -10,6 +10,7 @@ type Props = {
   played: Set<number>
   onHover: (i: number | null) => void
   onPlay: (i: number) => void
+  mapMode?: "music" | "lyrics"
 }
 
 // Colors: unplayed grey, played gold, playing red pulse, starred ring.
@@ -17,11 +18,12 @@ const GREY = "#7c7a72"
 const GOLD = "#c98500"
 const RED = "#e24b4a"
 
-export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPlay }: Props) {
+export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPlay, mapMode = "music" }: Props) {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
   const wrapRef = React.useRef<HTMLDivElement | null>(null)
   const [size, setSize] = React.useState({ w: 300, h: 300 })
   const tRef = React.useRef(0)
+  const currentPtsRef = React.useRef<{ x: number; y: number }[]>([])
 
   // neighbors of the active (hover or focus) track, for emphasis
   const activeIdx = hoverIdx ?? focusIdx
@@ -60,15 +62,34 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
     canvas.height = size.h * dpr
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     let raf = 0
+
     const draw = () => {
       tRef.current += 0.03
       const { w, h } = size
       ctx.clearRect(0, 0, w, h)
-      const pts = data.points
+
+      const targetPts = mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points
+
+      // Initialize or interpolate current positions
+      if (currentPtsRef.current.length !== targetPts.length) {
+        currentPtsRef.current = targetPts.map(pt => ({ x: pt[0], y: pt[1] }))
+      } else {
+        const lerpRate = 0.12
+        for (let i = 0; i < targetPts.length; i++) {
+          const cur = currentPtsRef.current[i]
+          const tarX = targetPts[i][0]
+          const tarY = targetPts[i][1]
+          cur.x += (tarX - cur.x) * lerpRate
+          cur.y += (tarY - cur.y) * lerpRate
+        }
+      }
+
+      const pts = currentPtsRef.current
+
       // base dots
       for (let i = 0; i < pts.length; i++) {
         if (i === focusIdx) continue
-        const [px, py] = project(pts[i][0], pts[i][1], w, h)
+        const [px, py] = project(pts[i].x, pts[i].y, w, h)
         const isN = neighborSet.has(i)
         const isHover = i === hoverIdx
         ctx.beginPath()
@@ -86,9 +107,10 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
         }
       }
       ctx.globalAlpha = 1
+
       // focal pulsing dot
-      if (focusIdx != null) {
-        const [px, py] = project(pts[focusIdx][0], pts[focusIdx][1], w, h)
+      if (focusIdx != null && pts[focusIdx]) {
+        const [px, py] = project(pts[focusIdx].x, pts[focusIdx].y, w, h)
         const pulse = 6 + Math.sin(tRef.current) * 3
         ctx.beginPath()
         ctx.arc(px, py, pulse + 5, 0, Math.PI * 2)
@@ -101,9 +123,10 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
       }
       raf = requestAnimationFrame(draw)
     }
+
     draw()
     return () => cancelAnimationFrame(raf)
-  }, [data, size, focusIdx, hoverIdx, played, neighborSet, project])
+  }, [data, size, focusIdx, hoverIdx, played, neighborSet, project, mapMode])
 
   // hit-testing on move/click
   const pick = React.useCallback(
@@ -114,8 +137,14 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
       const my = ev.clientY - r.top
       let best = -1
       let bestD = 10 * 10
-      for (let i = 0; i < data.points.length; i++) {
-        const [px, py] = project(data.points[i][0], data.points[i][1], size.w, size.h)
+
+      const pts = currentPtsRef.current.length > 0 
+        ? currentPtsRef.current 
+        : (mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points).map(pt => ({ x: pt[0], y: pt[1] }))
+
+      for (let i = 0; i < pts.length; i++) {
+        const cur = pts[i]
+        const [px, py] = project(cur.x, cur.y, size.w, size.h)
         const d = (px - mx) ** 2 + (py - my) ** 2
         if (d < bestD) {
           bestD = d
@@ -124,7 +153,7 @@ export default function DHMap({ data, focusIdx, hoverIdx, played, onHover, onPla
       }
       return best
     },
-    [data, size, project]
+    [data, size, project, mapMode]
   )
 
   return (

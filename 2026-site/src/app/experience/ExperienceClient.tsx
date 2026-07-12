@@ -61,6 +61,7 @@ function Inner({ data }: { data: DHData }) {
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
+  const [mapMode, setMapMode] = React.useState<"music" | "lyrics">("music")
 
 
   // restore played set
@@ -262,7 +263,7 @@ function Inner({ data }: { data: DHData }) {
     <div
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="flex flex-col h-screen overflow-hidden md:grid md:grid-cols-[300px_minmax(0,1fr)_300px]"
+      className="flex flex-col h-screen overflow-hidden md:grid md:grid-cols-[390px_minmax(0,1fr)_390px]"
     >
       {/* Mobile Tab Bar Header */}
       <div className="flex border-b bg-white text-[12px] md:hidden select-none flex-shrink-0">
@@ -291,9 +292,29 @@ function Inner({ data }: { data: DHData }) {
           mobileTab === "map-essay" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
         } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden`}
       >
-        <div className="flex items-center justify-between px-3 py-2 text-[11px] text-neutral-500 border-b flex-shrink-0">
-          <span>audio topology</span>
-          <span>{played.size} / {data.tracks.length} heard</span>
+        <div className="flex items-center justify-between px-3 py-1.5 text-[11.5px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none">
+          <div className="flex items-center gap-1.5">
+            <span className="font-semibold text-neutral-700">topology:</span>
+            <div className="flex bg-neutral-200/60 rounded p-0.5 text-[10px] font-bold">
+              <button
+                onClick={() => setMapMode("music")}
+                className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                  mapMode === "music" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                }`}
+              >
+                Music
+              </button>
+              <button
+                onClick={() => setMapMode("lyrics")}
+                className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                  mapMode === "lyrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                }`}
+              >
+                Lyrics
+              </button>
+            </div>
+          </div>
+          <span className="font-mono text-[10.5px]">{played.size} / {data.tracks.length} heard</span>
         </div>
         <div className="h-[270px] w-full flex-shrink-0 relative border-b bg-neutral-50">
           <DHMap
@@ -303,6 +324,7 @@ function Inner({ data }: { data: DHData }) {
             played={played}
             onHover={setHoverIdx}
             onPlay={playIdx}
+            mapMode={mapMode}
           />
         </div>
         <div className="flex-1 min-h-0 bg-white overflow-hidden">
