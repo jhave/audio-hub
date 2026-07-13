@@ -156,8 +156,12 @@ def process_track(track):
         audio_path
     ]
     
-    # Run silently
-    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # Run and capture errors
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    if res.returncode != 0:
+        print(f"  Demucs separation failed for {track_id} (code {res.returncode}):")
+        print(f"  Stderr: {res.stderr}")
+        print(f"  Stdout: {res.stdout}")
     
     vocals_path = os.path.join(track_dir, "vocals.mp3")
     drums_path = os.path.join(track_dir, "drums.mp3")
