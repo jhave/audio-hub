@@ -45,13 +45,12 @@ def get_track_audio_path(track):
 
 def analyze_vocal_stem(vocal_path):
     try:
-        y, sr = librosa.load(vocal_path, sr=None)
-        duration = len(y) / sr
+        # Load directly at 16000Hz to optimize memory and CPU
+        y_16k, sr = librosa.load(vocal_path, sr=16000)
+        duration = len(y_16k) / sr
         if duration < 5:
             return 0.0, 0.0, 0.0 # too short
             
-        # Resample to 16kHz for Crepe using librosa
-        y_16k = librosa.resample(y, orig_sr=sr, target_sr=16000)
         audio_16k = torch.from_numpy(y_16k).unsqueeze(0)
         
         # Calculate vocal density using RMS threshold
