@@ -525,7 +525,7 @@ function Inner({ data }: { data: DHData }) {
         } md:block min-h-0 overflow-y-auto px-4 pb-28 pt-4 transition-all duration-500 ease-in-out overflow-hidden`}
       >
         <header className="mb-4">
-          <h1 className="text-xl font-semibold">171 days — DH archive view</h1>
+          <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — DH archive view</h1>
           <p className="mt-1 text-[12px] text-neutral-500">
             Every track sits in the machine-heard topology (left) with its analysis (right).
             Hover a title to preview; play to travel.
@@ -613,7 +613,7 @@ function Inner({ data }: { data: DHData }) {
         <OnboardingTutorial
           step={tutorialStep}
           onNext={() => {
-            if (tutorialStep < 2) setTutorialStep(tutorialStep + 1)
+            if (tutorialStep < 4) setTutorialStep(tutorialStep + 1)
             else setTutorialStep(null)
           }}
           onPrev={() => {
@@ -799,9 +799,16 @@ function OnboardingTutorial({
   const steps = [
     {
       title: "1. Audio Topology Map",
-      desc: "This map layouts the 746 tracks of the archive. Click on any dot to play that track and view its analysis. You can change the layout configuration of the map at any time by clicking the projection buttons at the top (Music, Lyrics, Metrics, Groove, or Intent) or cycling with the < and > arrows.",
+      desc: "This map layouts the 746 tracks of the archive. You can morph the coordinates by clicking the projection buttons at the top (Music, Lyrics, Metrics, Groove, Intent, Texture, Narrative) or cycling with the < and > arrows.",
       position: "left-6 md:left-[35vw] top-[30vh]",
       highlightClass: "fixed left-0 top-0 bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 top-0 h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+    {
+      title: "1.1 Deep Map Exploration",
+      desc: "Zoom deep into the map (using your mouse scroll wheel or trackpad pinch) to see individual dots, and drag to pan. Click any dot directly to play it. Dotted red lines show similarity trajectories, tracing a path from the active song sequentially through its 5 nearest neighbors in this layout.",
+      position: "left-6 md:left-[35vw] top-[35vh]",
+      highlightClass: "fixed left-0 top-[35px] h-[270px] w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
       mobileHighlightClass: "fixed left-0 right-0 top-0 h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
@@ -812,8 +819,15 @@ function OnboardingTutorial({
       mobileHighlightClass: "fixed left-0 right-0 bottom-[10vh] top-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
-      title: "3. Machine Analysis & Glossary",
-      desc: "The right sidebar displays acoustic parameters (weirdness, groove, complexity, and trajectory). Hover any metric to see its description, click it to jump straight to the glossary definition, or click the track title to center it in the playlist.",
+      title: "3. The Essay Zone",
+      desc: "Scroll this bottom-left panel to read 'A few tiny thoughts about the implications of AI on music'—a critical essay discussing subjective taste, automated curation, and the limitations of metadata representation.",
+      position: "left-6 md:left-[35vw] top-[45vh]",
+      highlightClass: "fixed left-0 top-[305px] bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 bottom-0 h-[30vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+    {
+      title: "4. Analysis, FAQ & Glossary",
+      desc: "The right sidebar displays acoustic parameters (weirdness, complexity, trajectory, and spread). Hover any metric to see its description, click it to jump straight to the glossary definition, or click the track title to center it in the playlist.",
       position: "right-6 md:right-[35vw] top-[30vh]",
       highlightClass: "fixed right-0 top-0 bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
       mobileHighlightClass: "fixed left-0 right-0 top-0 bottom-0 border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
@@ -826,7 +840,7 @@ function OnboardingTutorial({
   return (
     <div className="fixed inset-0 z-50 overflow-hidden select-none pointer-events-auto">
       {/* Dark overlay backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" onClick={onSkip} />
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[0.5px]" onClick={onSkip} />
 
       {/* Focus Highlight Frame (Desktop) */}
       <div className={current.highlightClass} />
