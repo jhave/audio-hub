@@ -10,7 +10,7 @@ type Props = {
   played: Set<number>
   onHover: (i: number | null) => void
   onPlay: (i: number) => void
-  mapMode?: "music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative"
+  mapMode?: "music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative" | "tempo"
   hideInstrumentals?: boolean
   activeTag?: string | null
   clickedTag?: string | null
@@ -282,6 +282,15 @@ export default function DHMap({
           const jitterX = Math.sin(t.i * 45.67) * 0.022
           const jitterY = Math.cos(t.i * 89.01) * 0.022
           return [journeyRawX + jitterX, spreadRawY + jitterY, 0] as [number, number, number]
+        })
+      } else if (mapMode === "tempo") {
+        basePts = data.tracks.map((t) => {
+          const tempo = t.tempo != null ? Math.max(60, Math.min(200, t.tempo)) : 100
+          const tempoRawX = ((tempo - 60) / (200 - 60)) * 1.7 - 0.85
+          
+          // Plot directly on X with Y-jitter to make it a legible debugging cloud
+          const jitterY = Math.sin(t.i * 12.34) * 0.25
+          return [tempoRawX, jitterY, 0] as [number, number, number]
         })
       } else {
         basePts = data.points

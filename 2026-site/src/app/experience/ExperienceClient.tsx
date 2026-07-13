@@ -74,7 +74,7 @@ function Inner({ data }: { data: DHData }) {
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
-  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative">("music")
+  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative" | "tempo">("music")
   const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
   const [showPaths, setShowPaths] = React.useState(true)
   const [hoveredTag, setHoveredTag] = React.useState<string | null>(null)
@@ -83,8 +83,8 @@ function Inner({ data }: { data: DHData }) {
   const [isMapExpanded, setIsMapExpanded] = React.useState(false)
   const activeTag = hoveredTag || clickedTag
  
-  const modes: ("music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative")[] = [
-    "music", "lyrics", "metrics", "aesthetic", "rhythm", "groove", "intent", "texture", "narrative"
+  const modes: ("music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative" | "tempo")[] = [
+    "music", "lyrics", "metrics", "aesthetic", "rhythm", "groove", "intent", "texture", "narrative", "tempo"
   ]
   const handlePrevMode = () => {
     const idx = modes.indexOf(mapMode)
@@ -473,6 +473,15 @@ function Inner({ data }: { data: DHData }) {
                   >
                     Narrative
                   </button>
+                  <button
+                    onClick={() => setMapMode("tempo")}
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "tempo" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Estimated Tempo timeline"
+                  >
+                    Tempo
+                  </button>
                 </div>
                 <button 
                   onClick={handleNextMode} 
@@ -523,6 +532,7 @@ function Inner({ data }: { data: DHData }) {
               {mapMode === "intent" && "Intent Space"}
               {mapMode === "texture" && "Texture Space"}
               {mapMode === "narrative" && "Narrative Space"}
+              {mapMode === "tempo" && "Tempo Line"}
             </span>
             <span className="text-[9.5px] text-neutral-400 font-medium">
               {mapMode === "music" && "mapped by genre & sound similarity"}
@@ -534,6 +544,7 @@ function Inner({ data }: { data: DHData }) {
               {mapMode === "intent" && "Weirdness (X: low left → high right) vs. Style Weight (Y: low bottom → high top)"}
               {mapMode === "texture" && "Bounce (X: low left → high right) vs. Complexity (Y: low bottom → high top)"}
               {mapMode === "narrative" && "Journey (X: short left → long right) vs. Spread (Y: narrow bottom → wide top)"}
+              {mapMode === "tempo" && "Tempo (X: slow left → fast right) vs. Jitter (Y)"}
             </span>
             <span className="text-[9.5px] text-neutral-500 italic font-medium mt-0.5 border-t border-neutral-200/40 pt-0.5">
               {mapMode === "music" && "Accuracy: Highly accurate sonic texture and instrumentation classification."}
@@ -541,10 +552,11 @@ function Inner({ data }: { data: DHData }) {
               {mapMode === "metrics" && "Accuracy: Very accurate mathematical clustering of all 13 features."}
               {mapMode === "aesthetic" && "Accuracy: Highly cohesive composition style clustering excluding outliers."}
               {mapMode === "rhythm" && "Accuracy: Extremely accurate mapping of rhythmic density vs. complexity."}
-              {mapMode === "groove" && "Accuracy: Perfect tempo/key extraction. Groups relative majors/minors."}
+              {mapMode === "groove" && "Accuracy: Contested. Subject to common double/half octave errors in beat tracking."}
               {mapMode === "intent" && "Accuracy: Perfect. Direct plotting of Suno's internal parameters."}
               {mapMode === "texture" && "Accuracy: Highly accurate contrast of transients vs. melodic layers."}
               {mapMode === "narrative" && "Accuracy: Limited use. Short songs often get seen as small journeys."}
+              {mapMode === "tempo" && "Accuracy: Contested. Plots raw estimated tempo; exposes algorithm double/half octave errors."}
             </span>
           </div>
           <DHMap

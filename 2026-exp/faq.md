@@ -154,6 +154,11 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 * **Relation Exposed**: Contrasts the track's narrative progression against stylistic variety.
 * **Accuracy**: Limited use. Short songs often get seen as small journeys.
 
+### Tempo Line
+* **Description**: Plots the raw estimated tempo linear position on the X-axis (lowest to highest, 60 to 200 BPM) with a small vertical jitter on the Y-axis to separate the points.
+* **Relation Exposed**: Direct, linear speed layout for debugging and diagnosing tempo extraction reliability.
+* **Accuracy**: Contested. Plots raw estimated tempo; exposes algorithm double/half octave errors.
+
 </details>
 
 ---
