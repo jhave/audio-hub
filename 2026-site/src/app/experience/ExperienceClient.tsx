@@ -476,7 +476,9 @@ function Inner({ data }: { data: DHData }) {
             </div>
           </div>
         </div>
-        <div className="h-[270px] w-full flex-shrink-0 relative border-b bg-neutral-50">
+        <div className={`w-full flex-shrink-0 relative border-b bg-neutral-50 transition-all duration-500 ease-in-out ${
+          isMapExpanded ? "h-[66.6vh]" : "h-[270px]"
+        }`}>
           {/* Floating HUD Label inside map container */}
           <div className="absolute top-2.5 left-3 z-10 pointer-events-none select-none bg-white/75 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-neutral-200/40 shadow-sm leading-tight flex flex-col">
             <span className="text-[14px] font-bold text-neutral-800 tracking-wide">
