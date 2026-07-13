@@ -45,8 +45,8 @@ def get_track_audio_path(track):
 
 def analyze_vocal_stem(vocal_path):
     try:
-        # Load native and resample using pure numpy to bypass all soxr memory bugs
-        y, sr = librosa.load(vocal_path, sr=None)
+        # Load native (up to 5 minutes) and resample using pure numpy to bypass all soxr memory bugs
+        y, sr = librosa.load(vocal_path, sr=None, duration=300)
         duration = len(y) / sr
         if duration < 5:
             return 0.0, 0.0, 0.0 # too short
@@ -117,9 +117,13 @@ def analyze_vocal_stem(vocal_path):
 
 def analyze_drum_stem(drum_path):
     try:
-        # Load drum stem for madmom beat tracking
+        # Load drum stem natively at 44100Hz (up to 5 minutes) to keep CPU beat tracking fast
+        y, sr = librosa.load(drum_path, sr=44100, duration=300)
+        from madmom.audio.signal import Signal
+        sig = Signal(y, sample_rate=44100)
+        
         proc = madmom.features.beats.RNNBeatProcessor()
-        act = proc(drum_path)
+        act = proc(sig)
         dbn = madmom.features.beats.DBNBeatTrackingProcessor(fps=100)
         beats = dbn(act)
         
