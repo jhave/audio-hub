@@ -82,7 +82,8 @@ def analyze_vocal_stem(vocal_path):
             fmax=600,
             device=DEVICE,
             decoder=torchcrepe.decode.viterbi,
-            batch_size=1024
+            batch_size=1024,
+            return_periodicity=True
         )
         f0 = f0.cpu().numpy()
         pd = pd.cpu().numpy()
