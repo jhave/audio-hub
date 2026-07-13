@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { ChevronRight, ChevronDown, ChevronUp, Copy, Check } from "lucide-react"
 import type { DHTrack } from "@/lib/dh"
 
 function Meter({
@@ -80,6 +81,12 @@ export default function DHData({
   onTagClick?: (tag: string | null) => void
   hoverIdx?: number | null
 }) {
+  const [promptOpen, setPromptOpen] = React.useState(false)
+  const [copied, setCopied] = React.useState(false)
+
+  React.useEffect(() => {
+    setPromptOpen(false)
+  }, [track?.trackId, hoverIdx])
 
   if (!track)
     return (
@@ -290,11 +297,43 @@ export default function DHData({
 
       {/* Dynamic Prompt Roll-over Preview */}
       {hoverIdx !== null && track.prompt && (
-        <div className="mt-3.5 border-t pt-3.5 text-left">
-          <div className="text-[10px] font-bold text-neutral-400 tracking-wider uppercase mb-1.5 select-none">PROMPT:</div>
-          <div className="text-[13px] italic leading-relaxed whitespace-pre-wrap select-text font-serif bg-neutral-50 p-2.5 rounded border border-neutral-100 text-neutral-700">
-            {linkify(track.prompt)}
+        <div className="mt-3.5 border-t pt-3 flex flex-col text-left">
+          <div 
+            onClick={() => setPromptOpen(!promptOpen)}
+            className="flex items-center justify-between text-[10px] font-bold text-neutral-400 tracking-wider uppercase mb-1.5 cursor-pointer hover:text-neutral-600 select-none"
+          >
+            <div className="flex items-center gap-1">
+              {promptOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+              <span>PROMPT:</span>
+            </div>
+            {promptOpen && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={async (e) => {
+                    e.stopPropagation()
+                    if (!track.prompt) return
+                    try {
+                      await navigator.clipboard.writeText(track.prompt)
+                      setCopied(true)
+                      setTimeout(() => setCopied(false), 2000)
+                    } catch (err) {
+                      console.error("Failed to copy prompt:", err)
+                    }
+                  }}
+                  title="Copy prompt to clipboard"
+                  className="p-1 hover:bg-neutral-100 rounded text-neutral-400 hover:text-neutral-600 transition-colors"
+                >
+                  {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+                <ChevronUp className="w-3.5 h-3.5 text-neutral-400" />
+              </div>
+            )}
           </div>
+          {promptOpen && (
+            <div className="text-[13px] italic leading-relaxed whitespace-pre-wrap select-text font-serif bg-neutral-50 p-2.5 rounded border border-neutral-100 text-neutral-700">
+              {linkify(track.prompt)}
+            </div>
+          )}
         </div>
       )}
 
