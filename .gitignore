@@ -50,3 +50,7 @@ next-env.d.ts
 2026-exp/.audio-work/
 2026-exp/.audio-work/*
 
+
+# python bytecode (Phase C deep-audio tools)
+__pycache__/
+*.pyc
