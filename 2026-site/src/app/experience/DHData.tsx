@@ -251,12 +251,11 @@ export default function DHData({
       )}
 
       {/* Trajectory Metrics */}
-      <div className="mb-2 grid grid-cols-3 gap-2 text-center select-none">
+      <div className="mb-2 grid grid-cols-2 gap-2 text-center select-none">
         {(
           [
             ["journey", track.journey, "Total distance traveled through parameter space", "1–15"],
             ["spread", track.spread, "Style variety and internal diversity", "0.1–3.0"],
-            ["shifts", track.novelty, "Count of internal scene changes or transitions", "0–8"],
           ] as const
         ).map(([k, v, desc, range]) => (
           <div
@@ -266,7 +265,7 @@ export default function DHData({
             className="rounded bg-neutral-50 py-1 cursor-pointer hover:bg-neutral-100 transition-colors border"
           >
             <div className="text-[13px] font-bold text-black leading-tight">
-              {v != null ? (k === "shifts" ? v.toFixed(0) : v.toFixed(v < 10 ? 1 : 0)) : "—"}
+              {v != null ? v.toFixed(v < 10 ? 1 : 0) : "—"}
             </div>
             <div className="text-[9px] uppercase tracking-wide text-neutral-400 font-bold">{k}</div>
             <div className="text-[7.5px] text-neutral-400 font-mono mt-0.5">range: {range}</div>

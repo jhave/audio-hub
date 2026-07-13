@@ -116,15 +116,6 @@ The **style variety** within a track. Calculated as the average Euclidean distan
 ### JOURNEY
 The **total distance traveled** by a track through parameter space. Calculated as the sum of consecutive window-to-window distances. A long journey indicates a progressive, evolving structure (like a multi-part progressive rock or electronic piece), whereas a short journey indicates a static or repetitive structure (like a minimal ambient loop).
 
-### SHIFTS (formerly Novelty)
-The count of **internal scene changes** or sudden transitions. 
-
-> [!NOTE]
-> **Why we renamed this from "Novelty" to "Shifts":**
-> In music information retrieval (MIR), the "Novelty Curve" is a technical term for frame-to-frame distance peaks. However, naming this metric "Novelty" in a user-facing context is misleading. A long, conventional track that repeatedly switches between a cliched verse and chorus would score a high "Novelty Count", whereas a truly unique, continuous, and avant-garde drone piece would score a `0`. Renaming this to **Shifts** accurately describes its real role: counting discrete structural section changes, rather than indicating the aesthetic originality (or "novelty") of the music, which would instead require global outlier modeling.
-
-Calculated from peaks in the consecutive-window distance curve that exceed the track's average transition distance by more than two standard deviations ($threshold = \mu + 2.0\sigma$). Displayed as a discrete integer representing distinct structural discontinuities.
-
 ### TEMPO
 The **speed** of the track in beats per minute (BPM). Estimated globally using spectral autocorrelation of the onset strength envelope. Because generative music often contains drumless intros, complex syncopations, or shifting time signatures, global auto-correlation can occasionally lock onto half-time, double-time, or arpeggiated patterns. To capture the granular dynamics of tempo, we also compute:
 * **Tempo Drift**: The standard deviation of local tempos across the track's 10-second windows, capturing overall speed variability.

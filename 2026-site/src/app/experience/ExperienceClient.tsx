@@ -254,41 +254,19 @@ function Inner({ data }: { data: DHData }) {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" })
   }, [focusIdx])
 
-  const lastOccurrencesRef = React.useRef<{ [key: string]: number }>({})
-  const timeoutRefs = React.useRef<{ [key: string]: NodeJS.Timeout }>({})
-
   const handleMetricClick = React.useCallback((term: string) => {
     const normalized = term.toLowerCase().replace(/[^a-z0-9]+/g, "-")
-    const occurrences = Array.from(
-      document.querySelectorAll(`#faq-${normalized}, .faq-word-occ[data-word="${normalized}"]`)
-    )
-    if (occurrences.length === 0) return
+    const targetEl = document.getElementById(`faq-${normalized}`)
+    if (!targetEl) return
 
-    // Clear existing reset timeout for this term
-    if (timeoutRefs.current[normalized]) {
-      clearTimeout(timeoutRefs.current[normalized])
-    }
-
-    const lastIdx = lastOccurrencesRef.current[normalized] ?? -1
-    const nextIdx = (lastIdx + 1) % occurrences.length
-    lastOccurrencesRef.current[normalized] = nextIdx
-
-    // Set 30 seconds timeout to reset back to -1 (the title/start)
-    timeoutRefs.current[normalized] = setTimeout(() => {
-      lastOccurrencesRef.current[normalized] = -1
-    }, 30000)
-
-    const targetEl = occurrences[nextIdx] as HTMLElement
-    
     // Flash highlight
-    occurrences.forEach(el => el.classList.remove("bg-yellow-200", "scale-105"))
     targetEl.classList.add("bg-yellow-200", "scale-105")
     setTimeout(() => {
       targetEl.classList.remove("bg-yellow-200", "scale-105")
     }, 1500)
 
     const container = document.getElementById("dh-faq-container")
-    if (container && targetEl) {
+    if (container) {
       const containerRect = container.getBoundingClientRect()
       const targetRect = targetEl.getBoundingClientRect()
       const relativeTop = targetRect.top - containerRect.top + container.scrollTop
