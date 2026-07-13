@@ -45,16 +45,14 @@ def get_track_audio_path(track):
 
 def analyze_vocal_stem(vocal_path):
     try:
-        audio, sr = torchaudio.load(vocal_path)
-        if audio.shape[0] > 1:
-            audio = audio.mean(dim=0, keepdim=True)
-            
-        duration = audio.shape[1] / sr
+        y, sr = librosa.load(vocal_path, sr=None)
+        duration = len(y) / sr
         if duration < 5:
             return 0.0, 0.0, 0.0 # too short
             
-        # Resample to 16kHz for Crepe
-        audio_16k = torchaudio.functional.resample(audio, sr, 16000)
+        # Resample to 16kHz for Crepe using librosa
+        y_16k = librosa.resample(y, orig_sr=sr, target_sr=16000)
+        audio_16k = torch.from_numpy(y_16k).unsqueeze(0)
         
         # Calculate vocal density using RMS threshold
         frame_length = int(0.02 * 16000) # 20ms frames
