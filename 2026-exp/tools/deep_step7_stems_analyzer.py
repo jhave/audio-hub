@@ -144,7 +144,8 @@ def process_track(track):
         return None
         
     track_id = track["trackId"]
-    track_dir = os.path.join(TEMP_STEMS_DIR, "htdemucs", track_id)
+    file_base, _ = os.path.splitext(os.path.basename(audio_path))
+    track_dir = os.path.join(TEMP_STEMS_DIR, "htdemucs", file_base)
     
     # 1. Run Demucs
     cmd = [
