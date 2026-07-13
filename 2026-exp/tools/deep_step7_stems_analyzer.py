@@ -45,14 +45,20 @@ def get_track_audio_path(track):
 
 def analyze_vocal_stem(vocal_path):
     try:
-        # Load native and resample using PyTorch to bypass soxr bugs
+        # Load native and resample using pure numpy to bypass all soxr memory bugs
         y, sr = librosa.load(vocal_path, sr=None)
         duration = len(y) / sr
         if duration < 5:
             return 0.0, 0.0, 0.0 # too short
             
-        audio = torch.from_numpy(y).unsqueeze(0)
-        audio_16k = torchaudio.functional.resample(audio, sr, 16000)
+        num_samples_16k = int(len(y) * 16000 / sr)
+        y_16k = np.interp(
+            np.linspace(0, len(y) - 1, num_samples_16k),
+            np.arange(len(y)),
+            y
+        ).astype(np.float32)
+        
+        audio_16k = torch.from_numpy(y_16k).unsqueeze(0)
         
         # Calculate vocal density using RMS threshold
         frame_length = int(0.02 * 16000) # 20ms frames
