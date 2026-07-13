@@ -74,7 +74,7 @@ function Inner({ data }: { data: DHData }) {
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
-  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "groove" | "intent">("music")
+  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "groove" | "intent" | "texture" | "narrative">("music")
   const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
   const [showPaths, setShowPaths] = React.useState(true)
   const [hoveredTag, setHoveredTag] = React.useState<string | null>(null)
@@ -82,8 +82,8 @@ function Inner({ data }: { data: DHData }) {
   const [tutorialStep, setTutorialStep] = React.useState<number | null>(null)
   const [isMapExpanded, setIsMapExpanded] = React.useState(false)
   const activeTag = hoveredTag || clickedTag
-
-  const modes: ("music" | "lyrics" | "metrics" | "groove" | "intent")[] = ["music", "lyrics", "metrics", "groove", "intent"]
+ 
+  const modes: ("music" | "lyrics" | "metrics" | "groove" | "intent" | "texture" | "narrative")[] = ["music", "lyrics", "metrics", "groove", "intent", "texture", "narrative"]
   const handlePrevMode = () => {
     const idx = modes.indexOf(mapMode)
     const nextIdx = (idx - 1 + modes.length) % modes.length
@@ -377,10 +377,10 @@ function Inner({ data }: { data: DHData }) {
                 >
                   &lt;
                 </button>
-                <div className="flex bg-neutral-200/60 rounded p-0.5 text-[10px] font-bold">
+                <div className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
                   <button
                     onClick={() => setMapMode("music")}
-                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
                       mapMode === "music" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
                     }`}
                     title="Acoustic Texture Similarity"
@@ -389,7 +389,7 @@ function Inner({ data }: { data: DHData }) {
                   </button>
                   <button
                     onClick={() => setMapMode("lyrics")}
-                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
                       mapMode === "lyrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
                     }`}
                     title="Semantic Lyric Similarity"
@@ -398,16 +398,16 @@ function Inner({ data }: { data: DHData }) {
                   </button>
                   <button
                     onClick={() => setMapMode("metrics")}
-                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
                       mapMode === "metrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
                     }`}
-                    title="Structural Metrics Similarity"
+                    title="Structural Metrics UMAP"
                   >
                     Metrics
                   </button>
                   <button
                     onClick={() => setMapMode("groove")}
-                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
                       mapMode === "groove" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
                     }`}
                     title="Tempo vs. Circle of Fifths key mapping"
@@ -416,12 +416,30 @@ function Inner({ data }: { data: DHData }) {
                   </button>
                   <button
                     onClick={() => setMapMode("intent")}
-                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
                       mapMode === "intent" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
                     }`}
-                    title="Creator Weirdness vs. Style Weight mapping"
+                    title="Weirdness vs. Style Weight mapping"
                   >
                     Intent
+                  </button>
+                  <button
+                    onClick={() => setMapMode("texture")}
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "texture" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Bounce vs. Melodic Complexity mapping"
+                  >
+                    Texture
+                  </button>
+                  <button
+                    onClick={() => setMapMode("narrative")}
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "narrative" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Journey vs. Style Spread mapping"
+                  >
+                    Narrative
                   </button>
                 </div>
                 <button 
@@ -467,13 +485,17 @@ function Inner({ data }: { data: DHData }) {
               {mapMode === "metrics" && "Structural UMAP"}
               {mapMode === "groove" && "Groove Grid"}
               {mapMode === "intent" && "Intent Space"}
+              {mapMode === "texture" && "Texture Space"}
+              {mapMode === "narrative" && "Narrative Space"}
             </span>
             <span className="text-[9.5px] text-neutral-400 font-medium">
               {mapMode === "music" && "mapped by genre & sound similarity"}
               {mapMode === "lyrics" && "mapped by lyrics & prompt concepts"}
               {mapMode === "metrics" && "mapped by 13 musicological metrics"}
-              {mapMode === "groove" && "Tempo (X) vs. Circle of Fifths key (Y)"}
-              {mapMode === "intent" && "Weirdness (X) vs. Style Weight (Y)"}
+              {mapMode === "groove" && "Tempo (X: slow left → fast right) vs. Key (Y: Circle of Fifths)"}
+              {mapMode === "intent" && "Weirdness (X: low left → high right) vs. Style Weight (Y: low bottom → high top)"}
+              {mapMode === "texture" && "Bounce (X: low left → high right) vs. Complexity (Y: low bottom → high top)"}
+              {mapMode === "narrative" && "Journey (X: short left → long right) vs. Spread (Y: narrow bottom → wide top)"}
             </span>
           </div>
           <DHMap

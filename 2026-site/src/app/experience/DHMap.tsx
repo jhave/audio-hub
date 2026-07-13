@@ -10,7 +10,7 @@ type Props = {
   played: Set<number>
   onHover: (i: number | null) => void
   onPlay: (i: number) => void
-  mapMode?: "music" | "lyrics" | "metrics" | "groove" | "intent"
+  mapMode?: "music" | "lyrics" | "metrics" | "groove" | "intent" | "texture" | "narrative"
   hideInstrumentals?: boolean
   activeTag?: string | null
   clickedTag?: string | null
@@ -234,18 +234,50 @@ export default function DHMap({
       } else if (mapMode === "groove") {
         basePts = data.tracks.map((t) => {
           const tempo = t.tempo != null ? Math.max(60, Math.min(200, t.tempo)) : 100
-          const tempoX = ((tempo - 60) / (200 - 60)) * 1.7 - 0.85
+          const tempoRawX = ((tempo - 60) / (200 - 60)) * 1.7 - 0.85
           const hasMinor = t.key ? t.key.toLowerCase().includes("minor") : false
           const minorOffset = hasMinor ? 0.25 : -0.25
           const circleVal = getKeyCircleIndex(t.key) + minorOffset
-          const keyY = ((circleVal - (-0.5)) / (11.5 - (-0.5))) * 1.7 - 0.85
-          return [tempoX, keyY, 0] as [number, number, number]
+          const keyRawY = ((circleVal - (-0.5)) / (11.5 - (-0.5))) * 1.7 - 0.85
+          
+          // Deterministic jitter to prevent coordinate overlapping
+          const jitterX = Math.sin(t.i * 12.34) * 0.022
+          const jitterY = Math.cos(t.i * 56.78) * 0.022
+          return [tempoRawX + jitterX, keyRawY + jitterY, 0] as [number, number, number]
         })
       } else if (mapMode === "intent") {
         basePts = data.tracks.map((t) => {
-          const weirdX = (t.weirdness ?? 0.0) * 1.7 - 0.85
-          const styleY = (t.styleWeight ?? 0.0) * 1.7 - 0.85
-          return [weirdX, styleY, 0] as [number, number, number]
+          const weirdRawX = (t.weirdness ?? 0.0) * 1.7 - 0.85
+          const styleRawY = (t.styleWeight ?? 0.0) * 1.7 - 0.85
+          
+          // Deterministic jitter to prevent coordinate overlapping
+          const jitterX = Math.sin(t.i * 23.45) * 0.035
+          const jitterY = Math.cos(t.i * 67.89) * 0.035
+          return [weirdRawX + jitterX, styleRawY + jitterY, 0] as [number, number, number]
+        })
+      } else if (mapMode === "texture") {
+        basePts = data.tracks.map((t) => {
+          const bounce = t.bounce != null ? Math.max(0.05, Math.min(0.6, t.bounce)) : 0.3
+          const bounceRawX = ((bounce - 0.05) / (0.6 - 0.05)) * 1.7 - 0.85
+          const comp = t.melodicComplexity != null ? Math.max(0.05, Math.min(0.7, t.melodicComplexity)) : 0.3
+          const compRawY = ((comp - 0.05) / (0.7 - 0.05)) * 1.7 - 0.85
+          
+          // Deterministic jitter to prevent coordinate overlapping
+          const jitterX = Math.sin(t.i * 34.56) * 0.022
+          const jitterY = Math.cos(t.i * 78.90) * 0.022
+          return [bounceRawX + jitterX, compRawY + jitterY, 0] as [number, number, number]
+        })
+      } else if (mapMode === "narrative") {
+        basePts = data.tracks.map((t) => {
+          const journey = t.journey != null ? Math.max(1.0, Math.min(15.0, t.journey)) : 8.0
+          const journeyRawX = ((journey - 1.0) / (15.0 - 1.0)) * 1.7 - 0.85
+          const spread = t.spread != null ? Math.max(0.1, Math.min(3.0, t.spread)) : 1.5
+          const spreadRawY = ((spread - 0.1) / (3.0 - 0.1)) * 1.7 - 0.85
+          
+          // Deterministic jitter to prevent coordinate overlapping
+          const jitterX = Math.sin(t.i * 45.67) * 0.022
+          const jitterY = Math.cos(t.i * 89.01) * 0.022
+          return [journeyRawX + jitterX, spreadRawY + jitterY, 0] as [number, number, number]
         })
       } else {
         basePts = data.points
