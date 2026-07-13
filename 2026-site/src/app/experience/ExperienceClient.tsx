@@ -583,7 +583,9 @@ function Inner({ data }: { data: DHData }) {
       <main
         className={`${
           mobileTab === "listen" ? "block flex-1" : "hidden"
-        } md:block min-h-0 overflow-y-auto px-4 pb-28 pt-4 transition-all duration-500 ease-in-out overflow-hidden`}
+        } md:block min-h-0 overflow-y-auto pb-28 pt-4 transition-all duration-500 ease-in-out overflow-hidden ${
+          isMapExpanded ? "md:max-w-0 md:px-0 opacity-0 pointer-events-none" : "md:max-w-full md:px-4 opacity-100"
+        }`}
       >
         <header className="mb-4">
           <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — DH archive view</h1>
