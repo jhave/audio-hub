@@ -110,9 +110,9 @@ export default function DHData({
   if (track.tempo != null) {
     chipsList.push({
       key: "tempo",
-      label: `${Math.round(track.tempo)} bpm [contested]`,
+      label: `${Math.round(track.tempo)} bpm [inaccurate]`,
       value: Math.round(track.tempo),
-      tooltip: "Estimated tempo in beats per minute. This category is contested due to common half/double octave errors in machine listening.",
+      tooltip: "Estimated tempo in beats per minute. This category is inaccurate due to common half/double octave errors in machine listening.",
       onClick: () => onMetricClick("tempo")
     })
   }

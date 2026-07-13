@@ -261,14 +261,50 @@ function Inner({ data }: { data: DHData }) {
   }, [focusIdx])
 
   const handleMetricClick = React.useCallback((term: string) => {
-    const normalized = term.toLowerCase().replace(/[^a-z0-9]+/g, "-")
-    const targetEl = document.getElementById(`faq-${normalized}`)
+    const key = term.toLowerCase().trim()
+    const idMap: Record<string, string> = {
+      music: "faq-acoustic-timbre-space-music-",
+      lyrics: "faq-semantic-lyric-space-lyrics-",
+      metrics: "faq-structural-umap-metrics-",
+      aesthetic: "faq-aesthetic-umap-aesthetic-",
+      rhythm: "faq-rhythm-umap-rhythm-",
+      groove: "faq-groove-grid",
+      intent: "faq-intent-space",
+      texture: "faq-texture-space",
+      narrative: "faq-narrative-space",
+      tempo: "faq-tempo-line"
+    }
+
+    // 1. Try direct mapped ID
+    let targetEl = idMap[key] ? document.getElementById(idMap[key]) : null
+
+    // 2. Try simple normalized ID
+    if (!targetEl) {
+      const normalized = key.replace(/[^a-z0-9]+/g, "-")
+      targetEl = document.getElementById(`faq-${normalized}`) || document.getElementById(normalized)
+    }
+
+    // 3. Fallback: Search all heading elements for content matching the term
+    if (!targetEl) {
+      const container = document.getElementById("dh-faq-container")
+      if (container) {
+        const headings = container.querySelectorAll("h1, h2, h3, h4, h5, h6, strong")
+        for (const el of Array.from(headings)) {
+          const textVal = el.textContent || ""
+          if (textVal.toLowerCase().includes(key)) {
+            targetEl = el as HTMLElement
+            break
+          }
+        }
+      }
+    }
+
     if (!targetEl) return
 
     // Flash highlight
     targetEl.classList.add("bg-yellow-200", "scale-105")
     setTimeout(() => {
-      targetEl.classList.remove("bg-yellow-200", "scale-105")
+      targetEl?.classList.remove("bg-yellow-200", "scale-105")
     }, 1500)
 
     const container = document.getElementById("dh-faq-container")
@@ -552,11 +588,11 @@ function Inner({ data }: { data: DHData }) {
               {mapMode === "metrics" && "Accuracy: Very accurate mathematical clustering of all 13 features."}
               {mapMode === "aesthetic" && "Accuracy: Highly cohesive composition style clustering excluding outliers."}
               {mapMode === "rhythm" && "Accuracy: Extremely accurate mapping of rhythmic density vs. complexity."}
-              {mapMode === "groove" && "Accuracy: Contested. Subject to common double/half octave errors in beat tracking."}
+              {mapMode === "groove" && "Inaccurate. Subject to common double/half octave errors in beat tracking."}
               {mapMode === "intent" && "Accuracy: Perfect. Direct plotting of Suno's internal parameters."}
               {mapMode === "texture" && "Accuracy: Highly accurate contrast of transients vs. melodic layers."}
               {mapMode === "narrative" && "Accuracy: Limited use. Short songs often get seen as small journeys."}
-              {mapMode === "tempo" && "Accuracy: Contested. Plots raw estimated tempo; exposes algorithm double/half octave errors."}
+              {mapMode === "tempo" && "Inaccurate. Plots raw estimated tempo; exposes algorithm double/half octave errors."}
             </span>
           </div>
           <DHMap
