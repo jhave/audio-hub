@@ -10,12 +10,32 @@ type Props = {
   played: Set<number>
   onHover: (i: number | null) => void
   onPlay: (i: number) => void
-  mapMode?: "music" | "lyrics" | "metrics"
+  mapMode?: "music" | "lyrics" | "metrics" | "groove" | "intent"
   hideInstrumentals?: boolean
   activeTag?: string | null
   clickedTag?: string | null
   onClearTag?: () => void
   showPaths?: boolean
+}
+
+// Map key strings to Circle of Fifths indices
+function getKeyCircleIndex(keyStr: string | null | undefined): number {
+  if (!keyStr) return 0
+  const normalized = keyStr.toLowerCase()
+  // Match relative major/minor pairs on Circle of Fifths:
+  if (normalized.includes("c major") || normalized.includes("a minor")) return 0
+  if (normalized.includes("g major") || normalized.includes("e minor")) return 1
+  if (normalized.includes("d major") || normalized.includes("b minor")) return 2
+  if (normalized.includes("a major") || normalized.includes("f# minor") || normalized.includes("gb minor")) return 3
+  if (normalized.includes("e major") || normalized.includes("c# minor") || normalized.includes("db minor")) return 4
+  if (normalized.includes("b major") || normalized.includes("g# minor") || normalized.includes("ab minor")) return 5
+  if (normalized.includes("f# major") || normalized.includes("gb major") || normalized.includes("d# minor") || normalized.includes("eb minor")) return 6
+  if (normalized.includes("c# major") || normalized.includes("db major") || normalized.includes("a# minor") || normalized.includes("bb minor")) return 7
+  if (normalized.includes("ab major") || normalized.includes("g# major") || normalized.includes("f minor")) return 8
+  if (normalized.includes("eb major") || normalized.includes("d# major") || normalized.includes("c minor")) return 9
+  if (normalized.includes("bb major") || normalized.includes("a# major") || normalized.includes("g minor")) return 10
+  if (normalized.includes("f major") || normalized.includes("d minor")) return 11
+  return 0
 }
 
 // Colors: unplayed grey, played gold, playing red pulse, starred ring, lyrics blue
@@ -206,11 +226,30 @@ export default function DHMap({
       ctx.clearRect(0, 0, w, h)
 
       // Calculate target coordinates based on active layout and clicked tag distortion
-      const basePts = mapMode === "lyrics" 
-        ? (data.lyricPoints || data.points) 
-        : mapMode === "metrics"
-        ? (data.metricPoints || data.points)
-        : data.points
+      let basePts: [number, number, number][]
+      if (mapMode === "lyrics") {
+        basePts = data.lyricPoints || data.points
+      } else if (mapMode === "metrics") {
+        basePts = data.metricPoints || data.points
+      } else if (mapMode === "groove") {
+        basePts = data.tracks.map((t) => {
+          const tempo = t.tempo != null ? Math.max(60, Math.min(200, t.tempo)) : 100
+          const tempoX = ((tempo - 60) / (200 - 60)) * 1.7 - 0.85
+          const hasMinor = t.key ? t.key.toLowerCase().includes("minor") : false
+          const minorOffset = hasMinor ? 0.25 : -0.25
+          const circleVal = getKeyCircleIndex(t.key) + minorOffset
+          const keyY = ((circleVal - (-0.5)) / (11.5 - (-0.5))) * 1.7 - 0.85
+          return [tempoX, keyY, 0] as [number, number, number]
+        })
+      } else if (mapMode === "intent") {
+        basePts = data.tracks.map((t) => {
+          const weirdX = (t.weirdness ?? 0.0) * 1.7 - 0.85
+          const styleY = (t.styleWeight ?? 0.0) * 1.7 - 0.85
+          return [weirdX, styleY, 0] as [number, number, number]
+        })
+      } else {
+        basePts = data.points
+      }
 
       const clickedTagIndices = clickedTag ? getMatchingIndices(clickedTag, data.tracks) : []
       const clickedTagSet = new Set(clickedTagIndices)

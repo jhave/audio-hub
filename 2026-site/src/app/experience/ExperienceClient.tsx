@@ -74,14 +74,16 @@ function Inner({ data }: { data: DHData }) {
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
-  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics">("music")
+  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "groove" | "intent">("music")
   const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
   const [showPaths, setShowPaths] = React.useState(true)
   const [hoveredTag, setHoveredTag] = React.useState<string | null>(null)
   const [clickedTag, setClickedTag] = React.useState<string | null>(null)
+  const [tutorialStep, setTutorialStep] = React.useState<number | null>(null)
+  const [isMapExpanded, setIsMapExpanded] = React.useState(false)
   const activeTag = hoveredTag || clickedTag
 
-  const modes: ("music" | "lyrics" | "metrics")[] = ["music", "lyrics", "metrics"]
+  const modes: ("music" | "lyrics" | "metrics" | "groove" | "intent")[] = ["music", "lyrics", "metrics", "groove", "intent"]
   const handlePrevMode = () => {
     const idx = modes.indexOf(mapMode)
     const nextIdx = (idx - 1 + modes.length) % modes.length
@@ -137,6 +139,7 @@ function Inner({ data }: { data: DHData }) {
     setIsFading(true)
     setTimeout(() => {
       setShowIntro(false)
+      setTutorialStep(0) // Start the tutorial onboarding!
     }, 500)
     if (data && data.tracks.length > 0) {
       let startIdx = 0
@@ -329,7 +332,9 @@ function Inner({ data }: { data: DHData }) {
     <div
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="flex flex-col h-screen overflow-hidden md:grid md:grid-cols-3"
+      className={`flex flex-col h-screen overflow-hidden md:grid transition-all duration-500 ease-in-out ${
+        isMapExpanded ? "md:grid-cols-[2fr_0fr_1fr]" : "md:grid-cols-3"
+      }`}
     >
       {/* Mobile Tab Bar Header */}
       <div className="flex border-b bg-white text-[12px] md:hidden select-none flex-shrink-0">
@@ -354,81 +359,111 @@ function Inner({ data }: { data: DHData }) {
 
       {/* LEFT: persistent map + essay */}
       <aside
+        onMouseEnter={() => setIsMapExpanded(true)}
+        onMouseLeave={() => setIsMapExpanded(false)}
         className={`${
           mobileTab === "map-essay" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
-        } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden`}
+        } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden transition-all duration-500 ease-in-out`}
       >
-        <div className="flex items-center justify-between px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none">
-          <div className="flex items-center gap-1.5">
-            <span className="font-semibold text-neutral-700">topology:</span>
-            <div className="flex items-center gap-1">
-              <button 
-                onClick={handlePrevMode} 
-                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
-                title="Previous Topology Mode"
-              >
-                &lt;
-              </button>
-              <div className="flex bg-neutral-200/60 rounded p-0.5 text-[10px] font-bold">
-                <button
-                  onClick={() => setMapMode("music")}
-                  className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                    mapMode === "music" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                  }`}
-                  title="Acoustic Texture Similarity"
+        <div className="flex flex-col px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none gap-1">
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center gap-1.5">
+              <span className="font-semibold text-neutral-700">topology:</span>
+              <div className="flex items-center gap-1">
+                <button 
+                  onClick={handlePrevMode} 
+                  className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
+                  title="Previous Topology Mode"
                 >
-                  Music
+                  &lt;
                 </button>
-                <button
-                  onClick={() => setMapMode("lyrics")}
-                  className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                    mapMode === "lyrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                  }`}
-                  title="Semantic Lyric Similarity"
+                <div className="flex bg-neutral-200/60 rounded p-0.5 text-[10px] font-bold">
+                  <button
+                    onClick={() => setMapMode("music")}
+                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "music" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Acoustic Texture Similarity"
+                  >
+                    Music
+                  </button>
+                  <button
+                    onClick={() => setMapMode("lyrics")}
+                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "lyrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Semantic Lyric Similarity"
+                  >
+                    Lyrics
+                  </button>
+                  <button
+                    onClick={() => setMapMode("metrics")}
+                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "metrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Structural Metrics Similarity"
+                  >
+                    Metrics
+                  </button>
+                  <button
+                    onClick={() => setMapMode("groove")}
+                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "groove" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Tempo vs. Circle of Fifths key mapping"
+                  >
+                    Groove
+                  </button>
+                  <button
+                    onClick={() => setMapMode("intent")}
+                    className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "intent" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Creator Weirdness vs. Style Weight mapping"
+                  >
+                    Intent
+                  </button>
+                </div>
+                <button 
+                  onClick={handleNextMode} 
+                  className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
+                  title="Next Topology Mode"
                 >
-                  Lyrics
-                </button>
-                <button
-                  onClick={() => setMapMode("metrics")}
-                  className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                    mapMode === "metrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                  }`}
-                  title="Structural Metrics Similarity"
-                >
-                  Metrics
+                  &gt;
                 </button>
               </div>
-              <button 
-                onClick={handleNextMode} 
-                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
-                title="Next Topology Mode"
-              >
-                &gt;
-              </button>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {mapMode === "lyrics" && (
-              <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700">
+            <div className="flex items-center gap-2">
+              {mapMode === "lyrics" && (
+                <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700">
+                  <input
+                    type="checkbox"
+                    checked={hideInstrumentals}
+                    onChange={(e) => setHideInstrumentals(e.target.checked)}
+                    className="rounded border-neutral-300 text-neutral-900 focus:ring-0 w-3 h-3 cursor-pointer"
+                  />
+                  <span>hide instrumentals</span>
+                </label>
+              )}
+              <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700" title="Draw sequential similarity trajectories on selection">
                 <input
                   type="checkbox"
-                  checked={hideInstrumentals}
-                  onChange={(e) => setHideInstrumentals(e.target.checked)}
+                  checked={showPaths}
+                  onChange={(e) => setShowPaths(e.target.checked)}
                   className="rounded border-neutral-300 text-neutral-900 focus:ring-0 w-3 h-3 cursor-pointer"
                 />
-                <span>hide instrumentals</span>
+                <span>show paths</span>
               </label>
-            )}
-            <label className="flex items-center gap-1 cursor-pointer select-none text-[10px] text-neutral-500 hover:text-neutral-700" title="Draw sequential similarity trajectories on selection">
-              <input
-                type="checkbox"
-                checked={showPaths}
-                onChange={(e) => setShowPaths(e.target.checked)}
-                className="rounded border-neutral-300 text-neutral-900 focus:ring-0 w-3 h-3 cursor-pointer"
-              />
-              <span>show paths</span>
-            </label>
-            <span className="font-mono text-[9px] text-neutral-400">{played.size}/{data.tracks.length} heard</span>
+              <span className="font-mono text-[9px] text-neutral-400">{played.size}/{data.tracks.length} heard</span>
+            </div>
+          </div>
+          {/* Subtext mapping helper */}
+          <div className="text-[10px] text-neutral-400 italic px-0.5 font-medium leading-none mb-0.5">
+            {mapMode === "music" && "Acoustic: mapped by timbral and genre CLAP similarity"}
+            {mapMode === "lyrics" && "Semantic: mapped by word and thematic CLAP similarity"}
+            {mapMode === "metrics" && "Structure: mapped by 13-dimensional musicological UMAP"}
+            {mapMode === "groove" && "Groove Grid: Tempo (X-axis) vs. Circle of Fifths (Y-axis)"}
+            {mapMode === "intent" && "Intent Space: Creator Weirdness (X-axis) vs. Style Weight (Y-axis)"}
           </div>
         </div>
         <div className="h-[270px] w-full flex-shrink-0 relative border-b bg-neutral-50">
@@ -456,7 +491,7 @@ function Inner({ data }: { data: DHData }) {
       <main
         className={`${
           mobileTab === "listen" ? "block flex-1" : "hidden"
-        } md:block min-h-0 overflow-y-auto px-4 pb-28 pt-4`}
+        } md:block min-h-0 overflow-y-auto px-4 pb-28 pt-4 transition-all duration-500 ease-in-out overflow-hidden`}
       >
         <header className="mb-4">
           <h1 className="text-xl font-semibold">171 days — DH archive view</h1>
@@ -493,9 +528,10 @@ function Inner({ data }: { data: DHData }) {
 
       {/* RIGHT: persistent data + FAQ */}
       <aside
+        onMouseEnter={() => setHoverIdx(null)}
         className={`${
           mobileTab === "faq" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
-        } md:flex md:flex-col border-l bg-white h-full min-h-0 overflow-hidden`}
+        } md:flex md:flex-col border-l bg-white h-full min-h-0 overflow-hidden transition-all duration-500 ease-in-out`}
       >
         <div className="flex-shrink-0 border-b bg-white overflow-y-auto scrollbar-none max-h-[60vh]">
           <DHData_
@@ -508,6 +544,12 @@ function Inner({ data }: { data: DHData }) {
             clickedTag={clickedTag}
             onTagClick={setClickedTag}
             hoverIdx={hoverIdx}
+            onTitleClick={() => {
+              if (focusIdx != null) {
+                const el = document.getElementById(`dh-row-${focusIdx}`)
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "center" })
+              }
+            }}
           />
         </div>
         <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto p-4 scroll-smooth">
@@ -535,6 +577,20 @@ function Inner({ data }: { data: DHData }) {
           if (i != null) playIdx(i)
         }}
       />
+
+      {tutorialStep !== null && (
+        <OnboardingTutorial
+          step={tutorialStep}
+          onNext={() => {
+            if (tutorialStep < 2) setTutorialStep(tutorialStep + 1)
+            else setTutorialStep(null)
+          }}
+          onPrev={() => {
+            if (tutorialStep > 0) setTutorialStep(tutorialStep - 1)
+          }}
+          onSkip={() => setTutorialStep(null)}
+        />
+      )}
 
       {showIntro && (
         <div
@@ -601,12 +657,16 @@ function Row({
       id={`dh-row-${t.i}`}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className={`group flex items-center rounded-lg px-2 py-2 border-l-2 transition-all ${
+      onClick={onPlay}
+      className={`group flex items-center rounded-lg px-2 py-2 border-l-2 transition-all cursor-pointer ${
         active ? "bg-yellow-100/80 border-yellow-500 rounded-l-none font-medium" : "hover:bg-neutral-50 border-transparent"
       }`}
     >
       <button
-        onClick={onPlay}
+        onClick={(e) => {
+          e.stopPropagation()
+          onPlay()
+        }}
         aria-label={playing ? "Pause" : "Play"}
         className="relative inline-flex h-8 w-8 flex-none items-center justify-center rounded-full border border-neutral-200 bg-white text-black hover:bg-neutral-100"
       >
@@ -687,6 +747,88 @@ function Dock({
             <div className="flex items-center gap-1 text-[11px] text-neutral-500">
               <AudioPlayerTime /><span>/</span><AudioPlayerDuration />
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function OnboardingTutorial({
+  step,
+  onNext,
+  onPrev,
+  onSkip,
+}: {
+  step: number
+  onNext: () => void
+  onPrev: () => void
+  onSkip: () => void
+}) {
+  const steps = [
+    {
+      title: "1. Audio Topology Map",
+      desc: "This map layouts the 746 tracks of the archive. Dots represent songs clustered by similarity. Cycle through 5 different projection modes (Acoustic, Semantic, Structural, Groove, or Intent) using the < and > arrow controls.",
+      position: "left-6 md:left-[35vw] top-[30vh]",
+      highlightClass: "fixed left-0 top-0 bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 top-0 h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+    {
+      title: "2. Playlist Explorer",
+      desc: "Every row in the playlist is fully clickable to start playing. Playback auto-advances based on your selected dock order (Sequential, Shuffle, Favorites, or Weirdest First). Hover any title to preview its details.",
+      position: "left-6 md:left-[5vw] top-[40vh]",
+      highlightClass: "fixed left-[33.3vw] top-0 bottom-0 w-[33.4vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 bottom-[10vh] top-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+    {
+      title: "3. Machine Analysis & Glossary",
+      desc: "The right sidebar displays acoustic parameters (weirdness, groove, complexity, and trajectory). Hover any metric to see its description, click it to jump straight to the glossary definition, or click the track title to center it in the playlist.",
+      position: "right-6 md:right-[35vw] top-[30vh]",
+      highlightClass: "fixed right-0 top-0 bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 top-0 bottom-0 border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+  ]
+
+  const current = steps[step]
+  if (!current) return null
+
+  return (
+    <div className="fixed inset-0 z-50 overflow-hidden select-none pointer-events-auto">
+      {/* Dark overlay backdrop */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" onClick={onSkip} />
+
+      {/* Focus Highlight Frame (Desktop) */}
+      <div className={current.highlightClass} />
+
+      {/* Focus Highlight Frame (Mobile) */}
+      <div className={current.mobileHighlightClass} />
+
+      {/* Tooltip Content Popover */}
+      <div className={`absolute ${current.position} z-50 w-[min(340px,88vw)] rounded-2xl border border-neutral-800 bg-neutral-900 p-5 text-white shadow-2xl transition-all duration-300`}>
+        <h3 className="text-sm font-bold text-yellow-400 uppercase tracking-wider mb-2">{current.title}</h3>
+        <p className="text-[12px] text-neutral-300 leading-relaxed mb-4">{current.desc}</p>
+        <div className="flex items-center justify-between">
+          <button 
+            onClick={onSkip} 
+            className="text-[10px] text-neutral-500 hover:text-neutral-300 transition-colors uppercase font-bold tracking-wider cursor-pointer bg-transparent border-none"
+          >
+            Skip
+          </button>
+          <div className="flex gap-2">
+            {step > 0 && (
+              <button 
+                onClick={onPrev} 
+                className="px-2.5 py-1 rounded bg-neutral-800 text-[10px] text-neutral-300 hover:bg-neutral-700 transition-colors font-bold uppercase cursor-pointer"
+              >
+                Back
+              </button>
+            )}
+            <button 
+              onClick={onNext} 
+              className="px-3 py-1 rounded bg-yellow-500 text-[10px] text-black hover:bg-yellow-400 transition-colors font-bold uppercase cursor-pointer"
+            >
+              {step === steps.length - 1 ? "Got It" : "Next"}
+            </button>
           </div>
         </div>
       </div>

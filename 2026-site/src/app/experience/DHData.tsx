@@ -70,6 +70,7 @@ export default function DHData({
   clickedTag,
   onTagClick,
   hoverIdx,
+  onTitleClick,
 }: {
   track: DHTrack | null
   isLive: boolean
@@ -80,6 +81,7 @@ export default function DHData({
   clickedTag?: string | null
   onTagClick?: (tag: string | null) => void
   hoverIdx?: number | null
+  onTitleClick?: () => void
 }) {
   const [promptOpen, setPromptOpen] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
@@ -164,7 +166,13 @@ export default function DHData({
     <div className="p-4 text-[12px]">
       <div className="mb-0.5 flex items-center gap-1.5 text-[14px] font-medium text-black">
         {track.fav ? <span className="text-[#c98500]">★</span> : null}
-        <span>{track.title}</span>
+        <span 
+          onClick={onTitleClick} 
+          className="cursor-pointer hover:underline"
+          title="Click to center this track in the playlist"
+        >
+          {track.title}
+        </span>
       </div>
       <div className="mb-2 text-[11px] text-neutral-500">
         {track.album}
