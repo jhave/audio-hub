@@ -768,7 +768,7 @@ function OnboardingTutorial({
   const steps = [
     {
       title: "1. Audio Topology Map",
-      desc: "This map layouts the 746 tracks of the archive. Dots represent songs clustered by similarity. Cycle through 5 different projection modes (Acoustic, Semantic, Structural, Groove, or Intent) using the < and > arrow controls.",
+      desc: "This map layouts the 746 tracks of the archive. Click on any dot to play that track and view its analysis. You can change the layout configuration of the map at any time by clicking the projection buttons at the top (Music, Lyrics, Metrics, Groove, or Intent) or cycling with the < and > arrows.",
       position: "left-6 md:left-[35vw] top-[30vh]",
       highlightClass: "fixed left-0 top-0 bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
       mobileHighlightClass: "fixed left-0 right-0 top-0 h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
