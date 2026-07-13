@@ -457,16 +457,25 @@ function Inner({ data }: { data: DHData }) {
               <span className="font-mono text-[9px] text-neutral-400">{played.size}/{data.tracks.length} heard</span>
             </div>
           </div>
-          {/* Subtext mapping helper */}
-          <div className="text-[10px] text-neutral-400 italic px-0.5 font-medium leading-none mb-0.5">
-            {mapMode === "music" && "Acoustic: mapped by timbral and genre CLAP similarity"}
-            {mapMode === "lyrics" && "Semantic: mapped by word and thematic CLAP similarity"}
-            {mapMode === "metrics" && "Structure: mapped by 13-dimensional musicological UMAP"}
-            {mapMode === "groove" && "Groove Grid: Tempo (X-axis) vs. Circle of Fifths (Y-axis)"}
-            {mapMode === "intent" && "Intent Space: Creator Weirdness (X-axis) vs. Style Weight (Y-axis)"}
-          </div>
         </div>
         <div className="h-[270px] w-full flex-shrink-0 relative border-b bg-neutral-50">
+          {/* Floating HUD Label inside map container */}
+          <div className="absolute top-2.5 left-3 z-10 pointer-events-none select-none bg-white/75 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-neutral-200/40 shadow-sm leading-tight flex flex-col">
+            <span className="text-[14px] font-bold text-neutral-800 tracking-wide">
+              {mapMode === "music" && "Acoustic Timbre Space"}
+              {mapMode === "lyrics" && "Semantic Lyric Space"}
+              {mapMode === "metrics" && "Structural UMAP"}
+              {mapMode === "groove" && "Groove Grid"}
+              {mapMode === "intent" && "Intent Space"}
+            </span>
+            <span className="text-[9.5px] text-neutral-400 font-medium">
+              {mapMode === "music" && "mapped by genre & sound similarity"}
+              {mapMode === "lyrics" && "mapped by lyrics & prompt concepts"}
+              {mapMode === "metrics" && "mapped by 13 musicological metrics"}
+              {mapMode === "groove" && "Tempo (X) vs. Circle of Fifths key (Y)"}
+              {mapMode === "intent" && "Weirdness (X) vs. Style Weight (Y)"}
+            </span>
+          </div>
           <DHMap
             data={data}
             focusIdx={focusIdx}
