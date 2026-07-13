@@ -74,7 +74,7 @@ function Inner({ data }: { data: DHData }) {
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
   const [showIntro, setShowIntro] = React.useState(true)
   const [isFading, setIsFading] = React.useState(false)
-  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "groove" | "intent" | "texture" | "narrative">("music")
+  const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative">("music")
   const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
   const [showPaths, setShowPaths] = React.useState(true)
   const [hoveredTag, setHoveredTag] = React.useState<string | null>(null)
@@ -83,7 +83,9 @@ function Inner({ data }: { data: DHData }) {
   const [isMapExpanded, setIsMapExpanded] = React.useState(false)
   const activeTag = hoveredTag || clickedTag
  
-  const modes: ("music" | "lyrics" | "metrics" | "groove" | "intent" | "texture" | "narrative")[] = ["music", "lyrics", "metrics", "groove", "intent", "texture", "narrative"]
+  const modes: ("music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative")[] = [
+    "music", "lyrics", "metrics", "aesthetic", "rhythm", "groove", "intent", "texture", "narrative"
+  ]
   const handlePrevMode = () => {
     const idx = modes.indexOf(mapMode)
     const nextIdx = (idx - 1 + modes.length) % modes.length
@@ -94,6 +96,7 @@ function Inner({ data }: { data: DHData }) {
     const nextIdx = (idx + 1) % modes.length
     setMapMode(modes[nextIdx])
   }
+
 
 
   // restore played set
@@ -280,6 +283,17 @@ function Inner({ data }: { data: DHData }) {
     }
   }, [])
 
+  // Auto-leap the FAQ glossary to the corresponding description on topology change
+  React.useEffect(() => {
+    if (!showIntro) {
+      // Small timeout to allow map state to settle
+      const t = setTimeout(() => {
+        handleMetricClick(mapMode)
+      }, 50)
+      return () => clearTimeout(t)
+    }
+  }, [mapMode, showIntro, handleMetricClick])
+
   const touchStartXRef = React.useRef(0)
   const touchStartYRef = React.useRef(0)
 
@@ -406,6 +420,24 @@ function Inner({ data }: { data: DHData }) {
                     Metrics
                   </button>
                   <button
+                    onClick={() => setMapMode("aesthetic")}
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "aesthetic" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Aesthetic UMAP (Ablated 9D)"
+                  >
+                    Aesthetic
+                  </button>
+                  <button
+                    onClick={() => setMapMode("rhythm")}
+                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                      mapMode === "rhythm" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                    }`}
+                    title="Rhythm UMAP (Ablated 4D)"
+                  >
+                    Rhythm
+                  </button>
+                  <button
                     onClick={() => setMapMode("groove")}
                     className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
                       mapMode === "groove" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
@@ -480,11 +512,13 @@ function Inner({ data }: { data: DHData }) {
           isMapExpanded ? "h-[66.6vh]" : "h-[270px]"
         }`}>
           {/* Floating HUD Label inside map container */}
-          <div className="absolute top-2.5 left-3 z-10 pointer-events-none select-none bg-white/75 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-neutral-200/40 shadow-sm leading-tight flex flex-col">
+          <div className="absolute top-2.5 left-3 z-10 pointer-events-none select-none bg-white/75 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-neutral-200/40 shadow-sm leading-tight flex flex-col gap-0.5">
             <span className="text-[14px] font-bold text-neutral-800 tracking-wide">
               {mapMode === "music" && "Acoustic Timbre Space"}
               {mapMode === "lyrics" && "Semantic Lyric Space"}
-              {mapMode === "metrics" && "Structural UMAP"}
+              {mapMode === "metrics" && "Structural UMAP (13D)"}
+              {mapMode === "aesthetic" && "Aesthetic UMAP (9D)"}
+              {mapMode === "rhythm" && "Rhythm UMAP (4D)"}
               {mapMode === "groove" && "Groove Grid"}
               {mapMode === "intent" && "Intent Space"}
               {mapMode === "texture" && "Texture Space"}
@@ -494,10 +528,23 @@ function Inner({ data }: { data: DHData }) {
               {mapMode === "music" && "mapped by genre & sound similarity"}
               {mapMode === "lyrics" && "mapped by lyrics & prompt concepts"}
               {mapMode === "metrics" && "mapped by 13 musicological metrics"}
+              {mapMode === "aesthetic" && "mapped by ablated 9-dimensional composition metrics"}
+              {mapMode === "rhythm" && "mapped by ablated 4-dimensional rhythm & density metrics"}
               {mapMode === "groove" && "Tempo (X: slow left → fast right) vs. Key (Y: Circle of Fifths)"}
               {mapMode === "intent" && "Weirdness (X: low left → high right) vs. Style Weight (Y: low bottom → high top)"}
               {mapMode === "texture" && "Bounce (X: low left → high right) vs. Complexity (Y: low bottom → high top)"}
               {mapMode === "narrative" && "Journey (X: short left → long right) vs. Spread (Y: narrow bottom → wide top)"}
+            </span>
+            <span className="text-[9.5px] text-neutral-500 italic font-medium mt-0.5 border-t border-neutral-200/40 pt-0.5">
+              {mapMode === "music" && "Accuracy: Highly accurate sonic texture and instrumentation classification."}
+              {mapMode === "lyrics" && "Accuracy: Moderately accurate; clusters textual styles and vocabularies."}
+              {mapMode === "metrics" && "Accuracy: Very accurate mathematical clustering of all 13 features."}
+              {mapMode === "aesthetic" && "Accuracy: Highly cohesive composition style clustering excluding outliers."}
+              {mapMode === "rhythm" && "Accuracy: Extremely accurate mapping of rhythmic density vs. complexity."}
+              {mapMode === "groove" && "Accuracy: Perfect tempo/key extraction. Groups relative majors/minors."}
+              {mapMode === "intent" && "Accuracy: Perfect. Direct plotting of Suno's internal parameters."}
+              {mapMode === "texture" && "Accuracy: Highly accurate contrast of transients vs. melodic layers."}
+              {mapMode === "narrative" && "Accuracy: Limited use. Short songs often get seen as small journeys."}
             </span>
           </div>
           <DHMap

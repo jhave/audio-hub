@@ -10,7 +10,7 @@ type Props = {
   played: Set<number>
   onHover: (i: number | null) => void
   onPlay: (i: number) => void
-  mapMode?: "music" | "lyrics" | "metrics" | "groove" | "intent" | "texture" | "narrative"
+  mapMode?: "music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative"
   hideInstrumentals?: boolean
   activeTag?: string | null
   clickedTag?: string | null
@@ -231,6 +231,10 @@ export default function DHMap({
         basePts = data.lyricPoints || data.points
       } else if (mapMode === "metrics") {
         basePts = data.metricPoints || data.points
+      } else if (mapMode === "aesthetic") {
+        basePts = data.metricPointsAblated9 || data.points
+      } else if (mapMode === "rhythm") {
+        basePts = data.metricPointsAblated4 || data.points
       } else if (mapMode === "groove") {
         basePts = data.tracks.map((t) => {
           const tempo = t.tempo != null ? Math.max(60, Math.min(200, t.tempo)) : 100

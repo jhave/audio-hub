@@ -106,6 +106,56 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 * **Generative Probing**: Training mini-classifiers on the intermediate hidden layers of active music generators to see how the model internalizes concepts like keys, structure, and emotional weight during the act of creation.
 </details>
 
+<details>
+<summary><b>Topology Layout Spaces (The 9 Map Projections)</b></summary>
+
+### Acoustic Timbre Space (Music)
+* **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using UMAP.
+* **Relation Exposed**: Sonic texture, instrumentation, and genre groupings.
+* **Accuracy**: Highly accurate representation of sonic texture and instrumentation classification.
+
+### Semantic Lyric Space (Lyrics)
+* **Description**: Projects the CLAP lyric and prompt text embeddings down to 2D using UMAP.
+* **Relation Exposed**: Thematic concepts, vocabularies, style prompts, and lyrical subjects.
+* **Accuracy**: Moderately accurate; clusters textual style, vocabularies, and prompt intents.
+
+### Structural UMAP (Metrics)
+* **Description**: Runs UMAP on all 13 musicological metrics.
+* **Relation Exposed**: Overall structural complexity, tempo, drift, modulations, bounce, and journey parameters.
+* **Accuracy**: Very accurate mathematical clustering of all 13 features.
+
+### Aesthetic UMAP (Aesthetic)
+* **Description**: Runs UMAP on 9 composition-focused metrics, ablating noisy outliers like dropAt, tempoJumps, and novelty.
+* **Relation Exposed**: Pure composition structure, melody complexity, style variety, weirdness, and tempo characteristics.
+* **Accuracy**: Highly cohesive composition style clustering excluding outliers.
+
+### Rhythm UMAP (Rhythm)
+* **Description**: Runs UMAP on 4 core rhythm and density metrics: tempo, bounce, melodicComplexity, and sectionCount.
+* **Relation Exposed**: Rhythmic density, tempo boundaries, syncopation, and melody thickness.
+* **Accuracy**: Extremely accurate mapping of rhythmic density vs. complexity.
+
+### Groove Grid
+* **Description**: Mapped directly by global Tempo (X-axis) vs. Circle of Fifths key index (Y-axis).
+* **Relation Exposed**: Straightforward mapping of beat-speed against harmonic pitch relationships.
+* **Accuracy**: Perfect tempo/key extraction. Groups relative majors/minors.
+
+### Intent Space
+* **Description**: Plots Suno's user parameters: Weirdness (X-axis) vs. Style Weight (Y-axis).
+* **Relation Exposed**: Clusters songs by how much control the creator gave to the AI vs. forcing random exploration.
+* **Accuracy**: Perfect. Direct plotting of Suno's internal parameters.
+
+### Texture Space
+* **Description**: Mapped directly by rhythmic Bounce (X-axis) vs. Melodic Complexity (Y-axis).
+* **Relation Exposed**: Contrasts syncopation and percussion intensity against melodic layers.
+* **Accuracy**: Highly accurate contrast of transients vs. melodic layers.
+
+### Narrative Space
+* **Description**: Mapped directly by Journey path length (X-axis) vs. Style Spread (Y-axis).
+* **Relation Exposed**: Contrasts the track's narrative progression against stylistic variety.
+* **Accuracy**: Limited use. Short songs often get seen as small journeys.
+
+</details>
+
 ---
 
 ## Glossary of Descriptors

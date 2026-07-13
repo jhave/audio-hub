@@ -45,6 +45,8 @@ export type DHData = {
   points: [number, number, number][] // x, y, albumIdx
   lyricPoints?: [number, number, number][] // lx, ly, albumIdx
   metricPoints?: [number, number, number][] // mx, my, albumIdx
+  metricPointsAblated9?: [number, number, number][]
+  metricPointsAblated4?: [number, number, number][]
   tracks: DHTrack[]
 }
 

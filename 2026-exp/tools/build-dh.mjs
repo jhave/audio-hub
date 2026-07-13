@@ -119,56 +119,79 @@ const tscale = 2 / Math.max(tmxX - tmnX, tmxY - tmnY)
 const lXy = textRaw.map(([x, y]) => [Math.round((x - tcx) * tscale * 1000) / 1000, Math.round((y - tcy) * tscale * 1000) / 1000])
 
 // ---- UMAP -> 2D on normalized descriptors/metrics (Euclidean) ----
+function computeMetricUMAP(keys, nNeighbors = 15, minDist = 0.2, spread = 1.0) {
+  const subsetMat = tracks.map((t) => {
+    const d = descById[t.trackId] || {}
+    const tr = truthById[t.trackId] || {}
+    const s = shapeById[t.trackId] || {}
+    return keys.map(k => {
+      if (k === "weirdness" || k === "styleWeight") return tr[k] ?? 0
+      if (k === "journey" || k === "spread" || k === "novelty") return s[k] ?? 0
+      return d[k] ?? 0
+    })
+  })
+
+  const M = keys.length
+  const means = new Array(M).fill(0)
+  const stds = new Array(M).fill(0)
+
+  for (let j = 0; j < M; j++) {
+    let sum = 0
+    for (let i = 0; i < N; i++) sum += subsetMat[i][j]
+    means[j] = sum / N
+  }
+
+  for (let j = 0; j < M; j++) {
+    let variance = 0
+    for (let i = 0; i < N; i++) {
+      const diff = subsetMat[i][j] - means[j]
+      variance += diff * diff
+    }
+    stds[j] = Math.sqrt(variance / N) || 1
+  }
+
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < M; j++) {
+      subsetMat[i][j] = (subsetMat[i][j] - means[j]) / stds[j]
+    }
+  }
+
+  const subsetUmap = new UMAP({ nComponents: 2, nNeighbors, minDist, spread })
+  const rawPts = subsetUmap.fit(subsetMat)
+
+  let mnX = 1e9, mxX = -1e9, mnY = 1e9, mxY = -1e9
+  for (const [x, y] of rawPts) {
+    mnX = Math.min(mnX, x); mxX = Math.max(mxX, x)
+    mnY = Math.min(mnY, y); mxY = Math.max(mxY, y)
+  }
+  const cx = (mnX + mxX) / 2, cy = (mnY + mxY) / 2
+  const scale = 2 / Math.max(mxX - mnX, mxY - mnY)
+  return rawPts.map(([x, y]) => [
+    Math.round((x - cx) * scale * 1000) / 1000,
+    Math.round((y - cy) * scale * 1000) / 1000
+  ])
+}
+
 const descKeys = [
   "tempo", "tempoDrift", "tempoJumps", "sectionCount", "dropAt",
   "bounce", "melodicComplexity", "modulations", "weirdness", "styleWeight",
   "journey", "spread", "novelty"
 ]
-const descMat = tracks.map((t) => {
-  const d = descById[t.trackId] || {}
-  const tr = truthById[t.trackId] || {}
-  const s = shapeById[t.trackId] || {}
-  return descKeys.map(k => {
-    if (k === "weirdness" || k === "styleWeight") return tr[k] ?? 0
-    if (k === "journey" || k === "spread" || k === "novelty") return s[k] ?? 0
-    return d[k] ?? 0
-  })
-})
+console.log("running UMAP-13 on 746x13 metrics...")
+const mXy = computeMetricUMAP(descKeys, 15, 0.2, 1.0)
 
-const numFeatures = descKeys.length
-const featureMeans = new Array(numFeatures).fill(0)
-const featureStds = new Array(numFeatures).fill(0)
+const ablated9Keys = [
+  "tempo", "tempoDrift", "sectionCount", "modulations",
+  "bounce", "melodicComplexity", "weirdness", "journey", "spread"
+]
+console.log("running UMAP-9 (Aesthetic) ablated metrics...")
+const mAblated9Xy = computeMetricUMAP(ablated9Keys, 15, 0.2, 1.0)
 
-for (let j = 0; j < numFeatures; j++) {
-  let sum = 0
-  for (let i = 0; i < N; i++) sum += descMat[i][j]
-  featureMeans[j] = sum / N
-}
-
-for (let j = 0; j < numFeatures; j++) {
-  let variance = 0
-  for (let i = 0; i < N; i++) {
-    const diff = descMat[i][j] - featureMeans[j]
-    variance += diff * diff
-  }
-  featureStds[j] = Math.sqrt(variance / N) || 1
-}
-
-for (let i = 0; i < N; i++) {
-  for (let j = 0; j < numFeatures; j++) {
-    descMat[i][j] = (descMat[i][j] - featureMeans[j]) / featureStds[j]
-  }
-}
-
-console.log("running UMAP on 746x13 metrics (standardized)...")
-const metricUmap = new UMAP({ nComponents: 2, nNeighbors: 15, minDist: 0.2, spread: 1.0 })
-const metricRaw = metricUmap.fit(descMat)
-
-let mmnX = 1e9, mmxX = -1e9, mmnY = 1e9, mmxY = -1e9
-for (const [x, y] of metricRaw) { mmnX = Math.min(mmnX, x); mmxX = Math.max(mmxX, x); mmnY = Math.min(mmnY, y); mmxY = Math.max(mmxY, y) }
-const mcx = (mmnX + mmxX) / 2, mcy = (mmnY + mmxY) / 2
-const mscale = 2 / Math.max(mmxX - mmnX, mmxY - mmnY)
-const mXy = metricRaw.map(([x, y]) => [Math.round((x - mcx) * mscale * 1000) / 1000, Math.round((y - mcy) * mscale * 1000) / 1000])
+const ablated4Keys = [
+  "tempo", "bounce", "melodicComplexity", "sectionCount"
+]
+console.log("running UMAP-4 (Rhythm) ablated metrics...")
+const mAblated4Xy = computeMetricUMAP(ablated4Keys, 15, 0.2, 1.0)
 
 
 // ---- k-NN neighbors (cosine on centered vecs), k=8 ----
@@ -247,6 +270,8 @@ out.albums = albumOrder.map((id) => ({ id, title: albumMeta[id].title, dateISO: 
 out.points = tracks.map((t, i) => [xy[i][0], xy[i][1], albumIdx[t.albumId] ?? -1])
 out.lyricPoints = tracks.map((t, i) => [lXy[i][0], lXy[i][1], albumIdx[t.albumId] ?? -1])
 out.metricPoints = tracks.map((t, i) => [mXy[i][0], mXy[i][1], albumIdx[t.albumId] ?? -1])
+out.metricPointsAblated9 = tracks.map((t, i) => [mAblated9Xy[i][0], mAblated9Xy[i][1], albumIdx[t.albumId] ?? -1])
+out.metricPointsAblated4 = tracks.map((t, i) => [mAblated4Xy[i][0], mAblated4Xy[i][1], albumIdx[t.albumId] ?? -1])
 
 out.tracks = tracks.map((t, i) => {
   const d = descById[t.trackId] || {}
