@@ -232,11 +232,10 @@ def main():
             if res:
                 results[res["trackId"]] = res
                 batch_results.append(res)
-                
-        # Save cache at the end of each batch
-        with open(OUTPUT_JSON, "w") as f:
-            json.dump(results, f, indent=2)
-        print(f"Batch saved. Cache updated to {len(results)} tracks.")
+                # Save cache immediately after each track
+                with open(OUTPUT_JSON, "w") as f:
+                    json.dump(results, f, indent=2)
+        print(f"Batch completed. Cache size is {len(results)} tracks.")
         
     print("\nPhase C Stems Feature Extraction completed successfully!")
 
