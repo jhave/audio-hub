@@ -29,9 +29,29 @@ demucs --device mps -n htdemucs -o ./.temp_stems track.mp3
 
 ---
 
-## 2. Stem-Isolated Multi-Feature Extraction
+## 2. Disk Space Safety & Management Protocols
 
-Running analysis on mixed tracks dilutes details (e.g. drums wash out chroma pitches, vocals confuse drum envelope onset detectors). Stem separation allows us to extract pristine, isolated variables:
+With **100 GB** of free space available on the MacBook Air, we must guarantee that the pipeline never risks filling the drive (which could freeze or brick the OS). We implement two defensive layers:
+
+### A. Compressed Stem Formats
+By default, Demucs outputs stems as uncompressed 32-bit float WAVs, which would require **~125 GB** for the entire corpus. Instead, we configure Demucs to output stems as **compressed MP3s at 320 kbps** (`--mp3 --mp3-bitrate 320`):
+* **Size per track (4 stems combined)**: ~19 MB.
+* **Total corpus size (746 tracks)**: **~14.2 GB**.
+* *This leaves a massive 85.8 GB buffer for system swap and cache.*
+
+### B. Watermark Batching (Zero-Leak Queue)
+To be absolutely double-safe, we run a batched loop:
+1. Process tracks in batches of **50**.
+2. Run Demucs separation and extract all advanced descriptors for those 50 tracks.
+3. Append descriptors to `descriptors.json`.
+4. **Delete all audio stems for those 50 tracks** before starting the next batch.
+* *This caps maximum disk space usage to under **1.2 GB at any given time**, eliminating all drive-fill risks.*
+
+---
+
+## 3. Advanced Neural Net & DSP Assessments
+
+While we have the isolated stems loaded in memory, we extract granular parameters that would otherwise be impossible to detect in a full mix:
 
 ```mermaid
 graph TD
@@ -47,25 +67,38 @@ graph TD
     F --> J(Entropy & Key Modulations)
 ```
 
-### A. Drums Stem Features (Rhythm & Tempo)
+### A. Vocals Stem Neural Net Analysis (Voice & Lyrical Delivery)
+* **Vocal Pitch & Vibrato (CREPE Neural Pitch Tracker)**:
+  * **Design**: Run the CREPE deep convolutional neural network for pitch tracking on the vocal stem.
+  * **Metrics**:
+    * **Vocal Range Width**: Standard deviation of pitch (in cents) to separate monotonous spoken/rapped segments from wide-range singing.
+    * **Vibrato Index**: Detects modulation frequency and depth (identifying expressive singing vs. dry spoken vocals).
+* **Vocal Speech Rate & Alignment (Whisper / Wav2Vec2)**:
+  * **Design**: Pass the vocal stem to a lightweight Wav2Vec2 model.
+  * **Metric**: Calculates **Speech Rate (words per minute)** and vocal density, defining how wordy or lyrical the performance is.
+
+### B. Drums Stem Neural Net Analysis (Rhythm & Tempo)
+* **Micro-timing Deviation (Groove / Swing Index)**:
+  * **Design**: Extract exact beat-onset timestamps using the RNN beat processor.
+  * **Metric**: Compare actual hits to a strict quantized grid. The standard deviation of the offsets calculates the **Swing / Micro-timing Groove** (human-like organic drift vs. computerized robotic grids).
 * **Pristine Tempo**: Run the `madmom` RNN beat tracker only on the drums stem. Completely eliminates double/half octave errors triggered by vocals or arpeggios.
 * **Syncopation Index**: Measures the irregularity and off-beat density of drum hits.
-* **Transient Energy**: Measures the physical punch and transients in the drumming.
 
-### B. Vocals Stem Features (Lyrical Delivery)
-* **Vocal Density**: The percentage of the track where vocals are actively present (separating purely instrumental tracks, vocal-intro tracks, and vocal-dense tracks).
-* **Vocal Style Entropy**: Evaluates spectral variance of vocals to classify delivery style (e.g. spoken/rap vs. sustained singing).
-
-### C. Bass Stem Features (Low-End Power)
+### C. Bass Stem Analysis (Low-End Power)
 * **Sub-Bass Ratio**: Ratio of sub-bass (<60 Hz) to mid-bass (60–250 Hz) energy.
 * **Bass Centroid**: Identifies if the low-end is a static ambient drone or a dynamic bassline.
 
-### D. Other Stem Features (Synthesizers, Guitars, Keyboards)
+### D. Other Stem Analysis (Synthesizers, Guitars, Keyboards)
 * **Harmonic Complexity**: Entropic chroma analysis on the melodic stem only, ensuring drum noise does not pollute key modulations.
+
+### E. Cross-Stem Coherence
+* **Vocal-to-Backing Tuning Alignment (Dissonance Index)**:
+  * **Design**: Compare the fundamental pitch track of the vocal stem with the chroma pitch vectors of the instrumental backing.
+  * **Metric**: Measures the degree of pitch drift/off-key singing (capturing intentional dissonance vs. perfect harmonic tracking).
 
 ---
 
-## 3. Advanced Granular Representations (Corpus Context)
+## 4. Advanced Granular Representations (Corpus Context)
 
 Given that the corpus spans a wide range from **ambient to metal**, with significant clustering tendencies around **folktronica** and **math/post-math**, we implement four specialized data representations to capture this texture:
 
@@ -93,7 +126,7 @@ Given that the corpus spans a wide range from **ambient to metal**, with signifi
 
 ---
 
-## 4. Resolving the "Chance" UMAP Limitation: Stem-Targeted Projections
+## 5. Resolving the "Chance" UMAP Limitation: Stem-Targeted Projections
 
 ### The Problem with Mixed UMAPs
 Standard UMAP projections of mixed-audio CLAP embeddings often look like uniform "hairballs" with no clear semantic divisions. This is because a single embedding represents *drums, vocals, keys, and mixing settings combined*. The algorithm gets overwhelmed by the mixed signal, grouping a fast rap song over electronic beats near a slow soprano song over similar electronic beats because they share background timbres.
@@ -113,7 +146,7 @@ Instead of projecting mixed embeddings, we run UMAP on **stem-isolated embedding
 
 ---
 
-## 5. Implementation Steps & Pipeline Architecture
+## 6. Implementation Steps & Pipeline Architecture
 
 ### Step 1: Install GPU Dependencies
 Verify that PyTorch, `demucs`, and `madmom` are linked to system libraries on the host system.
