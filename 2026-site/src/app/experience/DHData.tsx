@@ -71,6 +71,7 @@ export default function DHData({
   onTagClick,
   hoverIdx,
   onTitleClick,
+  onCopyLink,
 }: {
   track: DHTrack | null
   isLive: boolean
@@ -82,9 +83,11 @@ export default function DHData({
   onTagClick?: (tag: string | null) => void
   hoverIdx?: number | null
   onTitleClick?: () => void
+  onCopyLink?: () => void
 }) {
   const [promptOpen, setPromptOpen] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
+  const [linkCopied, setLinkCopied] = React.useState(false)
 
   React.useEffect(() => {
     setPromptOpen(false)
@@ -178,6 +181,20 @@ export default function DHData({
         {track.album}
         {track.dateISO ? ` · ${track.dateISO}` : ""}
         {!isLive ? <span className="ml-2 rounded bg-neutral-100 px-1.5 py-0.5 text-neutral-400">previewing</span> : null}
+        {onCopyLink && isLive ? (
+          <button
+            onClick={() => {
+              onCopyLink()
+              setLinkCopied(true)
+              setTimeout(() => setLinkCopied(false), 1800)
+            }}
+            className="ml-2 inline-flex items-center gap-1 rounded border border-neutral-200 px-1.5 py-0.5 text-[10px] text-neutral-500 hover:bg-neutral-50 hover:text-black"
+            title="Copy a shareable link to this track & view"
+          >
+            {linkCopied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+            {linkCopied ? "copied" : "copy link"}
+          </button>
+        ) : null}
       </div>
 
       <div className="mb-2.5 flex flex-wrap gap-1.5">

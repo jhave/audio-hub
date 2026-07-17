@@ -154,11 +154,16 @@ function Inner({ data }: { data: DHData }) {
     }, 500)
     if (data && data.tracks.length > 0) {
       let startIdx = 0
-      if (played.size > 0) {
+      // deep link wins: ?track=N names the track this session is FOR
+      const urlTrack = parseInt(new URLSearchParams(location.search).get("track") ?? "", 10)
+      if (!isNaN(urlTrack) && data.tracks[urlTrack]) {
+        startIdx = urlTrack
+      } else if (played.size > 0) {
         const firstUnplayed = data.tracks.find((t) => !played.has(t.i))
         if (firstUnplayed) startIdx = firstUnplayed.i
       }
       playIdx(startIdx)
+      setTimeout(() => document.getElementById(`dh-row-${startIdx}`)?.scrollIntoView({ block: "center" }), 600)
     }
   }, [data, played, playIdx])
 
@@ -393,17 +398,71 @@ function Inner({ data }: { data: DHData }) {
     return s
   }, [filtersActive, query, fStar, fUnheard, fLyrics, data, played])
 
-  // "/" focuses search (when not already typing)
+  // 0R.11 — keyboard: "/" search, Space play/pause, arrows prev/next,
+  // s cycles order, m cycles map mode (all inert while typing)
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "/" && (e.target as HTMLElement)?.tagName !== "INPUT" && (e.target as HTMLElement)?.tagName !== "TEXTAREA") {
+      const tag = (e.target as HTMLElement)?.tagName
+      if (tag === "INPUT" || tag === "TEXTAREA") return
+      if (e.key === "/") {
         e.preventDefault()
         searchRef.current?.focus()
+      } else if (e.code === "Space") {
+        e.preventDefault()
+        if (player.isPlaying) player.pause()
+        else player.play()
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault()
+        const i = nextIdx()
+        if (i != null) playIdx(i)
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault()
+        const i = prevIdx()
+        if (i != null) playIdx(i)
+      } else if (e.key === "s") {
+        setOrder(order === "sequential" ? "random" : order === "random" ? "random-star" : "sequential")
+      } else if (e.key === "m") {
+        handleNextMode()
       }
     }
     addEventListener("keydown", onKey)
     return () => removeEventListener("keydown", onKey)
-  }, [])
+  })
+
+  // 0R.8 — deep-linkable state: restore once from URL, then mirror into it
+  const restoredRef = React.useRef(false)
+  React.useEffect(() => {
+    if (restoredRef.current) return
+    restoredRef.current = true
+    try {
+      const sp = new URLSearchParams(location.search)
+      const m = sp.get("map")
+      if (m && (modes as string[]).includes(m)) setMapMode(m as typeof mapMode)
+      const q = sp.get("q")
+      if (q) setQuery(q)
+      const tr = sp.get("track")
+      if (tr != null) {
+        const i = parseInt(tr, 10)
+        if (!isNaN(i) && data.tracks[i]) {
+          player.setActiveItem(itemFor(data.tracks[i])).catch(() => {})
+          setTimeout(() => document.getElementById(`dh-row-${i}`)?.scrollIntoView({ block: "center" }), 700)
+        }
+      }
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
+
+  React.useEffect(() => {
+    if (!restoredRef.current) return
+    try {
+      const sp = new URLSearchParams()
+      if (focusIdx != null) sp.set("track", String(focusIdx))
+      if (mapMode !== "music") sp.set("map", mapMode)
+      if (query.trim()) sp.set("q", query.trim())
+      const s = sp.toString()
+      history.replaceState(null, "", s ? `?${s}` : location.pathname)
+    } catch {}
+  }, [focusIdx, mapMode, query])
 
   const groups = React.useMemo(() => {
     if (order === "weirdness") {
@@ -778,6 +837,9 @@ function Inner({ data }: { data: DHData }) {
             clickedTag={clickedTag}
             onTagClick={setClickedTag}
             hoverIdx={hoverIdx}
+            onCopyLink={() => {
+              try { navigator.clipboard.writeText(location.href) } catch {}
+            }}
             onTitleClick={() => {
               if (focusIdx != null) {
                 const el = document.getElementById(`dh-row-${focusIdx}`)
