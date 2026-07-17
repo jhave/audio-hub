@@ -238,7 +238,7 @@ export default function DHMap({
         tempo: { x: "tempo →", y: "", x0: "60 bpm", x1: "200 bpm", y0: "", y1: "" },
       }
       const axis = AXIS_SPECS[mapMode]
-      if (axis) {
+      if (axis && !clickedTag) {
         const E = 0.85 // layout-space extent used by the axis scatters
         const [x0, y0] = project(-E, E, w, h)   // bottom-left (y+ is down in canvas after projection? y grows downward)
         const [x1, y1] = project(E, -E, w, h)   // top-right
@@ -724,11 +724,17 @@ export default function DHMap({
         onWheel={handleWheel}
       />
 
-      {/* Lyric Topology Legend Note */}
-      {mapMode === "lyrics" && (
-        <div className="absolute top-2 left-3 text-[9.5px] text-blue-500 font-mono pointer-events-none select-none">
-          * vocal tracks highlighted in blue
+      {/* Topology Legend / Active Filter Note */}
+      {clickedTag ? (
+        <div className="absolute top-2 left-3 text-[9.5px] text-[#e24b4a] font-mono pointer-events-none select-none bg-white/90 px-2 py-0.5 rounded border border-neutral-200 shadow-sm">
+          * Focus lens active: matches centered; others pushed to boundary ring.
         </div>
+      ) : (
+        mapMode === "lyrics" && (
+          <div className="absolute top-2 left-3 text-[9.5px] text-blue-500 font-mono pointer-events-none select-none">
+            * vocal tracks highlighted in blue
+          </div>
+        )
       )}
 
       {/* Floating Zoom Controls */}
