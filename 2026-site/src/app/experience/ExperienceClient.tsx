@@ -518,7 +518,8 @@ function Inner({ data }: { data: DHData }) {
           mobileTab === "map-essay" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
         } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden transition-all duration-500 ease-in-out`}
       >
-        <div className="flex flex-col px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none gap-1">
+        <div id="tutorial-map" className="flex flex-col flex-shrink-0">
+          <div className="flex flex-col px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none gap-1">
           <div className="flex flex-wrap items-center justify-between w-full gap-y-1">
             <div className="flex flex-wrap items-center gap-1">
               {([
@@ -637,13 +638,15 @@ function Inner({ data }: { data: DHData }) {
             matchSet={matchSet}
           />
         </div>
-        <div className="flex-1 min-h-0 bg-white overflow-hidden">
+        </div>
+        <div id="tutorial-essay" className="flex-1 min-h-0 bg-white overflow-hidden">
           <DHEssay text={data.essay || ""} />
         </div>
       </aside>
 
       {/* CENTER: the (familiar) player list */}
       <main
+        id="tutorial-playlist"
         className={`${
           mobileTab === "listen" ? "block flex-1" : "hidden"
         } md:block min-h-0 overflow-y-auto pb-28 transition-all duration-500 ease-in-out overflow-hidden ${
@@ -798,7 +801,7 @@ function Inner({ data }: { data: DHData }) {
           mobileTab === "faq" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
         } md:flex md:flex-col border-l bg-white h-full min-h-0 overflow-hidden transition-all duration-500 ease-in-out`}
       >
-        <div className="flex-shrink-0 border-b bg-white overflow-y-auto scrollbar-none max-h-[60vh]">
+        <div id="tutorial-data" className="flex-shrink-0 border-b bg-white overflow-y-auto scrollbar-none max-h-[60vh]">
           <DHData_
             track={rightTrack}
             isLive={isLive}
@@ -993,7 +996,7 @@ function Dock({
   const btn = "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-200 bg-white text-black hover:bg-neutral-100"
 
   return (
-    <div className="fixed bottom-3 left-1/2 z-20 w-[min(476px,92vw)] -translate-x-1/2">
+    <div id="tutorial-player" className="fixed bottom-3 left-1/2 z-20 w-[min(476px,92vw)] -translate-x-1/2">
       <div className="rounded-full border bg-white/90 px-4 py-3 shadow-md backdrop-blur">
         <div className="flex items-center gap-3">
           <button className={btn} onClick={onPrev} aria-label="Previous"><ArrowLeft className="h-4 w-4" /></button>
@@ -1037,60 +1040,96 @@ function OnboardingTutorial({
     {
       title: "1. Audio Topology Map",
       desc: "Visualize the 746 tracks of the archive mapped by sonic similarities. Use the projection buttons in this left sidebar header to morph the layout (Music, Lyrics, Metrics, Groove, etc.).",
+      selector: "#tutorial-map",
       position: "left-6 md:left-[35vw] top-[20vh]",
-      highlightClass: "fixed left-0 top-0 h-[calc(38vh+46px)] w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 top-0 h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
       title: "2. The Essay Zone",
       desc: "Read 'A few tiny thoughts about the implications of AI on music'—a critical essay discussing AI, automation, metadata limitations, and subjective curation.",
+      selector: "#tutorial-essay",
       position: "left-6 md:left-[35vw] top-[45vh]",
-      highlightClass: "fixed left-0 top-[calc(38vh+46px)] bottom-20 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 bottom-[10vh] h-[30vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
       title: "3. Playlist Explorer",
       desc: "The central column displays all 171 days of Suno generations. Click any track to start playing, hover to preview, and use the filter buttons to isolate Favorites, Unheard, Lyrics, or Instrumentals.",
+      selector: "#tutorial-playlist",
       position: "left-6 md:left-[5vw] top-[30vh]",
-      highlightClass: "fixed left-[33.3vw] top-0 bottom-20 w-[33.4vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 top-[40vh] bottom-[10vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
       title: "4. Track Data & Analysis",
       desc: "See deep acoustic parameter details for the selected track (weirdness, complexity, journey, spread). Click any metric to learn more about its meaning.",
+      selector: "#tutorial-data",
       position: "right-6 md:right-[35vw] top-[30vh]",
-      highlightClass: "fixed right-0 top-0 h-[52vh] w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 top-0 h-[50vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
       title: "5. FAQ & Glossary",
       desc: "Browse the project glossary, read detailed descriptions of the analysis metrics, and view frequently asked questions about the archive.",
+      selector: "#dh-faq-container",
       position: "right-6 md:right-[35vw] top-[45vh]",
-      highlightClass: "fixed right-0 top-[52vh] bottom-20 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 bottom-[10vh] h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
       title: "6. Bottom Playback Controls",
       desc: "Manage play, pause, track skipping, timeline progress, shuffle options, and playback speed. The player persists across all map and list selections.",
+      selector: "#tutorial-player",
       position: "left-6 md:left-[35vw] bottom-[120px]",
-      highlightClass: "fixed left-0 right-0 bottom-0 h-20 border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 bottom-0 h-20 border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
   ]
 
   const current = steps[step]
+  const [coords, setCoords] = React.useState<{ top: number; left: number; width: number; height: number } | null>(null)
+
+  React.useEffect(() => {
+    if (!current) return
+    const measure = () => {
+      const el = document.querySelector(current.selector)
+      if (el) {
+        const rect = el.getBoundingClientRect()
+        setCoords({
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+        })
+      } else {
+        setCoords(null)
+      }
+    }
+    // Delay slightly to allow layout calculations to finish
+    const timer = setTimeout(measure, 100)
+    window.addEventListener("resize", measure)
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener("resize", measure)
+    }
+  }, [step, current?.selector])
+
   if (!current) return null
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden select-none pointer-events-auto">
-      {/* Dark overlay backdrop */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[0.5px]" onClick={onSkip} />
+      {/* Click-anywhere backdrop to skip */}
+      <div className="absolute inset-0 bg-transparent z-30 cursor-pointer" onClick={onSkip} />
 
-      {/* Focus Highlight Frame (Desktop) */}
-      <div className={current.highlightClass} />
-
-      {/* Focus Highlight Frame (Mobile) */}
-      <div className={current.mobileHighlightClass} />
+      {/* Focus Highlight Spotlight Frame (Desktop & Mobile) */}
+      {coords && (
+        <div 
+          style={{
+            position: "fixed",
+            top: coords.top - 4,
+            left: coords.left - 4,
+            width: coords.width + 8,
+            height: coords.height + 8,
+            borderWidth: "4px",
+            borderColor: "#f59e0b",
+            backgroundColor: "rgba(245, 158, 11, 0.03)",
+            zIndex: 40,
+            pointerEvents: "none",
+            transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+            borderRadius: "16px",
+            boxShadow: "0 0 0 9999px rgba(0, 0, 0, 0.45)",
+          }}
+        />
+      )}
 
       {/* Tooltip Content Popover */}
       <div className={`absolute ${current.position} z-50 w-[min(340px,88vw)] rounded-2xl border border-neutral-800 bg-neutral-900 p-5 text-white shadow-2xl transition-all duration-300`}>
