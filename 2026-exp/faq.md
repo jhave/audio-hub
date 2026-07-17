@@ -106,8 +106,7 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 * **Generative Probing**: Training mini-classifiers on the intermediate hidden layers of active music generators to see how the model internalizes concepts like keys, structure, and emotional weight during the act of creation.
 </details>
 
-<details>
-<summary><b>Topology Layout Spaces (The 9 Map Projections)</b></summary>
+## Topology Layout Spaces (The 9 Map Projections)
 
 ### Acoustic Timbre Space (Music) — [Accurate]
 * **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using UMAP.
@@ -159,7 +158,7 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 * **Relation Exposed**: Direct, linear speed layout for debugging and diagnosing tempo extraction reliability.
 * **Accuracy**: Contested. Plots raw estimated tempo; exposes algorithm double/half octave errors.
 
-</details>
+
 
 ---
 

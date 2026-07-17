@@ -284,6 +284,42 @@ function Inner({ data }: { data: DHData }) {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" })
   }, [focusIdx])
 
+  // scroll FAQ sidebar to describe the active map projection space
+  React.useEffect(() => {
+    const idMap: Record<string, string> = {
+      music: "faq-acoustic-timbre-space-music-",
+      lyrics: "faq-semantic-lyric-space-lyrics-",
+      metrics: "faq-structural-umap-metrics-",
+      aesthetic: "faq-aesthetic-umap-aesthetic-",
+      rhythm: "faq-rhythm-umap-rhythm-",
+      groove: "faq-groove-grid",
+      intent: "faq-intent-space",
+      texture: "faq-texture-space",
+      narrative: "faq-narrative-space",
+      tempo: "faq-tempo-line"
+    }
+    const targetId = idMap[mapMode]
+    if (targetId) {
+      const el = document.getElementById(targetId)
+      if (el) {
+        // Expand parent details element if collapsed
+        const details = el.closest("details")
+        if (details) details.open = true
+
+        const container = document.getElementById("dh-faq-container")
+        if (container) {
+          const rect = el.getBoundingClientRect()
+          const containerRect = container.getBoundingClientRect()
+          const relativeTop = rect.top - containerRect.top + container.scrollTop
+          container.scrollTo({
+            top: relativeTop - 12,
+            behavior: "smooth"
+          })
+        }
+      }
+    }
+  }, [mapMode])
+
   const handleMetricClick = React.useCallback((term: string) => {
     const key = term.toLowerCase().trim()
     const idMap: Record<string, string> = {
