@@ -755,10 +755,9 @@ export default function DHMap({
           onClick={() => {
             setZoom(1.0)
             setPan({ x: 0, y: 0 })
-            onClearTag?.()
           }}
           className={`w-6 h-6 flex items-center justify-center bg-white border border-neutral-200 rounded shadow-sm text-[10px] font-bold text-neutral-400 hover:bg-neutral-50 hover:text-neutral-600 active:scale-90 transition-all cursor-pointer transition-opacity duration-200 ${
-            (zoom !== 1.0 || pan.x !== 0 || pan.y !== 0 || clickedTag !== null)
+            (zoom !== 1.0 || pan.x !== 0 || pan.y !== 0)
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           }`}
