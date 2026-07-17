@@ -9,7 +9,7 @@ import {
   useAudioPlayer,
   useAudioPlayerTime,
 } from "@/components/ui/audio-player"
-import { PauseIcon, PlayIcon, ArrowLeft, ArrowRight, ShuffleIcon, StarIcon, ListOrderedIcon, SparklesIcon } from "lucide-react"
+import { PauseIcon, PlayIcon, ArrowLeft, ArrowRight, ShuffleIcon, StarIcon, ListOrderedIcon, SparklesIcon, Search } from "lucide-react"
 import { loadDH, resolveSrc, type DHData, type DHTrack } from "@/lib/dh"
 import DHMap from "./DHMap"
 import DHData_ from "./DHData"
@@ -516,41 +516,25 @@ function Inner({ data }: { data: DHData }) {
         <div className="flex flex-col px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none gap-1">
           <div className="flex flex-wrap items-center justify-between w-full gap-y-1">
             <div className="flex flex-wrap items-center gap-1">
-              <button 
-                onClick={handlePrevMode} 
-                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
-                title="Previous Topology Mode"
-              >
-                &lt;
-              </button>
-              <div className="flex flex-wrap items-center gap-1">
-                {([
-                  ["learned", [["music","Music","UMAP of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","UMAP of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","UMAP of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
-                  ["measured", [["groove","Groove","x: tempo · y: circle of fifths"],["intent","Intent","x: weirdness · y: style weight (Suno generation sliders)"],["texture","Texture","x: bounce · y: melodic complexity"],["narrative","Narrative","x: journey · y: spread (trajectory statistics)"],["tempo","Tempo","x: tempo (one line)"]]],
-                ] as const).map(([group, tabs]) => (
-                  <div key={group} className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
-                    {tabs.map(([mode, label, tip]) => (
-                      <button
-                        key={mode}
-                        onClick={() => setMapMode(mode)}
-                        className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                          mapMode === mode ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                        }`}
-                        title={tip}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                ))}
-              </div>
-              <button 
-                onClick={handleNextMode} 
-                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
-                title="Next Topology Mode"
-              >
-                &gt;
-              </button>
+              {([
+                ["learned", [["music","Music","UMAP of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","UMAP of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","UMAP of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
+                ["measured", [["groove","Groove","x: tempo · y: circle of fifths"],["intent","Intent","x: weirdness · y: style weight (Suno generation sliders)"],["texture","Texture","x: bounce · y: melodic complexity"],["narrative","Narrative","x: journey · y: spread (trajectory statistics)"],["tempo","Tempo","x: tempo (one line)"]]],
+              ] as const).map(([group, tabs]) => (
+                <div key={group} className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
+                  {tabs.map(([mode, label, tip]) => (
+                    <button
+                      key={mode}
+                      onClick={() => setMapMode(mode)}
+                      className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                        mapMode === mode ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                      }`}
+                      title={tip}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              ))}
             </div>
             <div className="flex items-center gap-2">
               {mapMode === "lyrics" && (
@@ -574,25 +558,27 @@ function Inner({ data }: { data: DHData }) {
                 <span>show paths</span>
               </label>
               <span className="font-mono text-[9px] text-neutral-400">{played.size}/{data.tracks.length} heard</span>
-              <button
-                onClick={() => {
-                  const next = !isMapExpanded
-                  setIsMapExpanded(next)
-                  try { localStorage.setItem("dh-map-expanded", next ? "1" : "0") } catch {}
-                }}
-                className="rounded border border-neutral-300 bg-white px-1.5 py-0.5 text-[10px] font-bold text-neutral-600 hover:bg-neutral-100 hover:text-black"
-                title={isMapExpanded ? "Collapse map (restore playlist)" : "Expand map (hides playlist)"}
-              >
-                {isMapExpanded ? "⤡ collapse" : "⤢ expand"}
-              </button>
             </div>
           </div>
         </div>
         <div className={`w-full flex-shrink-0 relative border-b bg-neutral-50 transition-all duration-500 ease-in-out ${
           isMapExpanded ? "h-[66.6vh]" : "h-[38vh] min-h-[270px]"
         }`}>
+          {/* Top-left Expand/Collapse button */}
+          <button
+            onClick={() => {
+              const next = !isMapExpanded
+              setIsMapExpanded(next)
+              try { localStorage.setItem("dh-map-expanded", next ? "1" : "0") } catch {}
+            }}
+            className="absolute top-2.5 left-2.5 z-20 w-6 h-6 flex items-center justify-center bg-white border border-neutral-200 rounded shadow-sm text-[12px] font-bold text-neutral-600 hover:bg-neutral-50 hover:text-black active:scale-95 transition-all cursor-pointer select-none"
+            title={isMapExpanded ? "Collapse map" : "Expand map"}
+          >
+            {isMapExpanded ? "⤡" : "⤢"}
+          </button>
+
           {/* Floating HUD Label inside map container */}
-          <div className="absolute top-2.5 left-3 z-10 pointer-events-none select-none bg-white/75 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-neutral-200/40 shadow-sm leading-tight flex flex-col gap-0.5">
+          <div className="absolute top-2.5 left-10 z-10 pointer-events-none select-none bg-white/75 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-neutral-200/40 shadow-sm leading-tight flex flex-col gap-0.5">
             <span className="text-[14px] font-bold text-neutral-800 tracking-wide">
               {mapMode === "music" && "Acoustic Timbre Space"}
               {mapMode === "lyrics" && "Semantic Lyric Space"}
@@ -670,13 +656,16 @@ function Inner({ data }: { data: DHData }) {
         {/* 0R.3/0R.4 — sticky search + filter chips */}
         <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-white/95 px-4 py-2 backdrop-blur">
           <div className="flex flex-wrap items-center gap-2">
-            <input
-              ref={searchRef}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder='search titles, albums, prompts…  ( / )'
-              className="h-8 flex-grow min-w-[150px] max-w-[300px] rounded-full border border-neutral-200 bg-white px-3 text-[12px] outline-none focus:border-neutral-400"
-            />
+            <div className="relative flex-grow min-w-[150px] max-w-[300px]">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400 pointer-events-none" />
+              <input
+                ref={searchRef}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder='search titles, albums, prompts…  ( / )'
+                className="h-8 w-full rounded-full border border-neutral-200 bg-white pl-9 pr-3 text-[12px] outline-none focus:border-neutral-400"
+              />
+            </div>
             <select
               value=""
               onChange={(e) => {
