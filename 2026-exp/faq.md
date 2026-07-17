@@ -39,8 +39,8 @@ Instead of just taking the average sound of a song, we kept the individual finge
   * The acoustic profile of these sub-bass frequencies matches the low-frequency resonance patterns of a **sousaphone/brass** instrument in the CLAP model's semantic training space.
   * Thus, the model assigns a high score to `"sousaphone/brass"`. It is a sonic profile match, not literal physical instrument detection.
 
-### 4. 2D Map (UMAP) & Trajectories (PCA)
-* **2D Layout**: We center the 746 track-level centroids and run **Uniform Manifold Approximation and Projection (UMAP)** to project the 512-dimensional representations into 2D coordinates `[x, y]` for the browser canvas map.
+### 4. 2D Map (t-SNE) & Trajectories (PCA)
+* **2D Layout**: We center the 746 track-level centroids and run **t-Distributed Stochastic Neighbor Embedding (t-SNE)** to project the 512-dimensional representations into 2D coordinates `[x, y]` for the browser canvas map.
 * **Trajectories (3D Shapes)**: We run **Principal Component Analysis (PCA)** across all segment embeddings in the database to find the top 3 directions of acoustic variation. Each track's segment sequence is projected onto these 3 components, resampled to 16 points, and rendered as a geometric shape representing the song's internal trajectory.
 
 ### 5. Traditional Audio Descriptors (Librosa & Tempo Double/Half Limits)
@@ -109,27 +109,27 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 ## Topology Layout Spaces (The 9 Map Projections)
 
 ### Acoustic Timbre Space (Music) — [Accurate]
-* **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using UMAP.
+* **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using t-SNE.
 * **Relation Exposed**: Sonic texture, instrumentation, and genre groupings.
 * **Accuracy**: Highly accurate representation of sonic texture and instrumentation classification.
 
 ### Semantic Lyric Space (Lyrics) — [Inaccurate]
-* **Description**: Projects the CLAP lyric and prompt text embeddings down to 2D using UMAP.
+* **Description**: Projects the CLAP lyric and prompt text embeddings down to 2D using t-SNE.
 * **Relation Exposed**: Thematic concepts, vocabularies, style prompts, and lyrical subjects.
 * **Accuracy**: Moderately accurate; clusters textual style, vocabularies, and prompt intents.
 
-### Structural UMAP (Metrics) — [Accurate]
-* **Description**: Runs UMAP on all 13 musicological metrics.
+### Structural t-SNE (Metrics) — [Accurate]
+* **Description**: Runs t-SNE on all 13 musicological metrics.
 * **Relation Exposed**: Overall structural complexity, tempo, drift, modulations, bounce, and journey parameters.
 * **Accuracy**: Very accurate mathematical clustering of all 13 features.
 
-### Aesthetic UMAP (Aesthetic) — [Accurate]
-* **Description**: Runs UMAP on 9 composition-focused metrics, ablating noisy outliers like dropAt, tempoJumps, and novelty.
+### Aesthetic t-SNE (Aesthetic) — [Accurate]
+* **Description**: Runs t-SNE on 9 composition-focused metrics, ablating noisy outliers like dropAt, tempoJumps, and novelty.
 * **Relation Exposed**: Pure composition structure, melody complexity, style variety, weirdness, and tempo characteristics.
 * **Accuracy**: Highly cohesive composition style clustering excluding outliers.
 
-### Rhythm UMAP (Rhythm) — [Accurate]
-* **Description**: Runs UMAP on 4 core rhythm and density metrics: tempo, bounce, melodicComplexity, and sectionCount.
+### Rhythm t-SNE (Rhythm) — [Accurate]
+* **Description**: Runs t-SNE on 4 core rhythm and density metrics: tempo, bounce, melodicComplexity, and sectionCount.
 * **Relation Exposed**: Rhythmic density, tempo boundaries, syncopation, and melody thickness.
 * **Accuracy**: Extremely accurate mapping of rhythmic density vs. complexity.
 

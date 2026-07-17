@@ -6,7 +6,7 @@
 import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
-import { UMAP } from "umap-js"
+import TSNE from "tsne-js"
 
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const V2 = path.join(HERE, "../public/data/v2")
@@ -80,18 +80,42 @@ for (const v of mat) {
   for (let k = 0; k < D; k++) v[k] /= nrm
 }
 
-// ---- UMAP -> 2D on centered vectors (cosine) ----
-console.log("running UMAP on 746x512 (centered)...")
-const umap = new UMAP({ nComponents: 2, nNeighbors: 15, minDist: 0.25, spread: 1.2 })
-const raw = umap.fit(mat.map((v) => Array.from(v)))
-// normalize to [-1,1] preserving aspect (single global scale)
-let mnX = 1e9, mxX = -1e9, mnY = 1e9, mxY = -1e9
-for (const [x, y] of raw) { mnX = Math.min(mnX, x); mxX = Math.max(mxX, x); mnY = Math.min(mnY, y); mxY = Math.max(mxY, y) }
-const cx = (mnX + mxX) / 2, cy = (mnY + mxY) / 2
-const scale = 2 / Math.max(mxX - mnX, mxY - mnY)
-const xy = raw.map(([x, y]) => [Math.round((x - cx) * scale * 1000) / 1000, Math.round((y - cy) * scale * 1000) / 1000])
+// ---- t-SNE -> 2D helper ----
+function computeTSNE(matrix, metric = "euclidean", perplexity = 30, nIter = 500) {
+  const model = new TSNE({
+    dim: 2,
+    perplexity,
+    earlyExaggeration: 4.0,
+    learningRate: 100.0,
+    nIter,
+    metric
+  })
+  model.init({
+    data: matrix.map((v) => Array.from(v)),
+    type: "dense"
+  })
+  model.run()
+  const rawPts = model.getOutput()
 
-// ---- UMAP -> 2D on centered text/lyrics vectors (cosine) ----
+  // normalize to [-1,1] preserving aspect (single global scale)
+  let mnX = 1e9, mxX = -1e9, mnY = 1e9, mxY = -1e9
+  for (const [x, y] of rawPts) {
+    mnX = Math.min(mnX, x); mxX = Math.max(mxX, x)
+    mnY = Math.min(mnY, y); mxY = Math.max(mxY, y)
+  }
+  const cx = (mnX + mxX) / 2, cy = (mnY + mxY) / 2
+  const scale = 2 / Math.max(mxX - mnX, mxY - mnY)
+  return rawPts.map(([x, y]) => [
+    Math.round((x - cx) * scale * 1000) / 1000,
+    Math.round((y - cy) * scale * 1000) / 1000
+  ])
+}
+
+// ---- t-SNE -> 2D on centered vectors (cosine) ----
+console.log("running t-SNE on 746x512 (centered)...")
+const xy = computeTSNE(mat, "euclidean", 30, 500)
+
+// ---- t-SNE -> 2D on centered text/lyrics vectors (cosine) ----
 const textMat = tracks.map((t) => {
   const l = lyrById[t.trackId]
   if (l) return Float64Array.from(l.vec)
@@ -109,17 +133,11 @@ for (const v of textMat) {
   for (let k = 0; k < D; k++) v[k] /= nrm
 }
 
-console.log("running UMAP on 746x512 text/lyrics (centered)...")
-const textUmap = new UMAP({ nComponents: 2, nNeighbors: 15, minDist: 0.25, spread: 1.2 })
-const textRaw = textUmap.fit(textMat.map((v) => Array.from(v)))
-let tmnX = 1e9, tmxX = -1e9, tmnY = 1e9, tmxY = -1e9
-for (const [x, y] of textRaw) { tmnX = Math.min(tmnX, x); tmxX = Math.max(tmxX, x); tmnY = Math.min(tmnY, y); tmxY = Math.max(tmxY, y) }
-const tcx = (tmnX + tmxX) / 2, tcy = (tmnY + tmxY) / 2
-const tscale = 2 / Math.max(tmxX - tmnX, tmxY - tmnY)
-const lXy = textRaw.map(([x, y]) => [Math.round((x - tcx) * tscale * 1000) / 1000, Math.round((y - tcy) * tscale * 1000) / 1000])
+console.log("running t-SNE on 746x512 text/lyrics (centered)...")
+const lXy = computeTSNE(textMat, "euclidean", 30, 500)
 
-// ---- UMAP -> 2D on normalized descriptors/metrics (Euclidean) ----
-function computeMetricUMAP(keys, nNeighbors = 15, minDist = 0.2, spread = 1.0) {
+// ---- t-SNE -> 2D on normalized descriptors/metrics (Euclidean) ----
+function computeMetricTSNE(keys, perplexity = 30, nIter = 500) {
   const subsetMat = tracks.map((t) => {
     const d = descById[t.trackId] || {}
     const tr = truthById[t.trackId] || {}
@@ -156,20 +174,7 @@ function computeMetricUMAP(keys, nNeighbors = 15, minDist = 0.2, spread = 1.0) {
     }
   }
 
-  const subsetUmap = new UMAP({ nComponents: 2, nNeighbors, minDist, spread })
-  const rawPts = subsetUmap.fit(subsetMat)
-
-  let mnX = 1e9, mxX = -1e9, mnY = 1e9, mxY = -1e9
-  for (const [x, y] of rawPts) {
-    mnX = Math.min(mnX, x); mxX = Math.max(mxX, x)
-    mnY = Math.min(mnY, y); mxY = Math.max(mxY, y)
-  }
-  const cx = (mnX + mxX) / 2, cy = (mnY + mxY) / 2
-  const scale = 2 / Math.max(mxX - mnX, mxY - mnY)
-  return rawPts.map(([x, y]) => [
-    Math.round((x - cx) * scale * 1000) / 1000,
-    Math.round((y - cy) * scale * 1000) / 1000
-  ])
+  return computeTSNE(subsetMat, "euclidean", perplexity, nIter)
 }
 
 const descKeys = [
@@ -177,21 +182,21 @@ const descKeys = [
   "bounce", "melodicComplexity", "modulations", "weirdness", "styleWeight",
   "journey", "spread", "novelty"
 ]
-console.log("running UMAP-13 on 746x13 metrics...")
-const mXy = computeMetricUMAP(descKeys, 15, 0.2, 1.0)
+console.log("running t-SNE-13 on 746x13 metrics...")
+const mXy = computeMetricTSNE(descKeys, 30, 500)
 
 const ablated9Keys = [
   "tempo", "tempoDrift", "sectionCount", "modulations",
   "bounce", "melodicComplexity", "weirdness", "journey", "spread"
 ]
-console.log("running UMAP-9 (Aesthetic) ablated metrics...")
-const mAblated9Xy = computeMetricUMAP(ablated9Keys, 15, 0.2, 1.0)
+console.log("running t-SNE-9 (Aesthetic) ablated metrics...")
+const mAblated9Xy = computeMetricTSNE(ablated9Keys, 30, 500)
 
 const ablated4Keys = [
   "tempo", "bounce", "melodicComplexity", "sectionCount"
 ]
-console.log("running UMAP-4 (Rhythm) ablated metrics...")
-const mAblated4Xy = computeMetricUMAP(ablated4Keys, 15, 0.2, 1.0)
+console.log("running t-SNE-4 (Rhythm) ablated metrics...")
+const mAblated4Xy = computeMetricTSNE(ablated4Keys, 30, 500)
 
 
 // ---- k-NN neighbors (cosine on centered vecs), k=8 ----

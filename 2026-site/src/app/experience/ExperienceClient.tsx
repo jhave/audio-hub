@@ -403,9 +403,9 @@ function Inner({ data }: { data: DHData }) {
     const idMap: Record<string, string> = {
       music: "faq-acoustic-timbre-space-music-",
       lyrics: "faq-semantic-lyric-space-lyrics-",
-      metrics: "faq-structural-umap-metrics-",
-      aesthetic: "faq-aesthetic-umap-aesthetic-",
-      rhythm: "faq-rhythm-umap-rhythm-",
+      metrics: "faq-structural-t-sne-metrics-",
+      aesthetic: "faq-aesthetic-t-sne-aesthetic-",
+      rhythm: "faq-rhythm-t-sne-rhythm-",
       groove: "faq-groove-grid",
       intent: "faq-intent-space",
       texture: "faq-texture-space",
@@ -646,7 +646,7 @@ function Inner({ data }: { data: DHData }) {
           <div className="flex flex-wrap items-center justify-between w-full gap-y-1">
             <div className="flex flex-wrap items-center gap-1">
               {([
-                ["learned", [["music","Music","UMAP of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","UMAP of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","UMAP of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
+                ["learned", [["music","Music","t-SNE of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","t-SNE of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","t-SNE of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
                 ["measured", [["groove","Groove","x: tempo · y: circle of fifths"],["intent","Intent","x: weirdness · y: style weight (Suno generation sliders)"],["texture","Texture","x: bounce · y: melodic complexity"],["narrative","Narrative","x: journey · y: spread (trajectory statistics)"],["tempo","Tempo","x: tempo (one line)"]]],
               ] as const).map(([group, tabs]) => (
                 <div key={group} className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
@@ -718,9 +718,9 @@ function Inner({ data }: { data: DHData }) {
                 <>
                   {mapMode === "music" && "Acoustic Timbre Space"}
                   {mapMode === "lyrics" && "Semantic Lyric Space"}
-                  {mapMode === "metrics" && "Structural UMAP (13D)"}
-                  {mapMode === "aesthetic" && "Aesthetic UMAP (9D)"}
-                  {mapMode === "rhythm" && "Rhythm UMAP (4D)"}
+                  {mapMode === "metrics" && "Structural t-SNE (13D)"}
+                  {mapMode === "aesthetic" && "Aesthetic t-SNE (9D)"}
+                  {mapMode === "rhythm" && "Rhythm t-SNE (4D)"}
                   {mapMode === "groove" && "Groove Grid"}
                   {mapMode === "intent" && "Intent Space"}
                   {mapMode === "texture" && "Texture Space"}
