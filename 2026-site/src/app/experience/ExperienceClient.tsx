@@ -651,9 +651,9 @@ function Inner({ data }: { data: DHData }) {
         }`}
       >
         {/* 0R.3/0R.4 — sticky search + filter chips */}
-        <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-neutral-50/95 px-4 py-1.5 backdrop-blur flex flex-col gap-1 select-none">
-          {/* Row 1: Album Jump dropdown and Logos */}
-          <div className="flex items-center justify-between gap-2 w-full">
+        <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-neutral-50/95 px-4 py-1.5 backdrop-blur flex flex-col gap-1 select-none relative">
+          {/* Row 1: Album Jump dropdown */}
+          <div className="flex items-center gap-2 w-full pr-[100px]">
             <div ref={albumRef} className="relative flex-grow max-w-[286px]">
               <button
                 onClick={() => setIsAlbumOpen(!isAlbumOpen)}
@@ -680,41 +680,41 @@ function Inner({ data }: { data: DHData }) {
                 </div>
               )}
             </div>
-            
-            {/* Logos container */}
-            <div className="flex items-center gap-2 flex-shrink-0">
-              {/* Suno Icon */}
-              <a 
-                href="https://suno.com/@jhave" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-8 h-8 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:border-neutral-300 hover:opacity-100 opacity-80 transition-all shadow-sm cursor-pointer overflow-hidden"
-                title="suno.com/@jhave"
-              >
-                <img 
-                  src="/img/suno-jhave.webp" 
-                  alt="Suno Profile" 
-                  className="w-full h-full object-cover select-none"
-                />
-              </a>
-
-              {/* Glia Logo */}
-              <a 
-                href="https://glia.ca" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-8 h-8 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:border-neutral-300 hover:opacity-100 opacity-80 transition-all shadow-sm cursor-pointer overflow-hidden p-1.5"
-                title="glia.ca"
-              >
-                <img 
-                  src="/img/glia-bw.png" 
-                  alt="glia.ca" 
-                  className="w-full h-full object-contain select-none"
-                />
-              </a>
-            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-1.5 w-full">
+
+          {/* Logos container: absolute right-4, vertically centered on the whole section */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 flex-shrink-0 z-20">
+            {/* Suno Icon */}
+            <a 
+              href="https://suno.com/@jhave" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-[38px] h-[38px] rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:border-neutral-300 hover:opacity-100 opacity-80 transition-all shadow-sm cursor-pointer overflow-hidden"
+              title="suno.com/@jhave"
+            >
+              <img 
+                src="/img/suno-jhave.webp" 
+                alt="Suno Profile" 
+                className="w-full h-full object-cover select-none"
+              />
+            </a>
+
+            {/* Glia Logo */}
+            <a 
+              href="https://glia.ca" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-[38px] h-[38px] rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:border-neutral-300 hover:opacity-100 opacity-80 transition-all shadow-sm cursor-pointer overflow-hidden p-2"
+              title="glia.ca"
+            >
+              <img 
+                src="/img/glia-bw.png" 
+                alt="glia.ca" 
+                className="w-full h-full object-contain select-none"
+              />
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5 w-full pr-[100px]">
             {(["★ starred", "unheard", "lyrics", "instrumental"] as const).map((label) => {
               const on =
                 label === "★ starred" ? fStar :
