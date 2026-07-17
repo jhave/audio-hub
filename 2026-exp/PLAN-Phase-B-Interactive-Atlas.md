@@ -240,7 +240,102 @@ listen, and navigate in the same basic playlist interface.
   essay" so first-time visitors see the familiar player; state remembered in
   localStorage.
 
-### 0D. Mobile + ship  `[ ]`
+### 0R. REFINEMENT — from functional to truly useful  `[ ]`
+
+**Assessment (Fable 5, 2026-07-12, after inspecting the evolved build).**
+What now exists is far richer than the original Module-0 spec: an intro card
+with epigraph + credits, a guided tour, TEN map projections (4 learned
+embedding spaces: Music/Lyrics/Metrics + 2 ablations labeled Aesthetic &
+Rhythm; and 5 measured-axis scatters: Groove tempo×key, Intent
+weirdness×style, Texture bounce×complexity, Narrative journey×spread, Tempo),
+zoom/pan, show-paths, hide-instrumentals, clickable metric chips that
+highlight + auto-zoom the map, honesty labels ("199 bpm [inaccurate]"),
+metric cards with corpus ranges, collapsible explainers (Vermeer Smear
+Paradox; the 9 Projections), a Glossary where each metric links its
+highest/lowest exemplar tracks, and the aphoristic essay in the left rail.
+Console is clean; typecheck passes; played-state persists.
+
+**The gap to "truly useful" is not more features — it is friction, wayfinding,
+and trust.** A visitor must be able to (a) find any track fast, (b) always
+know where they are and what the map is claiming, (c) never lose their place,
+(d) share what they found. Ordered by impact:
+
+#### 0R-A. Stop the layout from moving under the user (highest priority)
+- [ ] **0R.1** Replace hover-expand (`onMouseEnter setIsMapExpanded(true)` at
+  ExperienceClient ~412) with an explicit control: a small expand/collapse
+  button on the map header (⤢ / ⤡), state persisted. Hovering the left rail
+  must NEVER collapse the playlist to 0px — cursor drift currently deletes
+  the center column mid-read. Keep the animated transition; make it
+  user-commanded. (If jhave loves hover-expand, gate it behind a 600ms
+  intent delay AND only when the pointer is over the CANVAS, not the essay.)
+- [ ] **0R.2** Map height: raise the un-expanded map from 270px to
+  ~40vh (the map is the thesis; 270px reads as a thumbnail), essay below
+  scrolls independently.
+
+#### 0R-B. Findability (the single biggest utility gap)
+- [ ] **0R.3** A search box (top of center column, sticky): substring across
+  title + album + prompt + lyrics-presence; result count; non-matches dim in
+  BOTH the list and the map (shared filter state). `/` focuses it.
+- [ ] **0R.4** Filter chips beside search: ★ starred · unheard · has-lyrics ·
+  instrumental. Same dimming behavior. (State → URL, see 0R.8.)
+- [ ] **0R.5** A compact album jump-nav: a sticky horizontal strip (or
+  dropdown) of the 56 album names → scrolls to that album. 746 rows is a
+  long sea; give it a coastline.
+
+#### 0R-C. Make every projection self-explanatory (trust + orientation)
+- [ ] **0R.6** Axis-scatter modes (Groove/Intent/Texture/Narrative/Tempo)
+  MUST draw labeled axes on the canvas (e.g. "tempo →" / "↑ circle of
+  fifths"), with min/max tick labels. Without axes they are unreadable
+  clouds. Embedding modes instead get a one-line caption ("UMAP of CLAP
+  audio embeddings — distance ≈ machine-heard similarity").
+- [ ] **0R.7** Reorganize the mode tabs into two labeled groups:
+  **learned spaces** (Music · Lyrics · Metrics · −Timbre · −Rhythm — rename
+  the ablations to say what they REMOVE, with tooltip "Metrics space with
+  timbre features ablated") and **measured axes** (Groove · Intent · Texture
+  · Narrative · Tempo). Ten flat jargon tabs currently read as noise.
+- [ ] **0R.8** Deep-linking: encode `?track=<i>&map=<mode>&q=<search>` in the
+  URL (replaceState); on load, restore and scroll/center. Makes any finding
+  SHAREABLE — a scholar's tool, per the DH name. Also "copy link to this
+  track" in the data panel.
+
+#### 0R-D. Map legibility upgrades
+- [ ] **0R.9** Faint album-centroid labels at zoom ≥ ~1.8 in embedding modes
+  (collision-culled, smallest font 9px); a legend chip row (grey unplayed ·
+  gold played · red playing · ring starred · blue lyrics) pinned under the
+  map — the color language currently lives only in the FAQ.
+- [ ] **0R.10** Density contours (KDE isolines, precomputed per layout in
+  dh.json or computed once client-side) behind embedding modes — restores
+  the "hills" reading of topology, distinguishes learned spaces visually
+  from axis grids.
+
+#### 0R-E. Flow & listening ergonomics
+- [ ] **0R.11** Keyboard: Space play/pause (when not typing), ←/→ prev/next,
+  `s` cycle order mode, `m` cycle map mode. Document in FAQ.
+- [ ] **0R.12** "Now playing" affordance in the center: the playing row gets
+  a subtle persistent tint + an equalizer glyph; a "return to now playing"
+  pill appears when it's scrolled out of view (map click already centers —
+  give the same power to the dock title: click = scroll to row).
+- [ ] **0R.13** Auto-advance queue peek: dock shows "next: <title>" for the
+  current order mode (one line, truncated) — trust in shuffle modes.
+- [ ] **0R.14** Data-panel: keep track identity + chips above the fold;
+  Vermeer/9-Projections explainers collapsed by default (they are), but move
+  Glossary behind the SAME chip-click scroll behavior consistently; add
+  "copy link" (see 0R.8).
+
+#### 0R-F. Ship it (usefulness requires existence)
+- [ ] **0R.15** Mobile: collapse to single column (playlist primary; map as
+  a toggleable sheet; data inline under playing row). = old box 0.9.
+- [ ] **0R.16** Portable build + deploy `experience/` to glia.ca + gh-pages
+  mirror; verify audio via `../audio/`; tag `exp-v0.7-dh`. = old box 0.10.
+- [ ] **0R.17** Perf pass before deploy: throttle canvas redraw when nothing
+  animates (currently 60fps always), virtualize the 746-row list if scroll
+  jank appears, lazy-decode dh.json fields not needed at first paint.
+
+**Sequencing note:** 0R.1 + 0R.3 + 0R.6 are the trio that most changes
+perceived usefulness; do them first, in that order. 0R.16 (deploy) should
+happen the same session — a refined interface nobody can reach is not useful.
+
+### 0D. Mobile + ship  `[ ]`  *(superseded — folded into 0R.15–0R.17)*
 - [ ] **0.9** **Mobile/narrow:** side columns collapse; the center player is
   primary; tapping a track's disclosure reveals map+data inline beneath that
   row (one open at a time), in a bordered card tied to the track. Same
@@ -567,4 +662,6 @@ hardest, highest-value sub-parts there remain 2.9 (fractal playhead) and
 - 2026-07-11 — Phase A2 data delivered & committed (grunt/Gemini); this plan written.
 - 2026-07-11 — 6aecaea — build-dh.mjs + dh.json (1.1–1.3 subset; UMAP+neighbors+analytics; 154KB gz; ReRites cluster ok).
 - 2026-07-11 — 1ceadb1 — DH-Archive View /experience route (boxes 0.1–0.8): 3-col map|player|data, star badge, order toggle, hover-preview, played-state; verified in dev preview.
-- (next) — 0.9 mobile inline + 0.10 deploy (tag exp-v0.5-dh); then Module 1 full + Atlas (start 2.9 fractal playhead / 2.10–2.11 dual-topology).
+- 2026-07-11/12 — (jhave+Gemini sessions) — DH-View massively extended: intro card, guided tour, 10 map projections, zoom/pan, clickable chips, glossary w/ exemplars, essay in rail; Phase C stem pipeline + v3 data; backed up at tag exp-v0.6-backup.
+- 2026-07-12 — Fable 5 assessment of evolved build → section 0R written (refinement plan: hover-expand fix, search/filters, axis labels, deep links, legibility, keyboard, deploy).
+- (next) — 0R.1 (explicit map expand) → 0R.3 (search) → 0R.6 (axis labels) → … → 0R.16 (deploy, tag exp-v0.7-dh); then Module 1 full + Atlas.
