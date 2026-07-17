@@ -724,17 +724,11 @@ export default function DHMap({
         onWheel={handleWheel}
       />
 
-      {/* Topology Legend / Active Filter Note */}
-      {clickedTag ? (
-        <div className="absolute top-2 left-3 text-[9.5px] text-[#e24b4a] font-mono pointer-events-none select-none bg-white/90 px-2 py-0.5 rounded border border-neutral-200 shadow-sm">
-          * Focus lens active: matches centered; others pushed to boundary ring.
+      {/* Lyric Topology Legend Note */}
+      {mapMode === "lyrics" && (
+        <div className="absolute top-2 left-3 text-[9.5px] text-blue-500 font-mono pointer-events-none select-none">
+          * vocal tracks highlighted in blue
         </div>
-      ) : (
-        mapMode === "lyrics" && (
-          <div className="absolute top-2 left-3 text-[9.5px] text-blue-500 font-mono pointer-events-none select-none">
-            * vocal tracks highlighted in blue
-          </div>
-        )
       )}
 
       {/* Floating Zoom Controls */}
