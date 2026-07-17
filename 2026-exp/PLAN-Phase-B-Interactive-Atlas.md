@@ -261,39 +261,39 @@ know where they are and what the map is claiming, (c) never lose their place,
 (d) share what they found. Ordered by impact:
 
 #### 0R-A. Stop the layout from moving under the user (highest priority)
-- [ ] **0R.1** Replace hover-expand (`onMouseEnter setIsMapExpanded(true)` at
+- [x] **0R.1** Replace hover-expand (`onMouseEnter setIsMapExpanded(true)` at
   ExperienceClient ~412) with an explicit control: a small expand/collapse
   button on the map header (⤢ / ⤡), state persisted. Hovering the left rail
   must NEVER collapse the playlist to 0px — cursor drift currently deletes
   the center column mid-read. Keep the animated transition; make it
   user-commanded. (If jhave loves hover-expand, gate it behind a 600ms
   intent delay AND only when the pointer is over the CANVAS, not the essay.)
-- [ ] **0R.2** Map height: raise the un-expanded map from 270px to
+- [x] **0R.2** Map height: raise the un-expanded map from 270px to
   ~40vh (the map is the thesis; 270px reads as a thumbnail), essay below
   scrolls independently.
 
 #### 0R-B. Findability (the single biggest utility gap)
-- [ ] **0R.3** A search box (top of center column, sticky): substring across
+- [x] **0R.3** A search box (top of center column, sticky): substring across
   title + album + prompt + lyrics-presence; result count; non-matches dim in
   BOTH the list and the map (shared filter state). `/` focuses it.
-- [ ] **0R.4** Filter chips beside search: ★ starred · unheard · has-lyrics ·
+- [x] **0R.4** Filter chips beside search: ★ starred · unheard · has-lyrics ·
   instrumental. Same dimming behavior. (State → URL, see 0R.8.)
 - [ ] **0R.5** A compact album jump-nav: a sticky horizontal strip (or
   dropdown) of the 56 album names → scrolls to that album. 746 rows is a
   long sea; give it a coastline.
 
 #### 0R-C. Make every projection self-explanatory (trust + orientation)
-- [ ] **0R.6** Axis-scatter modes (Groove/Intent/Texture/Narrative/Tempo)
+- [x] **0R.6** Axis-scatter modes (Groove/Intent/Texture/Narrative/Tempo)
   MUST draw labeled axes on the canvas (e.g. "tempo →" / "↑ circle of
   fifths"), with min/max tick labels. Without axes they are unreadable
   clouds. Embedding modes instead get a one-line caption ("UMAP of CLAP
   audio embeddings — distance ≈ machine-heard similarity").
-- [ ] **0R.7** Reorganize the mode tabs into two labeled groups:
+- [x] **0R.7** Reorganize the mode tabs into two labeled groups:
   **learned spaces** (Music · Lyrics · Metrics · −Timbre · −Rhythm — rename
   the ablations to say what they REMOVE, with tooltip "Metrics space with
   timbre features ablated") and **measured axes** (Groove · Intent · Texture
   · Narrative · Tempo). Ten flat jargon tabs currently read as noise.
-- [ ] **0R.8** Deep-linking: encode `?track=<i>&map=<mode>&q=<search>` in the
+- [x] **0R.8** Deep-linking: encode `?track=<i>&map=<mode>&q=<search>` in the
   URL (replaceState); on load, restore and scroll/center. Makes any finding
   SHAREABLE — a scholar's tool, per the DH name. Also "copy link to this
   track" in the data panel.
@@ -309,7 +309,7 @@ know where they are and what the map is claiming, (c) never lose their place,
   from axis grids.
 
 #### 0R-E. Flow & listening ergonomics
-- [ ] **0R.11** Keyboard: Space play/pause (when not typing), ←/→ prev/next,
+- [x] **0R.11** Keyboard: Space play/pause (when not typing), ←/→ prev/next,
   `s` cycle order mode, `m` cycle map mode. Document in FAQ.
 - [ ] **0R.12** "Now playing" affordance in the center: the playing row gets
   a subtle persistent tint + an equalizer glyph; a "return to now playing"
@@ -664,4 +664,5 @@ hardest, highest-value sub-parts there remain 2.9 (fractal playhead) and
 - 2026-07-11 — 1ceadb1 — DH-Archive View /experience route (boxes 0.1–0.8): 3-col map|player|data, star badge, order toggle, hover-preview, played-state; verified in dev preview.
 - 2026-07-11/12 — (jhave+Gemini sessions) — DH-View massively extended: intro card, guided tour, 10 map projections, zoom/pan, clickable chips, glossary w/ exemplars, essay in rail; Phase C stem pipeline + v3 data; backed up at tag exp-v0.6-backup.
 - 2026-07-12 — Fable 5 assessment of evolved build → section 0R written (refinement plan: hover-expand fix, search/filters, axis labels, deep links, legibility, keyboard, deploy).
-- (next) — 0R.1 (explicit map expand) → 0R.3 (search) → 0R.6 (axis labels) → … → 0R.16 (deploy, tag exp-v0.7-dh); then Module 1 full + Atlas.
+- 2026-07-12 — 188bb5a→defd180 — 0R.1/2 (explicit expand, taller map), 0R.3/4 (search+filters, map dimming), 0R.6 (labeled axes + y-flip fix), 0R.7 (grouped tabs), 0R.8 (deep links + copy-link), 0R.11 (keyboard). All verified in browser.
+- (next) — 0R.5 (album jump-nav) → 0R.9/0R.10 (legend, labels, contours) → 0R.12/13/14 (now-playing ergonomics) → 0R.15 (mobile check — mobile tab bar already exists) → 0R.16 (DEPLOY, tag exp-v0.7-dh) → 0R.17 (perf).
