@@ -681,8 +681,23 @@ function Inner({ data }: { data: DHData }) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder='search titles, albums, prompts…  ( / )'
-              className="h-8 w-full max-w-[340px] rounded-full border border-neutral-200 bg-white px-3 text-[12px] outline-none focus:border-neutral-400"
+              className="h-8 w-full max-w-[300px] rounded-full border border-neutral-200 bg-white px-3 text-[12px] outline-none focus:border-neutral-400"
             />
+            <select
+              value=""
+              onChange={(e) => {
+                const id = e.target.value
+                if (!id) return
+                document.getElementById(`dh-album-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }}
+              className="h-8 max-w-[150px] rounded-full border border-neutral-200 bg-white px-2 text-[11px] text-neutral-600 outline-none"
+              title="Jump to album"
+            >
+              <option value="">jump to album…</option>
+              {data.albums.map((a) => (
+                <option key={a.id} value={a.title}>{a.title}</option>
+              ))}
+            </select>
             {(["★ starred", "unheard", "lyrics", "instrumental"] as const).map((label) => {
               const on =
                 label === "★ starred" ? fStar :
@@ -725,7 +740,7 @@ function Inner({ data }: { data: DHData }) {
             const albumMatches = matchSet ? g.rows.filter((t) => matchSet.has(t.i)).length : g.rows.length
             if (matchSet && albumMatches === 0) return null
             return (
-            <section key={g.album} className="rounded-2xl border bg-white p-4">
+            <section key={g.album} id={`dh-album-${g.album}`} className="scroll-mt-14 rounded-2xl border bg-white p-4">
               <div className="mb-3">
                 {g.dateISO && <p className="text-[11px] text-neutral-400">{g.dateISO}</p>}
                 <h2 className="text-lg font-semibold leading-snug">{g.album}</h2>
