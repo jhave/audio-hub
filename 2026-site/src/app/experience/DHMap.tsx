@@ -234,7 +234,7 @@ export default function DHMap({
         groove: { x: "tempo →", y: "↑ circle of fifths", x0: "60 bpm", x1: "200 bpm", y0: "C/Am", y1: "F/Dm" },
         intent: { x: "weirdness →", y: "↑ style weight", x0: "0", x1: "1", y0: "0", y1: "1" },
         texture: { x: "bounce →", y: "↑ melodic complexity", x0: "0.05", x1: "0.6", y0: "0.05", y1: "0.7" },
-        narrative: { x: "journey →", y: "↑ spread", x0: "1", x1: "15", y0: "0.1", y1: "3.0" },
+        narrative: { x: "journey →", y: "↑ spread", x0: "1", x1: "30", y0: "0.1", y1: "3.0" },
         tempo: { x: "tempo →", y: "", x0: "60 bpm", x1: "200 bpm", y0: "", y1: "" },
       }
       const axis = AXIS_SPECS[mapMode]
@@ -326,8 +326,8 @@ export default function DHMap({
         })
       } else if (mapMode === "narrative") {
         basePts = data.tracks.map((t) => {
-          const journey = t.journey != null ? Math.max(1.0, Math.min(15.0, t.journey)) : 8.0
-          const journeyRawX = ((journey - 1.0) / (15.0 - 1.0)) * 1.7 - 0.85
+          const journey = t.journey != null ? Math.max(1.0, Math.min(30.0, t.journey)) : 8.0
+          const journeyRawX = ((journey - 1.0) / (30.0 - 1.0)) * 1.7 - 0.85
           const spread = t.spread != null ? Math.max(0.1, Math.min(3.0, t.spread)) : 1.5
           const spreadRawY = ((spread - 0.1) / (3.0 - 0.1)) * 1.7 - 0.85
           

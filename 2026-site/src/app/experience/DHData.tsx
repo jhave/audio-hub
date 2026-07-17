@@ -279,7 +279,7 @@ export default function DHData({
       <div className="mb-2 grid grid-cols-2 gap-2 text-center select-none">
         {(
           [
-            ["journey", track.journey, "Total distance traveled through parameter space", "1–15"],
+            ["journey", track.journey, "Total distance traveled through parameter space", "1–30"],
             ["spread", track.spread, "Style variety and internal diversity", "0.1–3.0"],
           ] as const
         ).map(([k, v, desc, range]) => (
