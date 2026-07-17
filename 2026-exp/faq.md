@@ -181,5 +181,5 @@ The **tonal center** of the track, estimated by correlating chroma feature vecto
 ### BOUNCE — [Accurate]
 The **low-frequency rhythm periodicity** (0 to 1). Represents the autocorrelation peak height of the low-band (<150 Hz) envelope at the beat period. High bounce indicates a strong bass-heavy rhythm or physical groove (like hip-hop or dance music), while low bounce indicates a lack of low-frequency rhythmic drive (like solo acoustic or ambient drone).
 
-### COMPLEXITY — [Accurate]
-The **melodic complexity** (0 to 1), calculated as the information entropy of the track's chroma-class transition matrix. High complexity indicates a wide, unpredictable variety of chord progressions and pitch transitions, while low complexity indicates repetitive or simple harmonic structures.
+### COMPLEXITY — [Inaccurate]
+The **melodic complexity** (0 to 1), calculated as the information entropy of the track's chroma-class transition matrix. High complexity indicates a wide, unpredictable variety of chord progressions and pitch transitions, while low complexity indicates repetitive or simple harmonic structures. Note: This metric is biased toward longer tracks (such as techno or psyambient) which may be highly predictable and structurally repetitive, yet accumulate chord/pitch variations over their duration, triggering a high entropy score.

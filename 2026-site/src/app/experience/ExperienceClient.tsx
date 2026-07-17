@@ -343,6 +343,55 @@ function Inner({ data }: { data: DHData }) {
 
   const handleMetricClick = React.useCallback((term: string) => {
     const key = term.toLowerCase().trim()
+
+    // A. Switch map category to a relevant projection
+    const modeMap: Record<string, typeof mapMode> = {
+      complexity: "texture",
+      bounce: "texture",
+      weirdness: "intent",
+      styleweight: "intent",
+      journey: "narrative",
+      spread: "narrative",
+      tempo: "tempo",
+      tempodrift: "tempo",
+      tempojumps: "tempo",
+      key: "groove",
+      modulations: "groove"
+    }
+    const targetMode = modeMap[key]
+    if (targetMode) {
+      setMapMode(targetMode)
+    }
+
+    // B. Scroll the essay to a relevant section
+    const essayMap: Record<string, string> = {
+      complexity: "essay-the-fractal-of-a-track",
+      bounce: "essay-the-fractal-of-a-track",
+      journey: "essay-the-fractal-of-a-track",
+      spread: "essay-the-fractal-of-a-track",
+      weirdness: "essay-hyperparameters-as-weather",
+      styleweight: "essay-hyperparameters-as-weather",
+      tempo: "essay-the-sousaphone-phantom-ai-classification-drift",
+      tempodrift: "essay-the-sousaphone-phantom-ai-classification-drift",
+      tempojumps: "essay-the-sousaphone-phantom-ai-classification-drift",
+      key: "essay-the-sousaphone-phantom-ai-classification-drift",
+      modulations: "essay-the-sousaphone-phantom-ai-classification-drift",
+    }
+    const targetEssayId = essayMap[key]
+    if (targetEssayId) {
+      const essayEl = document.getElementById(targetEssayId)
+      const essayContainer = document.getElementById("dh-essay-container")
+      if (essayEl && essayContainer) {
+        const rect = essayEl.getBoundingClientRect()
+        const containerRect = essayContainer.getBoundingClientRect()
+        const relativeTop = rect.top - containerRect.top + essayContainer.scrollTop
+        essayContainer.scrollTo({
+          top: relativeTop - 12,
+          behavior: "smooth"
+        })
+      }
+    }
+
     const idMap: Record<string, string> = {
       music: "faq-acoustic-timbre-space-music-",
       lyrics: "faq-semantic-lyric-space-lyrics-",
@@ -398,7 +447,7 @@ function Inner({ data }: { data: DHData }) {
         behavior: "smooth"
       })
     }
-  }, [])
+  }, [setMapMode])
 
   // Auto-leap the FAQ glossary to the corresponding description on topology change
   React.useEffect(() => {
@@ -1023,10 +1072,15 @@ function Row({
           />
         ) : null}
       </button>
-      <div className="ml-3 min-w-0 leading-tight">
+      <div className="ml-3 min-w-0 leading-tight flex flex-col">
         <div className={`truncate text-[13px] ${isPlayed && !active ? "text-neutral-400 font-normal" : "text-neutral-800 font-medium"}`}>
           {t.title}
         </div>
+        {t.prompt && (
+          <div className="truncate text-[10px] text-neutral-400 font-normal mt-0.5" title={t.prompt}>
+            {t.prompt}
+          </div>
+        )}
       </div>
     </div>
   )

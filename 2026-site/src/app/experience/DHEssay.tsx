@@ -78,15 +78,19 @@ export default function DHEssay({ text }: { text: string }) {
     }
 
     if (trimmed.startsWith("# ")) {
+      const textVal = trimmed.slice(2).trim()
+      const elementId = `essay-${textVal.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
       elements.push(
-        <h1 key={keyIdx++} className="mt-4 mb-2 text-[13px] font-bold text-black border-b pb-1">
-          {trimmed.slice(2)}
+        <h1 key={keyIdx++} id={elementId} className="mt-4 mb-2 text-[13px] font-bold text-black border-b pb-1">
+          {textVal}
         </h1>
       )
     } else if (trimmed.startsWith("## ")) {
+      const textVal = trimmed.slice(3).trim()
+      const elementId = `essay-${textVal.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
       elements.push(
-        <h2 key={keyIdx++} className="mt-4 mb-1.5 text-[11.5px] font-bold text-neutral-800">
-          {trimmed.slice(3)}
+        <h2 key={keyIdx++} id={elementId} className="mt-4 mb-1.5 text-[11.5px] font-bold text-neutral-800">
+          {textVal}
         </h2>
       )
     } else if (trimmed.startsWith("### ")) {
@@ -116,7 +120,7 @@ export default function DHEssay({ text }: { text: string }) {
   flushList()
 
   return (
-    <div className="h-full overflow-y-auto px-3.5 pb-6 pt-2 select-text opacity-70 hover:opacity-100 transition-opacity duration-300 scrollbar-thin scrollbar-thumb-neutral-200">
+    <div id="dh-essay-container" className="h-full overflow-y-auto px-3.5 pb-6 pt-2 select-text opacity-70 hover:opacity-100 transition-opacity duration-300 scrollbar-thin scrollbar-thumb-neutral-200">
       {elements}
     </div>
   )
