@@ -583,22 +583,18 @@ function Inner({ data }: { data: DHData }) {
                 ["learned", [["music","Music","UMAP of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","UMAP of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","UMAP of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
                 ["measured", [["groove","Groove","x: tempo · y: circle of fifths"],["intent","Intent","x: weirdness · y: style weight (Suno generation sliders)"],["texture","Texture","x: bounce · y: melodic complexity"],["narrative","Narrative","x: journey · y: spread (trajectory statistics)"],["tempo","Tempo","x: tempo (one line)"]]],
               ] as const).map(([group, tabs]) => (
-                <div key={group} className={`flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold transition-opacity duration-300 ${clickedTag ? "opacity-45" : ""}`}>
+                <div key={group} className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
                   {tabs.map(([mode, label, tip]) => (
                     <button
                       key={mode}
                       onClick={() => {
-                        if (!clickedTag) setMapMode(mode)
+                        setMapMode(mode)
+                        setClickedTag(null)
                       }}
-                      disabled={!!clickedTag}
-                      className={`px-1 py-0.5 rounded transition-all ${
-                        clickedTag
-                          ? "text-neutral-400 cursor-not-allowed"
-                          : mapMode === mode
-                          ? "bg-white text-neutral-900 shadow-sm cursor-pointer"
-                          : "text-neutral-500 hover:text-neutral-700 cursor-pointer"
+                      className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                        mapMode === mode ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
                       }`}
-                      title={clickedTag ? "Reset active filter to switch projection" : tip}
+                      title={tip}
                     >
                       {label}
                     </button>
