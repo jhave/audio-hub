@@ -402,8 +402,14 @@ export default function DHMap({
         const targetPanX = -pts[focusIdx].x * (s / 2)
         const targetPanY = -pts[focusIdx].y * (s / 2)
         
-        camPanRef.current.x += (targetPanX - camPanRef.current.x) * camLerpRate
-        camPanRef.current.y += (targetPanY - camPanRef.current.y) * camLerpRate
+        // Reduce auto-centering influence when zoomed out, so edge nodes don't push the map off-screen.
+        // Goes from 0.0 (no centering at zoom=1.0) to 1.0 (full centering at zoom>=2.0)
+        const centerWeight = Math.min(1.0, Math.max(0.0, (camZoomRef.current - 1.0) / 1.0))
+        const finalTargetX = targetPanX * centerWeight + pan.x * (1 - centerWeight)
+        const finalTargetY = targetPanY * centerWeight + pan.y * (1 - centerWeight)
+
+        camPanRef.current.x += (finalTargetX - camPanRef.current.x) * camLerpRate
+        camPanRef.current.y += (finalTargetY - camPanRef.current.y) * camLerpRate
       } else {
         // Fallback to panned coordinates
         camPanRef.current.x += (pan.x - camPanRef.current.x) * camLerpRate
