@@ -641,21 +641,14 @@ function Inner({ data }: { data: DHData }) {
       <main
         className={`${
           mobileTab === "listen" ? "block flex-1" : "hidden"
-        } md:block min-h-0 overflow-y-auto pb-28 pt-4 transition-all duration-500 ease-in-out overflow-hidden ${
+        } md:block min-h-0 overflow-y-auto pb-28 transition-all duration-500 ease-in-out overflow-hidden ${
           isMapExpanded ? "md:max-w-0 md:px-0 opacity-0 pointer-events-none" : "md:max-w-full md:px-4 opacity-100"
         }`}
       >
-        <header className="mb-3">
-          <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — DH archive view</h1>
-          <p className="mt-1 text-[12px] text-neutral-500">
-            Every track sits in the machine-heard topology (left) with its analysis (right).
-            Hover a title to preview; play to travel.
-          </p>
-        </header>
-
         {/* 0R.3/0R.4 — sticky search + filter chips */}
-        <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-white/95 px-4 py-2 backdrop-blur">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-neutral-50/95 px-4 py-1.5 backdrop-blur flex flex-col gap-1 select-none">
+          {/* Row 1: Search and select */}
+          <div className="flex items-center gap-2 w-full">
             <div className="relative flex-grow min-w-[150px] max-w-[300px]">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400 pointer-events-none" />
               <input
@@ -673,7 +666,7 @@ function Inner({ data }: { data: DHData }) {
                 if (!id) return
                 document.getElementById(`dh-album-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
               }}
-              className="h-8 max-w-[150px] rounded-full border border-neutral-200 bg-white px-2 text-[11px] text-neutral-600 outline-none"
+              className="h-8 flex-grow max-w-[200px] rounded-full border border-neutral-200 bg-white pl-3 pr-8 text-[11px] text-neutral-600 outline-none cursor-pointer hover:border-neutral-300 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23707070%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:8px_8px] bg-[position:right_12px_center] bg-no-repeat"
               title="Jump to album"
             >
               <option value="">jump to album…</option>
@@ -681,6 +674,10 @@ function Inner({ data }: { data: DHData }) {
                 <option key={a.id} value={a.title}>{a.title}</option>
               ))}
             </select>
+          </div>
+
+          {/* Row 2: Filter chips */}
+          <div className="flex flex-wrap items-center gap-1.5 w-full">
             {(["★ starred", "unheard", "lyrics", "instrumental"] as const).map((label) => {
               const on =
                 label === "★ starred" ? fStar :
@@ -696,7 +693,7 @@ function Inner({ data }: { data: DHData }) {
                 <button
                   key={label}
                   onClick={toggle}
-                  className={`whitespace-nowrap rounded-full border px-2.5 py-1 text-[10px] transition-colors ${
+                  className={`whitespace-nowrap rounded-full border px-2.5 py-0.5 text-[10px] transition-colors ${
                     on ? "border-neutral-800 bg-neutral-800 text-white" : "border-neutral-200 text-neutral-500 hover:bg-neutral-50"
                   }`}
                 >
@@ -717,6 +714,14 @@ function Inner({ data }: { data: DHData }) {
             )}
           </div>
         </div>
+
+        <header className="mb-3 mt-1.5">
+          <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — DH archive view</h1>
+          <p className="mt-1 text-[12px] text-neutral-500">
+            Every track sits in the machine-heard topology (left) with its analysis (right).
+            Hover a title to preview; play to travel.
+          </p>
+        </header>
 
         <div className="space-y-6">
           {groups.map((g) => {
