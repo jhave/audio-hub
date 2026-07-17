@@ -93,7 +93,15 @@ function Inner({ data }: { data: DHData }) {
   const [order, setOrder] = React.useState<OrderMode>("random")
   const [played, setPlayed] = React.useState<Set<number>>(new Set())
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
-  const [showIntro, setShowIntro] = React.useState(true)
+  const [showIntro, setShowIntro] = React.useState(() => {
+    try {
+      if (typeof window !== "undefined") {
+        const sp = new URLSearchParams(window.location.search)
+        if (sp.has("track") || sp.has("map")) return false
+      }
+    } catch {}
+    return true
+  })
   const [isFading, setIsFading] = React.useState(false)
   const [mapMode, setMapMode] = React.useState<"music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative" | "tempo">("music")
   const [hideInstrumentals, setHideInstrumentals] = React.useState(false)
