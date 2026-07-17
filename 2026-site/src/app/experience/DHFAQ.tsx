@@ -79,7 +79,7 @@ export default function DHFAQ({
   const renderPlayButtons = (metricName: string) => {
     if (!tracks || !onPlay) return null
     let key: keyof DHTrack | null = null
-    const norm = metricName.toLowerCase()
+    const norm = metricName.toLowerCase().split(" —")[0].trim()
     if (norm === "spread") key = "spread"
     else if (norm === "journey") key = "journey"
     else if (norm.startsWith("shifts") || norm === "novelty") key = "novelty"
@@ -150,7 +150,8 @@ export default function DHFAQ({
       let elementId = ""
       if (isHeading) {
         const textVal = trimmed.replace(/^###?\s+/, "").trim()
-        elementId = `faq-${textVal.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
+        const cleanVal = textVal.split(" —")[0].trim()
+        elementId = `faq-${cleanVal.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
       }
 
       if (trimmed.startsWith("# ")) {

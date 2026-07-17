@@ -109,52 +109,52 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 <details>
 <summary><b>Topology Layout Spaces (The 9 Map Projections)</b></summary>
 
-### Acoustic Timbre Space (Music)
+### Acoustic Timbre Space (Music) — [Accurate]
 * **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using UMAP.
 * **Relation Exposed**: Sonic texture, instrumentation, and genre groupings.
 * **Accuracy**: Highly accurate representation of sonic texture and instrumentation classification.
 
-### Semantic Lyric Space (Lyrics)
+### Semantic Lyric Space (Lyrics) — [Inaccurate]
 * **Description**: Projects the CLAP lyric and prompt text embeddings down to 2D using UMAP.
 * **Relation Exposed**: Thematic concepts, vocabularies, style prompts, and lyrical subjects.
 * **Accuracy**: Moderately accurate; clusters textual style, vocabularies, and prompt intents.
 
-### Structural UMAP (Metrics)
+### Structural UMAP (Metrics) — [Accurate]
 * **Description**: Runs UMAP on all 13 musicological metrics.
 * **Relation Exposed**: Overall structural complexity, tempo, drift, modulations, bounce, and journey parameters.
 * **Accuracy**: Very accurate mathematical clustering of all 13 features.
 
-### Aesthetic UMAP (Aesthetic)
+### Aesthetic UMAP (Aesthetic) — [Accurate]
 * **Description**: Runs UMAP on 9 composition-focused metrics, ablating noisy outliers like dropAt, tempoJumps, and novelty.
 * **Relation Exposed**: Pure composition structure, melody complexity, style variety, weirdness, and tempo characteristics.
 * **Accuracy**: Highly cohesive composition style clustering excluding outliers.
 
-### Rhythm UMAP (Rhythm)
+### Rhythm UMAP (Rhythm) — [Accurate]
 * **Description**: Runs UMAP on 4 core rhythm and density metrics: tempo, bounce, melodicComplexity, and sectionCount.
 * **Relation Exposed**: Rhythmic density, tempo boundaries, syncopation, and melody thickness.
 * **Accuracy**: Extremely accurate mapping of rhythmic density vs. complexity.
 
-### Groove Grid
+### Groove Grid — [Inaccurate]
 * **Description**: Mapped directly by global Tempo (X-axis) vs. Circle of Fifths key index (Y-axis).
 * **Relation Exposed**: Straightforward mapping of beat-speed against harmonic pitch relationships.
 * **Accuracy**: Perfect tempo/key extraction. Groups relative majors/minors.
 
-### Intent Space
+### Intent Space — [Accurate]
 * **Description**: Plots Suno's user parameters: Weirdness (X-axis) vs. Style Weight (Y-axis).
 * **Relation Exposed**: Clusters songs by how much control the creator gave to the AI vs. forcing random exploration.
 * **Accuracy**: Perfect. Direct plotting of Suno's internal parameters.
 
-### Texture Space
+### Texture Space — [Accurate]
 * **Description**: Mapped directly by rhythmic Bounce (X-axis) vs. Melodic Complexity (Y-axis).
 * **Relation Exposed**: Contrasts syncopation and percussion intensity against melodic layers.
 * **Accuracy**: Highly accurate contrast of transients vs. melodic layers.
 
-### Narrative Space
+### Narrative Space — [Inaccurate]
 * **Description**: Mapped directly by Journey path length (X-axis) vs. Style Spread (Y-axis).
 * **Relation Exposed**: Contrasts the track's narrative progression against stylistic variety.
 * **Accuracy**: Limited use. Short songs often get seen as small journeys.
 
-### Tempo Line
+### Tempo Line — [Almost worthless]
 * **Description**: Plots the raw estimated tempo linear position on the X-axis (lowest to highest, 60 to 200 BPM) with a small vertical jitter on the Y-axis to separate the points.
 * **Relation Exposed**: Direct, linear speed layout for debugging and diagnosing tempo extraction reliability.
 * **Accuracy**: Contested. Plots raw estimated tempo; exposes algorithm double/half octave errors.
@@ -165,22 +165,22 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 
 ## Glossary of Descriptors
 
-### SPREAD
+### SPREAD — [Accurate]
 The **style variety** within a track. Calculated as the average Euclidean distance from the track's individual window embeddings to its own overall centroid in PCA space. High spread indicates that a track contains highly varied parts (e.g. shifts between speech and singing, or switches between acoustic and electronic sections). Low spread indicates stylistic consistency.
 
-### JOURNEY
+### JOURNEY — [Inaccurate]
 The **total distance traveled** by a track through parameter space. Calculated as the sum of consecutive window-to-window distances. A long journey indicates a progressive, evolving structure (like a multi-part progressive rock or electronic piece), whereas a short journey indicates a static or repetitive structure (like a minimal ambient loop).
 
-### TEMPO
+### TEMPO — [Almost worthless]
 The **speed** of the track in beats per minute (BPM). Estimated globally using spectral autocorrelation of the onset strength envelope. Because generative music often contains drumless intros, complex syncopations, or shifting time signatures, global auto-correlation can occasionally lock onto half-time, double-time, or arpeggiated patterns. To capture the granular dynamics of tempo, we also compute:
 * **Tempo Drift**: The standard deviation of local tempos across the track's 10-second windows, capturing overall speed variability.
 * **Tempo Jumps**: The number of times the local tempo shifts abruptly by more than 10 BPM between consecutive windows.
 
-### KEY
+### KEY — [Inaccurate]
 The **tonal center** of the track, estimated by correlating chroma feature vectors against the 24 Krumhansl-Schmuckler major/minor templates. We also track segment-level keys to calculate **modulations** (the count of times a song changes keys).
 
-### BOUNCE
+### BOUNCE — [Accurate]
 The **low-frequency rhythm periodicity** (0 to 1). Represents the autocorrelation peak height of the low-band (<150 Hz) envelope at the beat period. High bounce indicates a strong bass-heavy rhythm or physical groove (like hip-hop or dance music), while low bounce indicates a lack of low-frequency rhythmic drive (like solo acoustic or ambient drone).
 
-### COMPLEXITY
+### COMPLEXITY — [Accurate]
 The **melodic complexity** (0 to 1), calculated as the information entropy of the track's chroma-class transition matrix. High complexity indicates a wide, unpredictable variety of chord progressions and pitch transitions, while low complexity indicates repetitive or simple harmonic structures.
