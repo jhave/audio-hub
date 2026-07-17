@@ -667,7 +667,7 @@ function Inner({ data }: { data: DHData }) {
                 <ChevronDown className="h-3.5 w-3.5 text-neutral-400 flex-shrink-0 ml-1.5" />
               </button>
               {isAlbumOpen && (
-                <div className="absolute top-full left-0 mt-1.5 w-full min-w-[286px] bg-white border border-neutral-200/80 rounded-xl shadow-lg z-30 max-h-[280px] overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-neutral-200">
+                <div className="absolute top-full left-0 mt-1.5 w-full min-w-[286px] bg-white border border-neutral-200/80 rounded-xl shadow-lg z-30 max-h-[560px] overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-neutral-200">
                   {data.albums.map((a) => (
                     <button
                       key={a.id}
