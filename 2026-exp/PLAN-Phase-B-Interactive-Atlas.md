@@ -278,7 +278,7 @@ know where they are and what the map is claiming, (c) never lose their place,
   BOTH the list and the map (shared filter state). `/` focuses it.
 - [x] **0R.4** Filter chips beside search: ★ starred · unheard · has-lyrics ·
   instrumental. Same dimming behavior. (State → URL, see 0R.8.)
-- [ ] **0R.5** A compact album jump-nav: a sticky horizontal strip (or
+- [x] **0R.5** A compact album jump-nav: a sticky horizontal strip (or
   dropdown) of the 56 album names → scrolls to that album. 746 rows is a
   long sea; give it a coastline.
 
@@ -665,4 +665,5 @@ hardest, highest-value sub-parts there remain 2.9 (fractal playhead) and
 - 2026-07-11/12 — (jhave+Gemini sessions) — DH-View massively extended: intro card, guided tour, 10 map projections, zoom/pan, clickable chips, glossary w/ exemplars, essay in rail; Phase C stem pipeline + v3 data; backed up at tag exp-v0.6-backup.
 - 2026-07-12 — Fable 5 assessment of evolved build → section 0R written (refinement plan: hover-expand fix, search/filters, axis labels, deep links, legibility, keyboard, deploy).
 - 2026-07-12 — 188bb5a→defd180 — 0R.1/2 (explicit expand, taller map), 0R.3/4 (search+filters, map dimming), 0R.6 (labeled axes + y-flip fix), 0R.7 (grouped tabs), 0R.8 (deep links + copy-link), 0R.11 (keyboard). All verified in browser.
-- (next) — 0R.5 (album jump-nav) → 0R.9/0R.10 (legend, labels, contours) → 0R.12/13/14 (now-playing ergonomics) → 0R.15 (mobile check — mobile tab bar already exists) → 0R.16 (DEPLOY, tag exp-v0.7-dh) → 0R.17 (perf).
+- 2026-07-12 — 0R.5 album jump-nav done.
+- (next) — 0R.9/0R.10 (legend, labels, contours) → 0R.12/13/14 (now-playing ergonomics) → 0R.15 (mobile check — mobile tab bar already exists) → 0R.16 (DEPLOY, tag exp-v0.7-dh) → 0R.17 (perf).
