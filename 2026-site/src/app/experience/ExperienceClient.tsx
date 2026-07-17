@@ -525,97 +525,29 @@ function Inner({ data }: { data: DHData }) {
                 >
                   &lt;
                 </button>
-                <div className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
-                  <button
-                    onClick={() => setMapMode("music")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "music" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Acoustic Texture Similarity"
-                  >
-                    Music
-                  </button>
-                  <button
-                    onClick={() => setMapMode("lyrics")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "lyrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Semantic Lyric Similarity"
-                  >
-                    Lyrics
-                  </button>
-                  <button
-                    onClick={() => setMapMode("metrics")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "metrics" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Structural Metrics UMAP"
-                  >
-                    Metrics
-                  </button>
-                  <button
-                    onClick={() => setMapMode("aesthetic")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "aesthetic" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Aesthetic UMAP (Ablated 9D)"
-                  >
-                    Aesthetic
-                  </button>
-                  <button
-                    onClick={() => setMapMode("rhythm")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "rhythm" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Rhythm UMAP (Ablated 4D)"
-                  >
-                    Rhythm
-                  </button>
-                  <button
-                    onClick={() => setMapMode("groove")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "groove" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Tempo vs. Circle of Fifths key mapping"
-                  >
-                    Groove
-                  </button>
-                  <button
-                    onClick={() => setMapMode("intent")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "intent" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Weirdness vs. Style Weight mapping"
-                  >
-                    Intent
-                  </button>
-                  <button
-                    onClick={() => setMapMode("texture")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "texture" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Bounce vs. Melodic Complexity mapping"
-                  >
-                    Texture
-                  </button>
-                  <button
-                    onClick={() => setMapMode("narrative")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "narrative" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Journey vs. Style Spread mapping"
-                  >
-                    Narrative
-                  </button>
-                  <button
-                    onClick={() => setMapMode("tempo")}
-                    className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                      mapMode === "tempo" ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                    }`}
-                    title="Estimated Tempo timeline"
-                  >
-                    Tempo
-                  </button>
+                <div className="flex items-center gap-1.5">
+                  {([
+                    ["learned", [["music","Music","UMAP of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","UMAP of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","UMAP of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
+                    ["measured", [["groove","Groove","x: tempo · y: circle of fifths"],["intent","Intent","x: weirdness · y: style weight (Suno generation sliders)"],["texture","Texture","x: bounce · y: melodic complexity"],["narrative","Narrative","x: journey · y: spread (trajectory statistics)"],["tempo","Tempo","x: tempo (one line)"]]],
+                  ] as const).map(([group, tabs]) => (
+                    <div key={group} className="flex items-center gap-0.5">
+                      <span className="text-[8px] uppercase tracking-wide text-neutral-400">{group}</span>
+                      <div className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
+                        {tabs.map(([mode, label, tip]) => (
+                          <button
+                            key={mode}
+                            onClick={() => setMapMode(mode)}
+                            className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                              mapMode === mode ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                            }`}
+                            title={tip}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
                 <button 
                   onClick={handleNextMode} 
