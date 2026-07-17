@@ -652,9 +652,9 @@ function Inner({ data }: { data: DHData }) {
       >
         {/* 0R.3/0R.4 — sticky search + filter chips */}
         <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-neutral-50/95 px-4 py-1.5 backdrop-blur flex flex-col gap-1 select-none">
-          {/* Row 1: Album Jump dropdown and Glia Logo */}
+          {/* Row 1: Album Jump dropdown and Logos */}
           <div className="flex items-center justify-between gap-2 w-full">
-            <div ref={albumRef} className="relative flex-grow max-w-[260px]">
+            <div ref={albumRef} className="relative flex-grow max-w-[286px]">
               <button
                 onClick={() => setIsAlbumOpen(!isAlbumOpen)}
                 className="h-8 w-full rounded-full border border-neutral-200 bg-white px-3.5 text-[11.5px] text-neutral-600 font-medium flex items-center justify-between cursor-pointer hover:border-neutral-300 transition-colors select-none"
@@ -664,7 +664,7 @@ function Inner({ data }: { data: DHData }) {
                 <ChevronDown className="h-3.5 w-3.5 text-neutral-400 flex-shrink-0 ml-1.5" />
               </button>
               {isAlbumOpen && (
-                <div className="absolute top-full left-0 mt-1.5 w-full min-w-[260px] bg-white border border-neutral-200/80 rounded-xl shadow-lg z-30 max-h-[280px] overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-neutral-200">
+                <div className="absolute top-full left-0 mt-1.5 w-full min-w-[286px] bg-white border border-neutral-200/80 rounded-xl shadow-lg z-30 max-h-[280px] overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-neutral-200">
                   {data.albums.map((a) => (
                     <button
                       key={a.id}
@@ -681,23 +681,39 @@ function Inner({ data }: { data: DHData }) {
               )}
             </div>
             
-            {/* Glia Logo */}
-            <a 
-              href="https://glia.ca" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex-shrink-0 h-8 flex items-center justify-end px-2 hover:opacity-100 opacity-60 transition-opacity"
-              title="glia.ca"
-            >
-              <img 
-                src="/img/glia-bw.png" 
-                alt="glia.ca" 
-                className="h-5 w-auto object-contain select-none"
-              />
-            </a>
-          </div>
+            {/* Logos container */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              {/* Suno Icon */}
+              <a 
+                href="https://suno.com/@jhave" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-8 h-8 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:border-neutral-300 hover:opacity-100 opacity-80 transition-all shadow-sm cursor-pointer overflow-hidden"
+                title="suno.com/@jhave"
+              >
+                <img 
+                  src="/img/suno-jhave.webp" 
+                  alt="Suno Profile" 
+                  className="w-full h-full object-cover select-none"
+                />
+              </a>
 
-          {/* Row 2: Filter chips */}
+              {/* Glia Logo */}
+              <a 
+                href="https://glia.ca" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-8 h-8 rounded-full border border-neutral-200 bg-white flex items-center justify-center hover:border-neutral-300 hover:opacity-100 opacity-80 transition-all shadow-sm cursor-pointer overflow-hidden p-1.5"
+                title="glia.ca"
+              >
+                <img 
+                  src="/img/glia-bw.png" 
+                  alt="glia.ca" 
+                  className="w-full h-full object-contain select-none"
+                />
+              </a>
+            </div>
+          </div>
           <div className="flex flex-wrap items-center gap-1.5 w-full">
             {(["★ starred", "unheard", "lyrics", "instrumental"] as const).map((label) => {
               const on =
