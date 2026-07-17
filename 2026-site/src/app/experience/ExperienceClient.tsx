@@ -9,7 +9,7 @@ import {
   useAudioPlayer,
   useAudioPlayerTime,
 } from "@/components/ui/audio-player"
-import { PauseIcon, PlayIcon, ArrowLeft, ArrowRight, ShuffleIcon, StarIcon, ListOrderedIcon, SparklesIcon, Search } from "lucide-react"
+import { PauseIcon, PlayIcon, ArrowLeft, ArrowRight, ShuffleIcon, StarIcon, ListOrderedIcon, SparklesIcon, ChevronDown } from "lucide-react"
 import { loadDH, resolveSrc, type DHData, type DHTrack } from "@/lib/dh"
 import DHMap from "./DHMap"
 import DHData_ from "./DHData"
@@ -84,11 +84,22 @@ function Inner({ data }: { data: DHData }) {
   const activeTag = hoveredTag || clickedTag
 
   // 0R.3/0R.4 — search + filters (shared by list and map)
-  const [query, setQuery] = React.useState("")
+  const query = ""
   const [fStar, setFStar] = React.useState(false)
   const [fUnheard, setFUnheard] = React.useState(false)
   const [fLyrics, setFLyrics] = React.useState<null | boolean>(null) // null=any, true=lyrics, false=instrumental
-  const searchRef = React.useRef<HTMLInputElement | null>(null)
+  const [isAlbumOpen, setIsAlbumOpen] = React.useState(false)
+  const albumRef = React.useRef<HTMLDivElement | null>(null)
+
+  React.useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (albumRef.current && !albumRef.current.contains(e.target as Node)) {
+        setIsAlbumOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
+  }, [])
  
   const modes: ("music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative" | "tempo")[] = [
     "music", "lyrics", "metrics", "aesthetic", "rhythm", "groove", "intent", "texture", "narrative", "tempo"
@@ -398,16 +409,13 @@ function Inner({ data }: { data: DHData }) {
     return s
   }, [filtersActive, query, fStar, fUnheard, fLyrics, data, played])
 
-  // 0R.11 — keyboard: "/" search, Space play/pause, arrows prev/next,
+  // 0R.11 — keyboard: Space play/pause, arrows prev/next,
   // s cycles order, m cycles map mode (all inert while typing)
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName
       if (tag === "INPUT" || tag === "TEXTAREA") return
-      if (e.key === "/") {
-        e.preventDefault()
-        searchRef.current?.focus()
-      } else if (e.code === "Space") {
+      if (e.code === "Space") {
         e.preventDefault()
         if (player.isPlaying) player.pause()
         else player.play()
@@ -438,8 +446,6 @@ function Inner({ data }: { data: DHData }) {
       const sp = new URLSearchParams(location.search)
       const m = sp.get("map")
       if (m && (modes as string[]).includes(m)) setMapMode(m as typeof mapMode)
-      const q = sp.get("q")
-      if (q) setQuery(q)
       const tr = sp.get("track")
       if (tr != null) {
         const i = parseInt(tr, 10)
@@ -458,11 +464,10 @@ function Inner({ data }: { data: DHData }) {
       const sp = new URLSearchParams()
       if (focusIdx != null) sp.set("track", String(focusIdx))
       if (mapMode !== "music") sp.set("map", mapMode)
-      if (query.trim()) sp.set("q", query.trim())
       const s = sp.toString()
       history.replaceState(null, "", s ? `?${s}` : location.pathname)
     } catch {}
-  }, [focusIdx, mapMode, query])
+  }, [focusIdx, mapMode])
 
   const groups = React.useMemo(() => {
     if (order === "weirdness") {
@@ -647,33 +652,34 @@ function Inner({ data }: { data: DHData }) {
       >
         {/* 0R.3/0R.4 — sticky search + filter chips */}
         <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-neutral-50/95 px-4 py-1.5 backdrop-blur flex flex-col gap-1 select-none">
-          {/* Row 1: Search and select */}
+          {/* Row 1: Album Jump dropdown */}
           <div className="flex items-center gap-2 w-full">
-            <div className="relative flex-grow min-w-[150px] max-w-[300px]">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400 pointer-events-none" />
-              <input
-                ref={searchRef}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder='search titles, albums, prompts…  ( / )'
-                className="h-8 w-full rounded-full border border-neutral-200 bg-white pl-9 pr-3 text-[12px] outline-none focus:border-neutral-400"
-              />
+            <div ref={albumRef} className="relative flex-grow max-w-[200px]">
+              <button
+                onClick={() => setIsAlbumOpen(!isAlbumOpen)}
+                className="h-8 w-full rounded-full border border-neutral-200 bg-white px-3.5 text-[11.5px] text-neutral-600 font-medium flex items-center justify-between cursor-pointer hover:border-neutral-300 transition-colors select-none"
+                title="Jump to album"
+              >
+                <span className="truncate">jump to album…</span>
+                <ChevronDown className="h-3.5 w-3.5 text-neutral-400 flex-shrink-0 ml-1.5" />
+              </button>
+              {isAlbumOpen && (
+                <div className="absolute top-full left-0 mt-1.5 w-full min-w-[220px] bg-white border border-neutral-200/80 rounded-xl shadow-lg z-30 max-h-[280px] overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-neutral-200">
+                  {data.albums.map((a) => (
+                    <button
+                      key={a.id}
+                      onClick={() => {
+                        setIsAlbumOpen(false)
+                        document.getElementById(`dh-album-${a.title}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
+                      }}
+                      className="w-full px-3.5 py-2 text-left text-[11px] text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 border-b border-neutral-100/50 last:border-0 cursor-pointer transition-colors truncate font-medium"
+                    >
+                      {a.title}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-            <select
-              value=""
-              onChange={(e) => {
-                const id = e.target.value
-                if (!id) return
-                document.getElementById(`dh-album-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
-              }}
-              className="h-8 flex-grow max-w-[200px] rounded-full border border-neutral-200 bg-white pl-3 pr-8 text-[11px] text-neutral-600 outline-none cursor-pointer hover:border-neutral-300 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23707070%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:8px_8px] bg-[position:right_12px_center] bg-no-repeat"
-              title="Jump to album"
-            >
-              <option value="">jump to album…</option>
-              {data.albums.map((a) => (
-                <option key={a.id} value={a.title}>{a.title}</option>
-              ))}
-            </select>
           </div>
 
           {/* Row 2: Filter chips */}
@@ -705,7 +711,7 @@ function Inner({ data }: { data: DHData }) {
               <span className="ml-auto whitespace-nowrap text-[10px] text-neutral-400">
                 {matchSet?.size ?? 0} match{(matchSet?.size ?? 0) === 1 ? "" : "es"}
                 <button
-                  onClick={() => { setQuery(""); setFStar(false); setFUnheard(false); setFLyrics(null) }}
+                  onClick={() => { setFStar(false); setFUnheard(false); setFLyrics(null) }}
                   className="ml-2 underline hover:text-neutral-600"
                 >
                   clear
