@@ -102,6 +102,7 @@ function Inner({ data }: { data: DHData }) {
   // restore played set
   React.useEffect(() => {
     try {
+      if (localStorage.getItem("dh-map-expanded") === "1") setIsMapExpanded(true)
       const raw = localStorage.getItem("dh-played")
       if (raw) setPlayed(new Set(JSON.parse(raw)))
       const o = localStorage.getItem("dh-order") as OrderMode | null
@@ -409,8 +410,6 @@ function Inner({ data }: { data: DHData }) {
 
       {/* LEFT: persistent map + essay */}
       <aside
-        onMouseEnter={() => setIsMapExpanded(true)}
-        onMouseLeave={() => setIsMapExpanded(false)}
         className={`${
           mobileTab === "map-essay" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
         } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden transition-all duration-500 ease-in-out`}
@@ -550,11 +549,22 @@ function Inner({ data }: { data: DHData }) {
                 <span>show paths</span>
               </label>
               <span className="font-mono text-[9px] text-neutral-400">{played.size}/{data.tracks.length} heard</span>
+              <button
+                onClick={() => {
+                  const next = !isMapExpanded
+                  setIsMapExpanded(next)
+                  try { localStorage.setItem("dh-map-expanded", next ? "1" : "0") } catch {}
+                }}
+                className="rounded border border-neutral-300 bg-white px-1.5 py-0.5 text-[10px] font-bold text-neutral-600 hover:bg-neutral-100 hover:text-black"
+                title={isMapExpanded ? "Collapse map (restore playlist)" : "Expand map (hides playlist)"}
+              >
+                {isMapExpanded ? "⤡ collapse" : "⤢ expand"}
+              </button>
             </div>
           </div>
         </div>
         <div className={`w-full flex-shrink-0 relative border-b bg-neutral-50 transition-all duration-500 ease-in-out ${
-          isMapExpanded ? "h-[66.6vh]" : "h-[270px]"
+          isMapExpanded ? "h-[66.6vh]" : "h-[38vh] min-h-[270px]"
         }`}>
           {/* Floating HUD Label inside map container */}
           <div className="absolute top-2.5 left-3 z-10 pointer-events-none select-none bg-white/75 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-neutral-200/40 shadow-sm leading-tight flex flex-col gap-0.5">
