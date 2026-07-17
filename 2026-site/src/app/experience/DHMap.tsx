@@ -227,6 +227,57 @@ export default function DHMap({
       const { w, h } = size
       ctx.clearRect(0, 0, w, h)
 
+      // 0R.6 — measured-axis modes draw labeled axes (they are unreadable
+      // clouds without them); axes live in layout space so they pan/zoom
+      // with the data. Embedding modes get no axes (distance IS the meaning).
+      const AXIS_SPECS: Record<string, { x: string; y: string; x0: string; x1: string; y0: string; y1: string } | undefined> = {
+        groove: { x: "tempo →", y: "↑ circle of fifths", x0: "60 bpm", x1: "200 bpm", y0: "C/Am", y1: "F/Dm" },
+        intent: { x: "weirdness →", y: "↑ style weight", x0: "0", x1: "1", y0: "0", y1: "1" },
+        texture: { x: "bounce →", y: "↑ melodic complexity", x0: "0.05", x1: "0.6", y0: "0.05", y1: "0.7" },
+        narrative: { x: "journey →", y: "↑ spread", x0: "1", x1: "15", y0: "0.1", y1: "3.0" },
+        tempo: { x: "tempo →", y: "", x0: "60 bpm", x1: "200 bpm", y0: "", y1: "" },
+      }
+      const axis = AXIS_SPECS[mapMode]
+      if (axis) {
+        const E = 0.85 // layout-space extent used by the axis scatters
+        const [x0, y0] = project(-E, E, w, h)   // bottom-left (y+ is down in canvas after projection? y grows downward)
+        const [x1, y1] = project(E, -E, w, h)   // top-right
+        ctx.save()
+        ctx.strokeStyle = "rgba(0,0,0,0.14)"
+        ctx.fillStyle = "rgba(0,0,0,0.45)"
+        ctx.lineWidth = 1
+        // x axis along bottom, y axis along left
+        ctx.beginPath()
+        ctx.moveTo(x0, y0); ctx.lineTo(x1, y0) // bottom
+        ctx.moveTo(x0, y0); ctx.lineTo(x0, y1) // left
+        ctx.stroke()
+        ctx.font = "10px sans-serif"
+        // x labels
+        ctx.textAlign = "left"
+        ctx.fillText(axis.x0, x0 + 2, y0 + 12)
+        ctx.textAlign = "right"
+        ctx.fillText(axis.x1, x1, y0 + 12)
+        ctx.textAlign = "center"
+        ctx.font = "bold 10px sans-serif"
+        ctx.fillText(axis.x, (x0 + x1) / 2, y0 + 12)
+        // y labels (rotated)
+        if (axis.y) {
+          ctx.save()
+          ctx.translate(x0 - 4, (y0 + y1) / 2)
+          ctx.rotate(-Math.PI / 2)
+          ctx.textAlign = "center"
+          ctx.fillText(axis.y, 0, 0)
+          ctx.restore()
+          ctx.font = "10px sans-serif"
+          ctx.textAlign = "left"
+          ctx.save()
+          ctx.translate(x0 - 4, y0 - 2); ctx.rotate(-Math.PI / 2); ctx.fillText(axis.y0, 0, 0); ctx.restore()
+          ctx.save()
+          ctx.translate(x0 - 4, y1 + 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "right"; ctx.fillText(axis.y1, 0, 0); ctx.restore()
+        }
+        ctx.restore()
+      }
+
       // Calculate target coordinates based on active layout and clicked tag distortion
       let basePts: [number, number, number][]
       if (mapMode === "lyrics") {
@@ -249,7 +300,7 @@ export default function DHMap({
           // Deterministic jitter to prevent coordinate overlapping
           const jitterX = Math.sin(t.i * 12.34) * 0.022
           const jitterY = Math.cos(t.i * 56.78) * 0.022
-          return [tempoRawX + jitterX, keyRawY + jitterY, 0] as [number, number, number]
+          return [tempoRawX + jitterX, -keyRawY + jitterY, 0] as [number, number, number]
         })
       } else if (mapMode === "intent") {
         basePts = data.tracks.map((t) => {
@@ -259,7 +310,7 @@ export default function DHMap({
           // Deterministic jitter to prevent coordinate overlapping
           const jitterX = Math.sin(t.i * 23.45) * 0.035
           const jitterY = Math.cos(t.i * 67.89) * 0.035
-          return [weirdRawX + jitterX, styleRawY + jitterY, 0] as [number, number, number]
+          return [weirdRawX + jitterX, -styleRawY + jitterY, 0] as [number, number, number]
         })
       } else if (mapMode === "texture") {
         basePts = data.tracks.map((t) => {
@@ -271,7 +322,7 @@ export default function DHMap({
           // Deterministic jitter to prevent coordinate overlapping
           const jitterX = Math.sin(t.i * 34.56) * 0.022
           const jitterY = Math.cos(t.i * 78.90) * 0.022
-          return [bounceRawX + jitterX, compRawY + jitterY, 0] as [number, number, number]
+          return [bounceRawX + jitterX, -compRawY + jitterY, 0] as [number, number, number]
         })
       } else if (mapMode === "narrative") {
         basePts = data.tracks.map((t) => {
@@ -283,7 +334,7 @@ export default function DHMap({
           // Deterministic jitter to prevent coordinate overlapping
           const jitterX = Math.sin(t.i * 45.67) * 0.022
           const jitterY = Math.cos(t.i * 89.01) * 0.022
-          return [journeyRawX + jitterX, spreadRawY + jitterY, 0] as [number, number, number]
+          return [journeyRawX + jitterX, -spreadRawY + jitterY, 0] as [number, number, number]
         })
       } else if (mapMode === "tempo") {
         basePts = data.tracks.map((t) => {
