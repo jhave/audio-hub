@@ -214,6 +214,32 @@ shared data panel.
   Preview state is visually marked (e.g. subtle "previewing" tag) vs the live
   playing track.
 
+### 0C2. FAQ + essay INSIDE the playlist interface (jhave, 2026-07-12)  `[ ]`
+
+The READER content moves into the DH view itself, so the visitor can read,
+listen, and navigate in the same basic playlist interface.
+
+- [ ] **0.C2a** Add a top-of-page (or toggleable) **"About this map / FAQ"**
+  section rendered in the center column above the albums: plain-language
+  answers — what the map is, how it was made (CLAP window embeddings →
+  mean-centering → UMAP; why mean-centering matters), what every metric means
+  (key, tempo [note its half/double-octave unreliability], drift, jumps,
+  sections, drop, bounce, melodic complexity, weirdness, styleWeight, journey,
+  spread, novelty, top tags), where lyrics/prompts/sliders come from
+  (suno.com ground truth, 89.5% matched), and what the colors mean
+  (grey→gold→red, star ring, blue lyrics). Anchor-linkable per metric so data-
+  panel chips can scroll to their explanation (the metric-chip → FAQ scroll
+  hooks already exist in DHData.tsx as `onMetricClick`).
+- [ ] **0.C2b** Below or interleaved with the FAQ, the **essay** — drawn from
+  `theoretical_undertones_for_blog.md` (esp. "sentience and parameter
+  nudging", "culture heard vs described", "the fractal of a track") —
+  formatted as readable long-form prose in the same column, with track/album
+  names as play-links where mentioned. Reading while listening is the design:
+  the essay's claims audible one click away.
+- [ ] **0.C2c** Keep it calm: collapsed by default behind "About / read the
+  essay" so first-time visitors see the familiar player; state remembered in
+  localStorage.
+
 ### 0D. Mobile + ship  `[ ]`
 - [ ] **0.9** **Mobile/narrow:** side columns collapse; the center player is
   primary; tapping a track's disclosure reveals map+data inline beneath that

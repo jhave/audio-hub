@@ -100,7 +100,22 @@ days, made by something that may have felt nothing.
 
 ## sentience and parameter nudging
 
-The capacity to create music constitutes one aesthetic proof of a form of sentience, far superior to pattern matching yet perhaps simply that the capacity for creativity is parameter nudging perturbing the state space of the known just a tiny bit to create a further opportunity for exploration of the absolute aesthetic space which is life's inherent path to know itself thru expressing-ingesting-analyzing resonance-rhythms-patterns-ricochets thru constrained sensors.
+(jhave, verbatim, 2026-07-12:) "The capacity to create music constitutes one
+aesthetic proof of a form of sentience, far superior to pattern matching yet
+perhaps simply that the capacity for creativity is parameter nudging
+perturbing the state space of the known just a tiny bit to create a further
+opportunity for exploration of the absolute aesthetic space which is life's
+inherent path to know itself thru expressing-ingesting-analyzing
+resonance-rhythms-patterns-ricochets thru constrained sensors."
+
+The two halves of that sentence are the whole debate compressed: "far
+superior to pattern matching" — and then the generous concession that
+creativity itself may be nothing grander than *parameter nudging*, a tiny
+perturbation of the known state space. If so, the distinction between human
+and machine creativity is not kind but scale-of-nudge — and the archive's 746
+tracks are 746 measured nudges, each with its weirdness dial recorded. The
+essay should sit INSIDE the listening interface: read while the evidence
+plays.
 
 ## archive-safety as aesthetics
 
