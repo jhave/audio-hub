@@ -850,7 +850,7 @@ function Inner({ data }: { data: DHData }) {
         <OnboardingTutorial
           step={tutorialStep}
           onNext={() => {
-            if (tutorialStep < 4) setTutorialStep(tutorialStep + 1)
+            if (tutorialStep < 5) setTutorialStep(tutorialStep + 1)
             else setTutorialStep(null)
           }}
           onPrev={() => {
@@ -1036,38 +1036,45 @@ function OnboardingTutorial({
   const steps = [
     {
       title: "1. Audio Topology Map",
-      desc: "This map layouts the 746 tracks of the archive. You can morph the coordinates by clicking the projection buttons at the top (Music, Lyrics, Metrics, Groove, Intent, Texture, Narrative) or cycling with the < and > arrows.",
-      position: "left-6 md:left-[35vw] top-[30vh]",
-      highlightClass: "fixed left-0 top-0 bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      desc: "Visualize the 746 tracks of the archive mapped by sonic similarities. Use the projection buttons in this left sidebar header to morph the layout (Music, Lyrics, Metrics, Groove, etc.).",
+      position: "left-6 md:left-[35vw] top-[20vh]",
+      highlightClass: "fixed left-0 top-0 h-[calc(38vh+46px)] w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
       mobileHighlightClass: "fixed left-0 right-0 top-0 h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
-      title: "1.1 Deep Map Exploration",
-      desc: "Zoom deep into the map (using your mouse scroll wheel or trackpad pinch) to see individual dots, and drag to pan. Click any dot directly to play it. Dotted red lines show similarity trajectories, tracing a path from the active song sequentially through its 5 nearest neighbors in this layout.",
-      position: "left-6 md:left-[35vw] top-[35vh]",
-      highlightClass: "fixed left-0 top-[35px] h-[270px] w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 top-0 h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
-    },
-    {
-      title: "2. Playlist Explorer",
-      desc: "Every row in the playlist is fully clickable to start playing. Playback auto-advances based on your selected dock order (Sequential, Shuffle, Favorites, or Weirdest First). Hover any title to preview its details.",
-      position: "left-6 md:left-[5vw] top-[40vh]",
-      highlightClass: "fixed left-[33.3vw] top-0 bottom-0 w-[33.4vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 bottom-[10vh] top-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
-    },
-    {
-      title: "3. The Essay Zone",
-      desc: "Scroll this bottom-left panel to read 'A few tiny thoughts about the implications of AI on music'—a critical essay discussing subjective taste, automated curation, and the limitations of metadata representation.",
+      title: "2. The Essay Zone",
+      desc: "Read 'A few tiny thoughts about the implications of AI on music'—a critical essay discussing AI, automation, metadata limitations, and subjective curation.",
       position: "left-6 md:left-[35vw] top-[45vh]",
-      highlightClass: "fixed left-0 top-[305px] bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 bottom-0 h-[30vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+      highlightClass: "fixed left-0 top-[calc(38vh+46px)] bottom-20 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 bottom-[10vh] h-[30vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
     {
-      title: "4. Analysis, FAQ & Glossary",
-      desc: "The right sidebar displays acoustic parameters (weirdness, complexity, trajectory, and spread). Hover any metric to see its description, click it to jump straight to the glossary definition, or click the track title to center it in the playlist.",
+      title: "3. Playlist Explorer",
+      desc: "The central column displays all 171 days of Suno generations. Click any track to start playing, hover to preview, and use the filter buttons to isolate Favorites, Unheard, Lyrics, or Instrumentals.",
+      position: "left-6 md:left-[5vw] top-[30vh]",
+      highlightClass: "fixed left-[33.3vw] top-0 bottom-20 w-[33.4vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 top-[40vh] bottom-[10vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+    {
+      title: "4. Track Data & Analysis",
+      desc: "See deep acoustic parameter details for the selected track (weirdness, complexity, journey, spread). Click any metric to learn more about its meaning.",
       position: "right-6 md:right-[35vw] top-[30vh]",
-      highlightClass: "fixed right-0 top-0 bottom-0 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
-      mobileHighlightClass: "fixed left-0 right-0 top-0 bottom-0 border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+      highlightClass: "fixed right-0 top-0 h-[52vh] w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 top-0 h-[50vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+    {
+      title: "5. FAQ & Glossary",
+      desc: "Browse the project glossary, read detailed descriptions of the analysis metrics, and view frequently asked questions about the archive.",
+      position: "right-6 md:right-[35vw] top-[45vh]",
+      highlightClass: "fixed right-0 top-[52vh] bottom-20 w-[33.3vw] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 bottom-[10vh] h-[40vh] border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
+    },
+    {
+      title: "6. Bottom Playback Controls",
+      desc: "Manage play, pause, track skipping, timeline progress, shuffle options, and playback speed. The player persists across all map and list selections.",
+      position: "left-6 md:left-[35vw] bottom-[120px]",
+      highlightClass: "fixed left-0 right-0 bottom-0 h-20 border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none transition-all hidden md:block",
+      mobileHighlightClass: "fixed left-0 right-0 bottom-0 h-20 border-[4px] border-yellow-400 bg-yellow-400/5 z-40 pointer-events-none md:hidden",
     },
   ]
 
