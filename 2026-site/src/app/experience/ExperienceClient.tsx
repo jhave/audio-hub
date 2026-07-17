@@ -82,6 +82,13 @@ function Inner({ data }: { data: DHData }) {
   const [tutorialStep, setTutorialStep] = React.useState<number | null>(null)
   const [isMapExpanded, setIsMapExpanded] = React.useState(false)
   const activeTag = hoveredTag || clickedTag
+
+  // 0R.3/0R.4 — search + filters (shared by list and map)
+  const [query, setQuery] = React.useState("")
+  const [fStar, setFStar] = React.useState(false)
+  const [fUnheard, setFUnheard] = React.useState(false)
+  const [fLyrics, setFLyrics] = React.useState<null | boolean>(null) // null=any, true=lyrics, false=instrumental
+  const searchRef = React.useRef<HTMLInputElement | null>(null)
  
   const modes: ("music" | "lyrics" | "metrics" | "aesthetic" | "rhythm" | "groove" | "intent" | "texture" | "narrative" | "tempo")[] = [
     "music", "lyrics", "metrics", "aesthetic", "rhythm", "groove", "intent", "texture", "narrative", "tempo"
@@ -365,6 +372,39 @@ function Inner({ data }: { data: DHData }) {
   const progress = player.duration ? time / player.duration : null
 
   // group tracks by album (dh order preserves album grouping)
+  // matchSet: null = no active search/filter (everything full-strength);
+  // otherwise the set of track indices that match query AND filters.
+  const filtersActive = query.trim() !== "" || fStar || fUnheard || fLyrics !== null
+  const matchSet = React.useMemo<Set<number> | null>(() => {
+    if (!filtersActive) return null
+    const q = query.trim().toLowerCase()
+    const s = new Set<number>()
+    for (const t of data.tracks) {
+      if (fStar && !t.fav) continue
+      if (fUnheard && played.has(t.i)) continue
+      if (fLyrics === true && t.lyricsPresent !== 1) continue
+      if (fLyrics === false && t.lyricsPresent === 1) continue
+      if (q) {
+        const hay = `${t.title}\n${t.album}\n${t.prompt || ""}`.toLowerCase()
+        if (!hay.includes(q)) continue
+      }
+      s.add(t.i)
+    }
+    return s
+  }, [filtersActive, query, fStar, fUnheard, fLyrics, data, played])
+
+  // "/" focuses search (when not already typing)
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "/" && (e.target as HTMLElement)?.tagName !== "INPUT" && (e.target as HTMLElement)?.tagName !== "TEXTAREA") {
+        e.preventDefault()
+        searchRef.current?.focus()
+      }
+    }
+    addEventListener("keydown", onKey)
+    return () => removeEventListener("keydown", onKey)
+  }, [])
+
   const groups = React.useMemo(() => {
     if (order === "weirdness") {
       const sorted = [...data.tracks].sort((a, b) => (b.weirdness ?? 0) - (a.weirdness ?? 0))
@@ -618,6 +658,7 @@ function Inner({ data }: { data: DHData }) {
             clickedTag={clickedTag}
             onClearTag={() => setClickedTag(null)}
             showPaths={showPaths}
+            matchSet={matchSet}
           />
         </div>
         <div className="flex-1 min-h-0 bg-white overflow-hidden">
@@ -633,15 +674,66 @@ function Inner({ data }: { data: DHData }) {
           isMapExpanded ? "md:max-w-0 md:px-0 opacity-0 pointer-events-none" : "md:max-w-full md:px-4 opacity-100"
         }`}
       >
-        <header className="mb-4">
+        <header className="mb-3">
           <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — DH archive view</h1>
           <p className="mt-1 text-[12px] text-neutral-500">
             Every track sits in the machine-heard topology (left) with its analysis (right).
             Hover a title to preview; play to travel.
           </p>
         </header>
+
+        {/* 0R.3/0R.4 — sticky search + filter chips */}
+        <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-white/95 px-4 py-2 backdrop-blur">
+          <div className="flex items-center gap-2">
+            <input
+              ref={searchRef}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder='search titles, albums, prompts…  ( / )'
+              className="h-8 w-full max-w-[340px] rounded-full border border-neutral-200 bg-white px-3 text-[12px] outline-none focus:border-neutral-400"
+            />
+            {(["★ starred", "unheard", "lyrics", "instrumental"] as const).map((label) => {
+              const on =
+                label === "★ starred" ? fStar :
+                label === "unheard" ? fUnheard :
+                label === "lyrics" ? fLyrics === true : fLyrics === false
+              const toggle = () => {
+                if (label === "★ starred") setFStar(!fStar)
+                else if (label === "unheard") setFUnheard(!fUnheard)
+                else if (label === "lyrics") setFLyrics(fLyrics === true ? null : true)
+                else setFLyrics(fLyrics === false ? null : false)
+              }
+              return (
+                <button
+                  key={label}
+                  onClick={toggle}
+                  className={`whitespace-nowrap rounded-full border px-2.5 py-1 text-[10px] transition-colors ${
+                    on ? "border-neutral-800 bg-neutral-800 text-white" : "border-neutral-200 text-neutral-500 hover:bg-neutral-50"
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            })}
+            {filtersActive && (
+              <span className="ml-auto whitespace-nowrap text-[10px] text-neutral-400">
+                {matchSet?.size ?? 0} match{(matchSet?.size ?? 0) === 1 ? "" : "es"}
+                <button
+                  onClick={() => { setQuery(""); setFStar(false); setFUnheard(false); setFLyrics(null) }}
+                  className="ml-2 underline hover:text-neutral-600"
+                >
+                  clear
+                </button>
+              </span>
+            )}
+          </div>
+        </div>
+
         <div className="space-y-6">
-          {groups.map((g) => (
+          {groups.map((g) => {
+            const albumMatches = matchSet ? g.rows.filter((t) => matchSet.has(t.i)).length : g.rows.length
+            if (matchSet && albumMatches === 0) return null
+            return (
             <section key={g.album} className="rounded-2xl border bg-white p-4">
               <div className="mb-3">
                 {g.dateISO && <p className="text-[11px] text-neutral-400">{g.dateISO}</p>}
@@ -649,8 +741,8 @@ function Inner({ data }: { data: DHData }) {
               </div>
               <div className="space-y-0.5">
                 {g.rows.map((t) => (
+                  <div key={t.trackId} className={matchSet && !matchSet.has(t.i) ? "opacity-30" : undefined}>
                   <Row
-                    key={t.trackId}
                     t={t}
                     active={focusIdx === t.i}
                     playing={focusIdx === t.i && player.isPlaying}
@@ -659,10 +751,12 @@ function Inner({ data }: { data: DHData }) {
                     onHover={() => setHoverIdx(t.i)}
                     onLeave={() => setHoverIdx(null)}
                   />
+                  </div>
                 ))}
               </div>
             </section>
-          ))}
+            )
+          })}
         </div>
       </main>
 

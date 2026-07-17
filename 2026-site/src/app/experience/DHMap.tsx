@@ -16,6 +16,7 @@ type Props = {
   clickedTag?: string | null
   onClearTag?: () => void
   showPaths?: boolean
+  matchSet?: Set<number> | null // active search/filter matches; non-members render dimmed
 }
 
 // Map key strings to Circle of Fifths indices
@@ -141,6 +142,7 @@ export default function DHMap({
   clickedTag = null,
   onClearTag,
   showPaths = true,
+  matchSet = null,
 }: Props) {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
   const wrapRef = React.useRef<HTMLDivElement | null>(null)
@@ -487,14 +489,16 @@ export default function DHMap({
           ? GOLD
           : GREY
 
+        // search/filter dimming: non-matching dots recede but keep the field's shape
+        const searchDim = matchSet != null && !matchSet.has(i) ? 0.15 : 1
         ctx.beginPath()
         ctx.arc(px, py, isHover || isTagMatched ? 4 : isN ? 3 : 2, 0, Math.PI * 2)
         ctx.fillStyle = dotColor
-        ctx.globalAlpha = isN || isHover || isTagMatched ? 1.0 : played.has(i) ? 0.9 : 0.5
+        ctx.globalAlpha = (isN || isHover || isTagMatched ? 1.0 : played.has(i) ? 0.9 : 0.5) * searchDim
         ctx.fill()
 
         if (data.tracks[i].fav) {
-          ctx.globalAlpha = 0.9
+          ctx.globalAlpha = 0.9 * searchDim
           ctx.beginPath()
           ctx.arc(px, py, 5, 0, Math.PI * 2)
           ctx.strokeStyle = isTagMatched ? "#3b82f6" : GOLD
