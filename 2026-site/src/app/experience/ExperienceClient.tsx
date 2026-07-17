@@ -514,49 +514,43 @@ function Inner({ data }: { data: DHData }) {
         } md:flex md:flex-col border-r bg-neutral-50 h-full min-h-0 overflow-hidden transition-all duration-500 ease-in-out`}
       >
         <div className="flex flex-col px-3 py-1.5 text-[11px] text-neutral-500 border-b flex-shrink-0 bg-neutral-50 select-none gap-1">
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-neutral-700">topology:</span>
-              <div className="flex items-center gap-1">
-                <button 
-                  onClick={handlePrevMode} 
-                  className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
-                  title="Previous Topology Mode"
-                >
-                  &lt;
-                </button>
-                <div className="flex items-center gap-1.5">
-                  {([
-                    ["learned", [["music","Music","UMAP of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","UMAP of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","UMAP of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
-                    ["measured", [["groove","Groove","x: tempo · y: circle of fifths"],["intent","Intent","x: weirdness · y: style weight (Suno generation sliders)"],["texture","Texture","x: bounce · y: melodic complexity"],["narrative","Narrative","x: journey · y: spread (trajectory statistics)"],["tempo","Tempo","x: tempo (one line)"]]],
-                  ] as const).map(([group, tabs]) => (
-                    <div key={group} className="flex items-center gap-0.5">
-                      <span className="text-[8px] uppercase tracking-wide text-neutral-400">{group}</span>
-                      <div className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
-                        {tabs.map(([mode, label, tip]) => (
-                          <button
-                            key={mode}
-                            onClick={() => setMapMode(mode)}
-                            className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
-                              mapMode === mode ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
-                            }`}
-                            title={tip}
-                          >
-                            {label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <button 
-                  onClick={handleNextMode} 
-                  className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
-                  title="Next Topology Mode"
-                >
-                  &gt;
-                </button>
+          <div className="flex flex-wrap items-center justify-between w-full gap-y-1">
+            <div className="flex flex-wrap items-center gap-1">
+              <button 
+                onClick={handlePrevMode} 
+                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
+                title="Previous Topology Mode"
+              >
+                &lt;
+              </button>
+              <div className="flex flex-wrap items-center gap-1">
+                {([
+                  ["learned", [["music","Music","UMAP of CLAP audio embeddings — distance = machine-heard similarity"],["lyrics","Lyrics","UMAP of lyric text embeddings — distance = what the words mean"],["metrics","Metrics","UMAP of all 13 measured descriptors"],["aesthetic","Aesthetic","Metrics subspace: 9 aesthetic features (harmony, energy, texture)"],["rhythm","Rhythm","Metrics subspace: 4 rhythm features (tempo, drift, bounce, onsets)"]]],
+                  ["measured", [["groove","Groove","x: tempo · y: circle of fifths"],["intent","Intent","x: weirdness · y: style weight (Suno generation sliders)"],["texture","Texture","x: bounce · y: melodic complexity"],["narrative","Narrative","x: journey · y: spread (trajectory statistics)"],["tempo","Tempo","x: tempo (one line)"]]],
+                ] as const).map(([group, tabs]) => (
+                  <div key={group} className="flex bg-neutral-200/60 rounded p-0.5 text-[9px] font-bold">
+                    {tabs.map(([mode, label, tip]) => (
+                      <button
+                        key={mode}
+                        onClick={() => setMapMode(mode)}
+                        className={`px-1 py-0.5 rounded transition-all cursor-pointer ${
+                          mapMode === mode ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500 hover:text-neutral-700"
+                        }`}
+                        title={tip}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                ))}
               </div>
+              <button 
+                onClick={handleNextMode} 
+                className="px-1.5 py-0.5 rounded hover:bg-neutral-200 text-neutral-500 hover:text-black cursor-pointer font-bold transition-colors select-none"
+                title="Next Topology Mode"
+              >
+                &gt;
+              </button>
             </div>
             <div className="flex items-center gap-2">
               {mapMode === "lyrics" && (
@@ -675,13 +669,13 @@ function Inner({ data }: { data: DHData }) {
 
         {/* 0R.3/0R.4 — sticky search + filter chips */}
         <div className="sticky top-0 z-10 -mx-4 mb-3 border-b bg-white/95 px-4 py-2 backdrop-blur">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <input
               ref={searchRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder='search titles, albums, prompts…  ( / )'
-              className="h-8 w-full max-w-[300px] rounded-full border border-neutral-200 bg-white px-3 text-[12px] outline-none focus:border-neutral-400"
+              className="h-8 flex-grow min-w-[150px] max-w-[300px] rounded-full border border-neutral-200 bg-white px-3 text-[12px] outline-none focus:border-neutral-400"
             />
             <select
               value=""
