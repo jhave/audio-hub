@@ -266,7 +266,12 @@ try {
 
 // ---- assemble ----
 const out = { version: 1, generatedAt: new Date().toISOString(), trackCount: N, tagScale: scaleTag, essay, faq }
-out.albums = albumOrder.map((id) => ({ id, title: albumMeta[id].title, dateISO: albumMeta[id].dateISO }))
+out.albums = albumOrder.map((id) => ({
+  id,
+  title: albumMeta[id].title,
+  dateISO: albumMeta[id].dateISO,
+  prompt: albumMeta[id].prompt || null
+}))
 out.points = tracks.map((t, i) => [xy[i][0], xy[i][1], albumIdx[t.albumId] ?? -1])
 out.lyricPoints = tracks.map((t, i) => [lXy[i][0], lXy[i][1], albumIdx[t.albumId] ?? -1])
 out.metricPoints = tracks.map((t, i) => [mXy[i][0], mXy[i][1], albumIdx[t.albumId] ?? -1])

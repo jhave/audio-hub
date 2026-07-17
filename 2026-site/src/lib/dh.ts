@@ -41,7 +41,7 @@ export type DHData = {
   tagScale: number
   essay?: string
   faq?: string
-  albums: { id: string; title: string; dateISO: string | null }[]
+  albums: { id: string; title: string; dateISO: string | null; prompt?: string | null }[]
   points: [number, number, number][] // x, y, albumIdx
   lyricPoints?: [number, number, number][] // lx, ly, albumIdx
   metricPoints?: [number, number, number][] // mx, my, albumIdx

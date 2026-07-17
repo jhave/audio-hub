@@ -578,13 +578,22 @@ function Inner({ data }: { data: DHData }) {
   const groups = React.useMemo(() => {
     if (order === "weirdness") {
       const sorted = [...data.tracks].sort((a, b) => (b.weirdness ?? 0) - (a.weirdness ?? 0))
-      return [{ album: "Sorted by Weirdness (Most Weird First)", dateISO: null, rows: sorted }]
+      return [{ album: "Sorted by Weirdness (Most Weird First)", dateISO: null, prompt: null, rows: sorted }]
     }
-    const g: { album: string; dateISO: string | null; rows: DHTrack[] }[] = []
+    const g: { album: string; dateISO: string | null; prompt: string | null; rows: DHTrack[] }[] = []
+    const promptByAlbumId = Object.fromEntries((data.albums || []).map((a) => [a.title, a.prompt]))
     for (const t of data.tracks) {
       const last = g[g.length - 1]
-      if (last && last.album === t.album) last.rows.push(t)
-      else g.push({ album: t.album, dateISO: t.dateISO, rows: [t] })
+      if (last && last.album === t.album) {
+        last.rows.push(t)
+      } else {
+        g.push({
+          album: t.album,
+          dateISO: t.dateISO,
+          prompt: promptByAlbumId[t.album] || null,
+          rows: [t]
+        })
+      }
     }
     return g
   }, [data, order])
@@ -879,7 +888,7 @@ function Inner({ data }: { data: DHData }) {
         </div>
 
         <header className="mb-3 mt-1.5">
-          <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — DH archive view</h1>
+          <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — Digital Humanities archive view</h1>
           <p className="mt-1 text-[12px] text-neutral-500">
             Every track sits in the machine-heard topology (left) with its analysis (right).
             Hover a title to preview; play to travel.
@@ -895,6 +904,11 @@ function Inner({ data }: { data: DHData }) {
               <div className="mb-3">
                 {g.dateISO && <p className="text-[11px] text-neutral-400">{g.dateISO}</p>}
                 <h2 className="text-lg font-semibold leading-snug">{g.album}</h2>
+                {g.prompt && (
+                  <p className="mt-1 text-[11px] italic leading-snug text-neutral-500 whitespace-pre-line select-text border-l-2 border-neutral-200/50 pl-2">
+                    {g.prompt}
+                  </p>
+                )}
               </div>
               <div className="space-y-0.5">
                 {g.rows.map((t) => (
