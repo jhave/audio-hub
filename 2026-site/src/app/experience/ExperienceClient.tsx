@@ -33,6 +33,22 @@ function linkify(text: string) {
 }
 
 
+// Renders markdown [label](url) links, passing remaining text through linkify
+function renderMdLinks(text: string) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g)
+  return parts.map((p, i) => {
+    const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (m) {
+      return (
+        <a key={i} href={m[2]} target="_blank" rel="noreferrer" className="underline">
+          {m[1]}
+        </a>
+      )
+    }
+    return <React.Fragment key={i}>{linkify(p)}</React.Fragment>
+  })
+}
+
 function itemFor(t: DHTrack): Item {
   return { id: t.trackId, src: resolveSrc(t.src) || "", data: { title: t.title, album: t.album } }
 }
@@ -94,7 +110,9 @@ function Inner({ data }: { data: DHData }) {
   )
   const focusIdx = player.activeItem ? idxById[player.activeItem.id as string] ?? null : null
   const [hoverIdx, setHoverIdx] = React.useState<number | null>(null)
-  const [order, setOrder] = React.useState<OrderMode>("random")
+  // First-time visitors open on random-★ (starred exemplars); returning visitors
+  // restore their saved order from localStorage in the load effect below.
+  const [order, setOrder] = React.useState<OrderMode>("random-star")
   const [played, setPlayed] = React.useState<Set<number>>(new Set())
   const [playCycle, setPlayCycle] = React.useState<number>(1)
   const [mobileTab, setMobileTab] = React.useState<"map-essay" | "listen" | "faq">("listen")
@@ -195,7 +213,7 @@ function Inner({ data }: { data: DHData }) {
 
   // Horizontal height vh values for desktop row resizers
   const [mapHeight, setMapHeight] = React.useState<number>(38)
-  const [dataHeight, setDataHeight] = React.useState<number>(45)
+  const [dataHeight, setDataHeight] = React.useState<number>(40)
   const isDraggingHRef = React.useRef<"map" | "data" | null>(null)
 
   React.useEffect(() => {
@@ -248,7 +266,7 @@ function Inner({ data }: { data: DHData }) {
 
   const resetRowHeights = () => {
     setMapHeight(38)
-    setDataHeight(45)
+    setDataHeight(40)
     try {
       localStorage.removeItem("dh-map-height")
       localStorage.removeItem("dh-data-height")
@@ -276,6 +294,7 @@ function Inner({ data }: { data: DHData }) {
     try {
       if (localStorage.getItem("dh-map-expanded") === "1") setIsMapExpanded(true)
       const raw = localStorage.getItem("dh-played")
+      let initialUnheard = false
       if (raw) {
         const loadedSet = new Set<number>(JSON.parse(raw))
         setPlayed(loadedSet)
@@ -283,6 +302,7 @@ function Inner({ data }: { data: DHData }) {
           const sp = new URLSearchParams(window.location.search)
           if (!sp.has("track") && loadedSet.size > 0 && loadedSet.size < data.tracks.length) {
             setFUnheard(true)
+            initialUnheard = true
           }
         }
       }
@@ -290,6 +310,13 @@ function Inner({ data }: { data: DHData }) {
       if (cycle) setPlayCycle(parseInt(cycle, 10) || 1)
       const o = localStorage.getItem("dh-order") as OrderMode | null
       if (o) setOrder(o)
+
+      if (initialUnheard) {
+        const explicitRandom = localStorage.getItem("dh-unheard-explicit-random") === "1"
+        if (!explicitRandom) {
+          setOrder("sequential")
+        }
+      }
     } catch {}
   }, [data])
 
@@ -319,8 +346,25 @@ function Inner({ data }: { data: DHData }) {
   React.useEffect(() => {
     try {
       localStorage.setItem("dh-order", order)
+      if (fUnheard) {
+        if (order === "random") {
+          localStorage.setItem("dh-unheard-explicit-random", "1")
+        } else {
+          localStorage.removeItem("dh-unheard-explicit-random")
+        }
+      }
     } catch {}
-  }, [order])
+  }, [order, fUnheard])
+
+  // When switching fUnheard to true, force sequential unless explicitly set to random
+  React.useEffect(() => {
+    if (fUnheard) {
+      const explicitRandom = localStorage.getItem("dh-unheard-explicit-random") === "1"
+      if (!explicitRandom) {
+        setOrder("sequential")
+      }
+    }
+  }, [fUnheard])
 
   const playIdx = React.useCallback(
     (i: number) => {
@@ -329,18 +373,26 @@ function Inner({ data }: { data: DHData }) {
     [player, data]
   )
 
-  // Scroll focal track into view so it sits ~30% of the way down the playlist container (below sticky header)
+  // Centre the focal track in the playlist container. Measured on the next
+  // animation frame so filter-driven re-renders (e.g. unheard mode removing a
+  // played row) settle first — stale measurements were over-scrolling and
+  // hiding the playing row behind the sticky title pane.
   const scrollRowIntoView = React.useCallback((idx: number, smooth: boolean = true) => {
-    const container = document.getElementById("tutorial-playlist")
-    const row = document.getElementById(`dh-row-${idx}`)
-    if (!container || !row) return
+    requestAnimationFrame(() => {
+      const container = document.getElementById("tutorial-playlist")
+      const row = document.getElementById(`dh-row-${idx}`)
+      if (!container || !row) return
 
-    const containerRect = container.getBoundingClientRect()
-    const rowRect = row.getBoundingClientRect()
-    const offset = (rowRect.top - containerRect.top) - (containerRect.height * 0.3)
-    container.scrollTo({
-      top: container.scrollTop + offset,
-      behavior: smooth ? "smooth" : "auto"
+      const containerRect = container.getBoundingClientRect()
+      const rowRect = row.getBoundingClientRect()
+      // absolute offset of the row within the scroll content (stable mid-animation)
+      const rowAbsTop = rowRect.top - containerRect.top + container.scrollTop
+      const target = rowAbsTop - (containerRect.height / 2) + (rowRect.height / 2)
+      const maxScroll = container.scrollHeight - container.clientHeight
+      container.scrollTo({
+        top: Math.max(0, Math.min(maxScroll, target)),
+        behavior: smooth ? "smooth" : "auto"
+      })
     })
   }, [])
 
@@ -371,9 +423,10 @@ function Inner({ data }: { data: DHData }) {
   const bagRef = React.useRef<number[]>([])
   const bagModeRef = React.useRef<OrderMode | null>(null)
   const justPlayedRef = React.useRef<number | null>(null)
-  const refillBag = React.useCallback(() => {
+  const refillBag = React.useCallback((modeOverride?: OrderMode) => {
+    const mode = modeOverride ?? order
     let pool =
-      order === "random-star" ? data.tracks.filter((t) => t.fav).map((t) => t.i) : data.tracks.map((t) => t.i)
+      mode === "random-star" ? data.tracks.filter((t) => t.fav).map((t) => t.i) : data.tracks.map((t) => t.i)
     
     // Prioritize unlistened tracks
     const unlistened = pool.filter((idx) => !played.has(idx))
@@ -391,7 +444,7 @@ function Inner({ data }: { data: DHData }) {
       ;[pool[0], pool[pool.length - 1]] = [pool[pool.length - 1], pool[0]]
     }
     bagRef.current = pool
-    bagModeRef.current = order
+    bagModeRef.current = mode
   }, [order, data, played])
 
   const nextIdx = React.useCallback((): number | null => {
@@ -453,7 +506,18 @@ function Inner({ data }: { data: DHData }) {
       justPlayedRef.current = i
       return i
     }
-    if (bagModeRef.current !== order || bagRef.current.length === 0) refillBag()
+    // Auto-cycling queues: play random-★ until the star queue is exhausted,
+    // then roll over to full random until every track is heard, then back. (etc.)
+    let effOrder: OrderMode = order
+    {
+      const favs = data.tracks.filter((t) => t.fav)
+      const favsExhausted = favs.length === 0 || favs.every((t) => played.has(t.i) || t.i === focusIdx)
+      const allExhausted = data.tracks.every((t) => played.has(t.i) || t.i === focusIdx)
+      if (order === "random-star" && favsExhausted) effOrder = "random"
+      else if (order === "random" && allExhausted && favs.length > 0) effOrder = "random-star"
+      if (effOrder !== order) setOrder(effOrder)
+    }
+    if (bagModeRef.current !== effOrder || bagRef.current.length === 0) refillBag(effOrder)
     const pick = bagRef.current.pop() ?? null
     justPlayedRef.current = pick
     return pick
@@ -540,11 +604,11 @@ function Inner({ data }: { data: DHData }) {
   // scroll FAQ sidebar to describe the active map projection space
   React.useEffect(() => {
     const idMap: Record<string, string> = {
-      music: "faq-acoustic-timbre-space-music-",
-      lyrics: "faq-semantic-lyric-space-lyrics-",
-      metrics: "faq-structural-umap-metrics-",
-      aesthetic: "faq-aesthetic-umap-aesthetic-",
-      rhythm: "faq-rhythm-umap-rhythm-",
+      music: "faq-acoustic-music-",
+      lyrics: "faq-semantic-lyrics-",
+      metrics: "faq-structural-metrics-",
+      aesthetic: "faq-aesthetic",
+      rhythm: "faq-rhythm",
       groove: "faq-groove-grid",
       intent: "faq-intent-space",
       texture: "faq-texture-space",
@@ -573,6 +637,36 @@ function Inner({ data }: { data: DHData }) {
     }
   }, [mapMode])
 
+  // scroll FAQ sidebar to the relevant projection-method explainer when t-SNE/UMAP tab changes
+  const projectionScrollArmed = React.useRef(false)
+  React.useEffect(() => {
+    if (!projectionScrollArmed.current) {
+      // skip initial mount — only respond to user tab switches
+      projectionScrollArmed.current = true
+      return
+    }
+    const targetId = projectionMethod === "umap" ? "faq-umap" : "faq-t-sne"
+    const el = document.getElementById(targetId)
+    if (!el) return
+    const details = el.closest("details")
+    if (details) details.open = true
+
+    // Persistent highlight: clear any previous, then mark the relevant explainer
+    document.querySelectorAll("#dh-faq-container .bg-yellow-200").forEach((n) => n.classList.remove("bg-yellow-200", "scale-105"))
+    el.classList.add("bg-yellow-200")
+
+    const container = document.getElementById("dh-faq-container")
+    if (container) {
+      const rect = el.getBoundingClientRect()
+      const containerRect = container.getBoundingClientRect()
+      const relativeTop = rect.top - containerRect.top + container.scrollTop
+      container.scrollTo({
+        top: relativeTop - 12,
+        behavior: "smooth"
+      })
+    }
+  }, [projectionMethod])
+
   const handleMetricClick = React.useCallback((term: string) => {
     const key = term.toLowerCase().trim()
 
@@ -596,21 +690,26 @@ function Inner({ data }: { data: DHData }) {
     }
 
     // B. Scroll the essay to a relevant section
+    const limitsId = "essay-limitations-of-my-data-science"
+    const creativityId = "essay-is-pattern-matching-creativity-humans-resonate-with-and-as-waves-"
     const essayMap: Record<string, string> = {
-      complexity: "essay-the-fractal-of-a-track",
-      bounce: "essay-the-fractal-of-a-track",
-      journey: "essay-the-fractal-of-a-track",
-      spread: "essay-the-fractal-of-a-track",
-      weirdness: "essay-hyperparameters-as-weather",
-      styleweight: "essay-hyperparameters-as-weather",
-      tempo: "essay-the-sousaphone-phantom-ai-classification-drift",
-      tempodrift: "essay-the-sousaphone-phantom-ai-classification-drift",
-      tempojumps: "essay-the-sousaphone-phantom-ai-classification-drift",
-      key: "essay-the-sousaphone-phantom-ai-classification-drift",
-      modulations: "essay-the-sousaphone-phantom-ai-classification-drift",
+      complexity: limitsId,
+      bounce: limitsId,
+      journey: limitsId,
+      spread: limitsId,
+      weirdness: creativityId,
+      styleweight: creativityId,
+      tempo: limitsId,
+      tempodrift: limitsId,
+      tempojumps: limitsId,
+      key: limitsId,
+      modulations: limitsId,
     }
     const targetEssayId = essayMap[key]
     if (targetEssayId) {
+      // Dispatch custom event for the aphorism view
+      window.dispatchEvent(new CustomEvent("dh-essay-scroll", { detail: { id: targetEssayId } }))
+
       const essayEl = document.getElementById(targetEssayId)
       const essayContainer = document.getElementById("dh-essay-container")
       if (essayEl && essayContainer) {
@@ -625,11 +724,11 @@ function Inner({ data }: { data: DHData }) {
     }
 
     const idMap: Record<string, string> = {
-      music: "faq-acoustic-timbre-space-music-",
-      lyrics: "faq-semantic-lyric-space-lyrics-",
-      metrics: "faq-structural-t-sne-metrics-",
-      aesthetic: "faq-aesthetic-t-sne-aesthetic-",
-      rhythm: "faq-rhythm-t-sne-rhythm-",
+      music: "faq-acoustic-music-",
+      lyrics: "faq-semantic-lyrics-",
+      metrics: "faq-structural-metrics-",
+      aesthetic: "faq-aesthetic",
+      rhythm: "faq-rhythm",
       groove: "faq-groove-grid",
       intent: "faq-intent-space",
       texture: "faq-texture-space",
@@ -810,10 +909,10 @@ function Inner({ data }: { data: DHData }) {
   const groups = React.useMemo(() => {
     if (order === "weirdness") {
       const sorted = [...data.tracks].sort((a, b) => (b.weirdness ?? 0) - (a.weirdness ?? 0))
-      return [{ album: "Sorted by Weirdness (Most Weird First)", dateISO: null, prompt: null, rows: sorted }]
+      return [{ album: "Sorted by Weirdness (Most Weird First)", dateISO: null, prompt: null, description: null, rows: sorted }]
     }
-    const g: { album: string; dateISO: string | null; prompt: string | null; rows: DHTrack[] }[] = []
-    const promptByAlbumId = Object.fromEntries((data.albums || []).map((a) => [a.title, a.prompt]))
+    const g: { album: string; dateISO: string | null; prompt: string | null; description: string | null; rows: DHTrack[] }[] = []
+    const metaByAlbum = Object.fromEntries((data.albums || []).map((a) => [a.title, a]))
     for (const t of data.tracks) {
       const last = g[g.length - 1]
       if (last && last.album === t.album) {
@@ -822,7 +921,8 @@ function Inner({ data }: { data: DHData }) {
         g.push({
           album: t.album,
           dateISO: t.dateISO,
-          prompt: promptByAlbumId[t.album] || null,
+          prompt: metaByAlbum[t.album]?.prompt || null,
+          description: metaByAlbum[t.album]?.description || null,
           rows: [t]
         })
       }
@@ -1036,8 +1136,16 @@ function Inner({ data }: { data: DHData }) {
           </div>
         )}
 
-        <div id="tutorial-essay" className="flex-1 min-h-0 bg-white overflow-hidden">
-          <DHEssay text={data.essay || ""} />
+        <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto p-4 scroll-smooth">
+          <DHFAQ
+            text={data.faq || ""}
+            tracks={data.tracks}
+            onPlay={playIdx}
+            activeTag={activeTag}
+            onTagHover={setHoveredTag}
+            clickedTag={clickedTag}
+            onTagClick={setClickedTag}
+          />
         </div>
       </aside>
 
@@ -1200,15 +1308,7 @@ function Inner({ data }: { data: DHData }) {
           </div>
         </div>
 
-        <header className="mb-3 mt-1.5">
-          <h1 className="text-xl font-semibold">171 days, {data.tracks.length} tracks — Digital Humanities archive view</h1>
-          <p className="mt-1 text-[12px] text-neutral-500">
-            Every track sits in the machine-heard topology (left) with its analysis (right).
-            Hover a title to preview; play to travel.
-          </p>
-        </header>
-
-        <div className="space-y-6">
+        <div className="space-y-6 mt-1.5">
           {groups.map((g) => {
             const albumMatches = matchSet ? g.rows.filter((t) => matchSet.has(t.i)).length : g.rows.length
             if (matchSet && albumMatches === 0) return null
@@ -1220,6 +1320,11 @@ function Inner({ data }: { data: DHData }) {
                 {g.prompt && (
                   <p className="mt-1 text-[11px] italic leading-snug text-neutral-500 whitespace-pre-line select-text border-l-2 border-neutral-200/50 pl-2">
                     {g.prompt}
+                  </p>
+                )}
+                {g.description && (
+                  <p className="mt-1.5 text-[11px] leading-snug text-neutral-600 whitespace-pre-line select-text">
+                    {renderMdLinks(g.description)}
                   </p>
                 )}
               </div>
@@ -1259,14 +1364,15 @@ function Inner({ data }: { data: DHData }) {
       {/* RIGHT: persistent data + FAQ */}
       <aside
         onMouseEnter={() => setHoverIdx(null)}
-        style={isDesktop ? { flexBasis: isMapExpanded ? "33.33%" : `${100 - leftWidth - centerWidth}%` } : undefined}
+        style={isDesktop ? { flexBasis: isMapExpanded ? "33.33%" : `${100 - leftWidth - centerWidth}%`, minWidth: 320 } : undefined}
         className={`${
           mobileTab === "faq" ? "flex flex-col h-full min-h-0 flex-1" : "hidden"
         } md:flex md:flex-col md:flex-shrink-0 border-l bg-white h-full min-h-0 overflow-hidden`}
       >
         <div
           id="tutorial-data"
-          className="flex-shrink-0 border-b bg-white overflow-y-auto scrollbar-none max-h-[60vh]"
+          style={isDesktop ? { height: "45vh" } : undefined}
+          className="flex-shrink-0 border-b bg-white overflow-y-auto scrollbar-none max-h-[60vh] md:max-h-none"
         >
           <DHData_
             track={rightTrack}
@@ -1293,16 +1399,9 @@ function Inner({ data }: { data: DHData }) {
             }}
           />
         </div>
-        <div id="dh-faq-container" className="flex-1 min-h-0 bg-neutral-50 overflow-y-auto p-4 scroll-smooth">
-          <DHFAQ
-            text={data.faq || ""}
-            tracks={data.tracks}
-            onPlay={playIdx}
-            activeTag={activeTag}
-            onTagHover={setHoveredTag}
-            clickedTag={clickedTag}
-            onTagClick={setClickedTag}
-          />
+
+        <div id="tutorial-essay" className="flex-1 min-h-0 bg-white overflow-hidden">
+          <DHEssay text={data.essay || ""} />
         </div>
       </aside>
 
@@ -1424,11 +1523,6 @@ function Row({
         <div className={`truncate text-[13px] ${isPlayed && !active ? "text-neutral-400 font-normal" : "text-neutral-800 font-medium"}`}>
           {t.title}
         </div>
-        {t.prompt && (
-          <div className="truncate text-[10px] text-neutral-400 font-normal mt-0.5" title={t.prompt}>
-            {t.prompt.split(",")[0].trim()}
-          </div>
-        )}
       </div>
     </div>
   )
@@ -1533,9 +1627,9 @@ function OnboardingTutorial({
       position: "left-6 md:left-[35vw] top-[40vh]",
     },
     {
-      title: "3. The Essay Zone",
-      desc: "Read 'A few tiny thoughts about the implications of AI on music'—a critical essay discussing AI, automation, metadata limitations, and subjective curation.",
-      selector: "#tutorial-essay",
+      title: "3. FAQ & Glossary",
+      desc: "Browse the project glossary, read detailed descriptions of the analysis metrics, and view frequently asked questions about the archive.",
+      selector: "#dh-faq-container",
       position: "left-6 md:left-[35vw] top-[45vh]",
     },
     {
@@ -1551,9 +1645,9 @@ function OnboardingTutorial({
       position: "right-6 md:right-[35vw] top-[30vh]",
     },
     {
-      title: "6. FAQ & Glossary",
-      desc: "Browse the project glossary, read detailed descriptions of the analysis metrics, and view frequently asked questions about the archive.",
-      selector: "#dh-faq-container",
+      title: "6. The Essay Zone",
+      desc: "Read 'A few tiny thoughts about the implications of AI on music'—a critical essay discussing AI, automation, metadata limitations, and subjective curation.",
+      selector: "#tutorial-essay",
       position: "right-6 md:right-[35vw] top-[45vh]",
     },
     {

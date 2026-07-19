@@ -73,7 +73,7 @@ const prById = byId(promptsEmb)
 const albumOrder = manifest.albums.map((a) => a.id)
 const albumIdx = Object.fromEntries(albumOrder.map((id, i) => [id, i]))
 const albumMeta = Object.fromEntries(
-  manifest.albums.map((a) => [a.id, { title: a.title, dateISO: a.dateISO || null }])
+  manifest.albums.map((a) => [a.id, { title: a.title, dateISO: a.dateISO || null, prompt: a.prompt || null, description: a.subtitle || null }])
 )
 const srcById = {}
 for (const a of manifest.albums) for (const t of a.tracks) srcById[`${a.id}::${t.filename}`] = t.src
@@ -367,7 +367,8 @@ out.albums = albumOrder.map((id) => ({
   id,
   title: albumMeta[id].title,
   dateISO: albumMeta[id].dateISO,
-  prompt: albumMeta[id].prompt || null
+  prompt: albumMeta[id].prompt || null,
+  description: albumMeta[id].description || null
 }))
 out.points_tsne = tracks.map((t, i) => [xy_tsne[i][0], xy_tsne[i][1], albumIdx[t.albumId] ?? -1])
 out.points_umap = tracks.map((t, i) => [xy_umap[i][0], xy_umap[i][1], albumIdx[t.albumId] ?? -1])

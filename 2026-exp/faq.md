@@ -1,204 +1,113 @@
 # FAQ & Methodology
 
-## Overview: How This Atlas Was Built
-This exploration website utilizes **contrastive language-audio pretraining (CLAP) embeddings** to model the mathematical relationships across the 746 tracks of the 171-day archive.
+## How This Atlas Was Built
 
-<details>
-<summary><b>WTF is that? (Simplified Explanation Folds)</b></summary>
+The atlas models the 746 tracks of the 171-day archive using **CLAP** (Contrastive Language-Audio Pretraining) embeddings.
 
-### 1. In plain English, please?
-Imagine a giant library of sounds where songs that sound similar are placed on the same shelf, and songs that sound different are placed far apart. To do this, we used a specialized AI model called **CLAP** (Contrastive Language-Audio Pretraining) that listens to 10-second snippets of every song and turns what it hears into a list of 512 numbers. This list of numbers is like a "sonic fingerprint." 
+**In plain English:** imagine a library where similar-sounding songs share a shelf. CLAP listens to 10-second snippets and turns each into 512 numbers — a sonic fingerprint. Similar fingerprints, similar sound. Those 512 dimensions are projected onto a 2D map, so the archive can be explored like an archipelago of style.
 
-If two fingerprints have similar numbers, the songs sound similar to the computer. We then mapped these 512-dimensional fingerprints onto a 2D map so you can explore the archive like an archipelago of style.
+**Trajectories:** rather than averaging a song into one fingerprint, every 10-second window is kept and its sequence traced — a path through parameter space, projected onto the library's top 3 directions of variation (PCA) and drawn as a 16-point shape: the track's internal narrative.
 
-### 2. How did we calculate the shapes/trajectories?
-Instead of just taking the average sound of a song, we kept the individual fingerprints of every 10-second window. By tracing the sequence of these fingerprints from the beginning to the end of the song, we get a **path** (or trajectory) through parameter space. We project this path onto the top 3 directions of variation in the entire library (using PCA or Principal Component Analysis) and draw it as a 16-point geometric shape. This represents the track's internal *narrative shape*.
+**Sliders:** *Weirdness* (0–1) pushes Suno outside its highest-probability distribution; high values (> 0.8) yield strange textures and unpredictable modulations (sort by it via the sparkles icon in the player dock). *Style Weight* (0–1) sets how strictly generation follows the text prompt.
 
-### 3. What do the sliders do? And what is "Weirdness"?
-* **Weirdness (0.0 to 1.0)**: A control parameter in Suno that forces the model to generate audio outside its highest-probability distribution. High weirdness (e.g., `> 0.8`) introduces strange instrumental textures, unpredictable modulations, and experimental structure. You can click the **Sparkles icon** (weirdness) on the bottom player dock to sort the playlist by weirdness, listing the most experimental tracks first.
-* **Style Weight (0.0 to 1.0)**: Determines how strictly the generation model adheres to the text style prompts vs. introducing random variations.
-</details>
+## Technical Pipeline
 
-<details>
-<summary><b>Technical Pipeline Pathway (Detailed Specifications)</b></summary>
+1. **Ingestion & segmentation** — mp3s downsampled to 22,050 Hz, cut into non-overlapping 10-second windows.
+2. **CLAP encoding** — each window becomes a 512-dimensional vector; a track's global embedding is the mean of its windows.
+3. **Zero-shot tagging** — 76 glossary probes (prefixed "the sound of …") are text-encoded; tag scores are dot products between window vectors and probe vectors. CLAP matches *acoustic texture*, not physical instruments: deep synth sub-bass scores high on "sousaphone/brass" because they share a frequency profile.
+4. **2D layout** — track centroids are mean-centered, then projected by t-SNE or UMAP (see below).
+5. **Descriptors** — key via Krumhansl-Schmuckler chroma templates; tempo via onset autocorrelation, which is prone to octave errors (dense hi-hats double 99 BPM to 198; drumless ambience under-reads). Tempo is best read as onset density, not felt beat.
 
-### 1. Audio Processing & Segmentation
-* **Ingestion**: Raw audio tracks (.mp3) are loaded and downsampled to a standardized sample rate of 22,050 Hz.
-* **Segmentation**: The audio is divided into sequential, non-overlapping 10-second windows. If a track is 3 minutes long, it yields 18 window segments.
+## Dimensionality Reduction: t-SNE vs UMAP
 
-### 2. CLAP Feature Extraction
-* **Audio Encoding**: Each 10-second segment is passed through the **Contrastive Language-Audio Pretraining (CLAP)** audio encoder. This generates a 512-dimensional dense embedding vector representing the segment's acoustic features.
-* **Track-Level Centroid**: The global embedding for each track is the average (mean centroid) of all its segment vectors.
+The fingerprints live in 512 dimensions; humans see three at most. Dimensionality reduction projects high-dimensional data down to 2D while preserving as much structure as possible. The topology pane offers two projections:
 
-### 3. Zero-Shot Tagging & The "Sousaphone" Effect
-* **Text Encoding**: The 76 glossary text probes (e.g., `"the sound of male vocals"`, `"the sound of sousaphone/brass"`) are prefixed with `"the sound of "` and passed through CLAP’s text encoder to get matching 512-dimensional text vectors.
-* **Similarity Score**: Zero-shot tags are calculated by computing the dot product between the segment vectors and the text vectors. 
-* **Acoustic Texture vs. Literal Instruments**: The CLAP model matches *acoustic textures and frequency profiles*, not physical instruments. For example:
-  * **Doubt Manifesto 1** has the ground-truth prompt: `slow-math philly-rap subs, powerful bassline...`
-  * The track contains deep, resonant, low-frequency sub-bass frequencies (`subs`).
-  * The acoustic profile of these sub-bass frequencies matches the low-frequency resonance patterns of a **sousaphone/brass** instrument in the CLAP model's semantic training space.
-  * Thus, the model assigns a high score to `"sousaphone/brass"`. It is a sonic profile match, not literal physical instrument detection.
+### t-SNE
 
-### 4. 2D Map (t-SNE or UMAP) & Trajectories (PCA)
-* **2D Layout**: We center the 746 track-level centroids and run **t-Distributed Stochastic Neighbor Embedding (t-SNE)** or **Uniform Manifold Approximation and Projection (UMAP)** to project the 512-dimensional representations into 2D coordinates `[x, y]` for the browser canvas map.
-* **Trajectories (3D Shapes)**: We run **Principal Component Analysis (PCA)** across all segment embeddings in the database to find the top 3 directions of acoustic variation. Each track's segment sequence is projected onto these 3 components, resampled to 16 points, and rendered as a geometric shape representing the song's internal trajectory.
+van der Maaten & Hinton, 2008. Converts distances into neighbor probabilities; a Student-t distribution in 2D resolves the crowding problem. **Strength:** excellent *local* structure — tight, separated clusters, ideal for spotting sub-genres. **Weakness:** global structure is lost (distances *between* clusters are mostly arbitrary), and it is slow at scale.
 
-### 5. Traditional Audio Descriptors (Librosa & Tempo Double/Half Limits)
-* **Tonal Key**: Correlates chroma energy profiles against the 24 Krumhansl-Schmuckler major/minor pitch templates. Modulations measure key shifts between windows.
-* **Global Tempo (Limits)**: Estimated using spectral autocorrelation of the onset strength envelope. Autocorrelation is prone to **octave errors** (tempo doubling/halving). For example:
-  * In tracks with dense sub-beats (like fast hi-hats, syncopations, or synth arpeggiators), the onset detector can mistake subdivisions for the beat, doubling a 99 BPM track to **198 BPM** (as is the case with *Doubt Manifesto 1*).
-  * In ambient or drumless tracks, it may latch onto slow chord shifts, under-estimating the tempo. It acts as a measure of onset density rather than human beat perception.
-</details>
+### UMAP
 
-<details>
-<summary><b>Dimensionality Reduction: t-SNE vs. UMAP (Lineage & Differences)</b></summary>
+McInnes, Healy & Melville, 2018. Built on Riemannian geometry: models the data as a manifold, builds a fuzzy topological representation, then optimizes a matching 2D layout. **Strength:** preserves *local and global* structure — outliers land far apart, stylistic gradients survive; significantly faster. **Weakness:** clusters can look stringy and less distinct than t-SNE's clean islands.
 
-### What is Dimensionality Reduction?
-In machine learning, data points are often represented by hundreds of dimensions. For example, our CLAP acoustic fingerprint is a list of 512 numbers, representing a point in 512-dimensional space. Humans cannot visualize anything beyond 3 dimensions. **Dimensionality Reduction** is the mathematical process of projecting high-dimensional data down into a low-dimensional space (typically 2D or 3D) while preserving as much of the original data's structure, distances, and relationships as possible.
+## The Limits of Machine Listening
 
-### t-SNE: t-Distributed Stochastic Neighbor Embedding
-* **Lineage**: Developed by Laurens van der Maaten and Geoffrey Hinton in 2008. It is a non-linear probability-based algorithm that builds on SNE (Stochastic Neighbor Embedding).
-* **How it works**: It converts Euclidean distances between data points into conditional probabilities that represent similarities. It uses a Student-t distribution in the low-dimensional space to resolve the "crowding problem" (the tendency of points to clump together in the center when projected).
-* **Strength**: Exceptionally good at preserving **local structure**. It creates distinct, separated clusters of similar points, making it highly effective for identifying tight sub-genres or groups.
-* **Weakness**: It does not preserve **global structure** (the distances *between* clusters are mostly arbitrary). It is also computationally expensive on large datasets.
+Algorithms analyze waveforms; they cannot sense elegy, novelty, or banality. Example: **A Sombre Just Enough**, a slow acoustic ballad, is tagged both "driving fast tempo" and "slow ambient pulse."
 
-### UMAP: Uniform Manifold Approximation and Projection
-* **Lineage**: Developed by Leland McInnes, John Healy, and James Melville in 2018. It is based on Riemannian geometry and algebraic topology.
-* **How it works**: It assumes that data is distributed on a manifold in high-dimensional space. It constructs a fuzzy simplicial set representation of this manifold, then optimizes a low-dimensional layout to have a similar topological structure by minimizing cross-entropy.
-* **Strength**: Preserves both **local** and **global structure**. If two clusters are sonic outliers, UMAP will place them far apart on opposite sides of the map, and preserve the continuous stylistic gradient between them. It is also significantly faster than t-SNE.
-* **Weakness**: Clusters can sometimes appear less visually distinct or more "stringy" and continuous compared to the clean, isolated islands produced by t-SNE.
-</details>
+- **The transient trap** — fast fingerpicked guitar produces a high event-rate; Librosa reads 199 BPM and 12 tempo jumps, CLAP reads "fast." Humans filter the plucks and feel the slow elegiac flow; the math does not.
+- **Contradictory tags co-exist** — each probe scores independently (an isolated dot product), so a track can rank 90% slow *and* 80% fast; the interface simply lists the top 5.
+- **A future fix** — group probes into mutually exclusive sets (slow/medium/fast) and apply softmax across each set, forcing a single pool of probability.
 
-<details>
-<summary><b>The Limits of Machine Listening: Why AI Misses the Beauty</b></summary>
+## The Vermeer Smear Paradox
 
-When exploring this archive, you may notice puzzling contradictions in the automatic tags. For instance, the track **A Sombre Just Enough**—a soft, elegiac ballad with gentle acoustic textures and a slow tempo—is automatically labeled as both **"driving fast tempo"** and **"slow ambient pulse."** 
+**VERMEER SMEAR** has prominent vocals yet is tagged "no vocals"; Suno metadata declares 6 sections, while analysis reports 0 shifts and an 8.4 journey. Reconciliation: 0 shifts means no abrupt transitions; 8.4 journey means a large total distance traveled. The track is a continuous, gradual morph — a gradient smear that evolves without ever crossing a sharp border.
 
-This contradiction exposes a fundamental truth about machine listening: algorithms do not hear music the way humans do. They analyze sound events and waveforms, but they cannot discern emotional beauty, identify true novelty, or sense banality.
+The deeper asymmetry: generators synthesize cohesive multi-part beauty by predicting the next token inside a vast implicit space; analytic tools then compress that richness into tiny human labels ("no vocals," "99 BPM") — a brutally lossy translation. Music exceeds the numbers used to dissect it. Emerging remedies: analyzing structure directly in embedding space, attention-map tracing, and probing generators' hidden layers.
 
-### 1. The Rhythmic Transient Trap (Physical vs. Perceived Tempo)
-* **The Cause**: The track features arpeggiated, fast fingerpicked acoustic guitar strings. 
-* **The Math**: Both **Librosa** (which registered **199 BPM** and **12 tempo jumps**) and **CLAP** (which registered `driving fast tempo`) do not possess a human brain's capacity to filter out secondary details. They analyze the density of onset transients (the sharp clicks of the guitar pluckings). 
-* **The Illusion**: To a computer, a slow chord progression decorated with fast, 16th-note acoustic plucks looks mathematically identical to a fast-tempo track because the "event rate" (transients per second) is extremely high. Humans easily ignore the fast plucking to feel the slow, elegiac flow of the ballad; the algorithms do not.
+## The Map Projections (Topology Pane)
 
-### 2. The Conflict of Co-existing Textures (Contradictory Tags)
-If you look closely at the tag list generated for this track, it contains:
-* `slow ambient pulse`, `chamber music`, `orchestral strings`
-* `driving fast tempo`, `808 sub-bass`
+### Acoustic (Music) — [Occasionally inaccurate]
 
-**Why they co-exist**: CLAP is evaluating the entire track's acoustic window. 
-* The slow, elegiac string section and synth pads triggered the `slow ambient pulse` and `orchestral strings` tags.
-* The rapid acoustic transients triggered `driving fast tempo`.
-* Because each tag's score is computed independently (as a dot product against that single text probe), the track scored highly on *both* characteristics. The interface simply lists the top 5 relative scores, presenting this acoustic contradiction side-by-side.
+CLAP audio embeddings → t-SNE/UMAP. Sonic texture, instrumentation, genre. Occasionally highly inaccurate: slow ambient can cluster beside fast chipcore.
 
-### 3. How to Resolve This in a Future Analysis (Contrastive Softmax)
-To eliminate contradictory tags in the future, we can implement **Contrastive Softmax Filtering**:
-* **Current Method**: We query each tag in isolation. A track can be 90% slow *and* 80% fast.
-* **Proposed Solution**: We group tags into mutually exclusive categories (e.g., `[slow tempo, medium tempo, fast tempo]`) and apply a **softmax normalization** across that category. This forces the model to distribute a single pool of probability (100%), ensuring that if the slow ambient texture is dominant, it suppresses the fast transient rating entirely.
-</details>
+### Semantic (Lyrics) — [Moderately accurate]
 
-<details>
-<summary><b>The Vermeer Smear Paradox: Why Music Exceeds the Numbers</b></summary>
-
-A stark example of the limitations of automatic analysis occurs in the track **VERMEER SMEAR**:
-* It features prominent vocals and strong rhythmic bounce, yet the CLAP model tags it as **"no vocals"**.
-* The Suno metadata registers **6 sections**, yet our audio analysis reports **0 shifts** (formerly Novelty) alongside a high **8.4 journey** (total distance traveled).
-
-How do we reconcile these numbers?
-
-### 1. Reconciling 6 Sections, 0 Shifts, and a 8.4 Journey
-This is not a mathematical bug, but a signature of smooth structural motion:
-* **0 Shifts** means the track does not contain any *abrupt, sudden transitions* (no sharp cuts, sudden silences, or drastic stylistic jumps that spike the novelty curve).
-* **8.4 Journey** means the track travels a very large overall distance through style space from the beginning to the end.
-* **6 Sections** indicates the model's structural design is multi-part.
-* **The Reconciliation**: The track is a **continuous, gradual morph**. It drifts slowly and smoothly from one style to another without ever crossing a sharp border. The music evolves continuously, like a gradient smear. The analysis is accurate to the audio's continuous nature, even if the composer's structural markers suggest discrete segments.
-
-### 2. Why Generative Models Succeed While Analysis Lags
-There is a profound asymmetry in AI music today: generative models (like Suno Fenix) can synthesize beautiful, cohesive, multi-part compositions, yet our data science descriptors (like CLAP tags and onset estimators) struggle to even classify them accurately.
-* **Generative Synthesis (Implicit Complexity)**: Generators operate in a massive, high-dimensional probability space. By predicting the next audio token over millions of hours of training data, the model learns the *implicit, holistic relationship* of musical features. It doesn't need to know the definition of "vocals" or "bounce" to create them; it simply predicts the next sample.
-* **Analytical Description (Lossy Reduction)**: Data science tools attempt to map these rich, implicit waves back into small, human-defined labels (like "no vocals" or "99 BPM"). This translation is incredibly lossy. The AI can create complex beauty, but our statistical tools are too primitive to label it. Music, by definition, exceeds the numbers we use to dissect it.
-
-### 3. Emergent Analysis Techniques
-To bridge this gap and get a more nuanced picture of generative audio, researchers are looking beyond simple classification:
-* **Self-Supervised Representations (SSRs)**: Using models like Jukebox or EnCodec to analyze musical structures directly in embedding spaces, bypassing language tags entirely.
-* **Attention Map Analysis**: Visualizing the internal attention layers of generative transformers to trace exactly which past musical seeds (e.g. motifs, beats) the AI is actively recalling when it constructs a new section.
-* **Generative Probing**: Training mini-classifiers on the intermediate hidden layers of active music generators to see how the model internalizes concepts like keys, structure, and emotional weight during the act of creation.
-</details>
-
-## Topology Layout Spaces (The 9 Map Projections)
-
-### Acoustic Timbre Space (Music) — [Occasionally highly INaccurate]
-* **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using t-SNE or UMAP.
-* **Relation Exposed**: Sonic texture, instrumentation, and genre groupings.
-* **Accuracy**: Occasionally highly INaccurate (e.g., slow ambient tracks like Cine-automatic can cluster alongside fast tempo chipcore/glitch genres like (yeah yah yeah)).
-
-### Semantic Lyric Space (Lyrics) — [Inaccurate]
-* **Description**: Projects the CLAP lyric and prompt text embeddings down to 2D using t-SNE or UMAP.
-* **Relation Exposed**: Thematic concepts, vocabularies, style prompts, and lyrical subjects.
-* **Accuracy**: Moderately accurate; clusters textual style, vocabularies, and prompt intents.
+Lyric + prompt text embeddings → t-SNE/UMAP. Themes, vocabularies, prompt intent.
 
 ### Structural (Metrics) — [Accurate]
-* **Description**: Runs t-SNE or UMAP on all 13 musicological metrics.
-* **Relation Exposed**: Overall structural complexity, tempo, drift, modulations, bounce, and journey parameters.
-* **Accuracy**: Very accurate mathematical clustering of all 13 features.
 
-### Aesthetic (Aesthetic) — [Accurate]
-* **Description**: Runs t-SNE or UMAP on 9 composition-focused metrics, ablating noisy outliers like dropAt, tempoJumps, and novelty.
-* **Relation Exposed**: Pure composition structure, melody complexity, style variety, weirdness, and tempo characteristics.
-* **Accuracy**: Highly cohesive composition style clustering excluding outliers.
+All 13 musicological metrics. Structural complexity, tempo, drift, modulations, bounce, journey.
 
-### Rhythm (Rhythm) — [Accurate]
-* **Description**: Runs t-SNE or UMAP on 4 core rhythm and density metrics: tempo, bounce, melodicComplexity, and sectionCount.
-* **Relation Exposed**: Rhythmic density, tempo boundaries, syncopation, and melody thickness.
-* **Accuracy**: Extremely accurate mapping of rhythmic density vs. complexity.
+### Aesthetic — [Accurate]
+
+9 composition metrics (ablating dropAt, tempoJumps, novelty). Composition structure, melodic complexity, weirdness.
+
+### Rhythm — [Accurate]
+
+Tempo, bounce, melodicComplexity, sectionCount. Rhythmic density vs. complexity.
 
 ### Groove Grid — [Inaccurate]
-* **Description**: Mapped directly by global Tempo (X-axis) vs. Circle of Fifths key index (Y-axis).
-* **Relation Exposed**: Straightforward mapping of beat-speed against harmonic pitch relationships.
-* **Accuracy**: Perfect tempo/key extraction. Groups relative majors/minors.
+
+Tempo (X) vs. circle-of-fifths key (Y). Beat-speed against harmonic relationships; groups relative majors/minors. Inaccurate where tempo extraction fails.
 
 ### Intent Space — [Accurate]
-* **Description**: Plots Suno's user parameters: Weirdness (X-axis) vs. Style Weight (Y-axis).
-* **Relation Exposed**: Clusters songs by how much control the creator gave to the AI vs. forcing random exploration.
-* **Accuracy**: Perfect. Direct plotting of Suno's internal parameters.
+
+Suno's own parameters: weirdness (X) vs. style weight (Y). How much control was ceded to the model. Perfect: direct plotting.
 
 ### Texture Space — [Accurate]
-* **Description**: Mapped directly by rhythmic Bounce (X-axis) vs. Melodic Complexity (Y-axis).
-* **Relation Exposed**: Contrasts syncopation and percussion intensity against melodic layers.
-* **Accuracy**: Highly accurate contrast of transients vs. melodic layers.
+
+Bounce (X) vs. melodic complexity (Y). Transients against melodic layers.
 
 ### Narrative Space — [Inaccurate]
-* **Description**: Mapped directly by Journey path length (X-axis) vs. Style Spread (Y-axis).
-* **Relation Exposed**: Contrasts the track's narrative progression against stylistic variety.
-* **Accuracy**: Limited use. Short songs often get seen as small journeys.
+
+Journey (X) vs. style spread (Y). Progression against variety. Short songs read as small journeys.
 
 ### Tempo Line — [Almost worthless]
-* **Description**: Plots the raw estimated tempo linear position on the X-axis (lowest to highest, 60 to 200 BPM) with a small vertical jitter on the Y-axis to separate the points.
-* **Relation Exposed**: Direct, linear speed layout for debugging and diagnosing tempo extraction reliability.
-* **Accuracy**: Contested. Plots raw estimated tempo; exposes algorithm double/half octave errors.
 
-
-
----
+Raw BPM (60–200) on X with vertical jitter. Diagnostic view exposing double/half octave errors.
 
 ## Glossary of Descriptors
 
 ### SPREAD — [Accurate]
-The **style variety** within a track. Calculated as the average Euclidean distance from the track's individual window embeddings to its own overall centroid in PCA space. High spread indicates that a track contains highly varied parts (e.g. shifts between speech and singing, or switches between acoustic and electronic sections). Low spread indicates stylistic consistency.
+
+Style variety: mean distance of a track's windows to its own centroid in PCA space. High = varied parts (speech/singing, acoustic/electronic); low = consistency.
 
 ### JOURNEY — [Inaccurate]
-The **total distance traveled** by a track through parameter space. Calculated as the sum of consecutive window-to-window distances. A long journey indicates a progressive, evolving structure (like a multi-part progressive rock or electronic piece), whereas a short journey indicates a static or repetitive structure (like a minimal ambient loop).
+
+Total distance traveled: sum of window-to-window distances. Long = progressive, evolving structure; short = static loop.
 
 ### TEMPO — [Almost worthless]
-The **speed** of the track in beats per minute (BPM). Estimated globally using spectral autocorrelation of the onset strength envelope. Because generative music often contains drumless intros, complex syncopations, or shifting time signatures, global auto-correlation can occasionally lock onto half-time, double-time, or arpeggiated patterns. To capture the granular dynamics of tempo, we also compute:
-* **Tempo Drift**: The standard deviation of local tempos across the track's 10-second windows, capturing overall speed variability.
-* **Tempo Jumps**: The number of times the local tempo shifts abruptly by more than 10 BPM between consecutive windows.
+
+Global BPM via onset autocorrelation, prone to half/double-time locks. Companions: **tempo drift** (std-dev of local tempos) and **tempo jumps** (count of >10 BPM shifts between windows).
 
 ### KEY — [Inaccurate]
-The **tonal center** of the track, estimated by correlating chroma feature vectors against the 24 Krumhansl-Schmuckler major/minor templates. We also track segment-level keys to calculate **modulations** (the count of times a song changes keys).
+
+Tonal center via Krumhansl-Schmuckler chroma correlation; segment-level keys yield **modulation** counts.
 
 ### BOUNCE — [Accurate]
-The **low-frequency rhythm periodicity** (0 to 1). Represents the autocorrelation peak height of the low-band (<150 Hz) envelope at the beat period. High bounce indicates a strong bass-heavy rhythm or physical groove (like hip-hop or dance music), while low bounce indicates a lack of low-frequency rhythmic drive (like solo acoustic or ambient drone).
+
+Low-frequency rhythm periodicity (0–1): autocorrelation peak of the sub-150 Hz envelope at the beat period. High = bass-heavy groove; low = drone.
 
 ### COMPLEXITY — [Inaccurate]
-The **melodic complexity** (0 to 1), calculated as the information entropy of the track's chroma-class transition matrix. High complexity indicates a wide, unpredictable variety of chord progressions and pitch transitions, while low complexity indicates repetitive or simple harmonic structures. Note: This metric is biased toward longer tracks (such as techno or psyambient) which may be highly predictable and structurally repetitive, yet accumulate chord/pitch variations over their duration, triggering a high entropy score.
+
+Entropy of the chroma-transition matrix. High = unpredictable harmony; biased upward for long repetitive tracks that accumulate transitions over duration.
