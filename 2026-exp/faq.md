@@ -39,8 +39,8 @@ Instead of just taking the average sound of a song, we kept the individual finge
   * The acoustic profile of these sub-bass frequencies matches the low-frequency resonance patterns of a **sousaphone/brass** instrument in the CLAP model's semantic training space.
   * Thus, the model assigns a high score to `"sousaphone/brass"`. It is a sonic profile match, not literal physical instrument detection.
 
-### 4. 2D Map (t-SNE) & Trajectories (PCA)
-* **2D Layout**: We center the 746 track-level centroids and run **t-Distributed Stochastic Neighbor Embedding (t-SNE)** to project the 512-dimensional representations into 2D coordinates `[x, y]` for the browser canvas map.
+### 4. 2D Map (t-SNE or UMAP) & Trajectories (PCA)
+* **2D Layout**: We center the 746 track-level centroids and run **t-Distributed Stochastic Neighbor Embedding (t-SNE)** or **Uniform Manifold Approximation and Projection (UMAP)** to project the 512-dimensional representations into 2D coordinates `[x, y]` for the browser canvas map.
 * **Trajectories (3D Shapes)**: We run **Principal Component Analysis (PCA)** across all segment embeddings in the database to find the top 3 directions of acoustic variation. Each track's segment sequence is projected onto these 3 components, resampled to 16 points, and rendered as a geometric shape representing the song's internal trajectory.
 
 ### 5. Traditional Audio Descriptors (Librosa & Tempo Double/Half Limits)
@@ -48,6 +48,25 @@ Instead of just taking the average sound of a song, we kept the individual finge
 * **Global Tempo (Limits)**: Estimated using spectral autocorrelation of the onset strength envelope. Autocorrelation is prone to **octave errors** (tempo doubling/halving). For example:
   * In tracks with dense sub-beats (like fast hi-hats, syncopations, or synth arpeggiators), the onset detector can mistake subdivisions for the beat, doubling a 99 BPM track to **198 BPM** (as is the case with *Doubt Manifesto 1*).
   * In ambient or drumless tracks, it may latch onto slow chord shifts, under-estimating the tempo. It acts as a measure of onset density rather than human beat perception.
+</details>
+
+<details>
+<summary><b>Dimensionality Reduction: t-SNE vs. UMAP (Lineage & Differences)</b></summary>
+
+### What is Dimensionality Reduction?
+In machine learning, data points are often represented by hundreds of dimensions. For example, our CLAP acoustic fingerprint is a list of 512 numbers, representing a point in 512-dimensional space. Humans cannot visualize anything beyond 3 dimensions. **Dimensionality Reduction** is the mathematical process of projecting high-dimensional data down into a low-dimensional space (typically 2D or 3D) while preserving as much of the original data's structure, distances, and relationships as possible.
+
+### t-SNE: t-Distributed Stochastic Neighbor Embedding
+* **Lineage**: Developed by Laurens van der Maaten and Geoffrey Hinton in 2008. It is a non-linear probability-based algorithm that builds on SNE (Stochastic Neighbor Embedding).
+* **How it works**: It converts Euclidean distances between data points into conditional probabilities that represent similarities. It uses a Student-t distribution in the low-dimensional space to resolve the "crowding problem" (the tendency of points to clump together in the center when projected).
+* **Strength**: Exceptionally good at preserving **local structure**. It creates distinct, separated clusters of similar points, making it highly effective for identifying tight sub-genres or groups.
+* **Weakness**: It does not preserve **global structure** (the distances *between* clusters are mostly arbitrary). It is also computationally expensive on large datasets.
+
+### UMAP: Uniform Manifold Approximation and Projection
+* **Lineage**: Developed by Leland McInnes, John Healy, and James Melville in 2018. It is based on Riemannian geometry and algebraic topology.
+* **How it works**: It assumes that data is distributed on a manifold in high-dimensional space. It constructs a fuzzy simplicial set representation of this manifold, then optimizes a low-dimensional layout to have a similar topological structure by minimizing cross-entropy.
+* **Strength**: Preserves both **local** and **global structure**. If two clusters are sonic outliers, UMAP will place them far apart on opposite sides of the map, and preserve the continuous stylistic gradient between them. It is also significantly faster than t-SNE.
+* **Weakness**: Clusters can sometimes appear less visually distinct or more "stringy" and continuous compared to the clean, isolated islands produced by t-SNE.
 </details>
 
 <details>
@@ -108,28 +127,28 @@ To bridge this gap and get a more nuanced picture of generative audio, researche
 
 ## Topology Layout Spaces (The 9 Map Projections)
 
-### Acoustic Timbre Space (Music) — [Accurate]
-* **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using t-SNE.
+### Acoustic Timbre Space (Music) — [Occasionally highly INaccurate]
+* **Description**: Projects the 512-dimensional CLAP audio embeddings of the tracks down to 2D using t-SNE or UMAP.
 * **Relation Exposed**: Sonic texture, instrumentation, and genre groupings.
-* **Accuracy**: Highly accurate representation of sonic texture and instrumentation classification.
+* **Accuracy**: Occasionally highly INaccurate (e.g., slow ambient tracks like Cine-automatic can cluster alongside fast tempo chipcore/glitch genres like (yeah yah yeah)).
 
 ### Semantic Lyric Space (Lyrics) — [Inaccurate]
-* **Description**: Projects the CLAP lyric and prompt text embeddings down to 2D using t-SNE.
+* **Description**: Projects the CLAP lyric and prompt text embeddings down to 2D using t-SNE or UMAP.
 * **Relation Exposed**: Thematic concepts, vocabularies, style prompts, and lyrical subjects.
 * **Accuracy**: Moderately accurate; clusters textual style, vocabularies, and prompt intents.
 
-### Structural t-SNE (Metrics) — [Accurate]
-* **Description**: Runs t-SNE on all 13 musicological metrics.
+### Structural (Metrics) — [Accurate]
+* **Description**: Runs t-SNE or UMAP on all 13 musicological metrics.
 * **Relation Exposed**: Overall structural complexity, tempo, drift, modulations, bounce, and journey parameters.
 * **Accuracy**: Very accurate mathematical clustering of all 13 features.
 
-### Aesthetic t-SNE (Aesthetic) — [Accurate]
-* **Description**: Runs t-SNE on 9 composition-focused metrics, ablating noisy outliers like dropAt, tempoJumps, and novelty.
+### Aesthetic (Aesthetic) — [Accurate]
+* **Description**: Runs t-SNE or UMAP on 9 composition-focused metrics, ablating noisy outliers like dropAt, tempoJumps, and novelty.
 * **Relation Exposed**: Pure composition structure, melody complexity, style variety, weirdness, and tempo characteristics.
 * **Accuracy**: Highly cohesive composition style clustering excluding outliers.
 
-### Rhythm t-SNE (Rhythm) — [Accurate]
-* **Description**: Runs t-SNE on 4 core rhythm and density metrics: tempo, bounce, melodicComplexity, and sectionCount.
+### Rhythm (Rhythm) — [Accurate]
+* **Description**: Runs t-SNE or UMAP on 4 core rhythm and density metrics: tempo, bounce, melodicComplexity, and sectionCount.
 * **Relation Exposed**: Rhythmic density, tempo boundaries, syncopation, and melody thickness.
 * **Accuracy**: Extremely accurate mapping of rhythmic density vs. complexity.
 

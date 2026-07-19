@@ -33,6 +33,8 @@ export type DHTrack = {
   novelty: number | null
   topTags: DHTag[]
   rmsSilhouette: number[]
+  anomalyScore?: number
+  anomalyReason?: string
 }
 export type DHData = {
   version: number
@@ -43,10 +45,20 @@ export type DHData = {
   faq?: string
   albums: { id: string; title: string; dateISO: string | null; prompt?: string | null }[]
   points: [number, number, number][] // x, y, albumIdx
+  points_tsne?: [number, number, number][]
+  points_umap?: [number, number, number][]
   lyricPoints?: [number, number, number][] // lx, ly, albumIdx
+  lyricPoints_tsne?: [number, number, number][]
+  lyricPoints_umap?: [number, number, number][]
   metricPoints?: [number, number, number][] // mx, my, albumIdx
+  metricPoints_tsne?: [number, number, number][]
+  metricPoints_umap?: [number, number, number][]
   metricPointsAblated9?: [number, number, number][]
+  metricPointsAblated9_tsne?: [number, number, number][]
+  metricPointsAblated9_umap?: [number, number, number][]
   metricPointsAblated4?: [number, number, number][]
+  metricPointsAblated4_tsne?: [number, number, number][]
+  metricPointsAblated4_umap?: [number, number, number][]
   tracks: DHTrack[]
 }
 

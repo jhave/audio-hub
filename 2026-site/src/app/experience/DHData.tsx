@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronRight, ChevronDown, ChevronUp, Copy, Check } from "lucide-react"
+import { ChevronRight, ChevronDown, ChevronUp, Forward, Check } from "lucide-react"
 import type { DHTrack } from "@/lib/dh"
 
 function Meter({
@@ -102,9 +102,12 @@ export default function DHData({
 
   const chipsList = []
   if (track.key) {
+    const formattedKey = track.key
+      .replace(/\s+major/i, "")
+      .replace(/\s+minor/i, "m")
     chipsList.push({
       key: "key",
-      label: track.key,
+      label: formattedKey,
       value: track.key,
       tooltip: "Estimated key center. Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("key")
@@ -113,7 +116,7 @@ export default function DHData({
   if (track.tempo != null) {
     chipsList.push({
       key: "tempo",
-      label: `${Math.round(track.tempo)} bpm [inaccurate]`,
+      label: `${Math.round(track.tempo)} bpm`,
       value: Math.round(track.tempo),
       tooltip: "Estimated tempo in beats per minute. This category is inaccurate due to common half/double octave errors in machine listening.",
       onClick: () => onMetricClick("tempo")
@@ -122,7 +125,7 @@ export default function DHData({
   if (track.tempoDrift != null && track.tempoDrift > 0) {
     chipsList.push({
       key: "tempoDrift",
-      label: `±${Math.round(track.tempoDrift)} bpm drift`,
+      label: `±${Math.round(track.tempoDrift)} drift`,
       value: Math.round(track.tempoDrift),
       tooltip: "Tempo drift (standard deviation of local tempo across windows). Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("tempo-drift")
@@ -131,7 +134,7 @@ export default function DHData({
   if (track.tempoJumps != null && track.tempoJumps > 0) {
     chipsList.push({
       key: "tempoJumps",
-      label: `${track.tempoJumps} tempo jump${track.tempoJumps > 1 ? "s" : ""}`,
+      label: `${track.tempoJumps} jump${track.tempoJumps > 1 ? "s" : ""}`,
       value: track.tempoJumps,
       tooltip: "Count of local tempo jumps exceeding 10 BPM. Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("tempo-jumps")
@@ -149,7 +152,7 @@ export default function DHData({
   if (track.modulations != null) {
     chipsList.push({
       key: "modulations",
-      label: `${track.modulations} modulation${track.modulations > 1 ? "s" : ""}`,
+      label: `${track.modulations} mod${track.modulations > 1 ? "s" : ""}`,
       value: track.modulations,
       tooltip: "Count of key modulation events. Click to zoom map & scroll FAQ.",
       onClick: () => onMetricClick("key")
@@ -162,6 +165,15 @@ export default function DHData({
       value: Math.round(track.dropAt),
       tooltip: "Estimated drop location.",
       onClick: undefined
+    })
+  }
+  if (track.anomalyScore != null && track.anomalyScore > 0.0) {
+    chipsList.push({
+      key: "anomaly",
+      label: `anomaly: ${(track.anomalyScore * 100).toFixed(0)}%`,
+      value: track.anomalyScore,
+      tooltip: `Topological anomaly detected: ${track.anomalyReason || "sonic attributes differ from neighbors"}`,
+      onClick: () => {}
     })
   }
 
@@ -188,11 +200,11 @@ export default function DHData({
               setLinkCopied(true)
               setTimeout(() => setLinkCopied(false), 1800)
             }}
-            className="ml-2 inline-flex items-center gap-1 rounded border border-neutral-200 px-1.5 py-0.5 text-[10px] text-neutral-500 hover:bg-neutral-50 hover:text-black"
+            className="ml-2 inline-flex items-center gap-1 rounded border border-neutral-200 px-1.5 py-0.5 text-[10px] text-neutral-500 hover:bg-neutral-50 hover:text-black cursor-pointer"
             title="Copy a shareable link to this track & view"
           >
-            {linkCopied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
-            {linkCopied ? "copied" : "copy link"}
+            {linkCopied ? <Check className="h-3 w-3" /> : <Forward className="h-3.5 w-3.5" />}
+            {linkCopied ? "copied" : "share"}
           </button>
         ) : null}
       </div>
@@ -217,6 +229,7 @@ export default function DHData({
               }}
               title={c.tooltip}
               className={`rounded-full border px-2 py-0.5 text-[10px] select-none cursor-pointer transition-colors ${
+                c.key === "anomaly" ? "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100/70 font-semibold" :
                 isActive ? "bg-blue-500 text-white border-blue-500 font-semibold" : "text-neutral-600 hover:bg-neutral-50 hover:text-black"
               }`}
             >
@@ -226,26 +239,36 @@ export default function DHData({
         })}
       </div>
 
-      <div className="grid grid-cols-2 gap-3 mb-2.5">
-        <Meter
-          label="weirdness"
-          value={track.weirdness}
-          serial={`metric:weirdness:${track.weirdness}`}
-          activeTag={activeTag}
-          clickedTag={clickedTag}
-          onTagHover={onTagHover}
-          onTagClick={onTagClick}
-        />
-        <Meter
-          label="style weight"
-          value={track.styleWeight}
-          serial={`metric:styleWeight:${track.styleWeight}`}
-          activeTag={activeTag}
-          clickedTag={clickedTag}
-          onTagHover={onTagHover}
-          onTagClick={onTagClick}
-        />
-      </div>
+      {(track.weirdness != null || track.styleWeight != null) && (
+        <div className="flex gap-3 mb-2.5 flex-wrap sm:flex-nowrap w-full">
+          {track.weirdness != null && (
+            <div className="flex-1 min-w-[120px]">
+              <Meter
+                label="weirdness"
+                value={track.weirdness}
+                serial={`metric:weirdness:${track.weirdness}`}
+                activeTag={activeTag}
+                clickedTag={clickedTag}
+                onTagHover={onTagHover}
+                onTagClick={onTagClick}
+              />
+            </div>
+          )}
+          {track.styleWeight != null && (
+            <div className="flex-1 min-w-[120px]">
+              <Meter
+                label="style weight"
+                value={track.styleWeight}
+                serial={`metric:styleWeight:${track.styleWeight}`}
+                activeTag={activeTag}
+                clickedTag={clickedTag}
+                onTagHover={onTagHover}
+                onTagClick={onTagClick}
+              />
+            </div>
+          )}
+        </div>
+      )}
 
       {track.topTags.length > 0 && (
         <div className="mb-3.5 mt-2 flex flex-wrap gap-1 select-none">
@@ -302,7 +325,7 @@ export default function DHData({
       <div className="mb-3 grid grid-cols-2 gap-2 text-center select-none">
         {(
           [
-            ["bounce", track.bounce, "Low-frequency groove/rhythm bounce", "0.05–0.6"],
+            ["bounce", track.bounce, "Low-frequency groove/rhythm bounce", "0.05–1.0"],
             ["complexity", track.melodicComplexity, "Melodic and harmonic complexity", "0.05–0.7"],
           ] as const
         ).map(([k, v, desc, range]) => (

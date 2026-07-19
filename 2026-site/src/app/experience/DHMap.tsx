@@ -16,7 +16,9 @@ type Props = {
   clickedTag?: string | null
   onClearTag?: () => void
   showPaths?: boolean
+  showKnn?: boolean
   matchSet?: Set<number> | null // active search/filter matches; non-members render dimmed
+  projectionMethod?: "tsne" | "umap"
 }
 
 // Map key strings to Circle of Fifths indices
@@ -142,7 +144,9 @@ export default function DHMap({
   clickedTag = null,
   onClearTag,
   showPaths = true,
+  showKnn = false,
   matchSet = null,
+  projectionMethod = "tsne",
 }: Props) {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
   const wrapRef = React.useRef<HTMLDivElement | null>(null)
@@ -188,11 +192,11 @@ export default function DHMap({
     setPan({ x: 0, y: 0 })
   }, [clickedTag, size.w, size.h])
 
-  // Reset zoom & pan when the map layout category changes
+  // Reset zoom & pan when the map layout category or projection method changes
   React.useEffect(() => {
     setZoom(1.0)
     setPan({ x: 0, y: 0 })
-  }, [mapMode])
+  }, [mapMode, projectionMethod])
 
   const dragRef = React.useRef({ startX: 0, startY: 0, curX: 0, curY: 0, moved: false })
 
@@ -240,7 +244,7 @@ export default function DHMap({
       const AXIS_SPECS: Record<string, { x: string; y: string; x0: string; x1: string; y0: string; y1: string } | undefined> = {
         groove: { x: "tempo →", y: "↑ circle of fifths", x0: "60 bpm", x1: "200 bpm", y0: "C/Am", y1: "F/Dm" },
         intent: { x: "weirdness →", y: "↑ style weight", x0: "0", x1: "1", y0: "0", y1: "1" },
-        texture: { x: "bounce →", y: "↑ melodic complexity", x0: "0.05", x1: "0.6", y0: "0.05", y1: "0.7" },
+        texture: { x: "bounce →", y: "↑ melodic complexity", x0: "0.05", x1: "1.0", y0: "0.05", y1: "0.7" },
         narrative: { x: "journey →", y: "↑ spread", x0: "1", x1: "50", y0: "0.1", y1: "3.0" },
         tempo: { x: "tempo →", y: "", x0: "60 bpm", x1: "200 bpm", y0: "", y1: "" },
       }
@@ -287,14 +291,16 @@ export default function DHMap({
 
       // Calculate target coordinates based on active layout and clicked tag distortion
       let basePts: [number, number, number][]
-      if (mapMode === "lyrics") {
-        basePts = data.lyricPoints || data.points
+      if (mapMode === "music") {
+        basePts = (projectionMethod === "umap" ? data.points_umap : data.points_tsne) || data.points
+      } else if (mapMode === "lyrics") {
+        basePts = (projectionMethod === "umap" ? data.lyricPoints_umap : data.lyricPoints_tsne) || data.lyricPoints || data.points
       } else if (mapMode === "metrics") {
-        basePts = data.metricPoints || data.points
+        basePts = (projectionMethod === "umap" ? data.metricPoints_umap : data.metricPoints_tsne) || data.metricPoints || data.points
       } else if (mapMode === "aesthetic") {
-        basePts = data.metricPointsAblated9 || data.points
+        basePts = (projectionMethod === "umap" ? data.metricPointsAblated9_umap : data.metricPointsAblated9_tsne) || data.metricPointsAblated9 || data.points
       } else if (mapMode === "rhythm") {
-        basePts = data.metricPointsAblated4 || data.points
+        basePts = (projectionMethod === "umap" ? data.metricPointsAblated4_umap : data.metricPointsAblated4_tsne) || data.metricPointsAblated4 || data.points
       } else if (mapMode === "groove") {
         basePts = data.tracks.map((t) => {
           const tempo = t.tempo != null ? Math.max(60, Math.min(200, t.tempo)) : 100
@@ -321,8 +327,8 @@ export default function DHMap({
         })
       } else if (mapMode === "texture") {
         basePts = data.tracks.map((t) => {
-          const bounce = t.bounce != null ? Math.max(0.05, Math.min(0.6, t.bounce)) : 0.3
-          const bounceRawX = ((bounce - 0.05) / (0.6 - 0.05)) * 1.7 - 0.85
+          const bounce = t.bounce != null ? Math.max(0.05, Math.min(1.0, t.bounce)) : 0.3
+          const bounceRawX = ((bounce - 0.05) / (1.0 - 0.05)) * 1.7 - 0.85
           const comp = t.melodicComplexity != null ? Math.max(0.05, Math.min(0.7, t.melodicComplexity)) : 0.3
           const compRawY = ((comp - 0.05) / (0.7 - 0.05)) * 1.7 - 0.85
           
@@ -353,7 +359,7 @@ export default function DHMap({
           return [tempoRawX, jitterY, 0] as [number, number, number]
         })
       } else {
-        basePts = data.points
+        basePts = (projectionMethod === "umap" ? data.points_umap : data.points_tsne) || data.points
       }
 
       const clickedTagIndices = clickedTag ? getMatchingIndices(clickedTag, data.tracks) : []
@@ -432,16 +438,18 @@ export default function DHMap({
           const track = data.tracks[focusIdx]
           
           if (showPaths) {
-            // Draw sequential marching ants trajectory path: focusIdx -> neighbor 0 -> neighbor 1 -> ...
+            // Draw sequential marching ants trajectory path connecting all tracks in the active album in order
+            const activeAlbum = data.tracks[focusIdx].album
+            // Get all tracks in the same album, sorted by index (sequential order)
+            const albumTracks = data.tracks
+              .filter(t => t.album === activeAlbum)
+              .sort((a, b) => a.i - b.i)
+            
             const pathPoints: [number, number][] = []
-            if (pts[focusIdx]) {
-              const [x, y] = project(pts[focusIdx].x, pts[focusIdx].y, w, h)
-              pathPoints.push([x, y])
-            }
-            for (const [neighIdx] of track.neighbors) {
-              const isNeighHidden = hideInstrumentals && data.tracks[neighIdx].lyricsPresent !== 1
-              if (pts[neighIdx] && !isNeighHidden) {
-                const [x, y] = project(pts[neighIdx].x, pts[neighIdx].y, w, h)
+            for (const t of albumTracks) {
+              const isHidden = hideInstrumentals && t.lyricsPresent !== 1
+              if (pts[t.i] && !isHidden) {
+                const [x, y] = project(pts[t.i].x, pts[t.i].y, w, h)
                 pathPoints.push([x, y])
               }
             }
@@ -453,30 +461,33 @@ export default function DHMap({
               for (let i = 1; i < pathPoints.length; i++) {
                 ctx.lineTo(pathPoints[i][0], pathPoints[i][1])
               }
-              ctx.strokeStyle = "rgba(226, 75, 74, 0.7)" // playhead red
+              ctx.strokeStyle = "rgba(226, 75, 74, 0.75)" // playhead red
               ctx.lineWidth = 1.8
               ctx.setLineDash([5, 5])
               ctx.lineDashOffset = -tRef.current * 12
               ctx.stroke()
               ctx.restore()
             }
-          } else {
-            // Draw default faint web lines
-            const [px0, py0] = project(pts[focusIdx].x, pts[focusIdx].y, w, h)
-            ctx.strokeStyle = "rgba(226,75,74,0.18)"
-            ctx.lineWidth = 1.0
-            for (const [neighIdx] of track.neighbors) {
-              const isNeighHidden = hideInstrumentals && data.tracks[neighIdx].lyricsPresent !== 1
-              if (pts[neighIdx] && !isNeighHidden) {
-                const [px1, py1] = project(pts[neighIdx].x, pts[neighIdx].y, w, h)
+          }
+
+          if (showKnn) {
+            // Draw nearest neighbors web lines in CLAP/timbre space
+            ctx.save()
+            const [px, py] = project(pts[focusIdx].x, pts[focusIdx].y, w, h)
+            for (const [j] of track.neighbors) {
+              const isHidden = hideInstrumentals && data.tracks[j].lyricsPresent !== 1
+              if (pts[j] && !isHidden) {
+                const [nx, ny] = project(pts[j].x, pts[j].y, w, h)
                 ctx.beginPath()
-                ctx.moveTo(px0, py0)
-                const cx = (px0 + px1) / 2 + (w / 2 - (px0 + px1) / 2) * 0.12
-                const cy = (py0 + py1) / 2 + (h / 2 - (py0 + py1) / 2) * 0.12
-                ctx.quadraticCurveTo(cx, cy, px1, py1)
+                ctx.moveTo(px, py)
+                ctx.lineTo(nx, ny)
+                ctx.strokeStyle = "rgba(226, 75, 74, 0.45)" // slightly lighter playhead red
+                ctx.lineWidth = 1.2
+                ctx.setLineDash([3, 3])
                 ctx.stroke()
               }
             }
+            ctx.restore()
           }
         }
       }
@@ -532,7 +543,9 @@ export default function DHMap({
       // 3. Draw base dots
       for (let i = 0; i < pts.length; i++) {
         if (i === focusIdx) continue
-        if (hideInstrumentals && data.tracks[i].lyricsPresent !== 1) continue
+        const track = data.tracks[i]
+        if (!track) continue
+        if (hideInstrumentals && track.lyricsPresent !== 1) continue
 
         const [px, py] = project(pts[i].x, pts[i].y, w, h)
         const isN = neighborSet.has(i)
@@ -542,7 +555,7 @@ export default function DHMap({
         const isTagMatched = activeTagSet.has(i)
 
         // Determine dot color: vocal tracks highlight in blue in lyrics mode
-        const hasLyrics = data.tracks[i].lyricsPresent === 1
+        const hasLyrics = track.lyricsPresent === 1
         const dotColor = isHover 
           ? RED
           : isTagMatched
@@ -561,13 +574,28 @@ export default function DHMap({
         ctx.globalAlpha = (isN || isHover || isTagMatched ? 1.0 : played.has(i) ? 0.9 : 0.5) * searchDim
         ctx.fill()
 
-        if (data.tracks[i].fav) {
+        if (track.fav) {
           ctx.globalAlpha = 0.9 * searchDim
           ctx.beginPath()
           ctx.arc(px, py, 5, 0, Math.PI * 2)
           ctx.strokeStyle = isTagMatched ? "#3b82f6" : GOLD
           ctx.lineWidth = 1
           ctx.stroke()
+        }
+
+        // Anomaly indicator: draw a dashed rotating amber halo around outlier tracks
+        if (track.anomalyScore != null && track.anomalyScore > 0.0) {
+          ctx.save()
+          ctx.globalAlpha = (isHover ? 0.95 : 0.6) * searchDim
+          ctx.beginPath()
+          const rRing = (isHover || isTagMatched ? 4.5 : isN ? 3.5 : 2.5) + 2.5
+          ctx.arc(px, py, rRing, 0, Math.PI * 2)
+          ctx.strokeStyle = "rgba(245, 158, 11, 0.75)" // Amber-500
+          ctx.lineWidth = 1.0
+          ctx.setLineDash([2, 2])
+          ctx.lineDashOffset = tRef.current * 4
+          ctx.stroke()
+          ctx.restore()
         }
       }
       ctx.globalAlpha = 1
@@ -593,7 +621,7 @@ export default function DHMap({
 
     draw()
     return () => cancelAnimationFrame(raf)
-  }, [data, size, focusIdx, hoverIdx, played, neighborSet, project, mapMode, zoom, hideInstrumentals, activeTag])
+  }, [data, size, focusIdx, hoverIdx, played, neighborSet, project, mapMode, zoom, hideInstrumentals, activeTag, clickedTag, projectionMethod])
 
   // hit-testing on move/click
   const pick = React.useCallback(
@@ -605,9 +633,24 @@ export default function DHMap({
       let best = -1
       let bestD = 10 * 10
 
+      let basePts: [number, number, number][]
+      if (mapMode === "music") {
+        basePts = (projectionMethod === "umap" ? data.points_umap : data.points_tsne) || data.points
+      } else if (mapMode === "lyrics") {
+        basePts = (projectionMethod === "umap" ? data.lyricPoints_umap : data.lyricPoints_tsne) || data.lyricPoints || data.points
+      } else if (mapMode === "metrics") {
+        basePts = (projectionMethod === "umap" ? data.metricPoints_umap : data.metricPoints_tsne) || data.metricPoints || data.points
+      } else if (mapMode === "aesthetic") {
+        basePts = (projectionMethod === "umap" ? data.metricPointsAblated9_umap : data.metricPointsAblated9_tsne) || data.metricPointsAblated9 || data.points
+      } else if (mapMode === "rhythm") {
+        basePts = (projectionMethod === "umap" ? data.metricPointsAblated4_umap : data.metricPointsAblated4_tsne) || data.metricPointsAblated4 || data.points
+      } else {
+        basePts = (projectionMethod === "umap" ? data.points_umap : data.points_tsne) || data.points
+      }
+
       const pts = currentPtsRef.current.length > 0 
         ? currentPtsRef.current 
-        : (mapMode === "lyrics" ? (data.lyricPoints || data.points) : data.points).map(pt => ({ x: pt[0], y: pt[1] }))
+        : basePts.map(pt => ({ x: pt[0], y: pt[1] }))
 
       for (let i = 0; i < pts.length; i++) {
         if (hideInstrumentals && data.tracks[i].lyricsPresent !== 1) continue
@@ -621,7 +664,7 @@ export default function DHMap({
       }
       return best
     },
-    [data, size, project, mapMode, hideInstrumentals]
+    [data, size, project, mapMode, hideInstrumentals, projectionMethod]
   )
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -733,7 +776,7 @@ export default function DHMap({
 
       {/* Lyric Topology Legend Note */}
       {mapMode === "lyrics" && (
-        <div className="absolute top-2 left-3 text-[9.5px] text-blue-500 font-mono pointer-events-none select-none">
+        <div className="absolute top-2.5 left-10 text-[9.5px] text-blue-500 font-mono pointer-events-none select-none">
           * vocal tracks highlighted in blue
         </div>
       )}
