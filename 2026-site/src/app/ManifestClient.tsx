@@ -125,6 +125,7 @@ async function fetchManifest(): Promise<Manifest> {
 
 export default function ManifestClient() {
   const [albums, setAlbums] = useState<Album[] | null>(null)
+  const [favIds, setFavIds] = useState<Set<string>>(new Set())
   const [err, setErr] = useState<string | null>(null)
 
   useEffect(() => {
@@ -136,6 +137,23 @@ export default function ManifestClient() {
         setAlbums(normalizeAlbumPaths(list, prefix))
       } catch (e) {
         setErr(String(e))
+      }
+    })()
+  }, [])
+
+  // starred favorites (optional — playlist works without them)
+  useEffect(() => {
+    ;(async () => {
+      const prefix = runtimePrefix()
+      for (const b of Array.from(new Set([prefix, ""]))) {
+        try {
+          const res = await fetch(`${b}/data/favs.json`, { cache: "no-cache" })
+          if (res.ok) {
+            const ids = (await res.json()) as string[]
+            if (Array.isArray(ids)) setFavIds(new Set(ids))
+            return
+          }
+        } catch {}
       }
     })()
   }, [])
@@ -197,7 +215,7 @@ export default function ManifestClient() {
         <p className="mt-1">Total duration: {totalDurationLabel}</p>
       </header>
 
-      <AudioLibraryClient albums={albums} />
+      <AudioLibraryClient albums={albums} favIds={favIds} />
     </>
   )
 }

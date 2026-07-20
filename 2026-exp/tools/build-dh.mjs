@@ -438,6 +438,8 @@ out.tracks = tracks.map((t, i) => {
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true })
 fs.writeFileSync(OUT, JSON.stringify(out))
+// slim favorites list for the vanilla playlist (stars + random-star queue)
+fs.writeFileSync(path.join(SITE, "data/favs.json"), JSON.stringify(tracks.filter((t) => isFav(t)).map((t) => t.trackId)))
 const kb = (fs.statSync(OUT).size / 1024) | 0
 console.log(`wrote ${OUT} (${kb} KB), ${N} tracks, ${out.albums.length} albums`)
 console.log(`favorites matched: ${out.tracks.filter((t) => t.fav).length}`)
