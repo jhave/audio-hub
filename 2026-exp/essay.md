@@ -10,9 +10,11 @@ Whales, dolphins, birds: complex cortexes that make songs. Yet none replicates w
 
 Meaning occurs when an entity resonates. Resonance is a form of music. Worlds, by definition, are music ([BOAMCO, 2025](https://glia.ca/2025/boamco/)). 
 
-Awareness is math. Math is qualitative form.
+Maybe life is music. Awareness is math. Math is qualitative form.
 
-Can machines learn the music of being? Listen & consider. I think you will hear: yes.
+Can machines learn the music of being? Listen & consider. 
+
+If AI is the new frontier of feeling and consciousness, and if there is no sound more immediate than music, no experience more human than melody, then maybe we will soon find ourselves inside music everywhere. 
 
 # If Suno was a musician, would we see it as a genius?
 

@@ -69,16 +69,36 @@ export function resolveSrc(src: string | null): string | undefined {
   if (!src) return undefined
   if (/^[a-z]+:\/\//i.test(src)) return src
   if (AUDIO_BASE) return `${AUDIO_BASE}${src.replace(/^\/audio/, "")}`
+  if (typeof window !== "undefined") {
+    const base = window.location.pathname.replace(/\/experience\/?$/, "")
+    return `${base}${src}`.replace(/\/+/g, "/")
+  }
   return `..${src}` // "/audio/x.mp3" -> "../audio/x.mp3" (relative, archive-safe)
 }
 
-function dataURL(): string {
-  // dh.json sits at …/171days/data/dh.json; the page is …/171days/experience/
-  return "../data/dh.json"
-}
-
 export async function loadDH(): Promise<DHData> {
-  const res = await fetch(dataURL(), { cache: "no-cache" })
-  if (!res.ok) throw new Error(`dh.json HTTP ${res.status}`)
-  return (await res.json()) as DHData
+  const candidates: string[] = []
+
+  if (typeof window !== "undefined") {
+    const base = window.location.pathname.replace(/\/experience\/?$/, "")
+    const absoluteSubpath = `${base}/data/dh.json`.replace(/\/+/g, "/")
+    candidates.push(absoluteSubpath)
+  }
+  candidates.push("../data/dh.json")
+  candidates.push("./data/dh.json")
+  candidates.push("/data/dh.json")
+
+  let lastError: Error | null = null
+  for (const url of candidates) {
+    try {
+      const res = await fetch(url, { cache: "no-cache" })
+      if (res.ok) {
+        return (await res.json()) as DHData
+      }
+    } catch (e: any) {
+      lastError = e
+    }
+  }
+
+  throw new Error(`Failed to load dh.json after trying candidates: ${candidates.join(", ")}. Last error: ${lastError?.message}`)
 }
