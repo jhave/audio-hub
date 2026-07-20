@@ -71,6 +71,7 @@ export default function DHFAQ({
   const lines = text.split("\n")
   const elements: React.ReactNode[] = []
   let keyIdx = 0
+  let sectionNum = 0
 
   let inDetails = false
   let detailsSummary: React.ReactNode = null
@@ -120,7 +121,7 @@ export default function DHFAQ({
     const flushList = () => {
       if (listItems.length > 0) {
         list.push(
-          <ul key={`list-${keyIdx++}`} className="list-disc pl-4 mb-3 space-y-1 text-[11px] text-neutral-600">
+          <ul key={`list-${keyIdx++}`} className="list-disc marker:text-[#e24b4a] pl-4 mb-3 space-y-1 text-[12.5px] text-neutral-600">
             {listItems.map((item, idx) => (
               <li key={idx}>{parseInlineMarkdown(item)}</li>
             ))}
@@ -156,20 +157,27 @@ export default function DHFAQ({
 
       if (trimmed.startsWith("# ")) {
         list.push(
-          <h1 key={keyIdx++} id={elementId || undefined} className="mt-4 mb-2 text-[13px] font-bold text-black border-b pb-1">
+          <h1 key={keyIdx++} id={elementId || undefined} className="mt-4 mb-2 text-[16px] font-serif font-bold tracking-tight text-neutral-900 border-b pb-1.5">
             {trimmed.slice(2)}
           </h1>
         )
       } else if (trimmed.startsWith("## ")) {
+        sectionNum++
         list.push(
-          <h2 key={keyIdx++} id={elementId || undefined} className="mt-4 mb-1.5 text-[11.5px] font-bold text-neutral-800">
-            {trimmed.slice(3)}
-          </h2>
+          <div key={keyIdx++} className="mt-5 mb-1.5">
+            <div className="flex items-center gap-2.5 mb-1">
+              <span className="text-[12px] font-mono text-[#e24b4a] font-bold">§{String(sectionNum).padStart(2, "0")}</span>
+              <div className="h-[1px] flex-grow bg-gradient-to-r from-neutral-200 to-transparent" />
+            </div>
+            <h2 id={elementId || undefined} className="text-[15px] font-serif font-bold text-neutral-900 tracking-tight leading-snug">
+              {trimmed.slice(3)}
+            </h2>
+          </div>
         )
       } else if (trimmed.startsWith("### ")) {
         const textVal = trimmed.replace(/^###\s+/, "").trim()
         list.push(
-          <h3 key={keyIdx++} id={elementId || undefined} className="mt-3 mb-1 text-[11px] font-bold text-neutral-700 scroll-mt-4">
+          <h3 key={keyIdx++} id={elementId || undefined} className="mt-3.5 mb-1 text-[13px] font-serif font-bold text-neutral-800 scroll-mt-4">
             {trimmed.slice(4)}
           </h3>
         )
@@ -177,17 +185,17 @@ export default function DHFAQ({
         if (btns) list.push(btns)
       } else if (trimmed.startsWith("> ")) {
         list.push(
-          <blockquote key={keyIdx++} className="border-l-2 border-neutral-300 pl-3 my-2.5 italic text-[11px] text-neutral-500">
-            {trimmed.slice(2)}
+          <blockquote key={keyIdx++} className="border-l-2 border-[#e24b4a] pl-3 my-3 font-serif italic text-[13.5px] leading-relaxed text-neutral-700">
+            {parseInlineMarkdown(trimmed.slice(2))}
           </blockquote>
         )
       } else if (trimmed === "---") {
-        list.push(<hr key={keyIdx++} className="my-4 border-neutral-200" />)
+        list.push(<div key={keyIdx++} className="mt-6" />)
       } else if (trimmed.length === 0) {
         continue
       } else {
         list.push(
-          <p key={keyIdx++} className="mb-2.5 text-[11px] leading-relaxed text-neutral-600">
+          <p key={keyIdx++} className="mb-2.5 text-[13px] leading-relaxed text-neutral-700 font-serif antialiased">
             {renderWithHighlights(trimmed)}
           </p>
         )
@@ -246,7 +254,7 @@ export default function DHFAQ({
       const innerReact = parseLinesToReact(detailsInnerLines)
       elements.push(
         <details key={keyIdx++} className="mb-4 bg-white border rounded-xl p-3 shadow-sm group">
-          <summary className="text-[12px] font-bold text-neutral-800 cursor-pointer list-none flex justify-between items-center group-open:border-b group-open:pb-2 select-none">
+          <summary className="text-[13px] font-bold text-neutral-800 cursor-pointer list-none flex justify-between items-center group-open:border-b group-open:pb-2 select-none">
             {detailsSummary || "WTF is that?"}
             <span className="text-[10px] text-neutral-400 font-normal transition-transform duration-200 group-open:rotate-180">▼</span>
           </summary>
@@ -274,7 +282,7 @@ export default function DHFAQ({
   }
 
   return (
-    <div className="p-4 text-[12px] select-text">
+    <div className="p-4 text-[13px] select-text">
       {elements}
     </div>
   )
