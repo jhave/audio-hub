@@ -1243,7 +1243,7 @@ function Inner({ data }: { data: DHData }) {
                     title="suno.com/@jhave"
                   >
                     <img 
-                      src="/img/suno-jhave.webp" 
+                      src={resolveSrc("/img/suno-jhave.webp")} 
                       alt="Suno Profile" 
                       className="w-full h-full object-cover select-none"
                     />
@@ -1258,7 +1258,7 @@ function Inner({ data }: { data: DHData }) {
                     title="glia.ca"
                   >
                     <img 
-                      src="/img/glia-bw.png" 
+                      src={resolveSrc("/img/glia-bw.png")} 
                       alt="glia.ca" 
                       className="w-full h-full object-contain select-none"
                     />
@@ -1441,7 +1441,7 @@ function Inner({ data }: { data: DHData }) {
         >
           <div className="max-w-4xl text-center flex flex-col items-center">
             {/* Top Centered Logo (now inside content box and 40% larger) */}
-            <img src="/img/glia-bw.png" alt="glia.ca" className="h-20 object-contain opacity-80 mb-5 select-none" />
+            <img src={resolveSrc("/img/glia-bw.png")} alt="glia.ca" className="h-20 object-contain opacity-80 mb-5 select-none" />
 
             <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 mb-1 select-none">
               171 Days

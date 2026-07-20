@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import AudioLibraryClient from "./AudioLibraryClient"
 import type { Album } from "@/lib/scan-audio"
+import { resolveSrc } from "@/lib/dh"
 
 type Manifest = { albums: Album[] }
 
