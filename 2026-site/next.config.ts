@@ -1,7 +1,7 @@
 // next.config.ts
 import type { NextConfig } from "next"
 
-const raw = process.env.NEXT_PUBLIC_BASE_PATH || "" // "" in dev; "2025/75days" for export
+const raw = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === "production" ? "2026/171days" : "")
 const base = raw.replace(/^\/+|\/+$/g, "")
 const basePath = base ? `/${base}` : undefined
 // PORTABLE=1: relative asset URLs so the exported folder runs from any path
