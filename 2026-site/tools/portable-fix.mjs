@@ -1,6 +1,12 @@
-// Post-build pass for PORTABLE exports: Next.js metadata icons are always
-// emitted with absolute hrefs, which would break when the site folder is
-// served from a subpath. Rewrite them relative to each HTML file's depth.
+// Post-build pass for PORTABLE exports: Next.js emits some URLs in forms that
+// break when the exported folder is served from an arbitrary subpath.
+// Rewrite them relative to each HTML file's depth so the whole folder is
+// archive-safe (runs from any path, no deploy URL baked in).
+//
+//  - metadata icons: always absolute ("/favicon.ico", "/img/…")
+//  - _next assets: absolute ("/_next/…") without assetPrefix, or "./_next/…"
+//    with assetPrefix "./" — both wrong for pages deeper than the root
+//    (e.g. experience/index.html must reference "../_next/…")
 import fs from "fs/promises"
 import path from "path"
 
@@ -21,6 +27,11 @@ for await (const file of htmlFiles(OUT)) {
   const after = before
     .replaceAll('href="/favicon.ico', `href="${rel}favicon.ico`)
     .replaceAll('href="/img/', `href="${rel}img/`)
+    // _next assets, in every attribute/inline form Next emits them
+    .replaceAll('"./_next/', `"${rel}_next/`)
+    .replaceAll('"/_next/', `"${rel}_next/`)
+    .replaceAll("\\\"./_next/", `\\"${rel}_next/`)
+    .replaceAll("\\\"/_next/", `\\"${rel}_next/`)
   if (after !== before) {
     await fs.writeFile(file, after, "utf8")
     console.log("relativized:", path.relative(OUT, file))
