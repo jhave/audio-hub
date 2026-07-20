@@ -50,6 +50,13 @@ function parseInlineMarkdown(text: string): React.ReactNode[] {
 export default function DHEssay({ text }: { text: string }) {
   const [viewMode, setViewMode] = React.useState<"nodes" | "linear">("nodes")
   const [activeNodeIdx, setActiveNodeIdx] = React.useState<number>(0)
+  const readerRef = React.useRef<HTMLDivElement | null>(null)
+
+  // Failsafe: when a new segment is selected, snap the reader back to the top
+  // (matters only when text overflows the pane on smaller screens)
+  React.useEffect(() => {
+    readerRef.current?.scrollTo({ top: 0 })
+  }, [activeNodeIdx])
   
   const nodes = React.useMemo(() => {
     if (!text) return []
@@ -208,7 +215,7 @@ export default function DHEssay({ text }: { text: string }) {
           </div>
 
           {/* Radical Focus Reader */}
-          <div className="flex-1 min-h-0 flex flex-col justify-start overflow-y-auto px-1.5 pb-28 scrollbar-thin scrollbar-thumb-neutral-200">
+          <div ref={readerRef} className="flex-1 min-h-0 flex flex-col justify-start overflow-y-auto px-1.5 pb-2 scrollbar-thin scrollbar-thumb-neutral-200">
             {activeNode && (
               <div key={activeNode.id} className="animate-fadeIn space-y-4">
                 <div className="flex items-center gap-2.5">
