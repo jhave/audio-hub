@@ -213,6 +213,16 @@ export default function ManifestClient() {
         </p>
 
         <p className="mt-1">Total duration: {totalDurationLabel}</p>
+
+        <p className="mt-1">
+          Data-experience:{" "}
+          <a
+            href="experience/"
+            className="underline decoration-neutral-300 underline-offset-2 hover:decoration-neutral-500 hover:text-black"
+          >
+            here
+          </a>
+        </p>
       </header>
 
       <AudioLibraryClient albums={albums} favIds={favIds} />
